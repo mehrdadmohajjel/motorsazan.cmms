@@ -1,0 +1,32 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetMainDepartmentListHasMachine[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterDepartmentHasMachineCombo";
+        settings.CallbackRouteValues = new { Controller = "MachineManagement", Action = "filterDepartmentHasMachineCombo" };
+
+        settings.Properties.ClientSideEvents.BeginCallback =
+            "motorsazanClient.machineManagement.handleFilterDepartmentHasMachineComboBeginCallback";
+
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "انتخاب خط";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "DepartmentId";
+        settings.Properties.TextField = "Title";
+        settings.Properties.ValueType = typeof(int);
+
+
+        settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.machineManagement.handleFilterDepartmentHasMachineComboSelectedIndexChanged";
+    }).BindList(Model).GetHtml()
+
+

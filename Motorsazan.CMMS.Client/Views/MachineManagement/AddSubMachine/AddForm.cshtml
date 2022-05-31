@@ -1,0 +1,56 @@
+﻿<div class="filter-form">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب دستگاه
+                </label>
+                <div id="addSubMachineTreeParent">
+                    @{
+                        var machineId = (long)ViewData["MachineTopParentId"];
+                        Html.RenderAction("AddSubMachineTreeList", "MachineManagement", new { MachineTopParentId = machineId });
+                    }
+                </div>
+                <div class="app__form-error app__hide" id="addSubMachineTreeError">
+                    نام دستگاه وارد نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-12 col-lg-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    نام زیر دستگاه
+                </label>
+                <div id="addSubMachineNameParent">
+                    @Html.DevExpress().TextBox(settings =>
+                    {
+                        settings.Name = "addSubMachineName";
+                        settings.Properties.NullText = "عنوان زیر دستگاه";
+
+                        settings.Properties.ClientSideEvents.ValueChanged =
+                            "motorsazanClient.machineManagement.handleAddSubMachineNameTextBoxValueChanged";
+                    }).GetHtml()
+
+                </div>
+                <div class="app__form-error app__hide" id="addSubMachineNameError">
+                    نام زیر دستگاه وارد نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-12 col-lg-6 filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "addPerformanceSaveBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "add-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.handleAddSubMachineSaveBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@{ ViewBag.Title = "دریافت گزارش لیست قطعات مصرفی به تفکیک هر ماشین"; }
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/ConsumableStockForEachMachine/Css/Index.min.css" rel="Stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/ConsumableStockForEachMachine/Js/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        <section class="app__section">
+            <div class="app__section__header">
+                @ViewBag.Title
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/ConsumableStockForEachMachine/FilterForm/FilterForm.cshtml"); }
+            </div>
+        </section>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <section class="app__section">
+            <div class="app__section__header">
+                لیست
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+            <div class="app__section__body">
+
+                <form class="app__grid-wrapper" id="resultGridParent">
+                    @{ Html.RenderAction(actionName: "FillResultGrid", controllerName: "ConsumableStockForEachMachine"); }
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

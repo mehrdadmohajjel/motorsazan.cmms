@@ -1,0 +1,25 @@
+﻿@{ ViewBag.Title = "آمار سفارشکارهای نا تمام تا امروز"; }
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/MachineStopStatusReport/Js/Index.js"></script>
+}
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/MachineStopStatusReport/Css/Index.min.css" rel="Stylesheet" />
+}
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <section class="app__section">
+            <div class="app__section__header">
+                آمار سفارشکارهای نا تمام تا امروز
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+            <div class="app__section__body">
+                <form id="sourceGirdParent" class="app__grid-wrapper">
+                    @{ Html.RenderAction("ShowGrid"); }
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetSubDepartmentListHasMachineByMainDepartmentId[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormGetSubDepartmentListHasMachineCombo";
+        settings.CallbackRouteValues = new {Controller = "OEEReport", Action = "FilterFormGetSubDepartmentListHasMachineByMainDepartmentId"};
+
+        settings.Properties.ClientSideEvents.BeginCallback =
+            "motorsazanClient.oEEReport.handleFilterFormGetSubDepartmentListHasMachineComboBeginCallback";
+
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نام خط را وارد کنید";
+
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "DepartmentId";
+        settings.Properties.ValueType = typeof(int);
+
+        settings.Properties.TextField = "Title";
+
+        settings.Properties.PopupHorizontalAlign = PopupHorizontalAlign.RightSides;
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.oEEReport.handleFilterFormGetSubDepartmentListHasMachineComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

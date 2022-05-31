@@ -1,0 +1,177 @@
+﻿@using DevExpress.Data
+@using Motorsazan.CMMS.Client.Controllers
+@model Motorsazan.CMMS.Shared.Models.Output.MachineCheckList.OutputGetOperationItemListByMachineId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "machineCheckListGrid";
+    settings.CallbackRouteValues = new { Controller = "MachineCheckList", Action = "MachineCheckListGrid" };
+
+    settings.ClientSideEvents.BeginCallback = "motorsazanClient.machineCheckList.handleMachinesCheckListItemGridBeginCallback";
+
+    settings.ClientSideEvents.SelectionChanged =
+        "motorsazanClient.machineCheckList.handleGridSelectionChanged";
+
+    settings.ClientSideEvents.DetailRowExpanding =
+        "motorsazanClient.machineCheckList.setMachineCheckListGridFocusedRowOnExpanding";
+
+    settings.ClientSideEvents.EndCallback =
+        "motorsazanClient.machineCheckList.onEndCallBack";
+
+    settings.ClientSideEvents.RowClick = "function(s, e){ s.ExpandDetailRow(e.visibleIndex); }";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowSelectCheckbox = true;
+    settings.CommandColumn.ShowClearFilterButton = true;
+    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.AllPages;
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "OperationItemId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OperationItemName";
+        column.Caption = "عنوان آیتم چک لیست";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.Width = Unit.Percentage(40);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OperationItemCode";
+        column.Caption = "کد آیتم";
+        column.Width = Unit.Percentage(15);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "HourDuration";
+        column.Caption = "دوره به ساعت";
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.Width = Unit.Percentage(10);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MaintenanceGroupName";
+        column.Caption = "گروه تعمیراتی";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.Width = Unit.Percentage(20);
+
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = MachineCheckListController.GetWorkOrderMaintenanceGroupList();
+            cb.TextField = "MaintenanceGroupName";
+            cb.ValueField = "MaintenanceGroupName";
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "IsActive";
+        column.Caption = "وضعیت";
+        column.Width = Unit.Percentage(10);
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.SetDataItemTemplateContent(columnItem =>
+        {
+            var isActive = Convert.ToBoolean(DataBinder.Eval(columnItem.DataItem, "IsActive"));
+            var text = isActive ? "فعال" : "غیر فعال";
+            ViewContext.Writer.Write(text);
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MaintenanceGroupId";
+        column.Caption = "آی دی گروه تعمیراتی";
+        column.Visible = false;
+    });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.Command = GridViewToolbarCommand.ExportToXlsx;
+            i.Text = "خروجی اکسل";
+            i.ItemStyle.CssClass = "app__form-grid-mini-btn btn";
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.Command = GridViewToolbarCommand.Custom;
+            i.Text = " کپی کدهای چک لیست انتخابی به ماشین دیگر";
+            i.Name = "gridToolbarChangeCopySeveralOperationButton";
+            i.Image.IconID = DevExpress.Web.ASPxThemes.IconID.DiagramiconsCopySvg16x16;
+            i.ItemStyle.CssClass = "app__form-grid-mini-btn btn-danger";
+        });
+
+        settings.ClientSideEvents.ToolbarItemClick =
+            "motorsazanClient.machineCheckList.handleGridToolbarChangeCopySeveralOperationItemForOtherMachineButtonClick";
+    });
+
+
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SetDetailRowTemplateContent(row =>
+    {
+        var operationItemId = Convert.ToInt64(DataBinder.Eval(row.DataItem, "OperationItemId"));
+        if (ViewData.ContainsKey("OperationItemId")) return;
+
+        var isActive = Convert.ToBoolean(DataBinder.Eval(row.DataItem, "IsActive"));
+        if (ViewData.ContainsKey("IsActive")) return;
+
+        ViewData["OperationItemId"] = operationItemId;
+        ViewData["IsActive"] = isActive;
+
+        Html.RenderAction("MachineCheckListGridDetailRow", "MachineCheckList", new { OperationItemId = operationItemId, IsActive = isActive });
+    });
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+

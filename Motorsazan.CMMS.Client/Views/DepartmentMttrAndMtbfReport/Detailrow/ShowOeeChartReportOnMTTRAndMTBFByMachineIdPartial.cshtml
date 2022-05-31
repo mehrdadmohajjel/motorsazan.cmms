@@ -1,0 +1,117 @@
+﻿
+
+@using System.Drawing
+@model Motorsazan.CMMS.Shared.Models.Output.DepartmentMttrAndMtbfReport.OutputGetOeeChartReportOnMTTRAndMTBFByMachineId[]
+
+@Html.DevExpress().Chart(settings =>
+{
+    settings.CallbackRouteValues = new { Controller = "DepartmentMttrAndMtbfReport", Action = "ShowOeeChartReportOnMTTRAndMTBFByMachineIdPartial" };
+    settings.Name = "oeeReportChart";
+
+    settings.RenderFormat = DevExpress.XtraCharts.Web.RenderFormat.Svg;
+    settings.BorderOptions.Visibility = DefaultBoolean.False;
+    settings.CrosshairEnabled = DefaultBoolean.True;
+    settings.PaletteName = "Office";
+    settings.Width = 900;
+    settings.Height = 450;
+    settings.SaveStateOnCallbacks = true;
+
+    settings.Series.Add(s =>
+    {
+        s.SetDataMembers("PersianMonthName", "Availability");
+        s.Views().LineSeriesView(v =>
+        {
+            v.Color = Color.CornflowerBlue;
+
+        });
+        s.ShowInLegend = true;
+        s.LegendTextPattern = "Availability";
+        s.LabelsVisibility = DefaultBoolean.True;
+        s.Label.TextOrientation = TextOrientation.Horizontal;
+
+
+    });
+    settings.Series.Add(s =>
+    {
+
+        s.SetDataMembers("PersianMonthName", "Performance");
+        s.Views().LineSeriesView(v =>
+        {
+            v.Color = Color.OrangeRed;
+        });
+        s.LegendTextPattern = "Performance";
+        s.LabelsVisibility = DefaultBoolean.True;
+        s.Label.TextOrientation = TextOrientation.Horizontal;
+
+    });
+
+    settings.Series.Add(s =>
+    {
+
+        s.SetDataMembers("PersianMonthName", "Quality");
+        s.Views().LineSeriesView(v =>
+        {
+            v.Color = Color.ForestGreen;
+        });
+        s.LegendTextPattern = "Performance";
+        s.LabelsVisibility = DefaultBoolean.True;
+        s.Label.TextOrientation = TextOrientation.Horizontal;
+
+    });
+    settings.Series.Add(s =>
+    {
+
+        s.SetDataMembers("PersianMonthName", "OEE");
+        s.Views().LineSeriesView(v =>
+        {
+            v.Color = Color.Purple;
+        });
+        s.LegendTextPattern = "Performance";
+        s.LabelsVisibility = DefaultBoolean.True;
+        s.Label.TextOrientation = TextOrientation.Horizontal;
+
+    });
+
+    settings.XYDiagram(d =>
+    {
+        d.AxisX.Title.Visibility = DefaultBoolean.True;
+        d.AxisX.Title.Text = "ماه های موجود";
+        d.AxisX.Title.Visibility = DefaultBoolean.True;
+        d.AxisX.NumericScaleOptions.MeasureUnit = NumericMeasureUnit.Ones;
+        d.AxisX.NumericScaleOptions.GridOffset = 1;
+        d.AxisY.Title.Text = "تعداد";
+
+        d.AxisY.Title.Visibility = DefaultBoolean.True;
+    });
+
+
+    settings.CrosshairEnabled = DefaultBoolean.True;
+    settings.Legend.ItemVisibilityMode = LegendItemVisibilityMode.Default;
+    settings.Legends.Default(l =>
+    {
+        l.AlignmentHorizontal = LegendAlignmentHorizontal.Center;
+        l.AlignmentVertical = LegendAlignmentVertical.BottomOutside;
+        l.Direction = LegendDirection.TopToBottom;
+        l.Border.Visibility = DefaultBoolean.True;
+        l.Padding.Left = 80;
+        l.Margins.Left = 40;
+        l.Visibility = DefaultBoolean.True;
+        l.Title.Text = "راهنمای رنگ ها";
+        l.Title.Visible = true;
+        l.MaxHorizontalPercentage = 100;
+
+    });
+
+
+    settings.Titles.Add(new ChartTitle()
+    {
+        Text = "نمودار مقایسه ای OEE "
+    });
+
+    settings.CrosshairOptions.ShowArgumentLabels = true;
+    settings.CrosshairOptions.ShowValueLabels = true;
+    settings.CrosshairOptions.ShowValueLine = true;
+}).Bind(Model).GetHtml()
+
+
+

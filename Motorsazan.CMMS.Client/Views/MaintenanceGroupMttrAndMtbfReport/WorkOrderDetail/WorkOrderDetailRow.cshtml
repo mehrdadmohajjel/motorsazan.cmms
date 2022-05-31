@@ -1,0 +1,57 @@
+﻿<div class="app--center">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridDetailRowRegistrarInfoBtn";
+                settings.Text = "مشاهده مشخصات ثبت کننده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.maintenanceGroupMttrAndMtbfReport.handleMainGridDetailRowRegistrarInfoBtnClick";
+            }).GetHtml()
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridDetailRowPerformedOperationsBtn";
+                settings.Text = "مشاهده عملیات انجام شده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.maintenanceGroupMttrAndMtbfReport.handleMainGridDetailRowPerformedOperationsBtnClick";
+            }).GetHtml()
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridDetailRowConsumingMaterialsBtn";
+                settings.Text = "مشاهده مواد مصرفی";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.maintenanceGroupMttrAndMtbfReport.handleMainGridDetailRowConsumingMaterialsBtnClick";
+            }).GetHtml()
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridDetailRowReferralsHistoryBtn";
+                settings.Text = "مشاهده تاریخچه ارجاعات";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.maintenanceGroupMttrAndMtbfReport.handleMainGridDetailRowReferralsHistoryBtnClick";
+            }).GetHtml()
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetMainMachineListBySubDepartmentId[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormMachineCombo";
+        settings.CallbackRouteValues = new { Controller = "Inspection", Action = "AddFormGetDepartmentMachineList" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "دستگاه را انتخاب نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.Properties.DropDownWidth = Unit.Percentage(100);
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "MachineId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+
+        settings.Properties.Columns.Add("MachineName", "عنوان", Unit.Percentage(60));
+        settings.Properties.Columns.Add("OldMachineCode", "کد دستگاه", Unit.Percentage(25));
+        settings.Properties.Columns.Add("OperationCode", "OP", Unit.Percentage(15));
+
+        settings.Properties.ClientSideEvents.BeginCallback =
+            "motorsazanClient.inspection.handleAddFormMachineComboBeginCallback";
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "motorsazanClient.inspection.handleFilterFormMachineComboSelectedIndexChange";
+
+    }).BindList(Model).GetHtml()
+
+
+

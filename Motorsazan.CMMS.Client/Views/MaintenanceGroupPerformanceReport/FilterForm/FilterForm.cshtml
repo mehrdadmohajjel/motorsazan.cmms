@@ -1,0 +1,89 @@
+﻿<div class="filter-form filter-form--big">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-2" id="filterFormBeingItemsDivCenter">
+
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب گروه تعمیراتی
+                </label>
+                <div id="filterFormMaintenanceGroupComboParent">
+                    @{ Html.RenderAction("FilterFormMaintenanceGroupIdCombo", "MaintenanceGroupPerformanceReport");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormMaintenanceGroupComboError">
+                    گروه تعمیراتی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    بازه زمانی
+                </label>
+                <div id="filterFormDateComboParent">
+                    @{ Html.RenderPartial("~/Views/MaintenanceGroupPerformanceReport/FilterForm/FilterFormDateCombo.cshtml");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormDateComboError">
+                    بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-2 app__hide" id="filterFormPeriodStartDatePickerParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    از تاریخ
+                </label>
+                <div>
+                    <input type="text" class="app__form-datepicker"
+                           id="filterFormPeriodStartDatePicker"
+                           placeholder="از تاریخ"
+                           data-mddatetimepicker="true"
+                           data-englishnumber="true"
+                           data-targetdateselector="#filterFormPeriodStartDatePicker" />
+                </div>
+                <div class="app__form-error app__hide" id="filterFormPeriodStartDatePickerError">
+                    شروع بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-2 app__hide" id="filterFormPeriodEndDatePickerParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    تا تاریخ
+                </label>
+                <div>
+                    <input type="text" class="app__form-datepicker"
+                           id="filterFormPeriodEndDatePicker"
+                           placeholder="تا تاریخ"
+                           data-mddatetimepicker="true"
+                           data-englishnumber="true"
+                           data-targetdateselector="#filterFormPeriodEndDatePicker" />
+                </div>
+                <div class="app__form-error app__hide" id="filterFormPeriodEndDatePickerError">
+                    پایان بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-5 col-md-2 filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormSearchBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.maintenanceGroupPerformanceReport.handleFilterFormSearchButtonClick";
+            }).GetHtml()
+        </div>
+
+    </div>
+</div>

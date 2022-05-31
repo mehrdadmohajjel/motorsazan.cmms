@@ -1,0 +1,28 @@
+﻿
+
+@model Motorsazan.CMMS.Shared.Models.Output.Machine.OutputGetMachineLevelList[]
+
+@Html.DevExpress().ComboBox(
+settings =>
+{
+    settings.Name = "addFormMachineLevelCombo";
+    settings.CallbackRouteValues = new { Controller = "Machine", Action = "AddFormMachineLevelCombo" };
+    settings.Width = Unit.Percentage(100);
+    settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+    settings.Properties.NullText = "'سطح دستگاه را انتخاب نمایید";
+    settings.SelectedIndex = -1;
+    settings.Properties.CallbackPageSize = 100;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.IncrementalFilteringDelay = 200;
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+    settings.Properties.ValueField = "MachineLevelId";
+    settings.Properties.TextField = "MachineLevelName";
+    settings.Properties.ValueType = typeof(long);
+
+    settings.Properties.ClientSideEvents.SelectedIndexChanged =
+        "motorsazanClient.machine.handleAddFormMachineLevelComboSelectedIndexChanged";
+
+}).BindList(Model).GetHtml()
+
+

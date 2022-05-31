@@ -1,0 +1,245 @@
+﻿@using DevExpress.Data
+@using DevExpress.Export
+@using Motorsazan.CMMS.Client.Controllers
+@model Motorsazan.CMMS.Shared.Models.Output.OCEReport.OutputGetOCEReportByCondition[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "resultGrid";
+
+    settings.CallbackRouteValues = new {Controller = "OCEReport", Action = "ResultGrid"};
+
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.oCEReport.handleResultGridBeginCallback";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "EmployeeId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(8);
+        column.UnboundType = UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.AddBand(employeeBand =>
+    {
+        employeeBand.Caption = "مشخصات پرسنل";
+        employeeBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+        employeeBand.Columns.Add(column =>
+        {
+            column.FieldName = "EmployeeName";
+            column.Caption = "نام";
+            column.Width = Unit.Pixel(12);
+        });
+
+        employeeBand.Columns.Add(column =>
+        {
+            column.FieldName = "EId";
+            column.Caption = "کد پرسنلی";
+            column.HeaderStyle.Wrap = DefaultBoolean.True;
+            column.Width = Unit.Pixel(4);
+        });
+
+        employeeBand.Columns.Add(column =>
+        {
+            column.FieldName = "MaintenanceGroupName";
+            column.Caption = "گروه";
+            column.CellStyle.Wrap = DefaultBoolean.True;
+            column.Width = Unit.Pixel(8);
+            column.EditorProperties().ComboBox(cb =>
+            {
+                cb.DataSource = OCEReportController.GetWorkOrderMaintenanceGroupList();
+                cb.TextField = "MaintenanceGroupName";
+                cb.ValueField = "MaintenanceGroupName";
+                cb.ValueType = typeof(string);
+                cb.DropDownStyle = DropDownStyle.DropDown;
+            });
+        });
+    });
+
+    settings.Columns.AddBand(presenceInCompanyBand =>
+    {
+        presenceInCompanyBand.Caption = "حضور در شرکت (ساعت)";
+        presenceInCompanyBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+        presenceInCompanyBand.Columns.Add(column =>
+        {
+            column.FieldName = "PresenceInCompany";
+            column.Caption = "حضور در تایم اصلی";
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.HeaderStyle.Wrap = DefaultBoolean.True;
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.Width = Unit.Pixel(6);
+        });
+
+        presenceInCompanyBand.Columns.Add(column =>
+        {
+            column.FieldName = "OverTime";
+            column.Caption = "اضافه کار";
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.HeaderStyle.Wrap = DefaultBoolean.True;
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.Width = Unit.Pixel(6);
+        });
+
+        presenceInCompanyBand.Columns.Add(column =>
+        {
+            column.FieldName = "DailyPerformance";
+            column.Caption = "مجموع حضور در شرکت";
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.HeaderStyle.Wrap = DefaultBoolean.True;
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.Width = Unit.Pixel(8);
+        });
+    });
+
+    settings.Columns.AddBand(performanceBand =>
+    {
+        performanceBand.Caption = "کارکرد (دقیقه)";
+        performanceBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+        performanceBand.Columns.Add(column =>
+        {
+            column.FieldName = "NonePMWorkOrderTimeForEachEmployee";
+            column.Caption = "کارکرد اتفاقی";
+            column.HeaderStyle.Wrap = DefaultBoolean.True;
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.Width = Unit.Pixel(6);
+        });
+
+        performanceBand.Columns.Add(column =>
+        {
+            column.FieldName = "PMWorkOrderTimeForEachEmployee";
+            column.Caption = "کارکرد غیر اتفاقی";
+            column.HeaderStyle.Wrap = DefaultBoolean.True;
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.Width = Unit.Pixel(6);
+        });
+
+        performanceBand.Columns.Add(column =>
+        {
+            column.FieldName = "TotalPerformanceForEachEmployee";
+            column.Caption = "جمع کارکرد";
+            column.HeaderStyle.Wrap = DefaultBoolean.True;
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.Width = Unit.Pixel(8);
+        });
+    });
+
+    settings.Columns.AddBand(oCEBand =>
+    {
+        oCEBand.Caption = "محاسبه OCE (%)";
+        oCEBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+        oCEBand.Columns.Add(column =>
+        {
+            column.FieldName = "CoefficientUtility";
+            column.Caption = "CU";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.Width = Unit.Pixel(6);
+        });
+
+        oCEBand.Columns.Add(column =>
+        {
+            column.FieldName = "CoefficientPerformance";
+            column.Caption = "CP";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.Width = Unit.Pixel(6);
+        });
+
+        oCEBand.Columns.Add(column =>
+        {
+            column.FieldName = "CoefficientQuality";
+            column.Caption = "CQ";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.Width = Unit.Pixel(6);
+        });
+
+        oCEBand.Columns.Add(column =>
+        {
+            column.FieldName = "OverallCraftEmployee";
+            column.Caption = "OCE";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+            column.PropertiesEdit.DisplayFormatString = "N2";
+            column.Width = Unit.Pixel(6);
+        });
+    });
+
+    // --- TotalSummary
+    settings.TotalSummary.Add(SummaryItemType.Sum, "PresenceInCompany")
+        .DisplayFormat = "مجموع: {0:N2}";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "OverTime")
+        .DisplayFormat = "مجموع: {0:N2}";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "DailyPerformance")
+        .DisplayFormat = "مجموع کل حضور: {0:N2}";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "NonePMWorkOrderTimeForEachEmployee")
+        .DisplayFormat = "مجموع: {0:N2}";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "PMWorkOrderTimeForEachEmployee")
+        .DisplayFormat = "مجموع: {0:N2}";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "TotalPerformanceForEachEmployee")
+        .DisplayFormat = "مجموع کل کارکرد: {0:N2}";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "CoefficientUtility")
+        .DisplayFormat = "میانگین: {0:N2}%";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "CoefficientPerformance")
+        .DisplayFormat = "میانگین: {0:N2}%";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "OverallCraftEmployee")
+        .DisplayFormat = "میانگین: {0:N2}%";
+
+
+    settings.Settings.ShowFooter = true;
+
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = ExportType.WYSIWYG;
+    settings.Toolbars.Add(t => { t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل"; });
+
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsSearchPanel.EditorNullTextDisplayMode = NullTextDisplayMode.Unfocused;
+    settings.SettingsSearchPanel.AllowTextInputTimer = false;
+    settings.SettingsText.SearchPanelEditorNullText = "عبارت مورد نظر جهت جستجو در لیست را وارد کنید";
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] {"50", "100", "200", "500"};
+}).Bind(Model).GetHtml()

@@ -1,0 +1,23 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.OilService.OutputGetOilServicePlaceList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addOilPlaceListCombo";
+        settings.CallbackRouteValues = new {Controller = "OilService", Action = "AddFormGetOilPlaceList"};
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = " انتخاب نمایید";
+        settings.SelectedIndex = 0;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+        settings.SelectedIndex = -1;
+
+        settings.Properties.ValueField = "OilServicePlaceId";
+        settings.Properties.TextField = "OilServicePlaceName";
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.oilService.handleAddFormOilPlaceListComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

@@ -1,0 +1,38 @@
+﻿<div class="filter-form">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-5">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب سفارش کار
+                </label>
+                <div id="filterFormWorkOrderIdTextBoxParent">
+                    @Html.DevExpress().TextBox(settings =>
+                    {
+                        settings.Name = "filterFormWorkOrderIdTextBox";
+                        settings.Properties.NullText = "شماره سفارشکار  را وارد کنید.";
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide" id="filterFormWorkOrderIdTextBoxError">
+                    سفارشکار انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-5 col-md-3 filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormSearchByWorkOrderBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.costReportByWorkOrder.handleFilterFormSearchByWorkOrderButtonClick";
+            }).GetHtml()
+        </div>
+
+    </div>
+
+</div>

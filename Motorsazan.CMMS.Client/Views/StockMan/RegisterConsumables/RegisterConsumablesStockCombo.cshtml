@@ -1,0 +1,21 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.StockMan.OutputGetStockList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "registerConsumablesStockCombo";
+        settings.CallbackRouteValues = new { Controller = "StockMan", Action = "RegisterConsumablesStoreCombo" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نام انبار را وارد نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "StockId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.TextField = "StockName";
+    }).BindList(Model).GetHtml()

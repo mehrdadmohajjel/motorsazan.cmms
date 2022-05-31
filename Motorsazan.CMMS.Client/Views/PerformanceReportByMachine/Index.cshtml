@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "گزارش عملکرد به تفکیک ماشین";
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/PerformanceReportByMachine/Js/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <section class="app__section">
+            <div class="app__section__header">
+                گزارش عملکرد به تفکیک ماشین
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/PerformanceReportByMachine/FilterForm/FilterForm.cshtml"); }
+                <form id="gridParent" class="app__grid-wrapper">
+                    @{ Html.RenderPartial("~/Views/PerformanceReportByMachine/Grid/Grid.cshtml"); }
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

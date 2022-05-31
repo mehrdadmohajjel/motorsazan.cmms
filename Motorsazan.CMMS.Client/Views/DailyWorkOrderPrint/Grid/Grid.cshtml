@@ -1,0 +1,139 @@
+﻿@using DevExpress.Data
+@using Motorsazan.CMMS.Client.Controllers
+@model Motorsazan.CMMS.Shared.Models.Output.DailyWorkOrderPrint.OutputGetDailyWorkOrderPrintReport[]
+
+@Html.DevExpress().GridView(settings =>
+{
+
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new { Controller = "DailyWorkOrderPrint", Action = "Grid" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.dailyworkorderprint.handleGridBeginCallback";
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "WorkOrderID";
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;  
+
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "سفارشکار";
+        column.Width = Unit.Percentage(10);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderType";
+        column.Caption = "نوع سفارشکار ";
+        column.Width = Unit.Percentage(10);
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "StopTypeID";
+        c.Caption = "نوع توقف";
+        c.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = DailyWorkOrderPrintController.GetWorkOrderStopTypeList();
+            cb.TextField = "StopTypeTitle";
+            cb.ValueField = "StopTypeID";
+            cb.ValueType = typeof(int);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "EmployeeName";
+        column.Caption = "کارشناس";
+        column.Width = Unit.Percentage(10);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "SubDepartment";
+        column.Caption = "خط";
+        column.Width = Unit.Percentage(10);
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "MaintenanceGroupID";
+        c.Caption = "گروه تعمیراتی";
+        c.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = DailyWorkOrderPrintController.GetMaintenanceGroupList();
+            cb.TextField = "MaintenanceGroupName";
+            cb.ValueField = "MaintenanceGroupID";
+            cb.ValueType = typeof(int);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowDeleteButton = false;
+    settings.CommandColumn.ShowEditButton = false;
+    settings.CommandColumn.ShowNewButton = false;
+    settings.CommandColumn.ShowNewButtonInHeader = false;
+    settings.CommandColumn.Caption = "چاپ";
+    settings.CommandColumn.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;
+    settings.CommandColumn.VisibleIndex = 1000;
+    settings.ClientSideEvents.CustomButtonClick = "motorsazanClient.dailyworkorderprint.handleGridCustomBtnClick";
+
+    var printCustomButton = new GridViewCommandColumnCustomButton() { ID = "printButton", Text = "چاپ" };
+    printCustomButton.Image.IconID = DevExpress.Web.ASPxThemes.IconID.PrintDefaultprinter16x16;
+
+    printCustomButton.Styles.Style.CssClass = "app__form-grid-mini-btn app__form-grid-mini-btn--danger";
+    settings.CommandColumn.CustomButtons.Add(printCustomButton);
+
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.Toolbars.Add(t =>
+    {
+        t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل";
+    });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+
+

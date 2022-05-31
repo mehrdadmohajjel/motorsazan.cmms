@@ -1,0 +1,141 @@
+﻿@import "../../../Client/Src/Scss/Utilities/_Variabels.scss";
+
+.danger-text {
+    color: $color-danger;
+}
+
+.danger-button {
+    background-color: red;
+    color: white;
+}
+
+.danger-button:hover {
+    background-color: rgba(255, 0, 0, 0.70);
+    color: white;
+}
+
+#machineLocationRemoveDesign {
+    display: block;
+    margin: auto;
+    padding-top: 8px;
+
+    #machineLocationRemoveBtn {
+        background-color: red;
+        color: white;
+        border-radius: 25px;
+    }
+}
+
+#machineLocationRemoveDesign {
+    #machineLocationRemoveBtn:hover {
+        background-color: rgba(255, 0, 0, 0.70);
+        color: white;
+    }
+}
+
+#trHeaderDesign {
+    th {
+        background-color: #007BF7;
+        color: white;
+        text-align: center;
+    }
+
+    tr {
+        text-wrap: normal;
+    }
+
+    td {
+        text-wrap: normal;
+    }
+}
+
+#machinesLocationTable {
+    margin-top: 15px;
+}
+
+#addSubMachineTreeParent,
+#addSparePartSubMachineTree,
+#machineTreeParent,
+#addMachineDocumentTree {
+    border: 1px solid $color-border;
+}
+
+#addFormSparePartFormDesign,
+#addFormSparePartFormDocumentDesign,
+#addFormMachineDocumentDesign {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid $color-border;
+}
+
+#addSparePartSubMachineTreeDesign,
+#addMachineDocumentTreeDesign {
+    display: block;
+    margin: auto;
+}
+.agendum {
+
+    &__infos {
+        background: $color-white--dark;
+        border: 1px solid $color-border;
+        border-radius: 4px;
+        font-size: 12px;
+        line-height: 2.4;
+        margin-bottom: $padding-default;
+        padding: $padding-default;
+        text-align: right;
+
+        &__title {
+            display: inline-block;
+            font-weight: bold;
+            vertical-align: middle;
+            width: 100px;
+        }
+    }
+
+    &__mfg-remain-count {
+        background: $color-danger--light;
+        border: 1px solid $color-danger;
+        color: $color-danger;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 15px;
+        padding: 0 $padding-default;
+    }
+
+    &__mgf-confilict-table {
+        border-collapse: collapse;
+        border: 1px solid $color-border;
+        width: 100%;
+
+        th {
+            border: 1px solid $color-border;
+            font-size: 13px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        td {
+            border: 1px solid $color-border;
+            font-size: 13px;
+            padding: 5px;
+        }
+
+        input {
+            border: 1px dashed $color-border;
+            outline: none;
+            width: 100%;
+        }
+
+        input:focus {
+            background: $color-white--dark;
+            color: #000;
+        }
+
+        tbody > tr:nth-child(2n) {
+            background: #9fa1a2;
+            color: #fff;
+        }
+    }
+}

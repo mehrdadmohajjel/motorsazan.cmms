@@ -1,0 +1,74 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetWorkOrderByWorkOrderId
+
+@Html.Hidden("referToAnotherPersonModalReceiverMaintenanceGroupIdHidden", Model.ReceiverMaintenanceGroupId)
+
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                شماره سفارش کار:
+            </label>
+            <label>
+                @Model.WorkOrderSerial
+            </label>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                نوع سفارش کار:
+            </label>
+            <label>
+                @Model.WorkOrderTypeTitle
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                فرد :
+            </label>
+            @{ Html.RenderAction("ReferToAnotherPersonModalPersonCombo", "NetExpert", new { MaintenanceGroupId = Model.ReceiverMaintenanceGroupId }); }
+            <div class="app__form-error app__hide" id="referToAnotherPersonModalPersonComboError">
+                فرد انتخاب نشده است
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                توضیحات
+            </label>
+            @Html.DevExpress().Memo(settings =>
+            {
+                settings.Name = "referToAnotherPersonModalDescriptionMemo";
+                settings.Properties.NullText = "توضیحات را وارد نمایید";
+                settings.Properties.ClientSideEvents.KeyUp =
+                    "motorsazanClient.netExpert.handleReferToAnotherPersonModalDescriptionMemoKeyUp";
+            }).GetHtml()
+            <div class="app__form-error app__hide" id="referToAnotherPersonModalDescriptionMemoError">
+                توضیحات وارد نشده است
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-5 col-md-2 pull-left filter-form__action-wrapper">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "referToAnotherPersonModalSaveBtn";
+            settings.Text = "ارجاع";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+            settings.Styles.CssPostfix = "add-form__btn";
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.netExpert.handleReferToAnotherPersonModalSaveBtnClick";
+        }).GetHtml()
+    </div>
+</div>

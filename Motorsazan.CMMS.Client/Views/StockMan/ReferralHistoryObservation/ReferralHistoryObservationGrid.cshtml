@@ -1,0 +1,69 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetWorKOrderReferralListByWorkOrderId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+
+    settings.Name = "referralHistoryObservationGrid";
+    settings.CallbackRouteValues = new { Controller = "StockMan", Action = "ReferralHistoryObservationGrid" };
+
+    settings.Width = Unit.Percentage(100);
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+
+    settings.KeyFieldName = "WorkOrderReferralId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 1;
+        column.FieldName = "SenderName";
+        column.Caption = "ارجاع دهنده";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 2;
+        column.FieldName = "ReceiverName";
+        column.Caption = "ارجاع گیرنده";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 3;
+        column.FieldName = "ShamsiDate";
+        column.Caption = "تاریخ ارجاع";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 4;
+        column.FieldName = "Time";
+        column.Caption = "زمان ارجاع";
+    });
+    
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+
+

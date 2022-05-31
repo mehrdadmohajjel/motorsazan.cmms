@@ -1,0 +1,44 @@
+﻿<div class="row">
+    <div class="filter-form">
+        <div class="row" id="addFormModalDesign">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب نفر
+                    </label>
+                    <div id="addFormEmployeeComboParent">
+                        @{
+                            Html.RenderAction("AddFormEmployeeCombo", "MaintenanceGroup");
+
+                        }
+                    </div>
+                    <div class="app__form-error app__hide" id="addFormEmployeeComboError">
+                        پرسنل انتخاب نشده است
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12 col-lg-12 filter-form__action-wrapper">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "addPeopleSaveBtn";
+                    settings.Text = "ثبت";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "add-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.maintenanceGroup.handleAssignEmployeeToMaintenanceGroupBtn";
+                }).GetHtml()
+            </div>
+            <div class="col-xs-12 col-md-12 col-lg-12 filter-form__action-wrapper">
+                <form class="app__grid-wrapper" id="maintenanceGroupMemberGirdParent">
+                    @{
+                        var maintenanceGroupId = (long)ViewData["MaintenanceGroupId"];
+                        Html.RenderAction("MaintenanceGroupMemberGird", new { MaintenanceGroupId = maintenanceGroupId });
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

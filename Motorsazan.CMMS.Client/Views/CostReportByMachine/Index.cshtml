@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "گزارش هزینه به تفکیک ماشین";
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/CostReportByMachine/Js/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <section class="app__section">
+            <div class="app__section__header">
+                @ViewBag.Title
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/CostReportByMachine/FilterForm/FilterForm.cshtml"); }
+                <form id="gridParent" class="app__grid-wrapper">
+                    @{ Html.RenderPartial("~/Views/CostReportByMachine/Grid/Grid.cshtml"); }
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

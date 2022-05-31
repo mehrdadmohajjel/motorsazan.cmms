@@ -1,0 +1,240 @@
+﻿
+@using System.Drawing
+@model Motorsazan.CMMS.Shared.Models.Output.MachineMttrMtbfReport.OutputGetTotalMttrAndMtbfByMachineId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "detailGrid";
+    settings.CallbackRouteValues = new { Controller = "MachineMttrMtbfReport", Action = "DetailGrid" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.machineMttrMtbfReport.handleDetailGridBeginCallback";
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = false;
+    settings.SettingsBehavior.AllowSelectByRowClick = false;
+    settings.Width = Unit.Percentage(100);
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "MachineId";
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "آمار تعدادی سفارشکار ";
+        band.Width = Unit.Percentage(25);
+        band.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        band.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        band.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        band.CellStyle.VerticalAlign = VerticalAlign.Middle;
+        band.HeaderStyle.BackColor = ColorTranslator.FromHtml("#f4f4f4"); ;
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "FinishedWorkOrderCount";
+            column.Caption = "دارای کد خطا (سفارشکار ناتمام)";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.Wrap = DefaultBoolean.True;
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "NotFinishedWorkOrderCount";
+            column.Caption = "بدون کد خطا(سفارشکار تمام شده)";
+            column.CellStyle.Wrap = DefaultBoolean.True;
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.Wrap = DefaultBoolean.True;
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "TotalWorkOrderCount";
+            column.Caption = "کل سفارشکارها";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+        });
+
+
+    });
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "زمان در اختیار ";
+        band.Width = Unit.Percentage(25);
+        band.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        band.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        band.HeaderStyle.BackColor = ColorTranslator.FromHtml("#f4f4f4"); ;
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "AccessTimeInHour";
+            column.Caption = "کل زمان در اختیار(ساعت)";
+            
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+
+        band.Columns.AddBand(repareTimBand =>
+        {
+            repareTimBand.Caption = "کل زمان تعمیر";
+            repareTimBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            repareTimBand.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+
+            repareTimBand.Columns.Add(column =>
+
+            {
+                column.FieldName = "PureRepairingTimeInHour";
+                column.Caption = "خالص";
+
+                column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+                column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+
+            repareTimBand.Columns.Add(column =>
+            {
+                column.FieldName = "ImpureRepairingTimeInHour";
+                column.Caption = "ناخالص";
+                
+                column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+                column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+
+        });
+
+
+    });
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "میانگین MTTR ";
+        band.Width = Unit.Percentage(16);
+        band.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        band.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        band.HeaderStyle.BackColor = ColorTranslator.FromHtml("#f4f4f4"); ;
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "PureMTTR";
+            column.Caption = "خالص";
+            
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "ImpureMTTR";
+            column.Caption = "ناخالص";
+            column.CellStyle.Wrap = DefaultBoolean.True;
+            
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+
+    });
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "میانگین MTBF ";
+        band.Width = Unit.Percentage(16);
+        band.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        band.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        band.HeaderStyle.BackColor = ColorTranslator.FromHtml("#f4f4f4"); ;
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "PureMTBF";
+            column.Caption = "خالص";
+
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "ImpureMTBF";
+            column.Caption = "ناخالص";
+            column.CellStyle.Wrap = DefaultBoolean.True;
+            
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+
+    });
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "درصد EA ";
+        band.Width = Unit.Percentage(18);
+        band.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        band.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        band.HeaderStyle.BackColor = ColorTranslator.FromHtml("#f4f4f4"); ;
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "PureEA";
+            column.Caption = "خالص";
+            
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "ImpureEA";
+            column.Caption = "ناخالص";
+            column.CellStyle.Wrap = DefaultBoolean.True;
+            
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.VerticalAlign = VerticalAlign.Middle;
+
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+
+    });
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+
+}).Bind(Model).GetHtml()
+
+
+
+
+

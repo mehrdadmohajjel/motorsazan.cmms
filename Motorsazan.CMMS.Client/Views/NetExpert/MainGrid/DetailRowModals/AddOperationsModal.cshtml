@@ -1,0 +1,14 @@
+﻿@{
+    var workOrderId = (long) ViewData["workOrderId"]; 
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        @{ Html.RenderAction("AddOperationsModalAddForm", "NetExpert", new {workOrderId}); }
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <form id="addOperationsModalGridParent" class="app__grid-wrapper">
+            @{ Html.RenderAction("AddOperationsModalGrid", "NetExpert", new {workOrderId}); }
+        </form>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@*@model Motorsazan.CMMS.Shared.Models.Output.StockMan.OutputGetRegisterConsumablesByWorkOrder*@
+
+<div class="app--center">
+    <div class="row">
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "registrarProfileObservationBtn";
+       settings.Text = "مشاهده مشخصات ثبت کننده";
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.Width = Unit.Pixel(180);
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.stockMan.handleRegistrarProfileObservationBtnClick";
+   }).GetHtml()
+
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "WorkOrderPerformedOperationBtn";
+       settings.Text = "مشاهده عملیات انجام شده";
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.Width = Unit.Pixel(180);
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.stockMan.handleWorkOrderPerformedOperationBtnClick";
+   }).GetHtml()
+
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "consumablesManagementBtn";
+       settings.Text = "مشاهده و تایید مواد مصرفی";
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.Width = Unit.Pixel(180);
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.stockMan.handleConsumablesManagementBtnClick";
+   }).GetHtml()
+
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "referralHistoryObservationBtn";
+       settings.Text = "مشاهده تاریخچه ارجاعات";
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.Width = Unit.Pixel(180);
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.stockMan.referralHistoryObservationBtnClick";
+   }).GetHtml()
+
+        @Html.DevExpress().Button(settings =>
+          {
+              settings.Name = "stockManGridDetailRowRegisterConsumablesBtn";
+              settings.Text = "ثبت مواد مصرفی";
+              settings.UseSubmitBehavior = false;
+              settings.EnableClientSideAPI = true;
+              settings.Width = Unit.Pixel(180);
+              settings.ClientSideEvents.Click =
+                  "motorsazanClient.stockMan.handleRegisterConsumablesBtnClick";
+          }).GetHtml()
+    </div>
+</div>
+
+

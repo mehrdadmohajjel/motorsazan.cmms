@@ -1,0 +1,131 @@
+﻿<a class="nav__item" href="/home">
+    صفحه اصلی
+</a>
+
+<div class="nav__item nav__item--has-submenu">
+    سفارشات نت
+    <div class="nav__submenu">
+        @Html.ActionLink("فرم سفارش انبار نت", "Index", "StockMan", null, new { @class = "nav__link" })
+        @Html.ActionLink("ثبت سفارشکار غیر تولیدی", "Index", "NoneProductiveWorkOrder", null, new { @class = "nav__link" })
+        @Html.ActionLink("ثبت سفارشکار  تولیدی", "Index", "ProductiveWorkOrder", null, new { @class = "nav__link" })
+        @Html.ActionLink("کارشناس نت", "Index", "NetExpert", null, new { @class = "nav__link" })
+
+    </div>
+</div>
+
+<div class="nav__item nav__item--has-submenu">
+    گزارشات نت
+    <div class="nav__submenu">
+
+        <div class="nav__link nav__item--has-second-level-submenu">
+            گزارش کارکرد پرسنل تعمیرات
+            <div class="nav__second-level-submenu">
+                @Html.ActionLink("گزارش عملکرد پرسنل", "Index", "EmployeePerformanceReport", null, new { @class = "nav__link" })
+
+                @Html.ActionLink("گزارش عملکرد گروه های تعمیراتی", "Index", "MaintenanceGroupPerformanceReport", null, new { @class = "nav__link" })
+
+                @Html.ActionLink("گزارش عملکرد به تفکیک امور", "Index", "PerformanceReportByDepartment", null, new { @class = "nav__link" })
+
+                @Html.ActionLink("گزارش عملکرد به تفکیک ماشین", "Index", "PerformanceReportByMachine", null, new { @class = "nav__link" })
+
+            </div>
+        </div>
+        <div class="nav__link nav__item--has-second-level-submenu">
+            گزارش هزینه های تعمیراتی
+            <div class="nav__second-level-submenu">
+                @Html.ActionLink("گزارش هزينه پرسنل", "Index", "EmployeeCostReport", null, new { @class = "nav__link" })
+
+                @Html.ActionLink("گزارش هزينه گروه های تعمیراتی", "Index", "MaintenanceGroupCostReport", null, new { @class = "nav__link" })
+
+                @Html.ActionLink("گزارش هزينه به تفکیک امور", "Index", "CostReportByDepartment", null, new { @class = "nav__link" })
+
+                @Html.ActionLink("گزارش هزينه به تفکیک ماشین", "Index", "CostReportByMachine", null, new { @class = "nav__link" })
+
+                @Html.ActionLink("گزارش هزينه  هر سفارشکار", "Index", "WorkOrderCostReport", null, new { @class = "nav__link" })
+
+            </div>
+        </div>
+        <div class="nav__link nav__item--has-second-level-submenu">
+            گزارش MTTR/MTBF
+            <div class="nav__second-level-submenu">
+                @Html.ActionLink("گزارش به تفکیک امور", "Index", "DepartmentMttrAndMtbfReport", null, new { @class = "nav__link" })
+
+                @Html.ActionLink("گزارش به تفکیک دستگاه", "Index", "MachineMttrMtbfReport", null, new { @class = "nav__link" })
+
+                @Html.ActionLink("گزارش به تفکیک امور و گروه تعمیراتی", "Index", "MaintenanceGroupMttrAndMtbfReport", null, new { @class = "nav__link" })
+            </div>
+        </div>
+        @Html.ActionLink("گزارش سفارشکار پیشگیرانه", "Index", "PreventiveMaintenancesSchedulingReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارشات برنامه ریز - چاپ سفارشکار", "Index", "SchedulerWorkOrderPrintReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارشات PLC", "Index", "PLCReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش OEE", "Index", "OEEReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش OCE", "Index", "OCEReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("آمار سفارشکارهای نا تمام تا امروز", "Index", "MachineStopStatusReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش روزانه انبار", "Index", "WarehouseDailyReports", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش روزانه تعمیرات", "Index", "DailyRepairsReports", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش روغن مصرفی دستگاه ها", "Index", "MainMachineOilServiceReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش تاخیر در سفارشکارها", "Index", "DelayInWorkOrderReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش سفارشکارهای اسکرپ", "Index", "ScrapedWorkOrderReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش ایمنی و بهداشت", "Index", "SafetyAndHealthReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش آیتم های عملیاتی", "Index", "ItemOperationReport", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("گزارش مشاهده ضمائم و پرونده های دستگاه", "Index", "MachineAttachmentReport", null, new { @class = "nav__link" })
+        @Html.ActionLink("گزارش مشاهده قطعات یدکی  دستگاه", "Index", "SparePartReport", null, new { @class = "nav__link" })
+        @Html.ActionLink("گزارش قطعات مصرفی ", "Index", "MachineConsumeStockReport", null, new { @class = "nav__link" })
+        @Html.ActionLink("گزارش لیست قطعات مصرفی به تفکیک هر ماشین ", "Index", "ConsumableStockForEachMachine", null, new { @class = "nav__link" })
+
+
+
+    </div>
+</div>
+
+<div class="nav__item nav__item--has-submenu">
+    برنامه ریزی
+    <div class="nav__submenu">
+        @Html.ActionLink("فرم اطلاعات مصرف روغن", "Index", "OilService", null, new { @class = "nav__link" })
+        @Html.ActionLink("فرم بازرسی بهبود و ارتقا", "Index", "Inspection", null, new { @class = "nav__link" })
+        @Html.ActionLink("فرم برنامه ریز پیشگیرانه", "Index", "PreventiveMaintenancesScheduling", null, new { @class = "nav__link" })
+
+    </div>
+</div>
+
+<div class="nav__item nav__item--has-submenu">
+    دستگاه
+    <div class="nav__submenu">
+        @Html.ActionLink("تعریف دستگاه", "Index", "Machine", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("مدیریت دستگاه", "Index", "MachineManagement", null, new { @class = "nav__link" })
+    </div>
+</div>
+
+<div class="nav__item nav__item--has-submenu">
+    آیتم عملیاتی
+    <div class="nav__submenu">
+        @Html.ActionLink("مدیریت کدهای خرابی", "Index", "OperationItem", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("کدهای پیشگیرانه", "Index", "PreventiveItemOperation", null, new { @class = "nav__link" })
+
+        @Html.ActionLink("چک لیست", "Index", "MachineCheckList", null, new { @class = "nav__link" })
+    </div>
+</div>
+
+<div class="nav__item nav__item--has-submenu">
+    مدیریت نیروی انسانی
+    <div class="nav__submenu">
+        @Html.ActionLink("گروه تعمیراتی", "Index", "MaintenanceGroup", null, new { @class = "nav__item" })
+
+        @Html.ActionLink("حقوق و دستمزد تعمیرات", "Index", "DetermineSalary", null, new { @class = "nav__link" })
+    </div>
+</div>

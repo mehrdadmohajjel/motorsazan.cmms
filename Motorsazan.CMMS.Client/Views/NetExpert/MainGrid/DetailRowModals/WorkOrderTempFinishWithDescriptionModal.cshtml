@@ -1,0 +1,31 @@
+﻿
+
+<div class="app__form-item">
+    <label class="app__form-label">
+        شرح علت ریشه ای ‌
+    </label>
+    @Html.DevExpress().Memo(settings =>
+    {
+    settings.Name = "workOrderTempFinishWithDescriptionModalDescriptionMemo";
+    settings.Properties.NullText = " شرح علت ریشه ای را وارد نمایید";
+    settings.Properties.ClientSideEvents.KeyUp =
+    "motorsazanClient.netExpert.handleWorkOrderTempFinishWithDescriptionModalDescriptionMemoKeyUp";
+    }).GetHtml()
+    <div class="app__form-error app__hide" id="workOrderTempFinishWithDescriptionModalDescriptionMemoError">
+        شرح علت ریشه ای وارد نشده است
+    </div>
+</div>
+
+<div class="app__form-item pull-left app__form-item--action">
+    @Html.DevExpress().Button(settings =>
+    {
+        settings.Name = "workOrderCancelWithDescriptionModalCancelBtn";
+        settings.Text = "اتمام کارنت";
+        settings.UseSubmitBehavior = false;
+        settings.EnableClientSideAPI = true;
+        settings.Styles.CssPostfix = "filter-form__btn";
+        settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+        settings.ClientSideEvents.Click =
+            "motorsazanClient.netExpert.handleWorkOrderTempFinishModalWithDescriptionBtnClick";
+    }).GetHtml()
+</div>

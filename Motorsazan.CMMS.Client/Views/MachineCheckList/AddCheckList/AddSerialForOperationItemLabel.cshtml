@@ -1,0 +1,15 @@
+﻿@using System.Drawing
+
+@model string
+
+@Html.DevExpress().Label(settings =>
+{
+    settings.Name = "addFormSerialForOperationLabel";
+    settings.Text = Model;
+
+    settings.Properties.EnableClientSideAPI = true;
+
+    settings.Width = Unit.Percentage(100);
+    settings.ControlStyle.CssClass = "CustomLabel";
+
+}).GetHtml()

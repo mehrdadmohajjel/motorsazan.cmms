@@ -1,0 +1,17 @@
+﻿<div class="filter-form">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-5">
+            @Html.DevExpress().RadioButtonList(
+                settings =>
+                {
+                    settings.Name = "filterFormSearchTypeSelectionRadioButtonList";
+                    settings.Properties.Items.Add("انتخاب بر اساس امور").Index = 1;
+                    settings.Properties.Items.Add("انتخاب براساس سفارشکار").Index = 2;
+                    settings.Properties.RepeatDirection = RepeatDirection.Horizontal;
+                    settings.Properties.ClientSideEvents.SelectedIndexChanged =
+                        "motorsazanClient.costReportByWorkOrder.handleFilterFormSearchTypeSelectionRadioButtonListSelectedIndexChanged";
+                }).GetHtml()
+        </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+﻿<div class="filter-form">
+
+    <div class="row ">
+
+        <div class="col-xs-2">
+            <label class="app__form-label">
+                شماره سفارشکار:
+            </label>
+        </div>
+        <div class="col-xs-2">
+            <label class="app__form-label" id="workOrderLabel">
+                @ViewData["workOrderSerial"]
+            </label>
+        </div>
+
+        <div class="col-xs-2">
+            <label class="app__form-label">
+                شماره ارجاع:
+            </label>
+        </div>
+        <div class="col-xs-2">
+            <label class="app__form-label" id="referralNumberLabel">
+                @ViewData["referralNumber"]
+            </label>
+        </div>
+
+        <div class="col-xs-2">
+            <label class="app__form-label">
+                دریافت کننده کالا:
+            </label>
+        </div>
+        <div class="col-xs-2">
+            <label class="app__form-label" id="officerLabel">
+                @ViewData["EmployeeID"]
+            </label>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="app__form-item">
+            <div class="col-xs-12 col-md-12">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب انبار
+                    </label>
+                    <div id="registerConsumablesStoreComboParent">
+                        @Html.Action("RegisterConsumablesStoreCombo", "StockMan")
+                    </div>
+                    <div class="app__form-error app__hide" id="registerConsumablesStoreComboError">
+                        انبار انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب قطعه
+                    </label>
+                    <div id="registerConsumablesStockComboParent">
+                        @{ Html.RenderAction("SundryModalStockComboByRackCode", "StockMan"); }
+                    </div>
+                    <div class="app__form-error app__hide" id="registerConsumablesStockComboError">
+                        قطعه انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="app__form-item" id="registerConsumablesStockNumberSpinEditParent">
+            <div class="col-xs-12 col-md-6">
+                <label class="app__form-label">
+                    تعداد کالا:
+                </label>
+                <div>
+                    @Html.DevExpress().SpinEdit(settings =>
+                    {
+                        settings.Name = "registerConsumablesStockNumberSpinEdit";
+                        settings.Properties.NullText = "تعداد کالا را وارد کنید";
+                        settings.Properties.MaxValue = 10000000;
+                        settings.Properties.MinValue = 1;
+                        settings.Properties.ShowOutOfRangeWarning = false;
+                        settings.Properties.ClientSideEvents.ValueChanged =
+                            "motorsazanClient.stockMan.handleRegisterConsumablesStockNumberSpinEditValueChanged";
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide" id="registerConsumablesStockNumberSpinEditError">
+                    تعداد کالا وارد نشده است
+                </div>
+                <div class="app__form-error app__hide" id="registerConsumablesStockNumberSpinEditRangeError">
+                    تعداد کالا نمی تواند کمتر از 1 باشد
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="col-xs-5 col-md-4 pull-left">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "addingRegisterConsumableButton";
+                    settings.Text = "ثبت";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    //settings.Styles.CssPostfix = "add-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.stockMan.handleAddedRegisterConsumableBtnClick";
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="app__form-item">
+            <div class="col-xs-12 col-md-12">
+                <div id="addedRegisterConsumableGridParent">
+                    @{ Html.RenderAction("HavaleWorkOrderReferralGrid", "StockMan", new { WorkOrderReferralId = @ViewData["referralNumber"] }); }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

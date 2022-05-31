@@ -1,0 +1,12 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetWorkOrderByWorkOrderId
+
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        @{ Html.RenderPartial("~/Views/NetExpert/MainGrid/DetailRowModals/AddPreventiveDetailsModalAddForm.cshtml"); }
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <form id="addPreventiveModalGridParent" class="app__grid-wrapper">
+            @{ Html.RenderAction("AddPreventiveDetailsModalGrid", "NetExpert"); }
+        </form>
+    </div>
+</div>

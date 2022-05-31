@@ -1,0 +1,28 @@
+﻿
+@model Motorsazan.CMMS.Shared.Models.Output.StockMan.OutputGetRegistrarProfileObservation
+<table class="stock-man">
+    <tr>
+        <th>تاریخ صدور برگ:</th>
+        <td>@Model.ShamsiCreationDateTime</td>
+    </tr>
+    <tr>
+        <th>شماره دستورکار:</th>
+        <td>@Model.WorkOrderSerial</td>
+    </tr>
+    <tr>
+        <th>نام ماشین:</th>
+        <td>@Model.MachineName</td>
+    </tr>
+    <tr>
+        <th>محل دستگاه:</th>
+        <td>@Model.MachineName</td>
+    </tr>
+    <tr>
+        <th>درخواست کننده:</th>
+        <td>@Model.RegistrantName</td>
+    </tr>
+    <tr>
+        <th>توضیحات:</th>
+        <td>@Model.Description</td>
+    </tr>
+</table>

@@ -1,0 +1,44 @@
+﻿<div class="filter-form">
+    <div class="row ">
+        <div class="col-xs-12 col-md-4" >
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب امور
+                </label>
+                <div id="filterDepartmentHasMachineComboParent">
+                    @{ Html.RenderAction(actionName: "FilterDepartmentHasMachineCombo", controllerName: "MachineManagement"); }
+                </div>
+                <div class="app__form-error app__hide" id="filterDepartmentHasMachineComboError">
+                    امور انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4" >
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب خط
+                </label>
+                <div id="filterSubDepartmentHasMachineComboParent">
+                    @{ Html.RenderAction(actionName: "FilterSubDepartmentHasMachineCombo", controllerName: "MachineManagement"); }
+                </div>
+                <div class="app__form-error app__hide" id="filterSubDepartmentHasMachineComboError">
+                    خط انتخاب نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-5 col-md-2 filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormMachineListBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.filterMachineList";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

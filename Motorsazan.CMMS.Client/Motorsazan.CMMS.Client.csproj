@@ -1,0 +1,1341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{148FEFE9-DCD1-40E4-B0B1-22F7FC17AED8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Motorsazan.CMMS.Client</RootNamespace>
+    <AssemblyName>Motorsazan.CMMS.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress>true</Use64BitIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <UpgradeBackupLocation />
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elasticsearch.Net, Version=7.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elasticsearch.Net.7.16.0\lib\net461\Elasticsearch.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Persia, Version=3.0.4727.38582, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Persia.NET.3.0.4727\lib\Persia.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.10.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Enrichers.Environment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Enrichers.Environment.2.2.0\lib\net45\Serilog.Enrichers.Environment.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Extensions.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Extensions.Logging.3.1.0\lib\netstandard2.0\Serilog.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Formatting.Compact, Version=1.1.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Formatting.Compact.1.1.0\lib\net452\Serilog.Formatting.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Formatting.Elasticsearch, Version=0.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Formatting.Elasticsearch.8.4.1\lib\net45\Serilog.Formatting.Elasticsearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Debug, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Debug.2.0.0\lib\net46\Serilog.Sinks.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Elasticsearch, Version=8.4.1.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Elasticsearch.8.4.1\lib\net461\Serilog.Sinks.Elasticsearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=5.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.5.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.PeriodicBatching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.PeriodicBatching.2.3.0\lib\net45\Serilog.Sinks.PeriodicBatching.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Export, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.Mvc5.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v18.2.Core, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.ASPxScheduler.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v18.2.Web, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.Resources.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2.Web, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2.Web.WebForms, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.ASPxTreeList.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.7\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\DevExpressIntellisense\ASPxScriptIntelliSense.js" />
+    <Content Include="Client\DevExpressIntellisense\devexpress-aspnetcore-bootstrap.d.ts" />
+    <Content Include="Client\DevExpressIntellisense\devexpress-web.d.ts" />
+    <Content Include="Client\DevExpressIntellisense\jquery.d.ts" />
+    <Content Include="Client\DevExpressIntellisense\knockout.d.ts" />
+    <Content Include="Client\Dist\Css\PanelLayout.css" />
+    <Content Include="Client\Dist\Css\PanelLayout.min.css">
+      <DependentUpon>PanelLayout.css</DependentUpon>
+    </Content>
+    <Content Include="Client\Images\cancel.svg" />
+    <Content Include="Client\Images\checked.svg" />
+    <Content Include="Client\Images\home\expert.svg" />
+    <Content Include="Client\Images\home\warehouse.svg" />
+    <Content Include="Client\Images\icon__boss--white.svg" />
+    <Content Include="Client\Images\icon__chat--white.svg" />
+    <Content Include="Client\Images\icon__clock--white.svg" />
+    <Content Include="Client\Images\icon__cms--white.svg" />
+    <Content Include="Client\Images\icon__cost--white.svg" />
+    <Content Include="Client\Images\icon__employee-evaluation--white.svg" />
+    <Content Include="Client\Images\icon__gear--white.svg" />
+    <Content Include="Client\Images\icon__genealogy--white.svg" />
+    <Content Include="Client\Images\icon__grid--white.svg" />
+    <Content Include="Client\Images\icon__list--white.svg" />
+    <Content Include="Client\Images\icon__machine-stop--white.svg" />
+    <Content Include="Client\Images\icon__money--white.svg" />
+    <Content Include="Client\Images\icon__motor--white.svg" />
+    <Content Include="Client\Images\icon__pay--white.svg" />
+    <Content Include="Client\Images\icon__project--white.svg" />
+    <Content Include="Client\Images\icon__recommend--white.svg" />
+    <Content Include="Client\Images\icon__repair--white.svg" />
+    <Content Include="Client\Images\icon__shop--white.svg" />
+    <Content Include="Client\Images\icon__stamp--white.svg" />
+    <Content Include="Client\Images\icon__strategy--white.svg" />
+    <Content Include="Client\Images\logo--primary.png" />
+    <Content Include="Client\Images\logo--white.png" />
+    <Content Include="Client\Images\logo__circle--primary.png" />
+    <Content Include="Client\Images\maximize.svg" />
+    <Content Include="Client\Images\minimize.svg" />
+    <Content Include="Client\Images\OEE.png" />
+    <Content Include="Client\Images\open-menu.svg" />
+    <Content Include="Client\Images\profile--empty.png" />
+    <Content Include="Client\Images\warning.svg" />
+    <Content Include="Client\Images\window.svg" />
+    <Content Include="Client\Src\Js\Dependencies\Bootstrap\_Bootstrap.js" />
+    <Content Include="Client\Src\Js\Dependencies\DatePicker\_Calendar.js" />
+    <Content Include="Client\Src\Js\Dependencies\DatePicker\_PersianDateTimePicker.js" />
+    <Content Include="Client\Src\Js\Utilites\Connector.js" />
+    <Content Include="Client\Src\Js\Utilites\Tools.js" />
+    <Content Include="Client\Src\Js\Views\Partials\_ShortcutBar.js" />
+    <Content Include="Client\Src\Js\Views\Shared\Components\_Uploader.js" />
+    <Content Include="Client\Src\Js\Views\Shared\Partials\_AppSections.js" />
+    <Content Include="Client\Src\Js\Views\Shared\Partials\_Authentication.js" />
+    <Content Include="Client\Src\Js\Views\Shared\Partials\_ContentModal.js" />
+    <Content Include="Client\Src\Js\Views\Shared\Partials\_LoadingModal.js" />
+    <Content Include="Client\Src\Js\Views\Shared\Partials\_MessageModal.js" />
+    <Content Include="Client\Src\Js\Views\Shared\Partials\_NavigationBar.js" />
+    <Content Include="Client\Src\Js\Views\Shared\Partials\_ShortcutBar.js" />
+    <None Include=".editorconfig" />
+    <Content Include="Client\Src\Scss\Views\Shared\Components\Tab.css">
+      <DependentUpon>Tab.scss</DependentUpon>
+    </Content>
+    <Content Include="Client\Src\Scss\Views\Shared\Components\Tab.min.css">
+      <DependentUpon>Tab.css</DependentUpon>
+    </Content>
+    <Content Include="Favicon.png" />
+    <Content Include="Global.asax" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\Images\icon__production--white.svg" />
+    <Content Include="Client\Src\Js\Dependencies\SignalR\jquery.signalR-2.4.2.js" />
+    <Content Include="Client\Src\Js\Dependencies\SignalR\jquery.signalR-2.4.2.min.js" />
+    <Content Include="Views\AllWorkOrderStatusReport\Js\Index.js" />
+    <Content Include="Views\ConsumableStockForEachMachine\Css\Index.css" />
+    <Content Include="Views\ConsumableStockForEachMachine\Css\Index.min.css" />
+    <Content Include="Views\ConsumableStockForEachMachine\Js\Index.js" />
+    <Content Include="Views\CostReportByWorkOrder\Js\Index.js" />
+    <Content Include="Views\DailyWorkOrderPrint\js\Index.js" />
+    <Content Include="Views\DailyRepairsReports\Js\Index.js" />
+    <Content Include="Views\DelayInWorkOrderReport\js\Index.js" />
+    <Content Include="Views\ItemOperationReport\js\Index.js" />
+    <Content Include="Views\MachineAttachmentReport\Css\Index.css" />
+    <Content Include="Views\MachineAttachmentReport\Css\Index.min.css" />
+    <Content Include="Views\MachineAttachmentReport\Js\Index.js" />
+    <Content Include="Views\MachineConsumeStockReport\Css\Index.css" />
+    <Content Include="Views\MachineConsumeStockReport\Css\Index.min.css" />
+    <Content Include="Views\MachineConsumeStockReport\Js\Index.js" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\js\Index.js" />
+    <Content Include="Views\DetermineSalary\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\DetermineSalary\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\DetermineSalary\Js\Index.js" />
+    <Content Include="Views\Home\Css\Index.css" />
+    <Content Include="Views\Home\Css\Index.min.css" />
+    <Content Include="Views\Inspection\Css\Index.css" />
+    <Content Include="Views\Inspection\Css\Index.min.css" />
+    <Content Include="Views\Inspection\Js\Index.js" />
+    <Content Include="Views\MachineCheckList\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\MachineCheckList\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\MachineManagement\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\MachineManagement\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\MachineMttrMtbfReport\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\MachineMttrMtbfReport\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\MachineMttrMtbfReport\js\Index.js" />
+    <Content Include="Views\MachineStopStatusReport\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\MachineStopStatusReport\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\MachineStopStatusReport\Js\Index.js" />
+    <Content Include="Views\MainMachineOilServiceReport\js\Index.js" />
+    <Content Include="Views\MaintenanceGroupCostReport\js\Index.js" />
+    <Content Include="Views\EmployeeCostReport\js\Index.js" />
+    <Content Include="Views\EmployeePerformanceReport\js\Index.js" />
+    <Content Include="Views\MachineCheckList\Js\Index.js" />
+    <Content Include="Views\MachineManagement\Js\Index.js" />
+    <Content Include="Views\Machine\Css\Index.css" />
+    <Content Include="Views\Machine\Css\Index.min.css" />
+    <Content Include="Views\Machine\Js\Index.js" />
+    <Content Include="Views\MaintenanceGroupPerformanceReport\js\Index.js" />
+    <Content Include="Views\MaintenanceGroup\Css\Index.css" />
+    <Content Include="Views\MaintenanceGroup\Css\Index.min.css" />
+    <Content Include="Views\MaintenanceGroup\Js\Index.js" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\DepartmentMttrAndMtbfReport\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\DepartmentMttrAndMtbfReport\js\Index.js" />
+    <Content Include="Views\NetExpert\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\NetExpert\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\NetExpert\Js\Index.js" />
+    <Content Include="Views\NoneProductiveWorkOrder\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\NoneProductiveWorkOrder\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\NoneProductiveWorkOrder\Js\Index.js" />
+    <Content Include="Views\OCEReport\Js\Index.js" />
+    <Content Include="Views\OEEReport\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\OEEReport\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\OEEReport\Js\Index.js" />
+    <Content Include="Views\OilService\AddForm\AddFormOilListPartial.cshtml" />
+    <Content Include="Views\OilService\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\OilService\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\OilService\Js\Index.js" />
+    <Content Include="Views\OperationItem\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\OperationItem\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\OperationItem\Js\Index.js" />
+    <Content Include="Views\CostReportByDepartment\js\Index.js" />
+    <Content Include="Views\PerformanceReportByDepartment\js\Index.js" />
+    <Content Include="Views\CostReportByMachine\js\Index.js" />
+    <Content Include="Views\PerformanceReportByMachine\js\Index.js" />
+    <Content Include="Views\PLCReport\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\PLCReport\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\PLCReport\js\Index.js" />
+    <Content Include="Views\PreventiveItemOperation\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\PreventiveItemOperation\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\PreventiveItemOperation\Js\Index.js" />
+    <Content Include="Views\PreventiveMaintenancesSchedulingReport\js\Index.js" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\PreventiveMaintenancesScheduling\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\PreventiveMaintenancesScheduling\Js\Index.js" />
+    <Content Include="Views\ProductiveWorkOrder\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\ProductiveWorkOrder\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\ProductiveWorkOrder\Grid\AddRatePeople.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\Js\Index.js" />
+    <Content Include="Views\SafetyAndHealthReport\css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\SafetyAndHealthReport\css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\SafetyAndHealthReport\js\Index.js" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\css\Index.css" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\css\Index.min.css" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\js\Index.js" />
+    <Content Include="Views\ScrapedWorkOrderReport\css\Index.css" />
+    <Content Include="Views\ScrapedWorkOrderReport\css\Index.min.css" />
+    <Content Include="Views\ScrapedWorkOrderReport\js\Index.js" />
+    <Content Include="Views\SparePartReport\Css\Index.css" />
+    <Content Include="Views\SparePartReport\Css\Index.min.css" />
+    <Content Include="Views\SparePartReport\Js\Index.js" />
+    <Content Include="Views\WarehouseDailyReports\Js\Index.js" />
+    <Content Include="Views\StockMan\ConsumablesManagement\ConsumablesManagementGrid.cshtml" />
+    <Content Include="Views\StockMan\Css\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Views\StockMan\Css\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Views\StockMan\Js\Index.js" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WorkOrderCostReport\js\Index.js" />
+    <Content Include="Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Partials\_AppSectionSettings.cshtml" />
+    <Content Include="Views\Shared\Partials\_LoginModal.cshtml" />
+    <Content Include="Views\Shared\Partials\_CommonClientResources.cshtml" />
+    <Content Include="Views\Shared\Partials\_DevexpressClient.cshtml" />
+    <Content Include="Views\Shared\Partials\_LoadingModal.cshtml" />
+    <Content Include="Views\Shared\Partials\_MessageModal.cshtml" />
+    <Content Include="Views\Shared\Partials\_NavigationBar.cshtml" />
+    <Content Include="Views\Shared\Partials\_NavigationMenuList.cshtml" />
+    <Content Include="Views\Shared\Partials\_ShortcutBar.cshtml" />
+    <Content Include="Client\Src\Scss\Dependencies\Bootstrap\_Bootstrap.scss" />
+    <Content Include="Client\Src\Scss\Dependencies\DatePicker\_PersianDateTimePicker.scss" />
+    <Content Include="Client\Src\Scss\Dependencies\DevExpress\_Override.scss" />
+    <Content Include="Client\Src\Scss\Dependencies\Fonts\Shabnam\_Index.scss" />
+    <Content Include="Client\Src\Scss\Dependencies\Fonts\_index.scss" />
+    <Content Include="Client\Src\Scss\Dependencies\Form\_index.scss" />
+    <Content Include="Client\Src\Scss\Utilities\_Functions.scss" />
+    <Content Include="Client\Src\Scss\Utilities\_Index.scss" />
+    <Content Include="Client\Src\Scss\Utilities\_Mixins.scss" />
+    <Content Include="Client\Src\Scss\Utilities\_Variabels.scss" />
+    <Content Include="Client\Src\Scss\Views\Shared\PanelLayout.scss" />
+    <Content Include="Client\Src\Scss\Views\Shared\Partials\_AppBase.scss" />
+    <Content Include="Client\Src\Scss\Views\Shared\Partials\_Authentication.scss" />
+    <Content Include="Client\Src\Scss\Views\Shared\Partials\_ContentModal.scss" />
+    <Content Include="Client\Src\Scss\Views\Shared\Partials\_LoadingModal.scss" />
+    <Content Include="Client\Src\Scss\Views\Shared\Partials\_MessageModal.scss" />
+    <Content Include="Client\Src\Scss\Views\Shared\Partials\_ShortcutBar.scss" />
+    <Content Include="Fonts\Shabnam-Bold-FD.eot" />
+    <Content Include="Fonts\Shabnam-Bold-FD.ttf" />
+    <Content Include="Fonts\Shabnam-Bold-FD.woff" />
+    <Content Include="Fonts\Shabnam-Bold-FD.woff2" />
+    <Content Include="Fonts\Shabnam-FD.eot" />
+    <Content Include="Fonts\Shabnam-FD.ttf" />
+    <Content Include="Fonts\Shabnam-FD.woff" />
+    <Content Include="Fonts\Shabnam-FD.woff2" />
+    <Content Include="Fonts\Shabnam-Light-FD.eot" />
+    <Content Include="Fonts\Shabnam-Light-FD.ttf" />
+    <Content Include="Fonts\Shabnam-Light-FD.woff" />
+    <Content Include="Fonts\Shabnam-Light-FD.woff2" />
+    <Content Include="Fonts\Shabnam-Medium-FD.eot" />
+    <Content Include="Fonts\Shabnam-Medium-FD.ttf" />
+    <Content Include="Fonts\Shabnam-Medium-FD.woff" />
+    <Content Include="Fonts\Shabnam-Medium-FD.woff2" />
+    <Content Include="Fonts\Shabnam-Thin-FD.eot" />
+    <Content Include="Fonts\Shabnam-Thin-FD.ttf" />
+    <Content Include="Fonts\Shabnam-Thin-FD.woff" />
+    <Content Include="Fonts\Shabnam-Thin-FD.woff2" />
+    <Content Include="Client\Src\Scss\Views\Shared\Components\Uploader.scss" />
+    <Content Include="Client\Src\Scss\Views\Shared\Partials\_NavigationBar.scss" />
+    <Content Include="Client\Src\Scss\Views\Shared\Components\Tab.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <Content Include="Views\Machine\AddMainMachineForm\AddForm.cshtml" />
+    <Content Include="Views\Machine\AddMainMachineForm\AddFormMachineLevelCombo.cshtml" />
+    <Content Include="Views\Machine\AddMainMachineForm\AddFormMachineTypeCombo.cshtml" />
+    <Content Include="Views\Machine\AddMainMachineForm\AddFormMachineControlCombo.cshtml" />
+    <Content Include="Views\Machine\Css\Index.scss" />
+    <Content Include="Views\Machine\Index.cshtml" />
+    <Content Include="Views\MachineManagement\Css\Index.scss" />
+    <Content Include="Views\MachineManagement\Index.cshtml" />
+    <Content Include="Views\MachineManagement\MachinesGrid\MachineManagementGrid.cshtml" />
+    <Content Include="Views\MachineManagement\MachinesGrid\MachinesGridDetailRow.cshtml" />
+    <Content Include="Views\MachineManagement\ShowAllSubMachine\SubMachineTree.cshtml" />
+    <Content Include="Views\MachineManagement\AddSubMachine\AddForm.cshtml" />
+    <Content Include="Views\MachineManagement\AddSubMachine\AddSubMachineTreeList.cshtml" />
+    <Content Include="Views\Shared\_Forbidden.cshtml" />
+    <Content Include="Views\MachineManagement\AddDocument\AddDocumentTypeListComboPartial.cshtml" />
+    <Content Include="Views\MachineManagement\AddDocument\AddForm.cshtml" />
+    <Content Include="Views\MachineManagement\AddDocument\AddSubMachineTreeList.cshtml" />
+    <Content Include="Views\MachineCheckList\Css\Index.scss" />
+    <Content Include="Views\MachineCheckList\Index.cshtml" />
+    <Content Include="Views\MachineCheckList\AddCheckList\AddCheckListForm.cshtml" />
+    <Content Include="Views\MachineCheckList\AddCheckList\AddSubMachineCheckListTreeList.cshtml" />
+    <Content Include="Views\MachineCheckList\AddCheckList\AddFormMaintenanceGroupListCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroup\Css\Index.scss" />
+    <Content Include="Views\MaintenanceGroup\Grid\MaintenanceGroupGird.cshtml" />
+    <Content Include="Views\MaintenanceGroup\Index.cshtml" />
+    <Content Include="Views\MaintenanceGroup\AssignEmployeeToMaintenance\AddFormEmployeeCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroup\AssignEmployeeToMaintenance\MaintenanceGroupMemberGird.cshtml" />
+    <Content Include="Views\MaintenanceGroup\ShowMember\ShowMaintenanceGroupPeopleGird.cshtml" />
+    <Content Include="Views\MachineManagement\AddLocation\AddMachineToLocation.cshtml" />
+    <Content Include="Views\MachineManagement\AddLocation\DepartmentCombo.cshtml" />
+    <Content Include="Views\MachineManagement\AddLocation\AddEmployeeCombo.cshtml" />
+    <Content Include="Views\MachineManagement\AddLocation\MachineLocationTable.cshtml" />
+    <Content Include="Views\MachineManagement\AddMachineSparePart\AddForm.cshtml" />
+    <Content Include="Views\MachineManagement\AddMachineSparePart\AddFormStoreListForSparePartCombo.cshtml" />
+    <Content Include="Views\MachineManagement\AddMachineSparePart\AddStocksImportance.cshtml" />
+    <Content Include="Views\MachineManagement\AddMachineSparePart\AddStockSupplyType.cshtml" />
+    <Content Include="Views\MachineManagement\AddMachineSparePart\MachineSparePartGrid.cshtml" />
+    <Content Include="Views\OperationItem\Css\Index.scss" />
+    <Content Include="Views\OperationItem\Index.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Css\Index.scss" />
+    <Content Include="Views\PreventiveItemOperation\Index.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\MachineCheckListGrid.cshtml" />
+    <Content Include="Views\MachineCheckList\AddCheckList\AddMachineOperationDepartmentList.cshtml" />
+    <Content Include="Views\MachineCheckList\AddCheckList\AddMachineOperationSubDepartmentList.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\AddForm\AddForm.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\Css\Index.scss" />
+    <Content Include="Views\NoneProductiveWorkOrder\Grid\NoneProductiveWorkOrderGrid.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\Index.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\AddForm\AddFormMaintenanceGroupListCombo.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\AddForm\AddFormEmployeeDepartmentListCombo.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\AddForm\AddFormStoptypeListCombo.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\Grid\DetailRow.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\Grid\ShowActionHistoryPartial.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\AddForm\AddForm.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\AddForm\AddFormEmployeeDepartmentListCombo.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\AddForm\AddFormMaintenanceGroupListCombo.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\AddForm\AddFormStoptypeListCombo.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\Css\Index.scss" />
+    <Content Include="Views\ProductiveWorkOrder\Grid\DetailRow.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\Grid\ProductiveWorkOrderGrid.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\Grid\ShowActionHistoryPartial.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\Index.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\AddForm\AddFormGetDepartmentMachineList.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\FilterForm\FilterFormStatusTypeCombo.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\FilterForm\FilterFormStatusTypeCombo.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\Grid\ShowWorKOrderConsumableList.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\Grid\ShowReferenceHistoryPartial.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\Grid\ShowReferenceHistoryPartial.cshtml" />
+    <Content Include="Properties\DataSources\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputCreateSession.datasource" />
+    <Content Include="Properties\DataSources\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputGetEndUserInfoByJsonWebToken.datasource" />
+    <Content Include="Properties\DataSources\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputReportEndUserLoginInfoByJsonWebToken.datasource" />
+    <Content Include="Properties\DataSources\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputValidateSessionByJsonWebToken.datasource" />
+    <Content Include="Views\OilService\AddForm\AddForm.cshtml" />
+    <Content Include="Views\OilService\AddForm\AddFormGetSubDepartmentListPartial.cshtml" />
+    <Content Include="Views\OilService\AddForm\AddFormGetOilPlacePartial.cshtml" />
+    <Content Include="Views\OilService\Css\Index.scss" />
+    <Content Include="Views\OilService\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\OilService\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\OilService\Grid\OilServiceGird.cshtml" />
+    <Content Include="Views\OilService\Index.cshtml" />
+    <Content Include="Views\OilService\AddForm\AddFormGetDepartmentListPartial.cshtml" />
+    <Content Include="Views\EmployeePerformanceReport\Index.cshtml" />
+    <Content Include="Views\EmployeePerformanceReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\EmployeePerformanceReport\Grid\Grid.cshtml" />
+    <Content Include="Views\EmployeePerformanceReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\EmployeePerformanceReport\FilterForm\FilterFormEmployeeCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroupPerformanceReport\Index.cshtml" />
+    <Content Include="Views\MaintenanceGroupPerformanceReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\MaintenanceGroupPerformanceReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroupPerformanceReport\FilterForm\FilterFormMaintenanceGroupCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroupPerformanceReport\Grid\Grid.cshtml" />
+    <Content Include="Views\PerformanceReportByDepartment\Index.cshtml" />
+    <Content Include="Views\PerformanceReportByDepartment\Grid\Grid.cshtml" />
+    <Content Include="Views\PerformanceReportByDepartment\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\PerformanceReportByDepartment\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\PerformanceReportByDepartment\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\PerformanceReportByDepartment\FilterForm\FilterFormSubDepartmentIdCombo.cshtml" />
+    <Content Include="Views\PerformanceReportByMachine\Index.cshtml" />
+    <Content Include="Views\PerformanceReportByMachine\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\PerformanceReportByMachine\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\PerformanceReportByMachine\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\PerformanceReportByMachine\FilterForm\FilterFormSubDepartmentIdCombo.cshtml" />
+    <Content Include="Views\PerformanceReportByMachine\Grid\Grid.cshtml" />
+    <Content Include="Views\PerformanceReportByMachine\FilterForm\FilterFormMachineIdCombo.cshtml" />
+    <Content Include="Views\EmployeeCostReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\EmployeeCostReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\EmployeeCostReport\FilterForm\FilterFormEmployeeCombo.cshtml" />
+    <Content Include="Views\EmployeeCostReport\Grid\Grid.cshtml" />
+    <Content Include="Views\EmployeeCostReport\Index.cshtml" />
+    <Content Include="Views\MaintenanceGroupCostReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\MaintenanceGroupCostReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroupCostReport\FilterForm\FilterFormMaintenanceGroupCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroupCostReport\Grid\Grid.cshtml" />
+    <Content Include="Views\MaintenanceGroupCostReport\Index.cshtml" />
+    <Content Include="Views\CostReportByDepartment\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\CostReportByDepartment\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\CostReportByDepartment\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\CostReportByDepartment\Grid\Grid.cshtml" />
+    <Content Include="Views\CostReportByDepartment\Index.cshtml" />
+    <Content Include="Views\CostReportByMachine\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\CostReportByMachine\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\CostReportByMachine\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\CostReportByMachine\FilterForm\FilterFormMachineIdCombo.cshtml" />
+    <Content Include="Views\CostReportByMachine\FilterForm\FilterFormSubDepartmentIdCombo.cshtml" />
+    <Content Include="Views\CostReportByMachine\Grid\Grid.cshtml" />
+    <Content Include="Views\CostReportByMachine\Index.cshtml" />
+    <Content Include="Views\CostReportByWorkOrder\FilterForm\SelectByDepartment\SelectByDepartment.cshtml" />
+    <Content Include="Views\CostReportByWorkOrder\FilterForm\SelectByDepartment\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\CostReportByWorkOrder\FilterForm\SelectByDepartment\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\CostReportByWorkOrder\FilterForm\SelectByDepartment\FilterFormSubDepartmentIdCombo.cshtml" />
+    <Content Include="Views\CostReportByWorkOrder\Grid\Grid.cshtml" />
+    <Content Include="Views\CostReportByWorkOrder\Index.cshtml" />
+    <Content Include="Views\CostReportByWorkOrder\FilterForm\SelectByWorkOrder\SelectByWorkOrder.cshtml" />
+    <Content Include="Views\CostReportByWorkOrder\FilterForm\SearchTypeSelection.cshtml" />
+    <Content Include="Views\Shared\Partials\_Profile.cshtml" />
+    <Content Include="Views\DailyWorkOrderPrint\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\DailyWorkOrderPrint\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\DailyWorkOrderPrint\FilterForm\FilterFormGetWorkOrderAllStatusList.cshtml" />
+    <Content Include="Views\DailyWorkOrderPrint\Grid\Grid.cshtml" />
+    <Content Include="Views\DailyWorkOrderPrint\Index.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\Grid\AddRatePeople.cshtml" />
+    <Content Include="Views\WarehouseDailyReports\Index.cshtml" />
+    <Content Include="Views\WarehouseDailyReports\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\WarehouseDailyReports\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\WarehouseDailyReports\FilterForm\FilterFormReportsTypeCombo.cshtml" />
+    <Content Include="Views\StockMan\Index.cshtml" />
+    <Content Include="Views\StockMan\StockManGrid\StockManGrid.cshtml" />
+    <Content Include="Views\StockMan\StockManGrid\StockManGridDetailRow.cshtml" />
+    <Content Include="Views\StockMan\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\StockMan\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\StockMan\FilterForm\FilterFormWorkOrderStatusCombo.cshtml" />
+    <Content Include="Views\StockMan\RegisterConsumables\RegisterConsumablesGrid.cshtml" />
+    <Content Include="Views\StockMan\RegisterConsumables\AddingFormRegisterConsumable.cshtml" />
+    <Content Include="Views\StockMan\RegisterConsumables\RegisterConsumablesStockCombo.cshtml" />
+    <Content Include="Views\StockMan\RegisterConsumables\AddedRegisterConsumableGrid.cshtml" />
+    <Content Include="Views\StockMan\Css\Index.scss" />
+    <Content Include="Views\StockMan\RegistrarProfileObservation\RegistrarProfileObservation.cshtml" />
+    <Content Include="Views\StockMan\WorkOrderPerformedOperation\WorkOrderPerformedOperationGrid.cshtml" />
+    <Content Include="Views\StockMan\ReferralHistoryObservation\ReferralHistoryObservationGrid.cshtml" />
+    <Content Include="Views\StockMan\ConsumablesManagement\ConsumablesManagementEdit.cshtml" />
+    <Content Include="Views\StockMan\ConsumablesManagement\ConsumablesManagementModal.cshtml" />
+    <Content Include="Views\DailyRepairsReports\Index.cshtml" />
+    <Content Include="Views\DailyRepairsReports\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\DailyRepairsReports\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\DailyRepairsReports\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\DailyRepairsReports\FilterForm\FilterFormStatusTypeCombo.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\Index.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\FilterForm\FilterFormMaintenanceGroupTypeCombo.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\FilterForm\FilterFormWorkOrderTypeCombo.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\FilterForm\FilterFormStoptypeListCombo.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\FilterForm\FilterFormMaintenanceGroupListCombo.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\FilterForm\FilterFormGetWorkOrderAllStatusList.cshtml" />
+    <Content Include="Views\AllWorkOrderStatusReport\FilterForm\FilterFormDepartmentListCombo.cshtml" />
+    <Content Include="Views\MachineStopStatusReport\Css\Index.scss" />
+    <Content Include="Views\MachineStopStatusReport\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\MachineStopStatusReport\Index.cshtml" />
+    <Content Include="Views\MachineStopStatusReport\Grid\WorkOrderDetailGrid.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\Grid\ShowSetWorkOrderStatusToCancelByCustomer.cshtml" />
+    <Content Include="Views\OEEReport\Index.cshtml" />
+    <Content Include="Views\OEEReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\OEEReport\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\OEEReport\FilterForm\FilterFormGetSubDepartmentListHasMachineCombo.cshtml" />
+    <Content Include="Views\OEEReport\FilterForm\FilterFormGetDepartmentListHasMachineCombo.cshtml" />
+    <Content Include="Views\OEEReport\FilterForm\FilterFormFilterTypeSelectCombo.cshtml" />
+    <Content Include="Views\OEEReport\FilterForm\FilterFormGetMachineListCombo.cshtml" />
+    <Content Include="Views\OEEReport\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\OEEReport\HelpForm\HelpForm.cshtml" />
+    <Content Include="Views\OEEReport\Css\Index.scss" />
+    <Content Include="Views\OEEReport\ShowForm\ShowHelpForm.cshtml" />
+    <Content Include="Views\ProductiveWorkOrder\Grid\ShowSetWorkOrderStatusToNotConfirmFinishByCustomer.cshtml" />
+    <Content Include="Views\DetermineSalary\Index.cshtml" />
+    <Content Include="Views\DetermineSalary\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\DetermineSalary\DetailModal\EmployeeSalaryDetailGridModal.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\Grid\ShowSetWorkOrderStatusToCancelByCustomer.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\Grid\ShowSetWorkOrderStatusToNotConfirmFinishByCustomer.cshtml" />
+    <Content Include="Views\NoneProductiveWorkOrder\Grid\ShowWorKOrderConsumableList.cshtml" />
+    <Content Include="Views\OilService\AddForm\AddOperationsModalEmployeeCheckComboBox.cshtml" />
+    <Content Include="Views\OilService\AddForm\AddFormMachineListPartial.cshtml" />
+    <Content Include="Views\OilService\AddForm\AddFormMeasurementUnitListPartial.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddForm.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddFormGetAllMainDepartmentPartial.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddFormGetDepartmentMachineListPartial.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddFormGetProdcutviceAllMainDepartmentPartial.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddFormGetProdcutviceSubDepartmentListByMainDepartmentIdPartial.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddFormGetSubDepartmentListByMainDepartmentIdPartial.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddFormGetWorkOrderPartial.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddFormGetWorkOrderTypePartial.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddFormMaintenanceGroupListCombo.cshtml" />
+    <Content Include="Views\Inspection\AddForm\AddFormStoptypeListCombo.cshtml" />
+    <Content Include="Views\Inspection\Css\Index.scss" />
+    <Content Include="Views\Inspection\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\Inspection\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\Inspection\FilterForm\FilterFormStatusTypeCombo.cshtml" />
+    <Content Include="Views\Inspection\Grid\DetailRow.cshtml" />
+    <Content Include="Views\Inspection\Grid\InspectionGrid.cshtml" />
+    <Content Include="Views\Inspection\Grid\ShowActionHistoryPartial.cshtml" />
+    <Content Include="Views\Inspection\Grid\ShowReferenceHistoryPartial.cshtml" />
+    <Content Include="Views\Inspection\Grid\ShowUsedToolsPartial.cshtml" />
+    <Content Include="Views\Inspection\Index.cshtml" />
+    <Content Include="Views\MachineManagement\AddMachineSparePart\AddFormSparePartSubMachineTreeList.cshtml" />
+    <Content Include="Views\MachineCheckList\AddCheckList\AddSerialForOperationItemLabel.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemToOtherMachineModal.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemSubMachineTreeList.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemDepartmentList.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemSubDepartmentList.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\MachineCheckListGridDetailRow.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemSubMachineTreeList.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemToOtherMachineModal.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemSubDepartmentList.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemDepartmentList.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\CopyOneOperationItem\CopyOneOperationItemToOtherMachineModal.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\EditOperationItem\EditOperationItemModal.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\DeActiveOperationItem\DeActiveOperationItemModal.cshtml" />
+    <Content Include="Views\Inspection\EditModal\EditFormGetAllMainDepartmentPartial.cshtml" />
+    <Content Include="Views\Inspection\EditModal\EditFormGetDepartmentMachineListPartial.cshtml" />
+    <Content Include="Views\Inspection\EditModal\EditFormGetProdcutviceAllMainDepartmentPartial.cshtml" />
+    <Content Include="Views\Inspection\EditModal\EditFormGetWorkOrderPartial.cshtml" />
+    <Content Include="Views\Inspection\EditModal\EditFormGetWorkOrderTypePartial.cshtml" />
+    <Content Include="Views\Inspection\EditModal\EditFormMaintenanceGroupListCombo.cshtml" />
+    <Content Include="Views\Inspection\EditModal\EditInspectionModalPartial.cshtml" />
+    <Content Include="Views\Inspection\EditModal\EditFormGetSubDepartmentListByMainDepartmentIdPartial.cshtml" />
+    <Content Include="Views\Inspection\EditModal\EditFormGetProdcutviceSubDepartmentListByMainDepartmentIdPartial.cshtml" />
+    <Content Include="Views\Inspection\Grid\AddInspectionDetailPartial.cshtml" />
+    <Content Include="Views\Inspection\Grid\InspectionDetailGrid.cshtml" />
+    <Content Include="Views\Inspection\Grid\EditInspectionDetailGridModal.cshtml" />
+    <Content Include="Views\OperationItem\AddOperationItem\AddSubMachineOperationItemTreeList.cshtml" />
+    <Content Include="Views\OperationItem\AddOperationItem\AddSerialForOperationItemLabel.cshtml" />
+    <Content Include="Views\OperationItem\AddOperationItem\AddMachineOperationSubDepartmentList.cshtml" />
+    <Content Include="Views\OperationItem\AddOperationItem\AddMachineOperationDepartmentList.cshtml" />
+    <Content Include="Views\OperationItem\AddOperationItem\AddFormMaintenanceGroupListCombo.cshtml" />
+    <Content Include="Views\OperationItem\AddOperationItem\AddOperationItemForm.cshtml" />
+    <Content Include="Views\OperationItem\Grid\OperationItemGrid.cshtml" />
+    <Content Include="Views\OperationItem\Grid\OperationItemGridDetailRow.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\CopyOneOperationItem\CopyOneOperationItemToOtherMachineModal.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemDepartmentList.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemSubDepartmentList.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemSubMachineTreeList.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemToOtherMachineModal.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\DeActiveOperationItem\DeActiveOperationItemModal.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\EditOperationItem\EditOperationItemModal.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemDepartmentList.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemSubDepartmentList.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemSubMachineTreeList.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemToOtherMachineModal.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\AddPreventiveOperationItem\AddPreventiveOperationItemModal.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\AddPreventiveOperationItem\MappingToPreventiveOperationItemGrid.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\AddPreventiveOperationItem\AddPreventiveOperationItemCheckComboBox.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\AddPreventiveItemOperation\AddFormSubMachinePreventiveItemOperationTreeList.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\AddPreventiveItemOperation\AddSerialForOperationItemLabel.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\AddPreventiveItemOperation\AddMachineOperationSubDepartmentList.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\AddPreventiveItemOperation\AddMachineOperationDepartmentList.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\AddPreventiveItemOperation\AddFormMaintenanceGroupListCombo.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\AddPreventiveItemOperation\AddFormPreventiveItemOperationForm.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\PreventiveItemOperationGrid.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\PreventiveItemOperationGridDetailRow.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\CopyOneOperationItem\CopyOneOperationItemToOtherMachineModal.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemDepartmentList.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemSubDepartmentList.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemSubMachineTreeList.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\CopySeveralOperationItem\CopySeveralOperationItemToOtherMachineModal.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\DeActiveOperationItem\DeActiveOperationItemModal.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\EditOperationItem\EditOperationItemModal.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemDepartmentList.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemSubDepartmentList.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemSubMachineTreeList.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\MoveOperationItemToOtherMachine\MoveOperationItemToOtherMachineModal.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\AddPreventiveItemOperation\AddFormPreventiveItemOperationTypeCombo.cshtml" />
+    <Content Include="Views\WorkOrderCostReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\WorkOrderCostReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\WorkOrderCostReport\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\WorkOrderCostReport\FilterForm\FilterFormSubDepartmentIdCombo.cshtml" />
+    <Content Include="Views\WorkOrderCostReport\Grid\Grid.cshtml" />
+    <Content Include="Views\WorkOrderCostReport\Index.cshtml" />
+    <Content Include="Views\MachineStopStatusReport\Grid\DetailRow.cshtml" />
+    <Content Include="Views\MachineStopStatusReport\Grid\ShowActionHistoryPartial.cshtml" />
+    <Content Include="Views\MachineStopStatusReport\Grid\ShowReferenceHistoryPartial.cshtml" />
+    <Content Include="Views\MachineStopStatusReport\Grid\ShowWorKOrderConsumableList.cshtml" />
+    <Content Include="Views\MachineStopStatusReport\Grid\RegistrarInfoModal.cshtml" />
+    <Content Include="Views\DelayInWorkOrderReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\DelayInWorkOrderReport\Grid\Grid.cshtml" />
+    <Content Include="Views\DelayInWorkOrderReport\Index.cshtml" />
+    <Content Include="Views\DelayInWorkOrderReport\Grid\WorkOrderDetailGrid.cshtml" />
+    <Content Include="Views\NetExpert\Css\Index.scss" />
+    <Content Include="Views\NetExpert\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\NetExpert\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\NetExpert\FilterForm\FilterFormStatusCombo.cshtml" />
+    <Content Include="Views\NetExpert\Index.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\ConsumingMaterialsAddForm.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\ConsumingMaterialsGrid.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\ConsumingMaterialsPartial.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddOperationsModal.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddOperationsModalAddForm.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddOperationsModalDelayReasonCombo.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddOperationsModalEmployeeCheckComboBox.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddOperationsModalGrid.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddOperationsModalOperationTypeCombo.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddPreventiveDetailsModal.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddPreventiveDetailsModalAddForm.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddPreventiveDetailsModalGrid.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\ConsumingMaterialsGrid.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\PerformedOperationsGrid.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\ReferralsHistoryGrid.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\ReferToAnotherGroupModal.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\ReferToAnotherGroupModalGroupCombo.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\ReferToAnotherPersonModal.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\ReferToAnotherPersonModalPersonCombo.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\RegistrarInfoModal.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\StocksGrid.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\StockWaitingModal.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\StockWaitingModalFilterForm.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\StockWaitingModalGrid.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\WorkOrderCancelModal.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\WorkOrderTempFinishModal.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\WorkOrderTempFinishModalMaintenanceGroupCombo.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\WorkOrderTempFinishModalOperationItemCombo.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\MainGrid.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\MainGridDetailRow.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\TicketsHistoryGrid.cshtml" />
+    <Content Include="Views\DelayInWorkOrderReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\FilterForm\FilterFormWorkOrderStatusPartial.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\Grid\Grid.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\Index.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\FilterForm\FilterFormWorkOrderTypeCombo.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\css\Index.scss" />
+    <Content Include="Views\SafetyAndHealthReport\Grid\DetailRow.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\Grid\RegistrarInfoModal.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\Grid\ShowActionHistoryPartial.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\Grid\ShowReferenceHistoryPartial.cshtml" />
+    <Content Include="Views\SafetyAndHealthReport\Grid\ShowWorKOrderConsumableList.cshtml" />
+    <Content Include="Views\DetermineSalary\Css\Index.scss" />
+    <Content Include="Views\DetermineSalary\Grid\ResultGridModal.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\DeactivateItemOperationUntileEndOfYear\DeleteUntilYearEndPartial.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\Modals\ChangeToWorkOrderModalGrid.cshtml" />
+    <Content Include="Views\ScrapedWorkOrderReport\css\Index.scss" />
+    <Content Include="Views\ScrapedWorkOrderReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\ScrapedWorkOrderReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\ScrapedWorkOrderReport\Grid\DetailRow.cshtml" />
+    <Content Include="Views\ScrapedWorkOrderReport\Grid\Grid.cshtml" />
+    <Content Include="Views\ScrapedWorkOrderReport\Grid\RegistrarInfoModal.cshtml" />
+    <Content Include="Views\ScrapedWorkOrderReport\Grid\ShowActionHistoryPartial.cshtml" />
+    <Content Include="Views\ScrapedWorkOrderReport\Grid\ShowReferenceHistoryPartial.cshtml" />
+    <Content Include="Views\ScrapedWorkOrderReport\Grid\ShowWorKOrderConsumableList.cshtml" />
+    <Content Include="Views\ScrapedWorkOrderReport\Index.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddPreventiveItemsComboBox.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddPreventiveEmployeeComboBox.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddInspectionDetailsModal.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddInspectionDetailsModalAddForm.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddInspectionItemsComboBox.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddInspectionEmployeeComboBox.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesSchedulingReport\Grid\Grid.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesSchedulingReport\Index.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesSchedulingReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesSchedulingReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesSchedulingReport\FilterForm\FilterFormMainDepartmentCombo.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesSchedulingReport\FilterForm\FilterFormMaintenanceGroupCombo.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesSchedulingReport\FilterForm\FilterFormSubDepartmentCombo.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\AddInspectionDetailsModalGrid.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\FilterForm\FilterFormMachineCombo.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\FilterForm\FilterFormMainDepartmentCombo.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\FilterForm\FilterFormMaintenanceGroupCombo.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\FilterForm\FilterFormSubDepartmentCombo.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\Grid\Grid.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\Modals\ChangeToWorkOrderModal.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\Index.cshtml" />
+    <Content Include="Views\MaintenanceGroup\AssignEmployeeToMaintenance\AddForm.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\Grid\Grid.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\Index.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\Grid\DetailRow.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMTTRAndMTBFPerformanceCostReportPartial.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMTTRAndMTBFPerformanceReportPartial.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMTTRAndMTBFWearhouseReport.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMTTRAndMTBFMachineWorkOrderListPartial.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\WorkOrderDetail\WorkOrderDetaillRow.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\WorkOrderDetail\RegistrarInfoModal.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\WorkOrderDetail\PerformedOperationsGrid.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\WorkOrderDetail\ConsumingMaterialsGrid.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\WorkOrderDetail\ReferralsHistoryGrid.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\Css\Index.scss" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMttrChartReportByMachineIdPartial.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMtbfChartReportByMachineIdPartial.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowOeeChartReportOnMTTRAndMTBFByMachineIdPartial.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowGetMTTRAndMTBFFaultCodeCountReportPartial.cshtml" />
+    <Content Include="Views\MainMachineOilServiceReport\Index.cshtml" />
+    <Content Include="Views\MainMachineOilServiceReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\MainMachineOilServiceReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\MainMachineOilServiceReport\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\MainMachineOilServiceReport\FilterForm\FilterFormMachineIdCombo.cshtml" />
+    <Content Include="Views\MainMachineOilServiceReport\FilterForm\FilterFormSubDepartmentIdCombo.cshtml" />
+    <Content Include="Views\MainMachineOilServiceReport\Grid\Grid.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\css\Index.scss" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\FilterForm\FilterFormWorkOrderStatusPartial.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\FilterForm\FilterFormWorkOrderTypeCombo.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\Grid\DetailRow.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\Grid\Grid.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\Grid\RegistrarInfoModal.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\Grid\ShowActionHistoryPartial.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\Grid\ShowReferenceHistoryPartial.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\Grid\ShowWorKOrderConsumableList.cshtml" />
+    <Content Include="Views\SchedulerWorkOrderPrintReport\Index.cshtml" />
+    <Content Include="Views\MachineManagement\ShowAllSubMachine\SubMachineTreeModal.cshtml" />
+    <Content Include="Views\MachineManagement\AddLocation\SubDepartmentCombo.cshtml" />
+    <Content Include="Views\Shared\MachineManagementSparePart\SundryModalStockComboByRack73.cshtml" />
+    <Content Include="Views\Shared\MachineManagementSparePart\SundryModalStockComboByRack62.cshtml" />
+    <Content Include="Views\Shared\MachineManagementSparePart\SundryModalStockComboByRack61.cshtml" />
+    <Content Include="Views\OEEReport\FilterForm\FilterFormGetAllMainDepartmentListCombo.cshtml" />
+    <Content Include="Views\OEEReport\FilterForm\FilterFormGetSubDepartmentListByMainDepartmentCombo.cshtml" />
+    <Content Include="Views\OCEReport\Index.cshtml" />
+    <Content Include="Views\OCEReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\OCEReport\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\OCEReport\FilterForm\FilterFormGetMaintenanceGroupListCombo.cshtml" />
+    <Content Include="Views\OCEReport\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\OCEReport\FilterForm\FilterFormGetMaintenanceGroupMemberListCombo.cshtml" />
+    <Content Include="Views\PLCReport\Index.cshtml" />
+    <Content Include="Views\PLCReport\PLCReportSelect\PlcReportSelect.cshtml" />
+    <Content Include="Views\PLCReport\Grid\AccessHourToMachineGrid.cshtml" />
+    <Content Include="Views\PLCReport\Grid\AccessHourToMachineForm.cshtml" />
+    <Content Include="Views\PLCReport\FilterForm\FilterFormMachineIdCombo.cshtml" />
+    <Content Include="Views\PLCReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\PLCReport\Css\Index.scss" />
+    <Content Include="Views\PLCReport\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\PLCReport\ReportChart\ToolsChangeRatePLCReportChart.cshtml" />
+    <Content Include="Views\PLCReport\ReportChart\PalletChangeCountPLCReportChart.cshtml" />
+    <Content Include="Views\PLCReport\ReportChart\ComparisonBetweenToolsAndPalletChangerChartReport.cshtml" />
+    <Content Include="Views\PLCReport\ReportChart\MachineOilTemperatureChartReport.cshtml" />
+    <Content Include="Views\PLCReport\ReportChart\MachineOilPressureChartReport.cshtml" />
+    <Content Include="Views\PLCReport\ReportChart\MachinePowerChangerChartReport.cshtml" />
+    <Content Include="Views\PLCReport\Grid\PLCMachineSpindlePerformanceReportForm.cshtml" />
+    <Content Include="Views\PLCReport\Grid\PLCMachineSpindlePerformanceReportGrid.cshtml" />
+    <Content Include="Views\PLCReport\Grid\PLCMachineSpindlePerformanceReportDetailForm.cshtml" />
+    <Content Include="Views\PLCReport\Grid\PLCMachineSpindlePerformanceReportDetailGrid.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\Css\Index.scss" />
+    <Content Include="Views\MachineMttrMtbfReport\Css\Index.scss" />
+    <Content Include="Views\MachineMttrMtbfReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\MachineMttrMtbfReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\MachineMttrMtbfReport\Index.cshtml" />
+    <Content Include="Views\MachineMttrMtbfReport\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\MachineMttrMtbfReport\FilterForm\FilterFormMachineIdCombo.cshtml" />
+    <Content Include="Views\MachineMttrMtbfReport\FilterForm\FilterFormSubDepartmentIdCombo.cshtml" />
+    <Content Include="Views\MachineMttrMtbfReport\Grid\DetailGrid.cshtml" />
+    <Content Include="Views\MachineMttrMtbfReport\Grid\Grid.cshtml" />
+    <Content Include="Views\Home\Css\Index.scss" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Css\Index.scss" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Detailrow\ShowGetMTTRAndMTBFFaultCodeCountReportPartial.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Detailrow\ShowMtbfChartReportByMachineIdPartial.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Detailrow\ShowMTTRAndMTBFMachineWorkOrderListPartial.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Detailrow\ShowMTTRAndMTBFPerformanceCostReportPartial.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Detailrow\ShowMTTRAndMTBFPerformanceReportPartial.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Detailrow\ShowMTTRAndMTBFWearhouseReport.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Detailrow\ShowMttrChartReportByMachineIdPartial.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Detailrow\ShowOeeChartReportOnMTTRAndMTBFByMachineIdPartial.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\FilterForm\FilterFormDateCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Grid\DetailRow.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Grid\Grid.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\Index.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\WorkOrderDetail\ConsumingMaterialsGrid.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\WorkOrderDetail\PerformedOperationsGrid.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\WorkOrderDetail\ReferralsHistoryGrid.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\WorkOrderDetail\RegistrarInfoModal.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\WorkOrderDetail\WorkOrderDetailRow.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\FilterForm\FilterFormMaintenanceGroupCombo.cshtml" />
+    <Content Include="Views\Shared\MachineManagementSparePart\SundryModalStockComboByRack11.cshtml" />
+    <Content Include="Views\Shared\MachineManagementSparePart\SundryModalStockComboByRack12.cshtml" />
+    <Content Include="Views\Shared\MachineManagementSparePart\SundryModalStockComboByRack14.cshtml" />
+    <Content Include="Views\Shared\StockMan\SundryModalStockComboByRack73.cshtml" />
+    <Content Include="Views\Shared\StockMan\SundryModalStockComboByRack62.cshtml" />
+    <Content Include="Views\Shared\StockMan\SundryModalStockComboByRack61.cshtml" />
+    <Content Include="Views\Shared\StockMan\SundryModalStockComboByRack14.cshtml" />
+    <Content Include="Views\Shared\StockMan\SundryModalStockComboByRack12.cshtml" />
+    <Content Include="Views\Shared\StockMan\SundryModalStockComboByRack11.cshtml" />
+    <Content Include="Views\StockMan\RegisterConsumables\RegisterConsumablesStoreCombo.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\WorkOrderTempFinishWithDescriptionModal.cshtml" />
+    <Content Include="Views\MachineManagement\AddDocument\MachineDocumentGrid.cshtml" />
+    <Content Include="Views\MachineManagement\AddMachineSparePart\AddFormDocumentToSparePartModal.cshtml" />
+    <Content Include="Views\MachineManagement\AddMachineSparePart\MachineSparePartDocumentGrid.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\FilterForm\FilterFormMttrMtbfTimeTypeCombo.cshtml" />
+    <Content Include="Views\MachineMttrMtbfReport\FilterForm\FilterFormMttrMtbfTimeTypeCombo.cshtml" />
+    <Content Include="Views\MaintenanceGroupMttrAndMtbfReport\FilterForm\FilterFormMttrMtbfTimeTypeCombo.cshtml" />
+    <Content Include="Views\NetExpert\MainGrid\DetailRowModals\WorkOrderStatusHistoryGrid.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMTTRAndMTBFPerformanceCostReportParentPartial.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMTTRAndMTBFPerformanceReportParentPartial.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMTTRAndMTBFWearhouseParentReport.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowGetMTTRAndMTBFFaultCodeCountReportParentPartial.cshtml" />
+    <Content Include="Views\DepartmentMttrAndMtbfReport\DetailRow\ShowMTTRAndMTBFMachineWorkOrderListParentPartial.cshtml" />
+    <Content Include="Views\ItemOperationReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\ItemOperationReport\FilterForm\FilterFormDepartmentIdCombo.cshtml" />
+    <Content Include="Views\ItemOperationReport\FilterForm\FilterFormMachineIdCombo.cshtml" />
+    <Content Include="Views\ItemOperationReport\FilterForm\FilterFormSubDepartmentIdCombo.cshtml" />
+    <Content Include="Views\ItemOperationReport\Grid\Grid.cshtml" />
+    <Content Include="Views\ItemOperationReport\Index.cshtml" />
+    <Content Include="Views\ItemOperationReport\FilterForm\FilterFormItemTypeCombo.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\AddSparePartToOperation\AddSparePartToOperationModal.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\AddSparePartToOperation\AddSparePartToItemCheckComboBox.cshtml" />
+    <Content Include="Views\OperationItem\Grid\Modal\AddSparePartToOperation\GetSparePartToOperationGetSparePartOperationItemGrid.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\AddSparePartToOperation\AddSparePartToItemCheckComboBox.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\AddSparePartToOperation\AddSparePartToOperationModal.cshtml" />
+    <Content Include="Views\PreventiveItemOperation\Grid\Modal\AddSparePartToOperation\GetSparePartToOperationGetSparePartOperationItemGrid.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\AddSparePartToOperation\AddSparePartToItemCheckComboBox.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\AddSparePartToOperation\AddSparePartToOperationModal.cshtml" />
+    <Content Include="Views\MachineCheckList\Grid\Modal\AddSparePartToOperation\GetSparePartToOperationGetSparePartOperationItemGrid.cshtml" />
+    <Content Include="Views\PreventiveMaintenancesScheduling\Grid\DetailGrid.cshtml" />
+    <Content Include="Views\MachineManagement\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\MachineManagement\FilterForm\filterDepartmentHasMachineCombo.cshtml" />
+    <Content Include="Views\MachineManagement\FilterForm\FilterSubDepartmentHasMachineCombo.cshtml" />
+    <Content Include="Views\MachineManagement\AddFormMachineBaseInfo\AddForm.cshtml" />
+    <Content Include="Views\MachineManagement\AddFormMachineBaseInfo\MachineElectricalTabContent.cshtml" />
+    <Content Include="Views\MachineManagement\AddFormMachineBaseInfo\MachineElectricalTabContentGrid.cshtml" />
+    <Content Include="Views\MachineManagement\AddOilAndLubrication\AddForm.cshtml" />
+    <Content Include="Views\MachineManagement\AddOilAndLubrication\AddInfo.cshtml" />
+    <Content Include="Views\MachineManagement\AddOilAndLubrication\MachineOilTabContentGrid.cshtml" />
+    <Content Include="Views\MachineManagement\AddFormMachineBaseInfo\AddFormCharacteristicComboPartial.cshtml" />
+    <Content Include="Views\MachineManagement\AddFormMachineBaseInfo\AddFormRpmListComboPartial.cshtml" />
+    <Content Include="Views\MachineManagement\AddFormMachineBaseInfo\AddFormVoltageListComboPartial.cshtml" />
+    <Content Include="Views\MachineManagement\MachineProducer\AddForm.cshtml" />
+    <Content Include="Views\MachineAttachmentReport\Css\Index.scss" />
+    <Content Include="Views\MachineAttachmentReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\MachineAttachmentReport\FilterForm\FilterFormGetDepartmentListHasMachineCombo.cshtml" />
+    <Content Include="Views\MachineAttachmentReport\FilterForm\FilterFormGetMachineListCombo.cshtml" />
+    <Content Include="Views\MachineAttachmentReport\FilterForm\FilterFormGetSubDepartmentListHasMachineCombo.cshtml" />
+    <Content Include="Views\MachineAttachmentReport\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\MachineAttachmentReport\Index.cshtml" />
+    <Content Include="Views\SparePartReport\Css\Index.scss" />
+    <Content Include="Views\SparePartReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\SparePartReport\FilterForm\FilterFormGetDepartmentListHasMachineCombo.cshtml" />
+    <Content Include="Views\SparePartReport\FilterForm\FilterFormGetMachineListCombo.cshtml" />
+    <Content Include="Views\SparePartReport\FilterForm\FilterFormGetSubDepartmentListHasMachineCombo.cshtml" />
+    <Content Include="Views\SparePartReport\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\SparePartReport\Index.cshtml" />
+    <Content Include="Views\MachineConsumeStockReport\Css\Index.scss" />
+    <Content Include="Views\MachineConsumeStockReport\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\MachineConsumeStockReport\FilterForm\FilterFormGetStockFromHavaleWorkOrderReferralCombo.cshtml" />
+    <Content Include="Views\MachineConsumeStockReport\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\MachineConsumeStockReport\Index.cshtml" />
+    <Content Include="Views\ConsumableStockForEachMachine\Css\Index.scss" />
+    <Content Include="Views\ConsumableStockForEachMachine\FilterForm\FilterForm.cshtml" />
+    <Content Include="Views\ConsumableStockForEachMachine\FilterForm\FilterFormDateTypeCombo.cshtml" />
+    <Content Include="Views\ConsumableStockForEachMachine\FilterForm\FilterFormGetDepartmentListHasMachineCombo.cshtml" />
+    <Content Include="Views\ConsumableStockForEachMachine\FilterForm\FilterFormGetMachineListCombo.cshtml" />
+    <Content Include="Views\ConsumableStockForEachMachine\FilterForm\FilterFormGetSubDepartmentListHasMachineCombo.cshtml" />
+    <Content Include="Views\ConsumableStockForEachMachine\Grid\ResultGrid.cshtml" />
+    <Content Include="Views\ConsumableStockForEachMachine\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\AllWorkOrderStatusReport.cs" />
+    <Compile Include="Api\ApiConnector.cs" />
+    <Compile Include="Api\ApiList.cs" />
+    <Compile Include="Api\ConSumableStockForEachMachine.cs" />
+    <Compile Include="Api\ItemOperationReport.cs" />
+    <Compile Include="Api\MachineConsumeStockReport.cs" />
+    <Compile Include="Api\Shared.cs" />
+    <Compile Include="Api\CostReportByDepartment.cs" />
+    <Compile Include="Api\CostReportByMachine.cs" />
+    <Compile Include="Api\DelayInWorkOrderReport.cs" />
+    <Compile Include="Api\EmployeeCostReport.cs" />
+    <Compile Include="Api\EmployeePerformanceReport.cs" />
+    <Compile Include="Api\Inspection.cs" />
+    <Compile Include="Api\MachineMttrMtbfReport.cs" />
+    <Compile Include="Api\MainMachineOilServiceReport.cs" />
+    <Compile Include="Api\MaintenanceGroupCostReport.cs" />
+    <Compile Include="Api\MaintenanceGroupMttrAndMtbfReport.cs" />
+    <Compile Include="Api\MaintenanceGroupPerformanceReport.cs" />
+    <Compile Include="Api\DepartmentMttrAndMtbfReport.cs" />
+    <Compile Include="Api\NetExpert.cs" />
+    <Compile Include="Api\OCEReport.cs" />
+    <Compile Include="Api\OEEReport.cs" />
+    <Compile Include="Api\PerformanceReportByMachine.cs" />
+    <Compile Include="Api\PerformanceReportByDepartment.cs" />
+    <Compile Include="Api\PLCReport.cs" />
+    <Compile Include="Api\DailyWorkOrderPrint.cs" />
+    <Compile Include="Api\DailyRepairsReports.cs" />
+    <Compile Include="Api\DetermineSalary.cs" />
+    <Compile Include="Api\Machine.cs" />
+    <Compile Include="Api\MachineCheckList.cs" />
+    <Compile Include="Api\MachineManagement.cs" />
+    <Compile Include="Api\MachineStopStatusReport.cs" />
+    <Compile Include="Api\MaintenanceGroup.cs" />
+    <Compile Include="Api\NoneProductiveWorkOrder.cs" />
+    <Compile Include="Api\PreventiveMaintenancesScheduling.cs" />
+    <Compile Include="Api\PreventiveMaintenancesSchedulingReport.cs" />
+    <Compile Include="Api\SafetyAndHealthReport.cs" />
+    <Compile Include="Api\SchedulerWorkOrderPrintReport.cs" />
+    <Compile Include="Api\ScrapedWorkOrderReport.cs" />
+    <Compile Include="Api\SparePartReport.cs" />
+    <Compile Include="Api\StockMan.cs" />
+    <Compile Include="Api\OilService.cs" />
+    <Compile Include="Api\OperationItem.cs" />
+    <Compile Include="Api\PreventiveItemOperation.cs" />
+    <Compile Include="Api\WarehouseDailyReports.cs" />
+    <Compile Include="Api\ProductiveWorkOrder.cs" />
+    <Compile Include="Api\WorkOrderCostReport.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\JsonResultFilter.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnhandledExceptionFilter.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ConsumableStockForEachMachineController.cs" />
+    <Compile Include="Controllers\CostReportByDepartmentController.cs" />
+    <Compile Include="Controllers\CostReportByWorkOrder.cs" />
+    <Compile Include="Controllers\DailyWorkOrderPrintController.cs" />
+    <Compile Include="Controllers\DailyRepairsReportsController.cs" />
+    <Compile Include="Controllers\DelayInWorkOrderReportController.cs" />
+    <Compile Include="Controllers\ItemOperationReportController.cs" />
+    <Compile Include="Controllers\MachineAttachmentReportController.cs" />
+    <Compile Include="Controllers\MachineConsumeStockReportController.cs" />
+    <Compile Include="Controllers\MaintenanceGroupMttrAndMtbfReportController.cs" />
+    <Compile Include="Controllers\DetermineSalaryController.cs" />
+    <Compile Include="Controllers\InspectionController.cs" />
+    <Compile Include="Controllers\MachineMttrMtbfReportController.cs" />
+    <Compile Include="Controllers\MachineStopStatusReportController.cs" />
+    <Compile Include="Controllers\MainMachineOilServiceReportController.cs" />
+    <Compile Include="Controllers\MaintenanceGroupCostReportController.cs" />
+    <Compile Include="Controllers\EmployeeCostReportController.cs" />
+    <Compile Include="Controllers\EmployeePerformanceReportController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MachineCheckListController.cs" />
+    <Compile Include="Controllers\MachineController.cs" />
+    <Compile Include="Controllers\MachineManagementController.cs" />
+    <Compile Include="Controllers\MaintenanceGroupController.cs" />
+    <Compile Include="Controllers\MaintenanceGroupPerformanceReportController.cs" />
+    <Compile Include="Controllers\DepartmentMttrAndMtbfReportController.cs" />
+    <Compile Include="Controllers\NetExpertController.cs" />
+    <Compile Include="Controllers\NoneProductiveWorkOrderController.cs" />
+    <Compile Include="Controllers\OCEReportController.cs" />
+    <Compile Include="Controllers\OEEReportController.cs" />
+    <Compile Include="Controllers\OilServiceController.cs" />
+    <Compile Include="Controllers\OperationItemController.cs" />
+    <Compile Include="Controllers\PerformanceReportByDepartmentController.cs" />
+    <Compile Include="Controllers\CostReportByMachineController.cs" />
+    <Compile Include="Controllers\PerformanceReportByMachineController.cs" />
+    <Compile Include="Controllers\PLCReportController.cs" />
+    <Compile Include="Controllers\PreventiveItemOperationController.cs" />
+    <Compile Include="Controllers\PreventiveMaintenancesSchedulingController.cs" />
+    <Compile Include="Controllers\PreventiveMaintenancesSchedulingReportController.cs" />
+    <Compile Include="Controllers\PrintController.cs" />
+    <Compile Include="Controllers\ProductiveWorkOrderController.cs" />
+    <Compile Include="Controllers\SafetyAndHealthReportController.cs" />
+    <Compile Include="Controllers\SchedulerWorkOrderPrintReportController.cs" />
+    <Compile Include="Controllers\ScrapedWorkOrderReportController.cs" />
+    <Compile Include="Controllers\SparePartReportController.cs" />
+    <Compile Include="Controllers\UploaderController.cs" />
+    <Compile Include="Controllers\WarehouseDailyReportsController.cs" />
+    <Compile Include="Controllers\StockManController.cs" />
+    <Compile Include="Controllers\WorkOrderCostReportController.cs" />
+    <Compile Include="Filters\AccessToEventValidationAttribute.cs" />
+    <Compile Include="Filters\AccessToFormValidationAttribute.cs" />
+    <Compile Include="Filters\ExceptionHandlerFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\StockMan\IStockManHub.cs" />
+    <Compile Include="Hubs\StockMan\StockManHub.cs" />
+    <Compile Include="Hubs\NetExpert\INetExpertHub.cs" />
+    <Compile Include="Hubs\NetExpert\NetExpertHub.cs" />
+    <Compile Include="Models\ApiModels\Output\CheckEventAccess.cs" />
+    <Compile Include="Models\ApiModels\Output\CheckFormAccess.cs" />
+    <Compile Include="Models\ApiModels\Output\Status.cs" />
+    <Compile Include="Models\ApiModels\Output\User.cs" />
+    <Compile Include="Models\ApiModels\Output\UserInformation.cs" />
+    <Compile Include="Models\ApiModels\Output\UserLoginInfo.cs" />
+    <Compile Include="Models\Base\AlertException.cs" />
+    <Compile Include="Models\Base\DataBaseMessage.cs" />
+    <Compile Include="Models\Base\LoginException.cs" />
+    <Compile Include="Models\Base\Password.cs" />
+    <Compile Include="Models\Base\Reason.cs" />
+    <Compile Include="Models\Base\User.cs" />
+    <Compile Include="Models\Base\Validation.cs" />
+    <Compile Include="Models\Base\WebServiceResult.cs" />
+    <Compile Include="Models\DomainModels\Tbl_User.cs" />
+    <Compile Include="Models\ViewModels\PagedStocks.cs" />
+    <Compile Include="Report\DailyAccidentalWorkOrderReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\DailyAccidentalWorkOrderReport.Designer.cs">
+      <DependentUpon>DailyAccidentalWorkOrderReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DailyPreventiveWorkOrderReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MachineBaseInfoReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\OeeChartReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\XtraReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\XtraReport1.Designer.cs">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\Log.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--<TypeScriptCompile Include="Client\DevExpressIntellisense\devexpress-aspnetcore-bootstrap.d.ts" />
+    <TypeScriptCompile Include="Client\DevExpressIntellisense\devexpress-web.d.ts" />
+    <TypeScriptCompile Include="Client\DevExpressIntellisense\jquery.d.ts" />
+    <TypeScriptCompile Include="Client\DevExpressIntellisense\knockout.d.ts" />-->
+    <Folder Include="Views\Print\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Motorsazan.CMMS.Shared\Motorsazan.CMMS.Shared.csproj">
+      <Project>{4832403b-d007-410f-b7fb-27cf8fc1558d}</Project>
+      <Name>Motorsazan.CMMS.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\DailyAccidentalWorkOrderReport.resx">
+      <DependentUpon>DailyAccidentalWorkOrderReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\DailyPreventiveWorkOrderReport.resx">
+      <DependentUpon>DailyPreventiveWorkOrderReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MachineBaseInfoReport.resx">
+      <DependentUpon>MachineBaseInfoReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\OeeChartReport.resx">
+      <DependentUpon>OeeChartReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\XtraReport1.resx">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50534</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8800/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

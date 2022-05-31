@@ -1,0 +1,28 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetVoltageList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormVoltageCombo";
+        settings.CallbackRouteValues = new { Controller = "MachineManagement", Action = "AddFormVoltageListCombo" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "مشخصه را وارد کنید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+        settings.Properties.IncrementalFilteringDelay = 200;
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "VoltageTitle";
+        settings.Properties.ValueType = typeof(string);
+
+        settings.Properties.TextFormatString = "{0}";
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.machineManagement.handleAddFormVoltageComboValueChanged";
+
+
+        settings.Properties.Columns.Add("VoltageTitle", "ولتاژ");
+    }).BindList(Model).GetHtml()

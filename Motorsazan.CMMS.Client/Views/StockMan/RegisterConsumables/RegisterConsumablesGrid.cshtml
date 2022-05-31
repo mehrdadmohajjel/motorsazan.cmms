@@ -1,0 +1,90 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetWorKOrderReferralListByWorkOrderId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+
+    settings.Name = "registerConsumablesGrid";
+    settings.CallbackRouteValues = new { Controller = "StockMan", Action = "RegisterConsumables" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.stockMan.handleRegisterConsumablesGridBeginCallback";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "WorkOrderReferralId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 1;
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "شماره دستور کار";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 2;
+        column.FieldName = "WorkOrderReferralId";
+        column.Caption = "شماره ارجاع";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 3;
+        column.FieldName = "ReceiverName";
+        column.Caption = "مسئول";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 4;
+        column.FieldName = "EmployeeId";
+        column.Caption = "شماره پرسنلی";
+    });
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowDeleteButton = false;
+    settings.CommandColumn.ShowEditButton = false;
+    settings.CommandColumn.ShowNewButton = false;
+    settings.CommandColumn.ShowNewButtonInHeader = false;
+    settings.CommandColumn.Caption = "عملیات";
+    settings.CommandColumn.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;
+    settings.CommandColumn.VisibleIndex = 1000;
+    settings.ClientSideEvents.CustomButtonClick = "motorsazanClient.stockMan.handleRegisterConsumablesGridCustomBtnClick";
+
+    var addCustomButton = new GridViewCommandColumnCustomButton() { ID = "RegisterConsumablesGridAddCutsomBtn", Text = "افزودن" };
+    addCustomButton.Styles.Style.CssClass = "app__form-grid-mini-btn";
+    settings.CommandColumn.CustomButtons.Add(addCustomButton);
+
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsSearchPanel.EditorNullTextDisplayMode = NullTextDisplayMode.Unfocused;
+    settings.SettingsSearchPanel.AllowTextInputTimer = false;
+    settings.SettingsText.SearchPanelEditorNullText = "عبارت مورد نظر جهت جستجو در لیست را وارد کنید";
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+

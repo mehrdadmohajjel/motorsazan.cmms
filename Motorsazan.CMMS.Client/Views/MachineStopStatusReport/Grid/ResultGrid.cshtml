@@ -1,0 +1,107 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.MachineStopStatusReport.OutputGetMachineStopStatusReportList[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "sourceGird";
+    settings.CallbackRouteValues = new { Controller = "MachineStopStatusReport", Action = "ShowGrid" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.machineStopStatusReport.handleResultGridBeginCallback";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "MachineId";
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MachineName";
+        column.Caption = "نام دستگاه";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OldMachineCode";
+        column.Caption = "کد دستگاه";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OperationCode";
+        column.Caption = "اپریشن";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DepartmentName";
+        column.Caption = "خط";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StopCount";
+        column.Caption = "تعداد رخداد";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "PersianEventDate";
+        column.Caption = "تاریخ رخداد";
+    });
+
+
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowDeleteButton = false;
+    settings.CommandColumn.ShowEditButton = false;
+    settings.CommandColumn.ShowNewButton = false;
+    settings.CommandColumn.ShowNewButtonInHeader = false;
+    settings.CommandColumn.Caption = "مشاهده جزئیات";
+    settings.CommandColumn.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;
+    settings.CommandColumn.VisibleIndex = 1000;
+    settings.ClientSideEvents.CustomButtonClick = "motorsazanClient.machineStopStatusReport.handleGridCustomBtnClick";
+
+    var detailCustomButton = new GridViewCommandColumnCustomButton() { ID = "showStatusbtn", Text = "مشاهده جزئیات " };
+    detailCustomButton.Styles.Style.CssClass = "app__form-grid-mini-btn ";
+    detailCustomButton.Image.IconID = IconID.ActionsSearch16x16devav;
+    settings.CommandColumn.CustomButtons.Add(detailCustomButton);
+
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.Toolbars.Add(t =>
+    {
+        t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل";
+    });
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()

@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4832403B-D007-410F-B7FB-27CF8FC1558D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Motorsazan.CMMS.Shared</RootNamespace>
+    <AssemblyName>Motorsazan.CMMS.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Persia, Version=3.0.4727.38582, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Persia.NET.3.0.4727\lib\Persia.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\IgnoreInStoredProcedureOutputAttribute.cs" />
+    <Compile Include="Attributes\IgnoreInStoredProcedureParametersAttribute.cs" />
+    <Compile Include="Attributes\StoredProcedureParameterAttribute.cs" />
+    <Compile Include="Connected Services\AuthService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\JobStatus.cs" />
+    <Compile Include="Enums\MttrMtbfTimeType.cs" />
+    <Compile Include="Enums\DatePeriodType.cs" />
+    <Compile Include="Enums\OEEReportFilterType.cs" />
+    <Compile Include="Enums\OilPlace.cs" />
+    <Compile Include="Enums\OperationItemType.cs" />
+    <Compile Include="Enums\OperationType.cs" />
+    <Compile Include="Enums\ReportFilterType.cs" />
+    <Compile Include="Enums\WorkOrderStatus.cs" />
+    <Compile Include="Enums\WorkOrderStatusType.cs" />
+    <Compile Include="Enums\WorkOrderType.cs" />
+    <Compile Include="Models\ApiModels\Output\CheckEventAccess.cs" />
+    <Compile Include="Models\ApiModels\Output\CheckFormAccess.cs" />
+    <Compile Include="Models\ApiModels\Output\Status.cs" />
+    <Compile Include="Models\ApiModels\Output\User.cs" />
+    <Compile Include="Models\ApiModels\Output\UserInformation.cs" />
+    <Compile Include="Models\ApiModels\Output\UserLoginInfo.cs" />
+    <Compile Include="Models\Base\AlertException.cs" />
+    <Compile Include="Models\Base\DataBaseMessage.cs" />
+    <Compile Include="Models\Base\LoginException.cs" />
+    <Compile Include="Models\Base\Password.cs" />
+    <Compile Include="Models\Base\Reason.cs" />
+    <Compile Include="Models\Base\User.cs" />
+    <Compile Include="Models\Base\Validation.cs" />
+    <Compile Include="Models\Base\WebServiceResult.cs" />
+    <Compile Include="Models\DomainModels\TblPMOperationItemIdList.cs" />
+    <Compile Include="Models\DomainModels\TblStockIDListToAddOperationItemSparePartList.cs" />
+    <Compile Include="Models\DomainModels\Tbl_FileName.cs" />
+    <Compile Include="Models\DomainModels\TblEmployeeIdList.cs" />
+    <Compile Include="Models\DomainModels\Tbl_MachineFileDetailList.cs" />
+    <Compile Include="Models\DomainModels\Tbl_MachineLevel.cs" />
+    <Compile Include="Models\DomainModels\Tbl_MaintenanceGroup.cs" />
+    <Compile Include="Models\DomainModels\Tbl_FileDetail.cs" />
+    <Compile Include="Models\DomainModels\Tbl_OperationItemIdList.cs" />
+    <Compile Include="Models\DomainModels\Tbl_SalaryDetailList.cs" />
+    <Compile Include="Models\DomainModels\Tbl_SetHavaleNOListByHavalehWorkOrderId.cs" />
+    <Compile Include="Models\DomainModels\Tbl_User.cs" />
+    <Compile Include="Models\Input\AllWorkOrderStatusReport\InputAllWorkOrderStatusReportListByCondition.cs" />
+    <Compile Include="Models\Input\ConsumableStockForEachMachine\InputGetConsumableStockForEachMachineByCondition.cs" />
+    <Compile Include="Models\Input\CostReportByDepartment\InputGetDepartmentCostReportByCondition.cs" />
+    <Compile Include="Models\Input\CostReportByMachine\InputGetMainMachineCostReportByCondition.cs" />
+    <Compile Include="Models\Input\CostReportByWorkOrder\InputGetCostReportByWorkOrderByCondition.cs" />
+    <Compile Include="Models\Input\DailyRepairsReports\InputGetMaintenanceDailyReportByCondition.cs" />
+    <Compile Include="Models\Input\DailyWorkOrderPrint\InputGetDailyWorkOrderPrintReport.cs" />
+    <Compile Include="Models\Input\DelayInWorkOrderReport\InputGetDelayInWorkOrderReportByCondition.cs" />
+    <Compile Include="Models\Input\DelayInWorkOrderReport\InputGetWorkOrderByDelayTypeId.cs" />
+    <Compile Include="Models\Input\DetermineSalary\InputAllEmployeeListByCondition.cs" />
+    <Compile Include="Models\Input\DetermineSalary\InputBatchEdit.cs" />
+    <Compile Include="Models\Input\DetermineSalary\InputEditEmployeeSalaryByEid.cs" />
+    <Compile Include="Models\Input\DetermineSalary\InputEditMaintenanceGroupMemberSalaryBySalaryId.cs" />
+    <Compile Include="Models\Input\DetermineSalary\InputEmployeeSalaryDetailByEid.cs" />
+    <Compile Include="Models\Input\DetermineSalary\InputGetMaintenanceGroupMemberSalaryDetailListBySalaryId.cs" />
+    <Compile Include="Models\Input\DetermineSalary\InputGetMaintenanceGroupMemberSalaryDetailsListBySalaryId.cs" />
+    <Compile Include="Models\Input\DetermineSalary\InputGetMaintenanceGroupMemberSalaryListByCondition.cs" />
+    <Compile Include="Models\Input\EmployeeCostReport\InputGetEmployeeCostReportByCondition.cs" />
+    <Compile Include="Models\Input\ItemOperationReport\InputGetItemOperationReportByCondtion.cs" />
+    <Compile Include="Models\Input\MachineConsumeStockReport\InputGetMachineConsumeStockReportByCondition.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputAddMachineElectricalInfo.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputAddMachineSparePartDocument.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputEditMachineBuiltInfo.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetMachineBuiltInfo.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetMachineDocumentListByMachineId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetMachineElectricalInfo.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetMachineInfoByMachineId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetMachineOilAndLubricationInfo.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetMachineSparePartDocumentListByMachineSparePartId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetTopMachineListByCondition.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputRegisterOilAndLubrication.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputRemoveMachineDocumentByMachineDocumentId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputRemoveMachineElectricalInfoByRecordId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputRemoveMachineOilAndLubricationInfoByRecordId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputRemoveMachineSparePartDocumentByMachineSparePartDocumentId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputCheckAllHavalehNOConfirmedByWorkOrderId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputCheckMachineHasOperationItem.cs" />
+    <Compile Include="Models\Input\NetExpert\InputEditActionOrDelayListInPreventiveScheduling.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetMaintenanceGroupListByEId.cs" />
+    <Compile Include="Models\Input\Inspection\InputAddInspectionDetailToInspection.cs" />
+    <Compile Include="Models\Input\Inspection\InputEditInspectionDetailByInspectionDetailId.cs" />
+    <Compile Include="Models\Input\Inspection\InputGetInspectionDetailsByInspectionId.cs" />
+    <Compile Include="Models\Input\Inspection\InputGetInspectionSubDepartmentListByDepartmentId.cs" />
+    <Compile Include="Models\Input\Inspection\InputGetMainMachineListBySubDepartmentId.cs" />
+    <Compile Include="Models\Input\Inspection\InputGetSubDepartmentListByMainDepartmentId.cs" />
+    <Compile Include="Models\Input\Inspection\InputRemoveInspectionDeatilsByInspectionDetailId.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputActiveOrDeActiveOperationItem.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputAddCheckListOperationItem.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputCopyOneOperationItemToOtherMachine.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputCopyOperationItemForOtherMachine.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputCopySeveralOperationItemToOtherMachine.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputEditOperationItemByOperationItemId.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputEditOperationItemModal.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputGetHierarchicalMachineListByDepartmentId.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputGetOperationItemListByMachineId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputAddSubMachine.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetMachineSparePartListByMachineId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetStockListByStoreCodeForSparePart.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputRemoveMachineSparePartByMachineSparePartId.cs" />
+    <Compile Include="Models\Input\MachineMttrMtbfReport\InputGetMachineMTTRAndMTBFReportByCondition.cs" />
+    <Compile Include="Models\Input\MachineMttrMtbfReport\InputGetTotalMttrAndMtbfByMachineId.cs" />
+    <Compile Include="Models\Input\MachineStopStatusReport\InputGetMachineStopStatusReport.cs" />
+    <Compile Include="Models\Input\MachineStopStatusReport\InputGetShowStopedWorkOrder.cs" />
+    <Compile Include="Models\Input\MachineStopStatusReport\InputGetWorkOrderListByMachineId.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetMTBFChartReportByMachineId.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetMTTRAndMTBFFaultCodeCountReportByMachineId.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetMTTRAndMTBFMachineWorkOrderListByMachineId.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetMTTRAndMTBFPerformanceCostReportByMachineId.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetMTTRAndMTBFPerformanceReportByMachineId.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetDepartmentMttrAndMtbfReportByCondition.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetMTTRAndMTBFWearhouseReportByMachineId.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetMTTRChartReportByMachineId.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetOeeChartReportOnMTTRAndMTBFByMachineId.cs" />
+    <Compile Include="Models\Input\DepartmentMttrAndMtbfReport\InputGetOEEPrintReportOnMTTRAndMTBFByMachineId.cs" />
+    <Compile Include="Models\Input\MainMachineOilServiceReport\InputGetMainMachineOilServiceReportByCondition.cs" />
+    <Compile Include="Models\Input\MaintenanceGroupMttrAndMtbfReport\InputGetMaintenanceGroupMttrAndMtbfReportByCondition.cs" />
+    <Compile Include="Models\Input\NetExpert\EmployeeIdList.cs" />
+    <Compile Include="Models\Input\MaintenanceGroupCostReport\InputGetMaintenanceGroupCostReportByCondition.cs" />
+    <Compile Include="Models\Input\MaintenanceGroupPerformanceReport\InputMaintenanceGroupPerformanceReport.cs" />
+    <Compile Include="Models\Input\NetExpert\InputAddActionToWorkOrder.cs" />
+    <Compile Include="Models\Input\NetExpert\InputAddCancelStatusToWorkOrder.cs" />
+    <Compile Include="Models\Input\NetExpert\InputAddInspectionActionToWorkOrder.cs" />
+    <Compile Include="Models\Input\NetExpert\InputAddNetFinishedStatusToWorkOrder.cs" />
+    <Compile Include="Models\Input\NetExpert\InputAddPreventiveMaintenanceActionToWorkOrder.cs" />
+    <Compile Include="Models\Input\NetExpert\InputAddRepairFinishedStatusToWorkOrder.cs" />
+    <Compile Include="Models\Input\NetExpert\InputAddStockWaitingStatusToWorkOrder.cs" />
+    <Compile Include="Models\Input\NetExpert\InputFinishingStockWaitingForWorkOrder.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetDelayTypeListByActivity.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetInspectionDetailByWorkOrderId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetMaintenanceGroupMemberListByMaintenanceGroupId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetNetExpertWorkOrderListByCondition.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetOperationItemListByMaintenanceGroupIdAndMachineId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetStockPurchaseRequestForStockWaitingByWorkOrderId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetWorkOrderStatusHistoryByWorkOrderId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetPreventiveOperationItemListByWorkOrderId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetPurchaseByRequestNumberAndRequestYear.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetWorkOrderByWorkOrderId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputGetWorkOrderRegistrantInfoByWorkOrderId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputRemoveActionOrDelayByActionOrDelayListId.cs" />
+    <Compile Include="Models\Input\NetExpert\InputSendWorkOrderToMaintenanceGroup.cs" />
+    <Compile Include="Models\Input\NetExpert\InputSendWorkOrderToMaintenanceGroupMember.cs" />
+    <Compile Include="Models\Input\NetExpert\InputSetHavaleNOListByHavalehWorkOrderId.cs" />
+    <Compile Include="Models\Input\NetExpert\PMSchedulingInfoIdList.cs" />
+    <Compile Include="Models\Input\NetExpert\PurchaseDetails.cs" />
+    <Compile Include="Models\Input\NetExpert\Tbl_ActionOrDelayListDetail.cs" />
+    <Compile Include="Models\Input\OCEReport\InputGetOCEReportByCondition.cs" />
+    <Compile Include="Models\Input\OEEReport\InputGetDepartmentOEEReportByCondition.cs" />
+    <Compile Include="Models\Input\OEEReport\InputGetMachineOEEReportByCondition.cs" />
+    <Compile Include="Models\Input\OEEReport\InputGetOEEReportByCondition.cs" />
+    <Compile Include="Models\Input\OperationItem\InputAddSparePartListToOperationItem.cs" />
+    <Compile Include="Models\Input\OperationItem\InputGetOperationItemSparePartListByOperationItemId.cs" />
+    <Compile Include="Models\Input\OperationItem\InputRemoveSparePartFromOperationItem.cs" />
+    <Compile Include="Models\Input\PerformanceReportByMachine\InputGetMainMachinePerformanceReportByCondition.cs" />
+    <Compile Include="Models\Input\PLCReport\InputChangeJobStatus.cs" />
+    <Compile Include="Models\Input\PLCReport\InputGetPlcMachineAvailabilityByMachineId.cs" />
+    <Compile Include="Models\Input\PLCReport\InputGetPlcMachineComparisonBetweenToolsAndPalletChangerChartReportByMachineId.cs" />
+    <Compile Include="Models\Input\PLCReport\InputGetPlcMachineOilPressureChartReportByMachineId.cs" />
+    <Compile Include="Models\Input\PLCReport\InputGetPlcMachineOilTemperatureChartReportByMachineId.cs" />
+    <Compile Include="Models\Input\PLCReport\InputGetPlcMachinePalletChangerCountChartReportByMachineId.cs" />
+    <Compile Include="Models\Input\PLCReport\InputGetPlcMachineSpindlePerformanceReportByMachineId.cs" />
+    <Compile Include="Models\Input\PLCReport\InputGetPlcMachineToolsChangerChartReportByMachineId.cs" />
+    <Compile Include="Models\Input\PLCReport\InputGetPlcMachinePowerChangerChartReportByMachineId.cs" />
+    <Compile Include="Models\Input\PLCReport\InputGetToolsChangerDetailOnSpindle.cs" />
+    <Compile Include="Models\Input\PLCReport\InputResetMachinePlcFileDataTransferJob.cs" />
+    <Compile Include="Models\Input\PreventiveItemOperation\InputAddPreventiveOperationItem.cs" />
+    <Compile Include="Models\Input\PreventiveItemOperation\InputEditPreventiveOperationByOperationItemId.cs" />
+    <Compile Include="Models\Input\PreventiveItemOperation\InputGetPreventiveOperationItemByOperationItemId.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesSchedulingReport\InputGetPreventiveMaintenanceSchedulingReportByCondition.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\GetMachineIdFromGrid.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\InputGetMainMachineListByMainDepartmentIdAndSubDepartmentId.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\InputGetOperationItemListByPMSchedulingInfoId.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputGetSerialForOperationItem.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputGetTopParentMachineAndChildrenByOperationItemId.cs" />
+    <Compile Include="Models\Input\MachineCheckList\InputMoveOperationItemFromCurrentMachineToNewMachine.cs" />
+    <Compile Include="Models\Input\Inspection\InputGetInspectionByInspectionId.cs" />
+    <Compile Include="Models\Input\Inspection\InputGetInspectionDetailByInspectionDetailId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputAddMachineDocument.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputRemoveUploadAttachmentToMachine.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputAssignMachineToEmployee.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetEmployeeListOfDepartment.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetHierarchicalMachineList.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputGetMachineLocationByMachineId.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputRemoveAssignMachineToEmployee.cs" />
+    <Compile Include="Models\Input\Machine\InputAddTopMachine.cs" />
+    <Compile Include="Models\Input\EmployeePerformanceReport\InputGetEmployeePerformanceReportByCondition.cs" />
+    <Compile Include="Models\Input\Inspection\InputAddInspection.cs" />
+    <Compile Include="Models\Input\Inspection\InputAddInspectionWorkOrder.cs" />
+    <Compile Include="Models\Input\Inspection\InputEditInspection.cs" />
+    <Compile Include="Models\Input\Inspection\InputEditTheInspection.cs" />
+    <Compile Include="Models\Input\Inspection\InputGetInspectionListByCondition.cs" />
+    <Compile Include="Models\Input\Inspection\InputGetMainMachineListByDepartmentId.cs" />
+    <Compile Include="Models\Input\Inspection\InputGetSubDepartmentListHasMachineByMainDepartmentId.cs" />
+    <Compile Include="Models\Input\Inspection\InputRemoveInspection.cs" />
+    <Compile Include="Models\Input\Inspection\InputSearchInspectionID.cs" />
+    <Compile Include="Models\Input\Inspection\InputShowInsepctionActionHistory.cs" />
+    <Compile Include="Models\Input\Inspection\InputShowInspectionReferenceHistory.cs" />
+    <Compile Include="Models\Input\MachineManagement\InputAddMachineSparePart.cs" />
+    <Compile Include="Models\Input\MaintenanceGroupPerformanceReport\InputGetMaintenanceGroupPerformanceReportByCondition.cs" />
+    <Compile Include="Models\Input\MaintenanceGroup\InputAddEmployeeToMaintenanceGroup.cs" />
+    <Compile Include="Models\Input\MaintenanceGroup\InputGetSuperviserToMaintenanceGroupMember.cs" />
+    <Compile Include="Models\Input\MaintenanceGroup\InputRemoveMaintenanceGroupMemberFromMaintenanceGroup.cs" />
+    <Compile Include="Models\Input\NoneProductiveWorkOrder\InputAddNoneProductiveWorkOrder.cs" />
+    <Compile Include="Models\Input\NoneProductiveWorkOrder\InputGetNoneProductiveWorkOrderByCondition.cs" />
+    <Compile Include="Models\Input\OilService\InputAddOilService.cs" />
+    <Compile Include="Models\Input\OilService\InputGetOilServiceListByCondition.cs" />
+    <Compile Include="Models\Input\OilService\InputRemoveOilService.cs" />
+    <Compile Include="Models\Input\OperationItem\InputAddFaultOperationItem.cs" />
+    <Compile Include="Models\Input\OperationItem\InputAddOperationItemMappingToPMItem.cs" />
+    <Compile Include="Models\Input\OperationItem\InputGetOperationItemMappingToPMItemListByOperationItemId.cs" />
+    <Compile Include="Models\Input\OperationItem\InputGetPreventiveOperationItemListByMachineId.cs" />
+    <Compile Include="Models\Input\OperationItem\InputRemoveOperationItemMappingToPMItemByOperationItemMappingToPMItemId.cs" />
+    <Compile Include="Models\Input\PerformanceReportByDepartment\InputGetDepartmentPerformanceReportByCondition.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\InputGetPreventiveMaintenanceSchedulingListByCondition.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\InputGetStartAndEndDateOfParticularWeekByNumberOfWeeksOfCurrentYear.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\InputRemoveSeveralOperationItemByPMSchedulingInfoId.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\InputResetPredectiveMaintenanceJob.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\InputSetWorkOrderToSeveralPereventiveMaintenanceScheduling.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\PMSchedulingInfoDetail.cs" />
+    <Compile Include="Models\Input\PreventiveMaintenancesScheduling\PMSchedulingInfoIDList.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputAddProductiveWorkOrder.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputEditWorkOrderRateByCustomer.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetActionOrDelayListByWorkOrderID.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetCurrentUserDepartmentList.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetDepartmentMachineList.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetMachineListByDepartmentId.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetProductiveWorkOrderByCondition.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetProductiveWorkOrderGird.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetWorKOrderConsumableListByWorkOrderId.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetWorkOrderRateByWorkOrderId.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetWorKOrderReferralListByWorkOrderId.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputGetWorKOrderStatusListByWorkOrderID.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputRemoveProductiveWorkOrder.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputSetWorkOrderStatusToCancelByCustomer.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputSetWorkOrderStatusToConfirmFinishByCustomer.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputSetWorkOrderStatusToNotConfirmFinishByCustomer.cs" />
+    <Compile Include="Models\Input\ProductiveWorkOrder\InputShowProductiveReferenceHistory.cs" />
+    <Compile Include="Models\Input\SafetyAndHealthReport\InputGetSafetyAndHealthReportByCondition.cs" />
+    <Compile Include="Models\Input\SchedulerWorkOrderPrintReport\InputGetPreventiveVisitFormPrintByWorkOrderId.cs" />
+    <Compile Include="Models\Input\SchedulerWorkOrderPrintReport\InputGetSchedulerWorkOrderReportByCondition.cs" />
+    <Compile Include="Models\Input\SchedulerWorkOrderPrintReport\InputGetVisitFormPrintByWorkOrderId.cs" />
+    <Compile Include="Models\Input\ScrapedWorkOrderReport\InputGetScrapedWorkOrderReportByCondition.cs" />
+    <Compile Include="Models\Input\Shared\InputAddStockToProductionLine.cs" />
+    <Compile Include="Models\Input\Shared\InputGetAllFinalCodeListForUnderConstructionStocks.cs" />
+    <Compile Include="Models\Input\Shared\InputGetAllStockForProductionLineByDepartmentID.cs" />
+    <Compile Include="Models\Input\Shared\InputGetAllStockListWhichHasProductionLine.cs" />
+    <Compile Include="Models\Input\Shared\InputGetClass73AllFinalCodeListByRackCodeGroup.cs" />
+    <Compile Include="Models\Input\Shared\InputGetFinalCodeRangeByRackCode.cs" />
+    <Compile Include="Models\Input\Shared\InputGetStockPrimaryProductionLineByStockID.cs" />
+    <Compile Include="Models\Input\Shared\InputGetStockProductionLineByID.cs" />
+    <Compile Include="Models\Input\Shared\InputGetStockProductionLineByStockID.cs" />
+    <Compile Include="Models\Input\Shared\InputGetStockProductionLineList.cs" />
+    <Compile Include="Models\Input\Shared\InputGetWorkOrderPerformedOperation.cs" />
+    <Compile Include="Models\Input\Shared\InputRemoveStockProductionLineItem.cs" />
+    <Compile Include="Models\Input\SparePartReport\InputGetMachineSparePartReportByMachineId.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetHavaleWorkOrderReferral.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetAddingConsumable.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetAddedRegisterConsumable.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetConfirmConsumablesManagement.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetConsumablesManagementByWorkOrderId.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetDeleteConsumablesManagement.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetEditConsumablesManagement.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetReferralHistoryObservation.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetRegisterConsumablesByWorkOrder.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetRegistrarProfileObservation.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetStockManListByCondition.cs" />
+    <Compile Include="Models\Input\StockMan\InputGetWorkOrderPerformedOperation.cs" />
+    <Compile Include="Models\Input\WarehouseDailyReports\InputGetDailyWearhouseReportByCondition.cs" />
+    <Compile Include="Models\Input\WorkOrderCostReport\InputGetWorkOrderCostReportByCondition.cs" />
+    <Compile Include="Models\Output\AllWorkOrderStatusReport\OutputGetAllWorkOrderStatusReportByCondition.cs" />
+    <Compile Include="Models\Output\ConsumableStockForEachMachine\OutputGetConsumableStockForEachMachineByCondition.cs" />
+    <Compile Include="Models\Output\CostReportByDepartment\OutputGetDepartmentCostReportByCondition.cs" />
+    <Compile Include="Models\Output\CostReportByMachine\OutputGetMainMachineCostReportByCondition.cs" />
+    <Compile Include="Models\Output\CostReportByWorkOrder\OutputGetCostReportByWorkOrderByCondition.cs" />
+    <Compile Include="Models\Output\CostReportByWorkOrder\OutputGetDepartmentList.cs" />
+    <Compile Include="Models\Output\CostReportByWorkOrder\OutputGetSubDepartmentList.cs" />
+    <Compile Include="Models\Output\DailyRepairsReports\OutputGetMaintenanceDailyReportByCondition.cs" />
+    <Compile Include="Models\Output\DailyWorkOrderPrint\OutputGetDailyWorkOrderPrintReport.cs" />
+    <Compile Include="Models\Output\DelayInWorkOrderReport\OutputGetDelayInWorkOrderReportByCondition.cs" />
+    <Compile Include="Models\Output\DelayInWorkOrderReport\OutputGetWorkOrderByDelayTypeId.cs" />
+    <Compile Include="Models\Output\DetermineSalary\OutputGetAllEmployeeSalaryListByCondition.cs" />
+    <Compile Include="Models\Output\DetermineSalary\OutputGetEmployeeSalaryDetailList.cs" />
+    <Compile Include="Models\Output\DetermineSalary\OutputGetMaintenanceGroupMemberSalaryDetailListBySalaryId.cs" />
+    <Compile Include="Models\Output\DetermineSalary\OutputGetMaintenanceGroupMemberSalaryDetailsListBySalaryId.cs" />
+    <Compile Include="Models\Output\DetermineSalary\OutputGetMaintenanceGroupMemberSalaryList.cs" />
+    <Compile Include="Models\Output\DetermineSalary\OutputGetMaintenanceGroupMemberSalaryListByCondition.cs" />
+    <Compile Include="Models\Output\EmployeeCostReport\OutputGetEmployeeCostReportByCondition.cs" />
+    <Compile Include="Models\Output\EmployeePerformanceReport\OutputGetAllMaintenanceGroupMemberList.cs" />
+    <Compile Include="Models\Output\EmployeePerformanceReport\OutputGetEmployeePerformanceReportByCondition.cs" />
+    <Compile Include="Models\Output\ItemOperationReport\OutputGetItemOperationReportByCondtion.cs" />
+    <Compile Include="Models\Output\ItemOperationReport\OutputGetOperationItemTypeList.cs" />
+    <Compile Include="Models\Output\MachineConsumeStockReport\OutputGetMachineConsumeStockReportByCondition.cs" />
+    <Compile Include="Models\Output\MachineConsumeStockReport\OutputGetStockFromHavaleWorkOrderReferral.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetCharacteristicList.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineBuiltInfo.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineDocumentListByMachineId.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineElectricalInfo.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineInfoByMachineId.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineOilAndLubricationInfo.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineSparePartAttachmentFileByMachineId.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineSparePartDocumentListByMachineSparePartId.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetRpmList.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetVoltageList.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetStockPurchaseRequestForStockWaitingByWorkOrderId.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetWorkOrderStatusHistoryByWorkOrderId.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputCheckAllHavalehNOConfirmedByWorkOrderId.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputCheckMachineHasOperationItem.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetMaintenanceGroupListByEId.cs" />
+    <Compile Include="Models\Output\Inspection\OutputEditInspection.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetAllMainDepartment.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetInspectionByInspectionId.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetInspectionDetailByInspectionDetailId.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetInspectionDetailsByInspectionId.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetInspectionListByCondition.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetInspectionTypeList.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetMainMachineListBySubDepartmentId.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetMainDepartmentListHasMachine.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetMainMachineListByDepartmentId.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetSubDepartmentListByMainDepartmentId.cs" />
+    <Compile Include="Models\Output\Inspection\OutputGetSubDepartmentListHasMachineByMainDepartmentId.cs" />
+    <Compile Include="Models\Output\Inspection\OutputSearchInspectionId.cs" />
+    <Compile Include="Models\Output\Inspection\OutputShowInspectionReferenceHistory.cs" />
+    <Compile Include="Models\Output\MachineCheckList\OutputGetHierarchicalMachineListByDepartmentId.cs" />
+    <Compile Include="Models\Output\MachineCheckList\OutputGetOperationItemListByMachineId.cs" />
+    <Compile Include="Models\Output\MachineCheckList\OutputGetSerialForOperationItem.cs" />
+    <Compile Include="Models\Output\MachineCheckList\OutputGetTopParentMachineAndChildrenByOperationItemId.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetAllMainDepartment.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetDepartmentListHasMachine.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetEmployeeListOfDepartment.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetFileTypeList.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetHierarchicalMachineList.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetITSubMachineByMachineID.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineDocumentTypeList.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineLocation.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineLocationByMachineId.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineSparepartList.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetMachineSparePartListByMachineId.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetStockListByStoreCodeForSparePart.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetStoreListForSparePart.cs" />
+    <Compile Include="Models\Output\MachineManagement\OutputGetTopMachineListByCondition.cs" />
+    <Compile Include="Models\Output\MachineMttrMtbfReport\OutputGetMachineMTTRAndMTBFReportByCondition.cs" />
+    <Compile Include="Models\Output\MachineMttrMtbfReport\OutputGetTotalMttrAndMtbfByMachineId.cs" />
+    <Compile Include="Models\Output\MachineStopStatusReport\OutputGetMachineStopStatusReportList.cs" />
+    <Compile Include="Models\Output\MachineStopStatusReport\OutputGetWorkOrderListByMachineId.cs" />
+    <Compile Include="Models\Output\Machine\OutputGetControlSystemTypeList.cs" />
+    <Compile Include="Models\Output\Machine\OutputGetMachineLevelList.cs" />
+    <Compile Include="Models\Output\Machine\OutputGetMachineTypeList.cs" />
+    <Compile Include="Models\Output\MainMachineOilServiceReport\OutputGetMainMachineOilServiceReportByCondition.cs" />
+    <Compile Include="Models\Output\MaintenanceGroupCostReport\OutputGetMaintenanceGroupCostReportByCondition.cs" />
+    <Compile Include="Models\Output\MaintenanceGroupCostReport\OutputMaintenanceGroupList.cs" />
+    <Compile Include="Models\Output\MaintenanceGroupMttrAndMtbfReport\OutputGetMaintenanceGroupMttrAndMtbfReportByCondition.cs" />
+    <Compile Include="Models\Output\MaintenanceGroupPerformanceReport\MaintenanceGroupList.cs" />
+    <Compile Include="Models\Output\MaintenanceGroupPerformanceReport\OutputGetMaintenanceGroupPerformanceReportByCondition.cs" />
+    <Compile Include="Models\Output\MaintenanceGroup\OutputGetAllEmployeeList.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetMTBFChartReportByMachineId.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetMTTRAndMTBFFaultCodeCountReportByMachineId.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetMTTRAndMTBFMachineWorkOrderListByMachineId.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetMTTRAndMTBFPerformanceCostReportByMachineId.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetMTTRAndMTBFPerformanceReportByMachineId.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetDepartmentMttrAndMtbfReportByCondition.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetMTTRAndMTBFWearhouseReportByMachineId.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetMTTRChartReportByMachineId.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetOeeChartReportOnMTTRAndMTBFByMachineId.cs" />
+    <Compile Include="Models\Output\DepartmentMttrAndMtbfReport\OutputGetOEEPrintReportOnMTTRAndMTBFByMachineId.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetDelayTypeListByActivity.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetEmployeeListForPerformanceRegistering.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetInspectionDetailByWorkOrderId.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetMaintenanceGroupMemberListByMaintenanceGroupId.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetNetExpertWorkOrderListByCondition.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetOperationItemListByMaintenanceGroupIdAndMachineId.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetPreventiveOperationItemListByWorkOrderId.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetPurchaseByRequestNumberAndRequestYear.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetWorkOrderByWorkOrderId.cs" />
+    <Compile Include="Models\Output\NetExpert\OutputGetWorkOrderRegistrantInfoByWorkOrderId.cs" />
+    <Compile Include="Models\Output\NoneProductiveWorkOrder\OutputGetNoneProductiveWorkOrderByCondition.cs" />
+    <Compile Include="Models\Output\OCEReport\OutputGetOCEReportByCondition.cs" />
+    <Compile Include="Models\Output\OEEReport\OutputGetOEEReportByCondition.cs" />
+    <Compile Include="Models\Output\OperationItem\OutputGetOperationItemMappingToPMItemListByOperationItemId.cs" />
+    <Compile Include="Models\Output\OperationItem\OutputGetOperationItemSparePartListByOperationItemId.cs" />
+    <Compile Include="Models\Output\OperationItem\OutputGetPreventiveOperationItemListByMachineId.cs" />
+    <Compile Include="Models\Output\PerformanceReportByMachine\OutputGetMainMachinePerformanceReportByCondition.cs" />
+    <Compile Include="Models\Output\PerformanceReportByDepartment\OutputGetDepartmentPerformanceReportByCondition.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputChangeJobStatus.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetMachinePLCFileList.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetPlcMachineAvailabilityByMachineId.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetPlcMachineComparisonBetweenToolsAndPalletChangerChartReportByMachineId.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetPlcMachineOilPressureChartReportByMachineId.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetPlcMachineOilTemperatureChartReportByMachineId.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetPlcMachinePalletChangerCountChartReportByMachineId.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetPlcMachinePowerChangerChartReportByMachineId.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetPlcMachineSpindlePerformanceReportByMachineId.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetPlcMachineToolsChangerChartReportByMachineId.cs" />
+    <Compile Include="Models\Output\PLCReport\OutputGetToolsChangerDetailOnSpindle.cs" />
+    <Compile Include="Models\Output\PreventiveItemOperation\OutputGetMiterMeasuringTypeListForPreventiveOperationItem.cs" />
+    <Compile Include="Models\Output\PreventiveItemOperation\OutputGetPreventiveOperationItemByOperationItemId.cs" />
+    <Compile Include="Models\Output\PreventiveMaintenancesSchedulingReport\OutputGetPreventiveMaintenanceSchedulingReportByCondition.cs" />
+    <Compile Include="Models\Output\PreventiveMaintenancesScheduling\OutputGetAllMainDepartment.cs" />
+    <Compile Include="Models\Output\PreventiveMaintenancesScheduling\OutputGetMainMachineListByMainDepartmentIdAndSubDepartmentId.cs" />
+    <Compile Include="Models\Output\PreventiveMaintenancesScheduling\OutputGetMaintenanceGroupList.cs" />
+    <Compile Include="Models\Output\PreventiveMaintenancesScheduling\OutputGetOperationItemListByPMSchedulingInfoId.cs" />
+    <Compile Include="Models\Output\PreventiveMaintenancesScheduling\OutputGetPreventiveMaintenanceSchedulingListByCondition.cs" />
+    <Compile Include="Models\Output\PreventiveMaintenancesScheduling\OutputGetStartAndEndDateOfParticularWeekByNumberOfWeeksOfCurrentYear.cs" />
+    <Compile Include="Models\Output\PreventiveMaintenancesScheduling\OutputGetSubDepartmentListByMainDepartmentId.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputAddNewProductiveWorkOrder.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetActionOrDelayListByWorkOrderID.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetCurrentUserDepartmentList.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetDepartmentMachineList.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetMachineListByDepartmentId.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetMaintenanceGroupList.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetProductiveWorkOrderByCondition.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetProductiveWorkOrderList.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetStopTypeList.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetWorKOrderConsumableListByWorkOrderId.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetWorkOrderRateByWorkOrderId.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetWorKOrderReferralListByWorkOrderId.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetWorKOrderStatusListByWorkOrderID.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputGetWorkOrderStatusTypeList.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputSearchProductiveWorkorderByID.cs" />
+    <Compile Include="Models\Output\ProductiveWorkOrder\OutputShowProductiveReferenceHistory.cs" />
+    <Compile Include="Models\Output\OilService\OutputGetMainMachineListByDepartmentId.cs" />
+    <Compile Include="Models\Output\OilService\OutputGetMaterials.cs" />
+    <Compile Include="Models\Output\OilService\OutputGetMeasurementUnitList.cs" />
+    <Compile Include="Models\Output\OilService\OutputGetOilServiceListByCondition.cs" />
+    <Compile Include="Models\Output\OilService\OutputGetOilServicePlaceList.cs" />
+    <Compile Include="Models\Output\OilService\OutputGetServiceMaintenanceGroupMemberList.cs" />
+    <Compile Include="Models\Output\SafetyAndHealthReport\OutputGetSafetyAndHealthReportByCondition.cs" />
+    <Compile Include="Models\Output\SchedulerWorkOrderPrintReport\OutputGetPreventiveVisitFormPrintByWorkOrderId.cs" />
+    <Compile Include="Models\Output\SchedulerWorkOrderPrintReport\OutputGetSchedulerWorkOrderReportByCondition.cs" />
+    <Compile Include="Models\Output\SchedulerWorkOrderPrintReport\OutputGetVisitFormPrintByWorkOrderId.cs" />
+    <Compile Include="Models\Output\SchedulerWorkOrderPrintReport\PreventiveItemList.cs" />
+    <Compile Include="Models\Output\ScrapedWorkOrderReport\OutputGetScrapedWorkOrderReportByCondition.cs" />
+    <Compile Include="Models\Output\SparePartReport\OutputGetMachineSparePartReportByMachineId.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetHavaleWorkOrderReferral.cs" />
+    <Compile Include="Models\Output\StockMan\OutputEditConsumablesManagementByWorkOrder.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetAddedRegisterConsumable.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetAddressInWarehouse.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetAllFinalCodeListForUnderConstructionStocks.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetAllStockForProductionLineByDepartmentID.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetAllStockListWhichHasProductionLine.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetClass73AllFinalCodeListByRackCodeGroup.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetConsumablesManagementByWorkOrder.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetFinalCodeRangeByRackCode.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetProductionLineList.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetReferralHistoryObservation.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetRegisterConsumablesByWorkOrder.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetRegistrarProfileObservation.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetStockList.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetStockManListByCondition.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetStockPrimaryProductionLineByStockID.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetStockProductionLineByID.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetStockProductionLineByStockID.cs" />
+    <Compile Include="Models\Output\Shared\OutputGetStockProductionLineList.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetStoreList.cs" />
+    <Compile Include="Models\Output\StockMan\OutputGetWorkOrderPerformedOperation.cs" />
+    <Compile Include="Models\Output\WarehouseDailyReports\OutputGetDailyWearhouseReportByCondition.cs" />
+    <Compile Include="Models\Output\WorkOrderCostReport\OutputGetWorkOrderCostReportByCondition.cs" />
+    <Compile Include="Models\ViewModels\PagedStocks.cs" />
+    <Compile Include="Models\ViewModels\WorkOrderEnums.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Converter.cs" />
+    <Compile Include="Utilities\Settings.cs" />
+    <Compile Include="Utilities\Tools.cs" />
+    <Compile Include="Utilities\Uploader.cs" />
+    <Compile Include="Utilities\UserTools.cs" />
+    <Compile Include="Utilities\WebApiConsumer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\AuthService\App.wsdl" />
+    <None Include="Connected Services\AuthService\App.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuthService\App1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuthService\App2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuthService\App3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuthService\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputCreateSession.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthService\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputGetEndUserInfoByJsonWebToken.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthService\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputReportEndUserLoginInfoByJsonWebToken.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthService\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputValidateSessionByJsonWebToken.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <!-- <None Include="Connected Services\AuthService\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputCreateSession.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthService\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputGetEndUserInfoByJsonWebToken.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthService\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputReportEndUserLoginInfoByJsonWebToken.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthService\Motorsazan.CMMS.Shared.AuthService.WebServiceOutputValidateSessionByJsonWebToken.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None> -->
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AuthService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthService\App.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

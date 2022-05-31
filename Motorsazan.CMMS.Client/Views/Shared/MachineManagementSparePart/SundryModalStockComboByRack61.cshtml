@@ -1,0 +1,30 @@
+﻿@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "sundryModalStockComboByRack61";
+        settings.CallbackRouteValues = new { Controller = ViewData["ControllerName"], Action = "SundryModalStockComboByRack61"};
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "قطعه را انتخاب نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "Id";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.PopupHorizontalAlign = PopupHorizontalAlign.RightSides;
+
+        settings.Properties.TextFormatString = "{0}  {1}  {2}";
+
+        settings.Properties.Columns.Add("RackCode", "آدرس در انبار", Unit.Percentage(20));
+        settings.Properties.Columns.Add("StockName", "نام قطعه / محصول", Unit.Percentage(45));
+        settings.Properties.Columns.Add("StockCode", "کد محصول", Unit.Percentage(25));
+        settings.Properties.Columns.Add("Quantity", "تعداد", Unit.Percentage(10));
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.machineManagement.handleSundryModalStockComboByRackSelectionChange";
+
+    }).BindList(Motorsazan.CMMS.Client.Models.ViewModels.PagedStocks.GetFinalStockListByStoreCodeForSparePart61, Motorsazan.CMMS.Client.Models.ViewModels.PagedStocks.GetFinalMachineManagementSparePartCodeRangeById).GetHtml()

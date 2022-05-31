@@ -1,0 +1,65 @@
+﻿<div class="filter-form filter-form--big">
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    شماره درخواست
+                </label>
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "requestNumber";
+                    settings.Properties.NullText = "شماره درخواست را وارد نمایید";
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="requestNumberError">
+                    شماره درخواست انتخاب نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    سال مورد نظر
+                </label>
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "requestYear";
+                    settings.Properties.NullText = "سال مورد نظر را وارد نمایید";
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="requestYearError">
+                    سال مورد نظر انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-5 col-md-3 pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "stockWaitingFilterFormSearchBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.netExpert.handleStockWaitingSearchButtonClick";
+            }).GetHtml()
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5 col-md-3 pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "stockWaitingModalFilterFormSaveBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.Style.BackColor = System.Drawing.Color.Green;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.netExpert.handleStockWaitingModalFilterFormSaveBtnClick";
+                settings.ClientEnabled = false;
+            }).GetHtml()
+        </div>
+    </div>
+</div>

@@ -1,0 +1,212 @@
+﻿@using DevExpress.Data
+@using Motorsazan.CMMS.Client.Controllers
+@model Motorsazan.CMMS.Shared.Models.Output.EmployeePerformanceReport.OutputGetEmployeePerformanceReportByCondition[]
+
+@Html.DevExpress().GridView(settings =>
+{
+
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new { Controller = "EmployeePerformanceReport", Action = "Grid" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.employeePerformanceReport.handleGridBeginCallback";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+
+    settings.SettingsBehavior.AutoExpandAllGroups = true;
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "ActionOrDelayListId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(5);
+
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "سفارشکار";
+        column.Width = Unit.Percentage(8);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StopTypeName";
+        column.Caption = "نوع توقف";
+        column.Width = Unit.Percentage(8);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderTypeName";
+        column.Caption = "نوع سفارشکار";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.Items.Add("تولیدی");
+            cb.Items.Add("غیر تولیدی");
+
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DepartmentName";
+        column.Caption = "امور/خط";
+        column.Width = Unit.Percentage(12);
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MachineName";
+        column.Caption = "نام دستگاه";
+
+        column.Width = Unit.Percentage(12);
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OldMachineCode";
+        column.Caption = "کد دستگاه";
+        column.Width = Unit.Percentage(6);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MaintenanceGroupName";
+        column.Caption = "گروه تعمیراتی";
+        column.Width = Unit.Percentage(12);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = EmployeePerformanceReportController.GetWorkOrderMaintenanceGroupList();
+            cb.TextField = "MaintenanceGroupName";
+            cb.ValueField = "MaintenanceGroupName";
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ExpertName";
+        column.Caption = "کارشناس";
+        column.GroupIndex = 1;
+        column.Width = Unit.Percentage(8);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "EId";
+        column.Caption = "کد پرسنلی";
+        column.Width = Unit.Percentage(6);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "PersianWorkOrderCreationDate";
+        column.Caption = "تاریخ ثبت سفارشکار";
+        column.Width = Unit.Percentage(8);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "PersianWorkOrderEndDate";
+        column.Caption = "تاریخ اتمام سفارشکار";
+        column.Width = Unit.Percentage(8);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "PersianActionEndDate";
+        column.Caption = "تاریخ انجام عملیات";
+        column.Width = Unit.Percentage(8);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DurationInMinute";
+        column.Caption = "مدت زمان اجرا(دقیقه)";
+        column.Width = Unit.Percentage(6);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    // --- TotalSummary
+    settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "DurationInMinute")
+        .DisplayFormat = " مجموع کل کارکرد : {0} دقیقه";
+
+    settings.Settings.ShowFooter = true;
+
+    // --- GroupSummary
+    settings.GroupSummary.Add(DevExpress.Data.SummaryItemType.Sum, "DurationInMinute").DisplayFormat = " -- مجموع کارکرد هر گروه: {0} دقیقه";
+    settings.Settings.ShowGroupPanel = true;
+
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.Toolbars.Add(t =>
+    {
+        t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل";
+    });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+
+

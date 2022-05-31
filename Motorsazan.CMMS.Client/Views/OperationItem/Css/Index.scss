@@ -1,0 +1,44 @@
+﻿@import "../../../Client/Src/Scss/Utilities/_Variabels.scss";
+
+.danger-text {
+    color: $color-danger;
+}
+
+.danger-button {
+    background-color: red;
+    color: white;
+}
+
+.danger-button:hover {
+    background-color: rgba(255, 0, 0, 0.70);
+    color: white;
+}
+
+.tree-header-style {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#addFormSubMachineOperationItemTreeParent,
+#copySeveralOperationItemSubMachineTreeListModalParent,
+#moveOperationItemSubMachineTreeListModalParent {
+    border: 1px solid $color-border;
+}
+
+.CustomLabel {
+    background-color: #fff283;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+}
+
+#addFormDesign {
+    margin-bottom: 5px;
+}
+
+#OperationItemGridParent {
+    margin-top: 10px;
+}

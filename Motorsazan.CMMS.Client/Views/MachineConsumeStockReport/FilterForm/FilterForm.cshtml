@@ -1,0 +1,38 @@
+﻿<div class="filter-form">
+    <div class="row ">
+
+
+
+        <div id="filterFormWithMachine">
+            <div class="col-xs-12 " >
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب قطعه از انبار
+                    </label>
+                    <div id="filterFormGetStockFromHavaleWorkorderReferralComboParent">
+                        @{ Html.RenderAction("FilterFormGetStockFromHavaleWorkorderReferral", "machineConsumeStockReport"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormGetStockFromHavaleWorkorderReferralComboError">
+                        قطعه انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xs-5  pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormSearchBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineConsumeStockReport.handleFilterFormSearchBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "ثبت کالای انباردار";
+}
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/StockMan/Css/Index.min.css" rel="Stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Client/Src/JS/Dependencies/SignalR/jquery.signalR-2.4.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/DX.ashx?jsfile=~/Views/StockMan/JS/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <section class="app__section">
+            <div class="app__section__header">
+                لیست
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/StockMan/FilterForm/FilterForm.cshtml"); }
+            </div>
+            <form class="app__grid-wrapper" id="stockManGridParent">
+                @{ Html.RenderAction("StockManGrid"); }
+            </form>
+
+        </section>
+    </div>
+</div>
+

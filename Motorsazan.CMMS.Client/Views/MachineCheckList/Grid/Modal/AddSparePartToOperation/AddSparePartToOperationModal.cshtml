@@ -1,0 +1,51 @@
+﻿
+@{
+    var operationItemId = ViewBag.OperationItemId;
+    var machineId = ViewBag.MachineId;
+}
+
+<section class="app__section">
+    <div class="filter-form">
+        <div class="row">
+            <div class="col-xs-12 col-md-7 col-lg-7" id="addSparePartCheckComboBoxDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب قطعات یدکی
+                    </label>
+                    <div id="addSparePartCheckComboParent">
+                        @{
+                            Html.RenderAction("AddSparePartToItemCheckComboBox", "MachineCheckList", new { MachineId = machineId });
+
+                        }
+                    </div>
+                    <div class="app__form-error app__hide" id="addSparePartCheckComboError">
+                        قطعات یدکی انتخاب نشده است
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-3 pull-left">
+                <div class="app__form-item app__form-item--action">
+                    @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "addSparePartBtn";
+                   settings.Text = "افزودن";
+                   settings.UseSubmitBehavior = false;
+                   settings.EnableClientSideAPI = true;
+                   settings.Styles.CssPostfix = "add-form__btn";
+                   settings.Width = Unit.Percentage(100);
+                   settings.ClientSideEvents.Click =
+                       "motorsazanClient.machineCheckList.addSparePartToOperationItemClick";
+               }).GetHtml()
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <form id="addSparePartToOperationItemGridParent" class="app__grid-wrapper">
+        @{ Html.RenderAction("GetSparePartToOperationItemGrid", "MachineCheckList", new { OperationItemId = operationItemId }); }
+    </form>
+</section>
+
+

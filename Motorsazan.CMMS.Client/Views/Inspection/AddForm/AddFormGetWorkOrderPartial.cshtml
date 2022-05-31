@@ -1,0 +1,22 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetInspectionTypeList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormWorkOrderList";
+        settings.CallbackRouteValues = new { Controller = "Inspection", Action = "GetInspectionTypeList" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = " انتخاب نمایید";
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 100;
+        settings.Properties.DropDownWidth = Unit.Percentage(100);
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+        settings.SelectedIndex = -1;
+        settings.Properties.ValueField = "InspectionTypeId";
+        settings.Properties.ValueType = typeof(long);
+        settings.Properties.Columns.Add("InspectionTypeShowName", "عنوان ");
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "motorsazanClient.inspection.handleInspectionTypeSelectedIndexChange";
+
+    }).BindList(Model).GetHtml()

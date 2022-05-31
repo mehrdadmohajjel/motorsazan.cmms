@@ -1,0 +1,78 @@
+﻿<div class="filter-form">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب امور
+                </label>
+                <div id="filterFormDepartmentIdComboParent">
+                    @{ Html.RenderAction("FilterFormDepartmentIdCombo", "ItemOperationReport");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormDepartmentIdComboError">
+                    امور انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب خط
+                </label>
+                <div id="filterFormSubDepartmentIdComboParent">
+                    @{ Html.RenderPartial("~/Views/ItemOperationReport/FilterForm/FilterFormSubDepartmentIdCombo.cshtml");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormSubDepartmentIdComboError">
+                    خط انتخاب  نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب ماشین
+                </label>
+                <div id="filterFormMachineIdComboParent">
+                    @{ Html.RenderPartial("~/Views/ItemOperationReport/FilterForm/FilterFormMachineIdCombo.cshtml");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormMachineIdComboError">
+                    ماشین انتخاب  نشده است
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب نوع آیتم عملیاتی
+                </label>
+                <div id="filterFormItemTypeComboParent">
+                    @{ Html.RenderAction("FilterFormItemTypeCombo", "ItemOperationReport");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormItemTypeComboError">
+                    نوع آیتم عملیاتی انتخاب  نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4 filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormSearchBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.itemOperationReport.handleFilterFormSearchButtonClick";
+            }).GetHtml()
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,127 @@
+﻿@using DevExpress.Data
+@using Motorsazan.CMMS.Client.Controllers
+@model Motorsazan.CMMS.Shared.Models.Output.DepartmentMttrAndMtbfReport.OutputGetMTTRAndMTBFWearhouseReportByMachineId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "showMTTRAndMTBFWearhouseReportGridModal";
+    settings.CallbackRouteValues = new {Controller = "MaintenanceGroupMttrAndMtbfReport", Action = "ShowMTTRAndMTBFWearhouseReport"};
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.maintenanceGroupMttrAndMtbfReport.handleMTTRAndMTBFWearhouseGridBeginCallback";
+
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.Width = Unit.Percentage(100);
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "ActionOrDelayListID";
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "سفارشکار";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DepartmentName";
+        column.Caption = "امور";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MachineName";
+        column.Caption = "نام دستگاه";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OldMachineCode";
+        column.Caption = "کد دستگاه";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MaintenanceGroupName";
+        column.Caption = "گروه تعمیراتی";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = MaintenanceGroupMttrAndMtbfReportController.GetMaintenanceGroupList();
+            cb.TextField = "MaintenanceGroupName";
+            cb.ValueField = "MaintenanceGroupName";
+            cb.ValueType = typeof(string);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ExpertName";
+        column.Caption = "کارشناس";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StockName";
+        column.Caption = "نام قطعه";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RackCode";
+        column.Caption = "آدرس در انبار";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Quantity";
+        column.Caption = "تعداد";
+        column.PropertiesEdit.DisplayFormatString = "N2";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "UnitCost";
+        column.Caption = "قیمت واحد";
+        column.PropertiesEdit.DisplayFormatString = "N0";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "TotalPrice";
+        column.Caption = "قیمت کل";
+        column.PropertiesEdit.DisplayFormatString = "N0";
+    });
+
+    // --- TotalSummary
+    settings.TotalSummary.Add(SummaryItemType.Sum, "Quantity")
+        .DisplayFormat = "مجموع: {0:N2}";
+    settings.TotalSummary.Add(SummaryItemType.Sum, "TotalPrice")
+        .DisplayFormat = "مجموع: {0:N0}";
+
+    settings.Settings.ShowFooter = true;
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 500;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] {"50", "100", "200", "500"};
+}).Bind(Model).GetHtml()

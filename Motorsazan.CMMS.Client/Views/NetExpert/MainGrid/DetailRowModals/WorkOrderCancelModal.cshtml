@@ -1,0 +1,29 @@
+﻿<div class="app__form-item">
+    <label class="app__form-label">
+        شرح علت ابطال ‌
+    </label>
+    @Html.DevExpress().Memo(settings =>
+    {
+        settings.Name = "workOrderCancelModalDescriptionMemo";
+        settings.Properties.NullText = " شرح علت ابطال را وارد نمایید";
+        settings.Properties.ClientSideEvents.KeyUp =
+            "motorsazanClient.netExpert.handleWorkOrderCancelModalDescriptionMemoKeyUp";
+    }).GetHtml()
+    <div class="app__form-error app__hide" id="workOrderCancelModalDescriptionMemoError">
+        شرح علت ابطال وارد نشده است
+    </div>
+</div>
+
+<div class="app__form-item pull-left app__form-item--action">
+    @Html.DevExpress().Button(settings =>
+    {
+        settings.Name = "workOrderCancelModalCancelBtn";
+        settings.Text = "ابطال";
+        settings.UseSubmitBehavior = false;
+        settings.EnableClientSideAPI = true;
+        settings.Styles.CssPostfix = "filter-form__btn";
+        settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+        settings.ClientSideEvents.Click =
+            "motorsazanClient.netExpert.handleWorkOrderCancelModalCancelBtnClick";
+    }).GetHtml()
+</div>

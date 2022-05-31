@@ -1,0 +1,30 @@
+﻿
+
+@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetMainMachineListBySubDepartmentId[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormMachineCombo";
+        settings.CallbackRouteValues = new { Controller = "ProductiveWorkOrder", Action = "AddFormGetDepartmentMachineList" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "دستگاه را انتخاب نمایید";
+        settings.SelectedIndex = 0;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.Properties.DropDownWidth = Unit.Pixel(400);
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+        settings.SelectedIndex = -1;
+
+        settings.Properties.ValueField = "MachineId";
+        settings.Properties.ValueType = typeof(long);
+        settings.Properties.Columns.Add("MachineName", "عنوان گروه");
+        settings.Properties.Columns.Add("OldMachineCode", "کد");
+        settings.Properties.ClientSideEvents.BeginCallback = "motorsazanClient.productiveWorkOrder.handleAddFormMachinesComboBeginCallback";
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+    "motorsazanClient.productiveWorkOrder.machineListSelectedIndexChanged";
+
+
+    }).BindList(Model).GetHtml()

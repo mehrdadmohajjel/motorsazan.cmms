@@ -1,0 +1,67 @@
+﻿<div class="filter-form">
+    <div class="row ">
+
+
+
+        <div id="filterFormWithMachine">
+            <div class="col-xs-12 " id="filterFormGetDepartmentListHasMachineComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب امور
+                    </label>
+                    <div id="filterFormGetDepartmentListHasMachineComboParent">
+                        @{ Html.RenderAction("FilterFormGetDepartmentListHasMachine", "SparePartReport"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormGetDepartmentListHasMachineComboError">
+                        امور انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 " id="filterFormGetSubDepartmentListHasMachineComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب خط
+                    </label>
+                    <div id="filterFormGetSubDepartmentListHasMachineComboParent">
+                        @{ Html.RenderPartial("~/Views/SparePartReport/FilterForm/FilterFormGetSubDepartmentListHasMachineCombo.cshtml"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormGetSubDepartmentListHasMachineComboError">
+                        خط انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 " id="filterFormMachineListComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب دستگاه
+                    </label>
+                    <div id="filterFormMachineListComboParent">
+                        @{ Html.RenderPartial("~/Views/SparePartReport/FilterForm/FilterFormGetMachineListCombo.cshtml"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormMachineListComboError">
+                        دستگاه انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-5  pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormSearchBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.sparePartReport.handleFilterFormSearchBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

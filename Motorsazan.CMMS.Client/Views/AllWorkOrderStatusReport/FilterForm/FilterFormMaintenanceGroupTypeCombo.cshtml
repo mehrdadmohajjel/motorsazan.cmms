@@ -1,0 +1,21 @@
+﻿@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormMaintenanceGroupTypeCombo";
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "فیلتر براساس";
+
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+        settings.SelectedIndex = -1;
+
+        settings.Properties.Items.Add("تولیدی");
+        settings.Properties.Items.Add("غیر تولیدی");
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.allworkorderstatusreport.handleFilterFormMaintenanceGroupTypeComboSelectedIndexChanged";
+    }).GetHtml()

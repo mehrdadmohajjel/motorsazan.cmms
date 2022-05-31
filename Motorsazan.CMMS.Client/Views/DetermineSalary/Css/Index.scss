@@ -1,0 +1,28 @@
+﻿.red-colored {
+    color: red;
+}
+
+.consuming-materials {
+    &__grid {
+
+        &__status-bar {
+            position: relative;
+            top: 0px;
+
+            &__status-bar-button {
+                margin-right: 10px;
+            }
+        }
+
+        &__search-panel {
+            margin-top: 5px;
+        }
+    }
+}
+
+
+.toolbar-btn {
+    border: 1px solid #808080 !important;
+    margin-inline: 20px !important;
+
+}

@@ -1,0 +1,1458 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Motorsazan.CMMS.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ConsumableStockForEachMachineController.GetConsumableStockForEachMachineByCondition(Motorsazan.CMMS.Shared.Models.Input.ConsumableStockForEachMachineByCondition.InputGetConsumableStockForEachMachineByCondition)">
+            <summary>
+               دریافت گزارش لیست قطعات مصرفی به تفکیک هر ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.CostReportByDepartmentController.GetDepartmentCostReportByCondition(Motorsazan.CMMS.Shared.Models.Input.CostReportByDepartment.InputGetDepartmentCostReportByCondition)">
+            <summary>
+                دریافت لیست گزارش هزینه دپارتمان براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.CostReportByMachineController.GetMainMachineCostReportByCondition(Motorsazan.CMMS.Shared.Models.Input.CostReportByMachine.InputGetMainMachineCostReportByCondition)">
+            <summary>
+                دریافت لیست گزارش هزینه ماشین اصلی براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DailyRepairsReportsController.GetMaintenanceDailyReportByCondition(Motorsazan.CMMS.Shared.Models.Input.DailyRepairsReports.InputGetMaintenanceDailyReportByCondition)">
+            <summary>
+                دریافت لیست گزارش روزانه تعمیرات براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DelayInWorkOrderReportController.GetDelayInWorkOrderReportByCondition(Motorsazan.CMMS.Shared.Models.Input.DelayInWorkOrderReport.InputGetDelayInWorkOrderReportByCondition)">
+             <summary>
+            دریافت گزارش تاخیر در سفارشکار بر اساس شرایط 
+             </summary>
+             <param name="input"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DelayInWorkOrderReportController.GetWorkOrderByDelayTypeId(Motorsazan.CMMS.Shared.Models.Input.DelayInWorkOrderReport.InputGetWorkOrderByDelayTypeId)">
+             <summary>
+            دریافت گزارش تاخیر در سفارشکار بر اساس شرایط 
+             </summary>
+             <param name="input"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DetermineSalaryController.EditMaintenanceGroupMemberSalaryBySalaryId(Motorsazan.CMMS.Shared.Models.Input.DetermineSalary.InputEditMaintenanceGroupMemberSalaryBySalaryId)">
+            <summary>
+                ویرایش جدول حقوق اعضای گروه تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DetermineSalaryController.GetMaintenanceGroupMemberSalaryDetailListBySalaryId(Motorsazan.CMMS.Shared.Models.Input.DetermineSalary.InputGetMaintenanceGroupMemberSalaryDetailListBySalaryId)">
+            <summary>
+                دریافت لیست جزئیات حقوق اعضای گروه تعمیراتی براساس شناسه جدول حقوق و دستمزد
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DetermineSalaryController.GetMaintenanceGroupMemberSalaryList">
+            <summary>
+                دریافت لیست حقوق اعضای گروه تعمیراتی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.EmployeeCostReportController.GetEmployeeCostReportByCondition(Motorsazan.CMMS.Shared.Models.Input.EmployeeCostReport.InputGetEmployeeCostReportByCondition)">
+            <summary>
+                دریافت لیست گزارش هزینه پرسنل براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.EmployeePerformanceReportController.GetAllMaintenanceGroupMemberList">
+            <summary>
+                دریافت لیست همه اعضای گروه تعمیراتی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.EmployeePerformanceReportController.GetEmployeePerformanceReportByCondition(Motorsazan.CMMS.Shared.Models.Input.EmployeePerformanceReport.InputGetEmployeePerformanceReportByCondition)">
+            <summary>
+                دریافت لیست گزارش عملکرد پرسنل براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetMainMachineListBySubDepartmentId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputGetMainMachineListBySubDepartmentId)">
+            <summary>
+            دریافت لیست ماشین های یک دپارتمان
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetAllMainDepartment">
+            <summary>
+                دریافت لیست امورها
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetSubDepartmentListByMainDepartmentId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputGetSubDepartmentListByMainDepartmentId)">
+            <summary>
+                دریافت لسیت زیر دپارتمان ها بر اساس شناسه دپارتمان اصلی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.AddInspection(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputAddInspection)">
+            <summary>
+            ثبت بازرسی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.AddInspectionDetailToInspection(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputAddInspectionDetailToInspection)">
+            <summary>
+            ثبت جزییات بازرسی برای یک فیلد بازرسی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.AddInspectionWorkOrder(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputAddInspectionWorkOrder)">
+            <summary>
+            تبدیل فرم بازرسی به سفارشکار
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.EditTheInspection(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputEditTheInspection)">
+            <summary>
+            ویرایش بازرسی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.EditInspectionDetailByInspectionDetailId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputEditInspectionDetailByInspectionDetailId)">
+            <summary>
+            ویرایش جزییات بازرسی بر اساس شناسه بازرسی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetInspectionTypeList">
+            <summary>
+            دریافت لسیت نوع بازرسی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetInspectionByInspectionId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputGetInspectionByInspectionId)">
+            <summary>
+            دریافت لسیت دپارتمان های اصلی دارای ماشین
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetInspectionDetailByInspectionDetailId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputGetInspectionDetailByInspectionDetailId)">
+            <summary>
+            دریافت جزییات بازرسی براساس شناسه جزییات بازرسی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetMainDepartmentListHasMachine">
+            <summary>
+            دریافت لسیت دپارتمان های اصلی دارای ماشین
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetSubDepartmentListHasMachineByMainDepartmentId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputGetSubDepartmentListHasMachineByMainDepartmentId)">
+            <summary>
+            دریافت لسیت دپارتمان های اصلی دارای ماشین
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetMainMachineListByDepartmentId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputGetMainMachineListByDepartmentId)">
+            <summary>
+            دریافت لیست ماشین های اصلی یک دپارتمان
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetInspectionListByCondition(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputGetInspectionListByCondition)">
+            <summary>
+            دریافت  لیست بازرسی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.GetInspectionDetailsByInspectionId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputGetInspectionDetailsByInspectionId)">
+            <summary>
+            دریافت  لیست بازرسی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.RemoveInspection(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputRemoveInspection)">
+            <summary>
+            ویرایش بازرسی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.InspectionController.RemoveInspectionDeatilsByInspectionDetailId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputRemoveInspectionDeatilsByInspectionDetailId)">
+            <summary>
+            حذف جزییات بازرسی  
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ItemOperationReportController.GetOperationItemTypeList">
+            <summary>
+                دریافت لسیت نوع آیتم های عملیاتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ItemOperationReportController.GetItemOperationReportByCondtion(Motorsazan.CMMS.Shared.Models.Input.ItemOperationReport.InputGetItemOperationReportByCondtion)">
+            <summary>
+                دریافت  گزارش او سی ای براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineCheckListController.ActiveOrDeActiveOperationItem(Motorsazan.CMMS.Shared.Models.Input.MachineCheckList.InputActiveOrDeActiveOperationItem)">
+            <summary>
+                فعال یا غیرفعال کردن آیتم عملیاتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineCheckListController.AddCheckListOperationItem(Motorsazan.CMMS.Shared.Models.Input.MachineCheckList.InputAddCheckListOperationItem)">
+            <summary>
+                ثبت آیتم عملیاتی چک لیست
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineCheckListController.CopyOperationItemForOtherMachine(Motorsazan.CMMS.Shared.Models.Input.MachineCheckList.InputCopyOperationItemForOtherMachine)">
+            <summary>
+                کپی آیتم عملیاتی به دستگاه دیگر
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineCheckListController.CopySeveralOperationItemToOtherMachine(Motorsazan.CMMS.Shared.Models.Input.MachineCheckList.InputCopySeveralOperationItemToOtherMachine)">
+            <summary>
+                کپی چندین آیتم عملیاتی به دستگاه دیگر
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineCheckListController.EditOperationItemByOperationItemId(Motorsazan.CMMS.Shared.Models.Input.MachineCheckList.InputEditOperationItemByOperationItemId)">
+            <summary>
+                ویرایش آیتم عملیاتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineCheckListController.GetHierarchicalMachineListByDepartmentId(Motorsazan.CMMS.Shared.Models.Input.MachineCheckList.InputGetHierarchicalMachineListByDepartmentId)">
+            <summary>
+                دریافت لیست ماشین های یک دپارتمان به صورت درختی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineCheckListController.GetOperationItemListByMachineId(Motorsazan.CMMS.Shared.Models.Input.MachineCheckList.InputGetOperationItemListByMachineId)">
+            <summary>
+                دریافت لسیت ایتم عملیاتی بر اساس ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineCheckListController.GetSerialForOperationItem(Motorsazan.CMMS.Shared.Models.Input.MachineCheckList.InputGetSerialForOperationItem)">
+            <summary>
+                دریافت سریال برای آیتم های عملیاتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineCheckListController.MoveOperationItemFromCurrentMachineToNewMachine(Motorsazan.CMMS.Shared.Models.Input.MachineCheckList.InputMoveOperationItemFromCurrentMachineToNewMachine)">
+            <summary>
+                انتقال آیتم عملیاتی از ماشین جاری به ماشین جدید
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineConsumeStockReportController.GetMachineConsumeStockReportByCondition(Motorsazan.CMMS.Shared.Models.Input.MachineConsumeStockReport.InputGetMachineConsumeStockReportByCondition)">
+             <summary>
+            دریافت لیست ماشین هایی که قطعات مصرف شده دارند
+             </summary>
+             <param name="input"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineConsumeStockReportController.GetStockFromHavaleWorkOrderReferral">
+             <summary>
+            دریافت لیست قطعات مجوجود  در جدول حواله(دریافت قطعات مصرف شده)
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineMttrMtbfReportController.GetDepartmentMttrAndMtbfReportByCondition(Motorsazan.CMMS.Shared.Models.Input.MachineMttrMtbfReport.InputGetMachineMTTRAndMTBFReportByCondition)">
+            <summary>
+                دریافت لیست گزارش ام تی تی آر / ام تی بی اف بر اساس ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineMttrMtbfReportController.GetTotalMttrAndMtbfByMachineId(Motorsazan.CMMS.Shared.Models.Input.MachineMttrMtbfReport.InputGetTotalMttrAndMtbfByMachineId)">
+            <summary>
+                دریافت ام تی تی آر کلی/ ام تی بی اف کلی و اِی ای کلی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineStopStatusReportController.GetMachineStopStatusReportList">
+            <summary>
+               دریافت لیست گزارش وضیعت توقف ماشین آلات 
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineStopStatusReportController.GetWorkOrderListByMachineId(Motorsazan.CMMS.Shared.Models.Input.MachineStopStatusReport.InputGetWorkOrderListByMachineId)">
+            <summary>
+               دریافت لیست سفارشکار بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MainMachineOilServiceReportController.GetMainMachineOilServiceReportByCondition(Motorsazan.CMMS.Shared.Models.Input.MainMachineOilServiceReport.InputGetMainMachineOilServiceReportByCondition)">
+            <summary>
+                دریافت لیست گزارش روغن مصرفی دستگاه های اصلی براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MaintenanceGroupCostReportController.GetMaintenanceGroupCostReportByCondition(Motorsazan.CMMS.Shared.Models.Input.MaintenanceGroupCostReport.InputGetMaintenanceGroupCostReportByCondition)">
+            <summary>
+                دریافت لیست گزارش عملکرد به تفکیک دپارتمان براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MaintenanceGroupMttrAndMtbfReportController.GetMaintenanceGroupMttrAndMtbfReportByCondition(Motorsazan.CMMS.Shared.Models.Input.MaintenanceGroupMttrAndMtbfReport.InputGetMaintenanceGroupMttrAndMtbfReportByCondition)">
+            <summary>
+                دریافت لیست گزارش ام تی تی آر / ام تی بی اف بر اساس امور و گروه تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MaintenanceGroupPerformanceReportController.GetMaintenanceGroupPerformanceReportByCondition(Motorsazan.CMMS.Shared.Models.Input.MaintenanceGroupPerformanceReport.InputGetMaintenanceGroupPerformanceReportByCondition)">
+            <summary>
+                دریافت لیست گزارش عملکرد گروه های تعمیراتی براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MaintenanceGroupController.AssignEmployeeToMaintenanceGroup(Motorsazan.CMMS.Shared.Models.Input.MaintenanceGroup.InputAddEmployeeToMaintenanceGroup)">
+            <summary>
+                تخصیص کاربر به گروه تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MaintenanceGroupController.GetAllEmployeeList">
+            <summary>
+                دریافت لیست همه کاربران
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MaintenanceGroupController.RemoveMaintenanceGroupMemberFromMaintenanceGroup(Motorsazan.CMMS.Shared.Models.Input.MaintenanceGroup.InputRemoveMaintenanceGroupMemberFromMaintenanceGroup)">
+            <summary>
+                حذف عضو اعضای گروه تعمیراتی بر اساس شناسه جدول اعضای گروه تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MaintenanceGroupController.SetSuperviserToMaintenanceGroupMember(Motorsazan.CMMS.Shared.Models.Input.MaintenanceGroup.InputGetSuperviserToMaintenanceGroupMember)">
+            <summary>
+                تنظیم سرپرست روی گروه تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetDepartmentMttrAndMtbfReportByCondition(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTTRAndMTBFReportByCondition)">
+            <summary>
+                دریافت لیست گزارش ام تی تی آر / ام تی بی اف بر اساس امور
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetMttrAndMtbfPerformanceCostReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTTRAndMTBFPerformanceCostReportByMachineId)">
+            <summary>
+                دریافت لیست گزارش  هزینه کارکرد ام تی تی آر / ام تی بی اف بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetMttrAndMtbfPerformanceReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTTRAndMTBFPerformanceReportByMachineId)">
+            <summary>
+                دریافت لیست گزارش عملکرد ام تی تی آر / ام تی بی اف بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetMttrAndMtbfWearhouseReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTTRAndMTBFWearhouseReportByMachineId)">
+            <summary>
+                دریافت لیست گزارش انبار ام تی تی آر / ام تی بی اف بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetMttrAndMtbfMachineWorkOrderListByMachineId(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTTRAndMTBFMachineWorkOrderListByMachineId)">
+            <summary>
+                دریافت لیست سفارشکارهای دستگاه ام تی تی آر / ام تی بی اف بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetMttrChartReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTTRChartReportByMachineId)">
+            <summary>
+                دریافت  گزارش نمودار ام تی تی آر بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetMtbfChartReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTBFChartReportByMachineId)">
+            <summary>
+                دریافت گزارش نمودار ام تی بی اف بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetOeeChartReportOnMTTRAndMTBFByMachineId(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetOeeChartReportOnMTTRAndMTBFByMachineId)">
+            <summary>
+                دریافت  گزارش او ای ای بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetOEEPrintReportOnMTTRAndMTBFByMachineId(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetOEEPrintReportOnMTTRAndMTBFByMachineId)">
+            <summary>
+                دریافت گزارش پرینت او ای ای روی ام تی تی آر / ام تی بی اف بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.DepartmentMttrAndMtbfReportController.GetMttrAndMtbfFaultCodeCountReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTTRAndMTBFFaultCodeCountReportByMachineId)">
+            <summary>
+                دریافت لیست گزارش تعداد کد خطا ام تی تی آر / ام تی بی اف بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.AddActionToWorkOrder(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputAddActionToWorkOrder)">
+            <summary>
+                ثبت عملیات به سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.AddPreventiveMaintenanceActionToWorkOrder(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputAddPreventiveMaintenanceActionToWorkOrder)">
+            <summary>
+                ثبت  عملیات بر سفارشکار پیشگیرانه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.AddInspectionActionToWorkOrder(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputAddInspectionActionToWorkOrder)">
+            <summary>
+                ثبت عملیات بازرسی روی سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.AddCancelStatusToWorkOrder(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputAddCancelStatusToWorkOrder)">
+            <summary>
+                ثبت وضیعت ابطال برای سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.CheckMachineHasOperationItem(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputCheckMachineHasOperationItem)">
+            <summary>
+                وب سرویس بررسی وجود آیتم عملیاتی برای ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.CheckAllHavalehNOConfirmedByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputCheckAllHavalehNOConfirmedByWorkOrderId)">
+            <summary>
+                همه شماره حواله های یک سفارشکار تایید شده است یا نه؟
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetInspectionDetailByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetInspectionDetailByWorkOrderId)">
+            <summary>
+                دریافت لیست آیتم های عملیاتی بازرسی برای یک سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.AddRepairFinishedStatusToWorkOrder(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputAddRepairFinishedStatusToWorkOrder)">
+            <summary>
+                ثبت اتمام نهایی روی سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.AddNetFinishedStatusToWorkOrder(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputAddNetFinishedStatusToWorkOrder)">
+            <summary>
+                ثبت اتمام سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.AddStockWaitingStatusToWorkOrder(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputAddStockWaitingStatusToWorkOrder)">
+            <summary>
+                ثبت وضعیت منتظر قطعه به سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.FinishingStockWaitingForWorkOrder(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputFinishingStockWaitingForWorkOrder)">
+            <summary>
+                اتمام انتظار قطعه
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetDelayTypeListByActivity(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetDelayTypeListByActivity)">
+            <summary>
+                دریافت لسیت نوع تاخیر
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetPreventiveOperationItemListByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetPreventiveOperationItemListByWorkOrderId)">
+            <summary>
+                دریافت لیست آیتم های عملیاتی پیشگیرانه برای یک سفارشکار
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetEmployeeListForPerformanceRegistering">
+            <summary>
+                لیست پرسنل برای ثبت عملکرد
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetMaintenanceGroupMemberList(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetMaintenanceGroupMemberListByMaintenanceGroupId)">
+            <summary>
+                دریافت لیست اعضای گروه تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetMaintenanceGroupListByEId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetMaintenanceGroupListByEId)">
+            <summary>
+                وب سرویس دریافت لیست گروه های تعمیراتی بر اساس شناسه کارمند
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetNetExpertWorkOrderListByCondition(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetNetExpertWorkOrderListByCondition)">
+            <summary>
+                دریافت لیست سفارشکارهای یک کارشناس
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetOperationItemListByMaintenanceGroupIdAndMachineId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetOperationItemListByMaintenanceGroupIdAndMachineId)">
+            <summary>
+                دریافت لسیت آیتم عملیاتی بر اساس شناسه گروه تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetWorkOrderByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetWorkOrderByWorkOrderId)">
+            <summary>
+                دریافت اطلاعات شفارشکار براساس شناسه سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetWorkOrderRegistrantInfoByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetWorkOrderRegistrantInfoByWorkOrderId)">
+            <summary>
+                دریافت لیست اطلاعات ثبت کننده سفارشکار براساس سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetPurchaseByRequestNumberAndRequestYear(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetPurchaseByRequestNumberAndRequestYear)">
+            <summary>
+                دریافت لیست خرید براساس شماره درخواست و سال درخواست
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.SendWorkOrderToMaintenanceGroup(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputSendWorkOrderToMaintenanceGroup)">
+            <summary>
+                ارجاع سفارشکار به گروه تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.RemoveActionOrDelayByActionOrDelayListId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputRemoveActionOrDelayByActionOrDelayListId)">
+            <summary>
+                حذف رکورد عملیات یا تاخیر
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.SendWorkOrderToMaintenanceGroupMember(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputSendWorkOrderToMaintenanceGroupMember)">
+            <summary>
+                ارجاع سفارشکار به  اعضای گروه تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.SetHavaleNOListByHavalehWorkOrderIDList(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputSetHavaleNOListByHavalehWorkOrderId)">
+            <summary>
+                تنظیم شماره حواله بر اساس شناسه ارجاع سفارشکار حواله
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetWorkOrderStatusHistoryByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetWorkOrderStatusHistoryByWorkOrderId)">
+            <summary>
+                دریافت لیست تاریخچه وضیعت های یک سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NetExpertController.GetStockPurchaseRequestForStockWaitingByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.NetExpert.InputGetStockPurchaseRequestForStockWaitingByWorkOrderId)">
+            <summary>
+                دریافت لیست اقلام منتظر قطعه برای سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OCEReportController.GetOCEReportByCondition(Motorsazan.CMMS.Shared.Models.Input.OCEReport.InputGetOCEReportByCondition)">
+            <summary>
+                دریافت  گزارش او سی ای براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OEEReportController.GetDepartmentOEEReportByCondition(Motorsazan.CMMS.Shared.Models.Input.OEEReport.InputGetDepartmentOEEReportByCondition)">
+            <summary>
+                دریافت گزارش او او ای بر اساس شناسه دپارتمان
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OEEReportController.GetMachineOEEReportByCondition(Motorsazan.CMMS.Shared.Models.Input.OEEReport.InputGetMachineOEEReportByCondition)">
+            <summary>
+                دریافت گزارش او او ای بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OEEReportController.GetOEEReportByCondition(Motorsazan.CMMS.Shared.Models.Input.OEEReport.InputGetOEEReportByCondition)">
+            <summary>
+                دریافت گزارش او او ای بر اساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OperationItemController.AddFaultOperationItem(Motorsazan.CMMS.Shared.Models.Input.OperationItem.InputAddFaultOperationItem)">
+            <summary>
+                ثبت کد آیتم خرابی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OperationItemController.AddSparePartListToOperationItem(Motorsazan.CMMS.Shared.Models.Input.OperationItem.InputAddSparePartListToOperationItem)">
+            <summary>
+                تخصیص قطعه یدکی به آیتم عملیاتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OperationItemController.AddOperationItemMappingToPMItem(Motorsazan.CMMS.Shared.Models.Input.OperationItem.InputAddOperationItemMappingToPMItem)">
+            <summary>
+                تخصیص کدهای خرابی به آیتم پیشگیرانه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OperationItemController.GetOperationItemMappingToPMItemListByOperationItemId(Motorsazan.CMMS.Shared.Models.Input.OperationItem.InputGetOperationItemMappingToPMItemListByOperationItemId)">
+            <summary>
+                دریافت لیست تخصیصات کدهای خرابی به آیتم های پیشگیرانه به وسیله شناسه آیتم کدهای خرابی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OperationItemController.GetOperationItemSparePartListByOperationItemId(Motorsazan.CMMS.Shared.Models.Input.OperationItem.InputGetOperationItemSparePartListByOperationItemId)">
+            <summary>
+                دریافت لیست قطعات یدکی بر اساس آیتم عملیاتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OperationItemController.GetPreventiveOperationItemListByMachineId(Motorsazan.CMMS.Shared.Models.Input.OperationItem.InputGetPreventiveOperationItemListByMachineId)">
+            <summary>
+                دریافت لیست آیتم های عملیاتی پیشگیرانه برای یک دستگاه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OperationItemController.RemoveOperationItemMappingToPMItemByOperationItemMappingToPMItemId(Motorsazan.CMMS.Shared.Models.Input.OperationItem.InputRemoveOperationItemMappingToPMItemByOperationItemMappingToPMItemId)">
+            <summary>
+                حذف تخصیص ایتم عملیاتی به پیشگیرانه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OperationItemController.RemoveSparePartFromOperationItem(Motorsazan.CMMS.Shared.Models.Input.OperationItem.InputRemoveSparePartFromOperationItem)">
+            <summary>
+                حذف قطعه یدکی از آیتم عملیاتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PerformanceReportByMachineController.GetMainMachinePerformanceReportByCondition(Motorsazan.CMMS.Shared.Models.Input.PerformanceReportByMachine.InputGetMainMachinePerformanceReportByCondition)">
+            <summary>
+                دریافت لیست گزارش عملکرد به تفکیک ماشین اصلی براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PerformanceReportByDepartmentController.GetDepartmentPerformanceReportByCondition(Motorsazan.CMMS.Shared.Models.Input.PerformanceReportByDepartment.InputGetDepartmentPerformanceReportByCondition)">
+            <summary>
+                دریافت لیست گزارش عملکرد به تفکیک دپارتمان براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetMachinePLCFileList">
+            <summary>
+                دریافت لیست ماشین های پی ال سی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetPLCMachineAvailabilityByMachineId(Motorsazan.CMMS.Shared.Models.Input.PLCReport.InputGetPlcMachineAvailabilityByMachineId)">
+            <summary>
+                دریافت گزارش اطلاعات دسترسی دستگاه پی ال سی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetPlcMachineComparisonBetweenToolsAndPalletChangerChartReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.PLCReport.InputGetPlcMachineComparisonBetweenToolsAndPalletChangerChartReportByMachineId)">
+            <summary>
+                دریافت گزارش مقایسه تعویض پالت و ابزار دستگاه پی ال سی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetPLCMachineOilPressureChartReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.PLCReport.InputGetPlcMachineOilPressureChartReportByMachineId)">
+            <summary>
+                دریافت گزارش تغییر فشار دستگاه پی ال سی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetPlcMachineOilTemperatureChartReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.PLCReport.InputGetPlcMachineOilTemperatureChartReportByMachineId)">
+            <summary>
+                دریافت گزارش تغییر دمای روغن دستگاه پی ال سی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetPlcMachinePalletChangerCountChartReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.PLCReport.InputGetPlcMachinePalletChangerCountChartReportByMachineId)">
+            <summary>
+                دریافت گزارش تعویض پالت دستگاه پی ال سی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetPlcMachinePowerChangerChartReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.PLCReport.InputGetPlcMachinePowerChangerChartReportByMachineId)">
+            <summary>
+                دریافت گزارش جریان مصرفی دستگاه پی ال سی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetPLCMachineSpindlePerformanceReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.PLCReport.InputGetPlcMachineSpindlePerformanceReportByMachineId)">
+            <summary>
+                دریافت گزارش عملکرد اسپیندل دستگاه پی ال سی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetPlcMachineToolsChangerChartReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.PLCReport.InputGetPlcMachineToolsChangerChartReportByMachineId)">
+            <summary>
+                دریافت گزارش تعویض ابزار دستگاه پی ال سی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.GetToolsChangerDetailOnSpindle(Motorsazan.CMMS.Shared.Models.Input.PLCReport.InputGetToolsChangerDetailOnSpindle)">
+            <summary>
+                دریافت گزارش عملکرد اسپیندل دستگاه پی ال سی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PLCReportController.ResetMachinePlcFileDataTransferJob">
+            <summary>
+                ثبت جاب های مربوط به انتقال دیتای پی ال سی ها
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingReportController.GetPreventiveMaintenanceSchedulingReportByCondition(Motorsazan.CMMS.Shared.Models.Input.PreventiveMaintenancesSchedulingReport.InputGetPreventiveMaintenanceSchedulingReportByCondition)">
+             <summary>
+            دریافت گزارش سفارشکار پیشگیرانه بر اساس شرایط 
+             </summary>
+             <param name="input"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.SafetyAndHealthReportController.GetSafetyAndHealthReportByCondition(Motorsazan.CMMS.Shared.Models.Input.SafetyAndHealthReport.InputGetSafetyAndHealthReportByCondition)">
+             <summary>
+            دریافت گزارش تاخیر در سفارشکار بر اساس شرایط 
+             </summary>
+             <param name="input"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.SchedulerWorkOrderPrintReportController.GetSchedulerWorkOrderReportByCondition(Motorsazan.CMMS.Shared.Models.Input.SchedulerWorkOrderPrintReport.InputGetSchedulerWorkOrderReportByCondition)">
+             <summary>
+            دریافت گزارش برنامه ریز - چاپ سفارشکار بر اساس شرایط 
+             </summary>
+             <param name="input"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.SchedulerWorkOrderPrintReportController.GetVisitFormPrintByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.SchedulerWorkOrderPrintReport.InputGetVisitFormPrintByWorkOrderId)">
+             <summary>
+            دریافت پرینت فرم مراجعه بر اساس شناسه سفارشکار 
+             </summary>
+             <param name="input"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.SchedulerWorkOrderPrintReportController.GetPreventiveVisitFormPrintByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.SchedulerWorkOrderPrintReport.InputGetPreventiveVisitFormPrintByWorkOrderId)">
+             <summary>
+            دریافت پرینت فرم مراجعه بر اساس شناسه سفارشکار 
+             </summary>
+             <param name="input"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ScrapedWorkOrderReportController.GetScrapedWorkOrderReportByCondition(Motorsazan.CMMS.Shared.Models.Input.ScrapedWorkOrderReport.InputGetScrapedWorkOrderReportByCondition)">
+             <summary>
+            گزارش سفارشکارهای دارای اسکرپ براساس شرایط 
+             </summary>
+             <param name="input"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveItemOperationController.AddPreventiveOperationItem(Motorsazan.CMMS.Shared.Models.Input.PreventiveItemOperation.InputAddPreventiveOperationItem)">
+            <summary>
+                ثبت آیتم عملیاتی پیشگیرانه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveItemOperationController.EditPreventiveOperationByOperationItemId(Motorsazan.CMMS.Shared.Models.Input.PreventiveItemOperation.InputEditPreventiveOperationByOperationItemId)">
+            <summary>
+                ویرایش آیتم پیشگیرانه بر اساس شناسه آیتم عملیاتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveItemOperationController.GetMiterMeasuringTypeListForPreventiveOperationItem">
+            <summary>
+                دریافت لیست شاخص اندازه گیری
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveItemOperationController.GetPreventiveOperationItemByOperationItemId(Motorsazan.CMMS.Shared.Models.Input.PreventiveItemOperation.InputGetPreventiveOperationItemByOperationItemId)">
+            <summary>
+                دریافت لیست آیتم های عملیاتی پیشگیرانه براساس شناسه آیتم های عملیاتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Motorsazan.CMMS.Api.Controllers.SharedController.GetClass73AllFinalCodeListByRackCodeGroup(Motorsazan.CMMS.Shared.Models.Input.Shared.InputGetClass73AllFinalCodeListByRackCodeGroup)" -->
+        <member name="M:Motorsazan.CMMS.Api.Controllers.SharedController.GetFinalCodeRangeByRackCode(Motorsazan.CMMS.Shared.Models.Input.Shared.InputGetFinalCodeRangeByRackCode)">
+            <summary>
+             انتخاب قطعه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.AddMachineDocument(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputAddMachineDocument)">
+            <summary>
+                ثبت مستندات ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.RemoveMachineOilAndLubricationInfoByRecordId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputRemoveMachineOilAndLubricationInfoByRecordId)">
+            <summary>
+                حذف اطلاعات مشخصات زوغن ها و روانکارهای ماشی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.AddMachineElectricalInfo(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputAddMachineElectricalInfo)">
+            <summary>
+                ثبت اطلاعات الکتریکی ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.RegisterOilAndLubrication(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputRegisterOilAndLubrication)">
+            <summary>
+                ثبت مستندات ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.AddMachineSparePart(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputAddMachineSparePart)">
+            <summary>
+                ثبت قطعات یدکی به ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.EditMachineBuiltInfo(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputEditMachineBuiltInfo)">
+            <summary>
+                ذخیره تغییرات در مشخصات ساخت دستگاه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.RemoveMachineElectricalInfoByRecordId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputRemoveMachineElectricalInfoByRecordId)">
+            <summary>
+                حذف اطلاعات الکترونیکی دستگاه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.AddMachineSparePartDocument(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputAddMachineSparePartDocument)">
+            <summary>
+                ثبت قطعات یدکی ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.AddSubMachine(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputAddSubMachine)">
+            <summary>
+                ثبت زیر ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.AssignMachineToEmployee(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputAssignMachineToEmployee)">
+            <summary>
+                تخصیص ماشین به فرد
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetAllMainDepartment">
+            <summary>
+                دریافت لیست امورها
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetCharacteristicList">
+            <summary>
+                دریافت لیست مشخصه ها
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetRpmList">
+            <summary>
+                دریافت لیست rpp
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetVoltageList">
+            <summary>
+                دریافت لیست ولتاژ
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetEmployeeListOfDepartment(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetEmployeeListOfDepartment)">
+            <summary>
+                دریافت لیست پرسنل یک دپارتمان
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetMachineInfoByMachineId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetMachineInfoByMachineId)">
+            <summary>
+                دریافت مشخصات  یک دستگاه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetMachineBuiltInfo(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetMachineBuiltInfo)">
+            <summary>
+                دریافت مشخصات  ساخت یک دستگاه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetMachineElectricalInfo(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetMachineElectricalInfo)">
+            <summary>
+                دریافت مشخصات  یک دستگاه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetMachineElectricalInfo(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetMachineOilAndLubricationInfo)">
+            <summary>
+                دریافت مشخصات  روغن های استفاده شده برای دستگاه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetFileTypeList">
+            <summary>
+                دریافت لیست نوع فایل ماشین
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetHierarchicalMachineList(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetHierarchicalMachineList)">
+            <summary>
+                دریافت لیست ماشین به صورت درختی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetMachineDocumentListByMachineId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetMachineDocumentListByMachineId)">
+            <summary>
+                دریافت لیست مستندات ماشین بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetMachineLocationByMachineId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetMachineLocationByMachineId)">
+            <summary>
+                دریافت لسیت محل ماشین بر اساس شناسه ماشین اصلی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetMachineSparePartDocumentListByMachineSparePartId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetMachineSparePartDocumentListByMachineSparePartId)">
+            <summary>
+                دریافت لیست مستندات قطعات یدکی بر اساس شناسه قطعات یدکی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetMachineSparePartListByMachineId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetMachineSparePartListByMachineId)">
+            <summary>
+                دریافت لیست قطعات یدکی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetStockListByStoreCodeForSparePart(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetStockListByStoreCodeForSparePart)">
+            <summary>
+                دریافت لیست کالا بر اساس کد انبار در فرم قطعات یدکی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetStoreListForSparePart">
+            <summary>
+                دریافت لیست انبار برای افزودن قطعات یدکی برای دستگاه ها در سیستم نت
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.GetTopMachineListByCondition(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputGetTopMachineListByCondition)">
+            <summary>
+                دریافت لیست ماشین ها
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.RemoveAssignMachineToEmployee(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputRemoveAssignMachineToEmployee)">
+            <summary>
+                حذف فرد از دستگاه
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.RemoveMachineDocumentByMachineDocumentId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputRemoveMachineDocumentByMachineDocumentId)">
+            <summary>
+                حذف آپلود ضمیمه های ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.RemoveMachineSparePartByMachineSparePartId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputRemoveMachineSparePartByMachineSparePartId)">
+            <summary>
+                حذف قطعات یدکی ماشین بر اساس شناسه جدول قطعات یدکی ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineManagementController.RemoveMachineSparePartDocumentByMachineSparePartDocumentId(Motorsazan.CMMS.Shared.Models.Input.MachineManagement.InputRemoveMachineSparePartDocumentByMachineSparePartDocumentId)">
+            <summary>
+                حذف آپلود ضمیمه های قطعات یدکی ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineController.AddTopMachine(Motorsazan.CMMS.Shared.Models.Input.Machine.InputAddTopMachine)">
+            <summary>
+                وب سرویس افزودن دستگاه جدید
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineController.GetControlSystemTypeList">
+            <summary>
+                دریافت لسیت نوع کنترل
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineController.GetMachineLevelList">
+            <summary>
+                دریافت لسیت سطح دستگاه
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.MachineController.GetMachineTypeList">
+            <summary>
+                دریافت لسیت نوع دستگاه
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.SparePartReportController.GetMachineSparePartReportByMachineId(Motorsazan.CMMS.Shared.Models.Input.SparePartReport.InputGetMachineSparePartReportByMachineId)">
+            <summary>
+               دریافت لیست قطعات یدکی بر اساس شناسه ماشین
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.StockManController.GetStockManListByCondition(Motorsazan.CMMS.Shared.Models.Input.StockMan.InputGetStockManListByCondition)">
+            <summary>
+            دریافت لیست سفارشکارهای انباردار نت براساس انواع وضیعت های مختلف
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.StockManController.GetRegistrarInfoByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.StockMan.InputGetRegistrarProfileObservation)">
+            <summary>
+            دریافت لیست اطلاعات ثبت کننده سفارشکار براساس سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.StockManController.UpdateConsumablesManagement(Motorsazan.CMMS.Shared.Models.Input.StockMan.InputGetEditConsumablesManagement)">
+            <summary>
+            تنظیم شماره حواله بر اساس شناسه ارجاع سفارشکار حواله
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.StockManController.ConfirmConsumablesManagement(Motorsazan.CMMS.Shared.Models.Input.StockMan.InputGetConfirmConsumablesManagement)">
+            <summary>
+            تنظیم تاریخ تایید حواله بر اساس شناسه ارجاع سفارشکار حواله
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.StockManController.DeleteConsumablesManagement(Motorsazan.CMMS.Shared.Models.Input.StockMan.InputGetConfirmConsumablesManagement)">
+            <summary>
+            حذف مواد مصرفی بر اساس شناسه حواله ارجاع سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.StockManController.AddingConsumable(Motorsazan.CMMS.Shared.Models.Input.StockMan.InputGetAddingConsumable)">
+            <summary>
+            ثبت مواد توسط انباردار نت
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.StockManController.GetHavaleWorkOrderReferralByWorkOrderReferralId(Motorsazan.CMMS.Shared.Models.Input.StockMan.InputGetHavaleWorkOrderReferral)">
+            <summary>
+            دریافت لیست ارجاع سفارش کار حواله بر اساس شناسه ارجاع شفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OilServiceController.AddOilService(Motorsazan.CMMS.Shared.Models.Input.OilService.InputAddOilService)">
+            <summary>
+                ثبت سرویس روغنکاری
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OilServiceController.GetMaterials">
+            <summary>
+                دریافت لیست مواد
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OilServiceController.GetMeasurementUnitList">
+            <summary>
+                دریافت لیست واحد اندازه گیری
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OilServiceController.GetOilServiceListByCondition(Motorsazan.CMMS.Shared.Models.Input.OilService.InputGetOilServiceListByCondition)">
+            <summary>
+                دریافت لیست سرویس روغنکاری
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OilServiceController.GetOilServicePlaceList">
+            <summary>
+                دریافت لسیت محل روغنکاری
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OilServiceController.GetServiceMaintenanceGroupMemberList">
+            <summary>
+                دریافت لست اعضای گروه عملیاتی سرویس
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.OilServiceController.RemoveOilService(Motorsazan.CMMS.Shared.Models.Input.OilService.InputRemoveOilService)">
+            <summary>
+                حذف بازرسی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.GetAllMainDepartment">
+            <summary>
+                دریافت لیست امورها
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.GetMaintenanceGroupList">
+            <summary>
+                دریافت لیست گروه های تعمیراتی
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.GetMainMachineListByMainDepartmentIdAndSubDepartmentId(Motorsazan.CMMS.Shared.Models.Input.PreventiveMaintenancesScheduling.InputGetMainMachineListByMainDepartmentIdAndSubDepartmentId)">
+            <summary>
+                دریافت لیست دستگاه با امور یا خط
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.GetOperationItemListByPMSchedulingInfoId(Motorsazan.CMMS.Shared.Models.Input.PreventiveMaintenancesScheduling.InputGetOperationItemListByPMSchedulingInfoId)">
+            <summary>
+                دریافت لیست ایتم عملیاتی بر اساس شناسه برنامه ریز پیشگیرانه
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.GetPreventiveMaintenanceSchedulingListByCondition(Motorsazan.CMMS.Shared.Models.Input.PreventiveMaintenancesScheduling.InputGetPreventiveMaintenanceSchedulingListByCondition)">
+            <summary>
+                دریافت لیست برنامه ریزی تعمیرات پیشگیرانه بر اساس شرایط
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.RemoveSeveralOperationItemByPMSchedulingInfoID(Motorsazan.CMMS.Shared.Models.Input.PreventiveMaintenancesScheduling.InputRemoveSeveralOperationItemByPMSchedulingInfoId)">
+            <summary>
+                حذف  چندین آیتم  عملیاتی براساس شناسه جدول برنامه ریز  پیشگیرانه
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.SetWorkOrderToSeveralPereventiveMaintenanceScheduling(Motorsazan.CMMS.Shared.Models.Input.PreventiveMaintenancesScheduling.InputSetWorkOrderToSeveralPereventiveMaintenanceScheduling)">
+            <summary>
+                تنظیم سفارشکار برای آیتم های پیشگیرانه
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.GetSubDepartmentListByMainDepartmentId(Motorsazan.CMMS.Shared.Models.Input.Inspection.InputGetSubDepartmentListByMainDepartmentId)">
+            <summary>
+                دریافت لسیت زیر دپارتمان ها بر اساس شناسه دپارتمان اصلی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.GetStartAndEndDateOfParticularWeekByNumberOfWeeksOfCurrentYear(Motorsazan.CMMS.Shared.Models.Input.PreventiveMaintenancesScheduling.InputGetStartAndEndDateOfParticularWeekByNumberOfWeeksOfCurrentYear)">
+            <summary>
+                دریافت تاریخ شروع و پایان یک هفته خاص در سال جاری
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.PreventiveMaintenancesSchedulingController.ResetPredectiveMaintenanceJob">
+            <summary>
+                ریست جاب محاسبه پیشگیرانه تعمیرات
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NoneProductiveWorkOrderController.AddNoneProductiveWorkOrder(Motorsazan.CMMS.Shared.Models.Input.NoneProductiveWorkOrder.InputAddNoneProductiveWorkOrder)">
+            <summary>
+            وب سرویس ثبت سفارشکار غیر تولیدی جدید
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NoneProductiveWorkOrderController.GetNoneProductiveWorkOrderByCondition(Motorsazan.CMMS.Shared.Models.Input.NoneProductiveWorkOrder.InputGetNoneProductiveWorkOrderByCondition)">
+            <summary>
+            وب سرویس دریافت لیست سفارشکارهای غیر تولیدی ثبت شده توسط فرد
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.NoneProductiveWorkOrderController.GetStopTypeListForNoneProductiveWorkOrder">
+            <summary>
+            دریافت لیست نوع توقف برای سفارشکار غیر تولیدی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.AddProductiveWorkOrder(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputAddProductiveWorkOrder)">
+            <summary>
+            وب سرویس افزودن یک سفارشکار جدید
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.EditWorkOrderRateByCustomer(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputEditWorkOrderRateByCustomer)">
+            <summary>
+            وب سرویس دریافت لیست عملیات های یک سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetActionOrDelayListByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputGetActionOrDelayListByWorkOrderId)">
+            <summary>
+            وب سرویس دریافت لیست عملیات های یک سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetWorkOrderRateByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputGetWorkOrderRateByWorkOrderId)">
+            <summary>
+            وب سرویس بدست آوردن امتیاز سفارشکار توسط شناسه سفارشکار 
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetCurrentUserDepartmentList(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputGetCurrentUserDepartmentList)">
+            <summary>
+            وب سرویس دریافت لیست دپارتمان های یک پرسنل
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetMachineListByDepartmentId(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputGetMachineListByDepartmentId)">
+            <summary>
+            وب سرویس دریافت لیست ماشین های یک امور
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetMaintenanceGroupList">
+            <summary>
+            وب سرویس دریافت لیست گروه های تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetProductiveWorkOrderByCondition(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputGetProductiveWorkOrderByCondition)">
+            <summary>
+            وب سرویس دریافت لیست سفارشکارهای تولیدی ثبت شده توسط فرد
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetWorKOrderConsumableListByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputGetWorKOrderConsumableListByWorkOrderId)">
+            <summary>
+            وب سرویس دریافت لیست مواد مصرفی سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetStopTypeList">
+            <summary>
+            وب سرویس دریافت لیست انواع توقف ها
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetStopTypeListForProductiveWorkOrder">
+            <summary>
+            دریافت لیست نوع توقف برای سفارشکار تولیدی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetWorKOrderReferralListByWorkOrderId(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputGetWorKOrderReferralListByWorkOrderId)">
+            <summary>
+            وب سرویس دریافت لیست ارجاعات سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.GetWorkOrderStatusTypeList">
+            <summary>
+            وب سرویس دریافت لیست وضعیت های سفارشکار تعمیراتی
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.SetWorkOrderStatusToCancelByCustomer(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputSetWorkOrderStatusToCancelByCustomer)">
+            <summary>
+            وب سرویس ابطال سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.SetWorkOrderStatusToConfirmFinishByCustomer(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputSetWorkOrderStatusToConfirmFinishByCustomer)">
+            <summary>
+            وب سرویس تائید اتمام سفارشکار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.ProductiveWorkOrderController.SetWorkOrderStatusToNotConfirmFinishByCustomer(Motorsazan.CMMS.Shared.Models.Input.ProductiveWorkOrder.InputSetWorkOrderStatusToNotConfirmFinishByCustomer)">
+            <summary>
+            وب سرویس تغییر وضیعت سفارشکار به عدم تایید اتمام توسط مشتری
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.WarehouseDailyReportsController.GetDailyWearhouseReportByCondition(Motorsazan.CMMS.Shared.Models.Input.WarehouseDailyReports.InputGetDailyWearhouseReportByCondition)">
+            <summary>
+                دریافت گزارش روزانه انبار
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Controllers.WorkOrderCostReportController.GetWorkOrderCostReportByCondition(Motorsazan.CMMS.Shared.Models.Input.WorkOrderCostReport.InputGetWorkOrderCostReportByCondition)">
+            <summary>
+                دریافت لیست گزارش هزینه هر سفارشکار براساس شرایط
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Motorsazan.CMMS.Api.Utilities.QueryResultExtensions">
+            <summary>
+            Contains extension methods of QueryResult type
+            </summary>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Utilities.QueryResultExtensions.ToOutput``1(Motorsazan.CMMS.Api.Models.Base.QueryResult)">
+            <summary>
+            Extension method that converts QueryResult to a TOutput
+            </summary>
+            <typeparam name="TOutput">Target class of conversion</typeparam>
+            <param name="queryResult">Source class of conversion</param>
+            <returns></returns>
+        </member>
+        <member name="T:Motorsazan.CMMS.Api.Utilities.SqlParameterExtensions">
+            <summary>
+            Contains extension methods of related to SqlParameter
+            </summary>
+        </member>
+        <member name="M:Motorsazan.CMMS.Api.Utilities.SqlParameterExtensions.ToSqlParameters``1(``0)">
+            <summary>
+            Convert input to list of SqlParameters
+            </summary>
+            <param name="input">Source of conversion</param>
+            <typeparam name="TInput">Must be a input class</typeparam>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

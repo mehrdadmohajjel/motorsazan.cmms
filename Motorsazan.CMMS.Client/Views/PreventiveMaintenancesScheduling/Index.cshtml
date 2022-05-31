@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "برنامه ریزی تعمیرات پیشگیرانه";
+}
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/PreventiveMaintenancesScheduling/Css/Index.min.css" rel="Stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/PreventiveMaintenancesScheduling/Js/Index.js"></script>
+}
+<style>
+    .dxgvCommandColumn_MaterialCompact dx-al{
+        display:none;
+    }
+</style>
+
+<section class="app__section">
+    <div class="app__section__header">
+        @ViewBag.Title
+        @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+    </div>
+    <div class="app__section__body">
+        @{ Html.RenderPartial("~/Views/PreventiveMaintenancesScheduling/FilterForm/FilterForm.cshtml"); }
+    </div>
+    <form id="gridParent" class="app__grid-wrapper">
+        @{ Html.RenderAction("Grid", "PreventiveMaintenancesScheduling");}
+    </form>
+	
+</section>

@@ -1,0 +1,28 @@
+﻿
+
+@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetInspectionDetailByWorkOrderId[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addInspectionItemsComboBox";
+        settings.CallbackRouteValues = new { Controller = "NetExpert", Action = "AddInspectionItemsComboBox" };
+
+        settings.Width = Unit.Percentage(100);
+
+        settings.Properties.NullText = "آیتم مورد نظر را انتخاب کنید";
+
+        settings.SelectedIndex = -1;
+
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "InspectionDetailId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.TextField = "ActionName";
+
+
+    }).BindList(Model).GetHtml()

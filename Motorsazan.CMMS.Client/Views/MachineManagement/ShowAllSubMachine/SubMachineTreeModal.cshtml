@@ -1,0 +1,17 @@
+﻿@{
+    var machineTopParentId = (long) ViewBag.MachineTopParentId;
+}
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                دستگاه و زیر دستگاه های مربوطه
+            </label>
+            <div id="machineTreeParent">
+                @{
+                    Html.RenderAction("SubMachineTree", "MachineManagement", new { MachineTopParentId = machineTopParentId });
+                }
+            </div>
+        </div>
+    </div>
+</div>

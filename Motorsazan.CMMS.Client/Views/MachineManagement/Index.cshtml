@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "مدیریت دستگاه ها";
+}
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/MachineManagement/Css/Index.min.css" rel="Stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/MachineManagement/JS/Index.js"></script>
+    <script src="~/DX.ashx?jsfile=~/Client/Src/Js/Views/Shared/components/_Uploader.js"></script>
+    <script src="~/DX.ashx?jsfile=~/Client/Src/Js/Dependencies/Bootstrap/_Bootstrap.js"></script>
+}
+
+<section class="app__section">
+    <div class="app__section__header">
+        @ViewBag.Title
+        @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+    </div>
+    <div class="app__section__body">
+        @{ Html.RenderPartial("~/Views/MachineManagement/FilterForm/FilterForm.cshtml"); }
+
+        <form class="app__grid-wrapper" id="machineManagementGridParent">
+            @{ Html.RenderAction("MachineManagementGrid", "MachineManagement"); }
+        </form>
+    </div>
+</section>
+
+

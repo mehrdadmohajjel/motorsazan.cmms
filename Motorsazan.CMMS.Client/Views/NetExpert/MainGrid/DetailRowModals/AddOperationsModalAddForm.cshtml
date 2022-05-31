@@ -1,0 +1,266 @@
+﻿@using Motorsazan.CMMS.Shared.Enums
+@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetWorkOrderByWorkOrderId
+
+@Html.Hidden("addOperationsModalOperationTypeComboDefaultValueHidden", OperationType.Activity)
+
+<div class="filter-form">
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    تاریخ ثبت:
+                </label>
+
+                <label>
+                    @Model.ShamsiCreationDateTime
+                </label>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-8">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    زمان ثبت :
+                </label>
+
+                <label>
+                    @Model.CreationTime
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    ثبت کننده:
+                </label>
+
+                <label>
+                    @Model.RegistrarUser
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-11">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    علت خطا:
+                </label>
+
+                <label class="red-colored">
+                    @Model.FailureDescription
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="app__form-item">
+                <label class="app__form-label" id="addOperationsModalDurationInMinuteAppFormLabel">
+                    مدت زمان توفق:
+                </label>
+
+                <label id="addOperationsModalDurationInMinuteLabel">
+                    @Model.DurationInMinute
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-10">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    پرسنل جهت ثبت کارکرد:
+                </label>
+                @{ Html.RenderAction("AddOperationsModalEmployeeCheckComboBox", "NetExpert"); }
+                <div class="app__form-error app__hide" id="addOperationsModalEmployeeCheckComboBoxError">
+                    پرسنل جهت ثبت کارکرد انتخاب نشده است
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    نوع فعالیت :
+                </label>
+                @{ Html.RenderAction("AddOperationsModalOperationTypeCombo", "NetExpert"); }
+                <div class="app__form-error app__hide" id="addOperationsModalOperationTypeComboError">
+                    نوع فعالیت انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-6 app__hide" id="addOperationsModalDelayReasonComboParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    دلیل تاخیر :
+                </label>
+                @{ Html.RenderAction("AddOperationsModalDelayReasonCombo", "NetExpert"); }
+                <div class="app__form-error app__hide" id="addOperationsModalDelayReasonComboError">
+                    دلیل تاخیر انتخاب نشده است
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    تاریخ شروع:
+                </label>
+                <div>
+                    <input type="text" class="app__form-datepicker"
+                           id="addOperationsModalStartDatePicker"
+                           placeholder="تاریخ شروع"
+                           data-mddatetimepicker="true"
+                           data-englishnumber="true"
+                           data-targetdateselector="#addOperationsModalStartDatePicker" />
+                </div>
+                <div class="app__form-error app__hide" id="addOperationsModalStartDatePickerError">
+                    تاریخ شروع انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    زمان شروع:
+                </label>
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addOperationsModalStartTimeTextBox";
+                    settings.Width = Unit.Percentage(100);
+                    settings.Properties.MaskSettings.Mask = @"<00..24>:<00..59>";
+                    settings.Properties.MaskSettings.IncludeLiterals = MaskIncludeLiteralsMode.None;
+                    settings.Properties.MaskSettings.ErrorText = "فرمت زمان درست  وارد نشده است";
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="addOperationsModalStartTimeTextBoxError">
+                    زمان شروع معتبر نمی باشد
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    تاریخ پایان:
+                </label>
+                <div>
+                    <input type="text" class="app__form-datepicker"
+                           id="addOperationsModalEndDatePicker"
+                           placeholder="تاریخ پایان"
+                           data-mddatetimepicker="true"
+                           data-englishnumber="true"
+                           data-targetdateselector="#addOperationsModalEndDatePicker" />
+                </div>
+                <div class="app__form-error app__hide" id="addOperationsModalEndDatePickerError">
+                    تاریخ پایان انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    زمان پایان:
+                </label>
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addOperationsModalEndTimeTextBox";
+                    settings.Width = Unit.Percentage(100);
+                    settings.Properties.MaskSettings.Mask = @"<00..24>:<00..59>";
+                    settings.Properties.MaskSettings.IncludeLiterals = MaskIncludeLiteralsMode.None;
+                    settings.Properties.MaskSettings.ErrorText = "فرمت زمان درست  وارد نشده است";
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="addOperationsModalEndTimeTextBoxError">
+                    زمان پایان معتبر نمی باشد
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-10">
+            <div class="app__form-item" id="addFormPeriodInMinuteSpinEditParent">
+                <label class="app__form-label">
+                    مدت زمان انجام عملیات (به دقیقه) :
+                </label>
+                <div>
+                    @Html.DevExpress().SpinEdit(settings =>
+                    {
+                        settings.Name = "addOperationsModalOperationsDoneTimeSpinEdit";
+                        settings.Properties.NullText = "مدت زمان انجام عملیات را به دقیقه وارد کنید";
+                        settings.Properties.MaxValue = 10000000;
+                        settings.Properties.MinValue = 1;
+                        settings.Properties.ShowOutOfRangeWarning = false;
+                        settings.Properties.ClientSideEvents.KeyUp =
+                            "motorsazanClient.netExpert.handleAddOperationsModalOperationsDoneTimeSpinEditKeyUp";
+                        settings.Properties.ClientSideEvents.LostFocus =
+                            "motorsazanClient.netExpert.handleAddOperationsModalOperationsDoneTimeSpinEditLostFocus";
+                        settings.Properties.ClientSideEvents.NumberChanged =
+                            "motorsazanClient.netExpert.handleAddOperationsModalOperationsDoneTimeSpinEditNumberChanged";
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide" id="addOperationsModalOperationsDoneTimeSpinEditError">
+                    مدت به انجام عملیات وارد نشده است
+                </div>
+                <div class="app__form-error app__hide" id="addOperationsModalOperationsDoneTimeSpinEditRangeError">
+                    مدت به انجام عملیات نمی تواند کمتر از 1 باشد
+                </div>
+                <div class="app__form-error app__hide" id="addOperationsModalOperationsDoneTimeSpinEditMoreThanDurationInMinuteError">
+                    مدت زمان انجام عملیات نمی تواند بیشتر از مدت زمان توقف باشد
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    شرح عملیات :
+                </label>
+                @Html.DevExpress().Memo(settings =>
+                {
+                    settings.Name = "addOperationsModalModalDescriptionMemo";
+                    settings.Properties.NullText = "توضیحات را وارد نمایید";
+                    settings.Properties.ClientSideEvents.KeyUp =
+                        "motorsazanClient.netExpert.handleAddOperationsModalModalDescriptionMemoKeyUp";
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="addOperationsModalModalDescriptionMemoError">
+                    شرح عملیات وارد نشده است
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5 col-md-4 pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "addOperationsModalSaveBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "add-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.netExpert.handleAddOperationsModalSaveBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

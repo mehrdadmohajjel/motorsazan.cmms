@@ -1,0 +1,85 @@
+﻿
+@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetWorKOrderConsumableListByWorkOrderId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "workOrderUsedToolsGridHistoryModal";
+    settings.CallbackRouteValues = new { Controller = "SafetyAndHealthReport", Action = "WorKOrderConsumableList" };
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.Width = Unit.Percentage(100);
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "HavaleWorkOrderReferralId";
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StockName";
+        column.Caption = "عنوان";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RackCode";
+        column.Caption = "آدرس در انبار";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Quantity";
+        column.Caption = "تعداد";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ShamsiDate";
+        column.Caption = "تاریخ";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "شماره دستورکار";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "HavaleNO";
+        column.Caption = "شماره حواله";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WearhouseConfirmationStatus";
+        column.Caption = "وضعیت حواله";
+    });
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 500;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+
+
+

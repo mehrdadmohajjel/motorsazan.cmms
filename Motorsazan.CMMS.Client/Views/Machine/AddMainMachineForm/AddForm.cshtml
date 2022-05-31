@@ -1,0 +1,248 @@
+﻿@using System.Drawing
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                عنوان دستگاه
+            </label>
+            <div id="addFormMainMachineNameParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addFormMainMachineName";
+                    settings.Properties.NullText = "عنوان دستگاه";
+                    settings.Properties.ClientSideEvents.ValueChanged =
+                        "motorsazanClient.machine.handleAddFormMainMachineNameValueChanged";
+                }).GetHtml()
+            </div>
+            <div id="addFormMainMachineNameError"
+                 class="app__form-error app__hide">
+                عنوان دستگاه وارد نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                کد دستگاه طرف سازنده(سریال)
+            </label>
+            <div id="addFormMainMachineSerialParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addFormMainMachineSerial";
+                    settings.Properties.NullText = "کد دستگاه طرف سازنده";
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                سطح دستگاه
+            </label>
+            <div id="addFormMachineLevelComboParent">
+                @{ Html.RenderAction("AddFormMachineLevelCombo", "Machine"); }
+            </div>
+            <div id="addFormMachineLevelComboError"
+                 class="app__form-error app__hide">
+                سطح دستگاه انتخاب نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                نوع دستگاه
+            </label>
+            <div id="addFormMachineTypeComboParent">
+                @{ Html.RenderAction("AddFormMachineTypeCombo", "Machine"); }
+            </div>
+            <div id="addFormMachineTypeComboError"
+                 class="app__form-error app__hide">
+                نوع دستگاه انتخاب نشده است
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                مدل دستگاه
+            </label>
+            <div id="addFormMainMachineModelParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addFormMainMachineModel";
+                    settings.Properties.NullText = "مدل دستگاه";
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                نوع کنترل
+            </label>
+            <div id="addFormMachineControlComboParent">
+                @{ Html.RenderAction("AddFormMachineControlCombo", "Machine"); }
+            </div>
+            <div id="addFormMachineControlComboError"
+                 class="app__form-error app__hide">
+                نوع کنترل دستگاه انتخاب نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                نام سیستم کنترل دستگاه
+            </label>
+            <div id="addFormMachineControlSystemNameParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addFormMachineControlSystemName";
+                    settings.Properties.NullText = "نام سیستم کنترل دستگاه";
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                مدل سیستم کنترل دستگاه
+            </label>
+            <div id="addFormMachineControlSystemModelNameParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addFormMachineControlSystemModelName";
+                    settings.Properties.NullText = "مدل سیستم کنترل دستگاه";
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                اپریشن دستگاه
+            </label>
+            <div id="addFormMachineOperationParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addFormMachineOperation";
+                    settings.Properties.NullText = "اپریشن دستگاه";
+                    settings.Properties.ClientSideEvents.ValueChanged =
+                        "motorsazanClient.machine.handleAddFormMachineOperationValueChanged";
+                }).GetHtml()
+            </div>
+            <div id="addFormMachineOperationError"
+                 class="app__form-error app__hide">
+                اپریشن دستگاه وارد نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                آیا دستگاه از نوع ابزار است؟
+            </label>
+
+            <div id="addFormIsToolsParent">
+                @Html.DevExpress().RadioButtonList(
+                    settings =>
+                    {
+                        settings.Name = "addFormIsTools";
+
+                        settings.Properties.Items.Add("بلی", true);
+                        settings.Properties.Items.Add("خیر", false);
+
+                        settings.SelectedIndex = 0;
+
+                        settings.Properties.RepeatDirection = RepeatDirection.Horizontal;
+                        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+                            "motorsazanClient.machine.handleAddFormIsToolsSelectedIndexChanged";
+                    }).GetHtml()
+
+            </div>
+            <div id="addFormIsToolsError"
+                 class="app__form-error app__hide">
+                نوع استفاده ابزاری انتخاب نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-3" id="addFormMachineOldMachineCodeIsToolsDesign">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                کد دستگاه
+            </label>
+            <div>
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addFormMachineOldMachineCodeIsTools";
+                    settings.Width = Unit.Percentage(100);
+                    settings.RightToLeft = DefaultBoolean.False;
+                    settings.Properties.NullText = "کد دستگاه";
+                    settings.Properties.MaskSettings.Mask = "00-00-000";
+                    settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+                    settings.Properties.ValidationSettings.ErrorText = " کد دستگاه وارد نشده است";
+                    settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                    settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                    settings.Properties.ClientSideEvents.ValueChanged =
+                        "motorsazanClient.machine.handleAddFormMachineOldMachineCodeIsToolsValueChanged";
+                }).GetHtml()
+            </div>
+            <div id="addFormMachineOldMachineCodeIsToolsError"
+                 class="app__form-error app__hide">
+                کد دستگاه وارد نشده است
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3 app__hide" id="addFormMachineOldMachineCodeDesign">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                کد دستگاه
+            </label>
+            <div>
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addFormMachineOldMachineCode";
+                    settings.Width = Unit.Percentage(100);
+                    settings.RightToLeft = DefaultBoolean.False;
+                    settings.Properties.NullText = "کد دستگاه";
+                    settings.Properties.MaskSettings.Mask = "00-00-00";
+                    settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+                    settings.Properties.ValidationSettings.ErrorText = " کد دستگاه وارد نشده است";
+                    settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                    settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                    settings.Properties.ClientSideEvents.ValueChanged =
+                        "motorsazanClient.machine.handleAddFormMachineOldMachineCodeValueChanged";
+                }).GetHtml()
+            </div>
+            <div id="addFormMachineOldMachineCodeError"
+                 class="app__form-error app__hide">
+                کد دستگاه وارد نشده است
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-4 col-md-3 pull-left">
+        <div class="app__form-item app__form-item--action">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "addFormSaveBtn";
+                settings.Text = "افزودن دستگاه جدید";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machine.addNewMainMachine";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

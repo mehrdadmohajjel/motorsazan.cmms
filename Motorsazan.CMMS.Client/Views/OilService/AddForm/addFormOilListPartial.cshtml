@@ -1,0 +1,33 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.OilService.OutputGetMaterials[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormOilListCombo";
+        settings.CallbackRouteValues = new {Controller = "OilService", Action = "AddFormOilList"};
+        settings.Width = Unit.Percentage(100);
+
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "قطعه را انتخاب نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "StockId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.TextFormatString = "{0} - {1} - {2} - {3}";
+
+        settings.Properties.Columns.Add("StockName", "نام قطعه / محصول", Unit.Percentage(37));
+        settings.Properties.Columns.Add("RackCode", "آدرس در انبار", Unit.Percentage(20));
+        settings.Properties.Columns.Add("Quantity", "تعداد", Unit.Percentage(16));
+        settings.Properties.Columns.Add("Price", "قیمت", Unit.Percentage(27));
+
+        settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.oilService.handleAddFormOilListComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

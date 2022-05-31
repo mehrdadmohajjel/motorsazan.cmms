@@ -1,0 +1,30 @@
+﻿@{ ViewBag.Title = "گزارش OEE"; }
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/OEEReport/Css/Index.min.css" rel="Stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/OEEReport/Js/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <section class="app__section">
+            <div class="app__section__header">
+                @ViewBag.Title
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/OEEReport/HelpForm/HelpForm.cshtml"); }
+
+                @{ Html.RenderPartial("~/Views/OEEReport/FilterForm/FilterForm.cshtml"); }
+                <form id="resultGridParent" class="app__grid-wrapper">
+                    @{ Html.RenderAction(actionName: "InitResultGrid", controllerName: "OEEReport"); }
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

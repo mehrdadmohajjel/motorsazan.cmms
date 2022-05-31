@@ -1,0 +1,99 @@
+﻿@using DevExpress.Data
+@using DevExpress.Export
+@model Motorsazan.CMMS.Shared.Models.Output.PLCReport.OutputGetPlcMachineAvailabilityByMachineId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "accessHourToMachineGrid";
+    settings.CallbackRouteValues = new {Controller = "PLCReport", Action = "AccessHourToMachineGrid"};
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.pLCReport.handleAccessHourToMachineGridBeginCallback";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "MachineId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Percentage(6);
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.UnboundType = UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MachineName";
+        column.Caption = "نام دستگاه";
+        column.Width = Unit.Percentage(35);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OldMachineCode";
+        column.Caption = "کد دستگاه";
+        column.Width = Unit.Percentage(12);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "PLCRecordPersianCreationDate";
+        column.Caption = "تاریخ";
+        column.Width = Unit.Percentage(8);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StartTime";
+        column.Caption = "ساعت شروع";
+        column.Width = Unit.Percentage(8);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "FinishTime";
+        column.Caption = "ساعت اتمام";
+        column.Width = Unit.Percentage(8);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "AccessTime";
+        column.Caption = "مدت زمان کارکرد دستگاه";
+        column.Width = Unit.Percentage(10);
+    });
+
+    settings.Styles.Cell.Wrap = DefaultBoolean.True;
+    settings.Styles.Header.Wrap = DefaultBoolean.True;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = ExportType.WYSIWYG;
+    settings.Toolbars.Add(t => { t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل"; });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] {"50", "100", "200", "500"};
+}).Bind(Model).GetHtml()

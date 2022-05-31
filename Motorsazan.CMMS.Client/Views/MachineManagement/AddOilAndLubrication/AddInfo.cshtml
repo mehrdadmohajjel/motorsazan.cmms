@@ -1,0 +1,167 @@
+﻿<div class="row">
+    <div class="col-xs-6 col-md-4">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                موضوع بند پیشگیری
+            </label>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "addFormPreventiveItemTextBox";
+                settings.Properties.NullText = "موضوع بند پیشگیری را وارد نمایید";
+                settings.Properties.ClientSideEvents.ValueChanged =
+                    "motorsazanClient.machineManagement.handleAddFormPreventiveItemTextBoxValueChanged";
+
+            }).GetHtml()
+            <div class="app__form-error app__hide" id="addFormPreventiveItemTextBoxBoxError">
+                موضوع بند پیشگیری وارد نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                نام مواد
+            </label>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "addFormOilNameTextBox";
+                settings.Properties.NullText = "نام مواد را وارد نمایید";
+                settings.Properties.ClientSideEvents.ValueChanged =
+                    "motorsazanClient.machineManagement.handleAddFormOilNameTextBoxValueChanged";
+
+            }).GetHtml()
+            <div class="app__form-error app__hide" id="addFormOilNameTextBoxError">
+                نام مواد وارد نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                سازنده مواد
+            </label>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "addFormManufacturerTextBox";
+                settings.Properties.NullText = "سازنده مواد را وارد نمایید";
+                settings.Properties.ClientSideEvents.ValueChanged =
+                    "motorsazanClient.machineManagement.handleAddFormManufacturerTextBoxValueChanged";
+
+            }).GetHtml()
+            <div class="app__form-error app__hide" id="addFormManufacturerTextBoxError">
+                سازنده مواد وارد نشده است
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-md-2">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                حجم مخزن
+            </label>
+            @Html.DevExpress().SpinEdit(settings =>
+            {
+                settings.Name = "addFormTankVolumeTextBox";
+                settings.Properties.NullText = "حجم مخزن را وارد نمایید";
+                settings.Properties.ClientSideEvents.ValueChanged =
+                    "motorsazanClient.machineManagement.handleAddFormTankVolumeTextBoxValueChanged";
+
+            }).GetHtml()
+        <div class="app__form-error app__hide" id="addFormTankVolumeBoxError">
+            حجم مخزن وارد نشده است
+        </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-2">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                واحد
+            </label>
+            @Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "addFormOilUnitCombo";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+                settings.SelectedIndex = -1;
+                settings.Properties.CallbackPageSize = 100;
+                settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.None;
+                settings.SelectedIndex = -1;
+                settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                settings.Properties.Items.Add("لیتر");
+                settings.Properties.Items.Add("گرم");
+                settings.Properties.ClientSideEvents.SelectedIndexChanged =
+                    "motorsazanClient.machineManagement.handleAddFormOilUnitComboChanged";
+
+            }).GetHtml()
+            <div class="app__form-error app__hide" id="addFormOilUnitComboError">
+                واحد انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-2">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                مقدار استاندارد
+            </label>
+            @Html.DevExpress().SpinEdit(settings =>
+            {
+                settings.Name = "addFormStandardVolumeTextBox";
+                settings.Properties.ClientSideEvents.ValueChanged =
+                    "motorsazanClient.machineManagement.handleAddFormStandardVolumeTextBoxValueChanged";
+
+            }).GetHtml()
+        <div class="app__form-error app__hide" id="addFormStandardVolumeTextBoxError">
+            مقدار استاندارد وارد نشده است
+        </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-2">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                پریود
+            </label>
+            @Html.DevExpress().SpinEdit(settings =>
+            {
+                settings.Name = "addFormPeriodTextBox";
+                settings.Properties.ClientSideEvents.ValueChanged =
+                    "motorsazanClient.machineManagement.handleAddFormPeriodTextBoxValueChanged";
+
+            }).GetHtml()
+        <div class="app__form-error app__hide" id="addFormPeriodTextBoxError">
+            پریود وارد نشده است
+        </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-2">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                مصرف سالانه
+            </label>
+            @Html.DevExpress().SpinEdit(settings =>
+            {
+                settings.Name = "addFormYearlyUsageTextBox";
+                settings.Properties.ClientSideEvents.ValueChanged =
+                    "motorsazanClient.machineManagement.handleAddFormYearlyUsageTextBoxValueChanged";
+
+            }).GetHtml()
+        <div class="app__form-error app__hide" id="addFormYearlyUsageTextBoxError">
+            مصرف سالانه وارد نشده است
+        </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-2">
+        <div style="padding-top: 37px;">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "registerAgendumHealthyBillBtn";
+                settings.Text = "ثبت ";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Pixel(160);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.registerOilAndLubrication";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

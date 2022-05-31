@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "مدیریت چک لیست دستگاه";
+}
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/MachineCheckList/Css/Index.min.css" rel="Stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/MachineCheckList/JS/Index.js"></script>
+}
+
+<section class="app__section">
+    <div class="app__section__header">
+        @ViewBag.Title
+        @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+    </div>
+
+    <div class="app__section__body">
+        <div>
+            @{ Html.RenderPartial("~/Views/MachineCheckList/AddCheckList/AddCheckListForm.cshtml"); }
+        </div>
+
+        <form id="machineCheckListGridParent" class="app__grid-wrapper">
+            @{ Html.RenderAction("MachineCheckListGrid", "MachineCheckList"); }
+        </form>
+    </div>
+</section>

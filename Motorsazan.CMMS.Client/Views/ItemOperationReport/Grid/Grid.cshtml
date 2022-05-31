@@ -1,0 +1,186 @@
+﻿@using DevExpress.Data
+@using DevExpress.XtraGrid;
+@using Motorsazan.CMMS.Client.Controllers
+@model Motorsazan.CMMS.Shared.Models.Output.ItemOperationReport.OutputGetItemOperationReportByCondtion[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new { Controller = "ItemOperationReport", Action = "Grid" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.itemOperationReport.handleGridBeginCallback";
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.SettingsBehavior.AutoExpandAllGroups = true;
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "OperationItemId";
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Percentage(4);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OperationItemName";
+        column.Caption = "عنوان";
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OperationItemCode";
+        column.Caption = "کد";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ParentMachineName";
+        column.Caption = "دستگاه";
+        column.GroupIndex = 2;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ChildMachineName";
+        column.Caption = "زیر دستگاه";
+        column.GroupIndex = 3;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OldMachineCode";
+        column.Caption = "کد دستگاه";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OperationCode";
+        column.Caption = "اپریشن";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DepartmentName";
+        column.Caption = "خط";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.GroupIndex = 1;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MaintenanceGroupName";
+        column.Caption = "گروه تعمیراتی";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.GroupIndex = 4;
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = PerformanceReportByMachineController.GetAllMaintenanceGroupList();
+            cb.TextField = "MaintenanceGroupName";
+            cb.ValueField = "MaintenanceGroupName";
+            cb.ValueType = typeof(string);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "PeriodInMinute";
+        column.Caption = "دوره به دقیقه";
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "JobTimeInMinute";
+        column.Caption = "مدت زمان اجرا";
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "SourceWeek";
+        column.Caption = "هفته مبنا";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "PeriodWeek";
+        column.Caption = "بازتکرار هفتگی";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+
+
+    // --- TotalSummary
+    settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Count, "OperationItemCode")
+        .DisplayFormat = " تعداد آیتم : {0} عدد";
+
+    settings.Settings.ShowFooter = true;
+
+    // --- GroupSummary
+    settings.GroupSummary.Add(DevExpress.Data.SummaryItemType.Count, "OperationItemCode").DisplayFormat = " -- تعداد آیتم: {0} عدد";
+    settings.Settings.ShowGroupPanel = true;
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.Toolbars.Add(t =>
+    {
+        t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل";
+    });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+

@@ -1,0 +1,62 @@
+﻿<div class="filter-form filter-form--big">
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    کارشناس
+                </label>
+                @{ Html.RenderAction("ConsumingMaterialsExpertsCombo", "TicketManagement"); }
+            <div class="app__form-error app__hide" id="consumingMaterialsExpertsComboError">
+                کارشناس وارد نشده است
+            </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    عنوان
+                </label>
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "consumingMaterialsAddFormNameTextBox";
+                    settings.Properties.NullText = "عنوان را وارد نمایید";
+                    settings.Properties.ClientSideEvents.KeyUp =
+                        "motorsazanClient.ticketManagement.handleConsumingMaterialsAddFormNameTextBoxKeyUp";
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="consumingMaterialsAddFormNameTextBoxError">
+                    عنوان وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    کد
+                </label>
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "consumingMaterialsAddFormCodeTextBox";
+                    settings.Properties.NullText = "کد را وارد نمایید";
+                    settings.Properties.ClientSideEvents.KeyUp =
+                        "motorsazanClient.ticketManagement.handleConsumingMaterialsAddFormCodeTextBoxKeyUp";
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="consumingMaterialsAddFormCodeTextBoxError">
+                    کد وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-5 col-md-2 pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "consumingMaterialsAddFormSaveBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "add-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.ticketManagement.handleConsumingMaterialsAddFormSaveBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

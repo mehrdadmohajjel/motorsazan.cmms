@@ -1,0 +1,88 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetActionOrDelayListByWorkOrderId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+
+    settings.Name = "workOrderPerformedOperationGrid";
+    settings.CallbackRouteValues = new { Controller = "StockMan", Action = "WorkOrderPerformedOperationGrid" };
+
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.stockMan.handleWorkOrderPerformedOperationGridBeginCallback";
+
+    settings.Width = Unit.Percentage(100);
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "ActionOrDelayListId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 1;
+        column.FieldName = "ActionTypeName";
+        column.Caption = "نوع عملیات";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 2;
+        column.FieldName = "EmployeeName";
+        column.Caption = "کارشناس";
+        column.Width = Unit.Percentage(20);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 3;
+        column.FieldName = "DurationInMinute";
+        column.Caption = "زمان(دقیقه)";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 4;
+        column.FieldName = "ShamsiDate";
+        column.Caption = "تاریخ";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 5;
+        column.FieldName = "Description";
+        column.Caption = "توضیحات";
+        column.Width = Unit.Percentage(20);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 6;
+        column.FieldName = "RequestNo";
+        column.Caption = "شماره درخواست";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 6;
+        column.FieldName = "PreRequestNo";
+        column.Caption = "شماره پیش درخواست";
+    });
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()

@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "ثبت دستگاه جدید";
+}
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/Machine/Css/Index.css" rel="Stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/Machine/JS/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <section class="app__section">
+            <div class="app__section__header">
+                @ViewBag.Title
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/Machine/AddMainMachineForm/AddForm.cshtml");}
+            </div>
+        </section>
+    </div>
+</div>

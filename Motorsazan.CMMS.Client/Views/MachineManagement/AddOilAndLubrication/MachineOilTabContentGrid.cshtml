@@ -1,0 +1,127 @@
+﻿
+@model Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetMachineOilAndLubricationInfo[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "oilGrid";
+    settings.CallbackRouteValues = new { Controller = "MachineManagement", Action = "MachineOilTabContentGrid" };
+
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.machineManagement.handleMachineOilUsageGridBeginCallback";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "Id";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 1;
+        column.FieldName = "PredictiveItemTitle";
+        column.Caption = "موضوع بند پیشگیری";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 2;
+        column.FieldName = "MaterialName";
+        column.Caption = "نام مواد";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 3;
+        column.FieldName = "MaterialProducer";
+        column.Caption = "تولید کننده مواد";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 4;
+        column.FieldName = "TankVolume";
+        column.Caption = "حجم مخزن";
+        column.PropertiesEdit.DisplayFormatString = "N2";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 5;
+        column.FieldName = "Unit";
+        column.Caption = "واحد";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 6;
+        column.FieldName = "StandardValue";
+        column.Caption = "مقدار استاندارد";
+        column.PropertiesEdit.DisplayFormatString = "N2";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 7;
+        column.FieldName = "Period";
+        column.Caption = "پریود";
+        column.PropertiesEdit.DisplayFormatString = "N2";
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 7;
+        column.FieldName = "AnnualUseage";
+        column.Caption = "مصرف سالانه";
+        column.PropertiesEdit.DisplayFormatString = "N2";
+    });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowDeleteButton = false;
+    settings.CommandColumn.ShowEditButton = false;
+    settings.CommandColumn.ShowNewButton = false;
+    settings.CommandColumn.ShowNewButtonInHeader = false;
+    settings.CommandColumn.Caption = "عملیات";
+    settings.CommandColumn.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;
+    settings.CommandColumn.VisibleIndex = 1000;
+    settings.ClientSideEvents.CustomButtonClick = "motorsazanClient.machineManagement.handleMachineOilUsageGridCustomBtnClick";
+
+
+    var removeCustomButton = new GridViewCommandColumnCustomButton() { ID = "removeOilBtn", Text = "حذف" };
+    removeCustomButton.Styles.Style.CssClass = "app__form-grid-mini-btn app__form-grid-mini-btn--danger";
+    settings.CommandColumn.CustomButtons.Add(removeCustomButton);
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+

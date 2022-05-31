@@ -1,0 +1,28 @@
+﻿
+@model IEnumerable<Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetSubDepartmentListHasMachineByMainDepartmentId>
+
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormSubDepartmentCombo";
+        settings.CallbackRouteValues = new { Controller = "MachineCheckList", Action = "AddMachineOperationSubDepartmentList" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "خط را انتخاب نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "DepartmentId";
+        settings.Properties.ValueType = typeof(int);
+        settings.Properties.Columns.Add("Title", "عنوان");
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.machineCheckList.handleAddFormSubDepartmentComboSelectedIndexChange";
+
+    }).BindList(Model).GetHtml()
+
+
+

@@ -1,0 +1,253 @@
+﻿@using DevExpress.Export
+@model Motorsazan.CMMS.Shared.Models.Output.PreventiveMaintenancesScheduling.OutputGetPreventiveMaintenanceSchedulingListByCondition[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new { Controller = "PreventiveMaintenancesScheduling", Action = "Grid" };
+
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.preventiveMaintenancesScheduling.handleGridBeginCallback";
+
+    settings.ClientSideEvents.SelectionChanged =
+        "motorsazanClient.preventiveMaintenancesScheduling.handleGridSelectionChanged";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowSelectCheckbox = true;
+    settings.CommandColumn.ShowClearFilterButton = true;
+    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.AllPages;
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+
+    settings.SettingsBehavior.AllowFixedGroups = true;
+    settings.SettingsBehavior.AutoExpandAllGroups = true;
+    settings.Settings.ShowGroupPanel = true;
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "PMSchedulingInfoId";
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "مشخصات زمانی آیتم عملیاتی";
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 1;
+            column.FieldName = "SourceTimeOrWeek";
+            column.Caption = "مبنا";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 2;
+            column.FieldName = "DestinationTimeOrWeek";
+            column.Caption = "زمان واقعی";
+            column.PropertiesEdit.DisplayFormatString = "0;0-";
+        });
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 2;
+            column.FieldName = "MiterMeasuringTypeShowName";
+            column.Caption = "زمان مبنا";
+            column.PropertiesEdit.DisplayFormatString = "0;0-";
+        });
+
+    });
+
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "  مشخصات دستگاه";
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "MaintenanceGroupName";
+            column.Caption = "نام گروه تعمیراتی";
+            column.GroupIndex = 4;
+
+        });
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "DepartmentName";
+            column.Caption = "خط";
+            column.GroupIndex = 1;
+        });
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "ParentMachineName";
+            column.Caption = "دستگاه اصلی";
+            column.GroupIndex = 2;
+        });
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "MachineName";
+            column.Caption = "دستگاه";
+            column.GroupIndex = 3;
+        });
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "OperationCode";
+            column.Caption = "اپریشن";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "ParentOldMachineCode";
+            column.Caption = "کد دستگاه";
+            column.GroupIndex = 5;
+        });
+
+
+
+    });
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "مشخصات آیتم";
+
+        band.Columns.Add(column =>
+        {
+
+            column.FieldName = "OperationItemName";
+            column.Caption = "عنوان";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "OperationItemCode";
+            column.Caption = "کد";
+            column.Settings.AllowAutoFilter = DefaultBoolean.True;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.Caption = "تاریخ پیشنهادی";
+            column.FieldName = "PersianWorkOrderPreferDate";
+            column.Settings.AllowAutoFilter = DefaultBoolean.True;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+    });
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "ویژگی";
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "DoneCount";
+            column.Caption = "تعداد اجرا";
+            column.PropertiesEdit.DisplayFormatString = "0;0-";
+            column.Settings.AllowAutoFilter = DefaultBoolean.True;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "DurationFromCreationDate";
+            column.Caption = " فاصله از زمان آغاز(روز)";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "OperationItemId";
+            column.Caption = "OperationItemId";
+            column.Visible = false;
+        });
+    });
+
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = ExportType.WYSIWYG;
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.Command = GridViewToolbarCommand.ExportToXlsx;
+            i.Text = "خروجی اکسل";
+            i.ItemStyle.CssClass = "app__form-grid-mini-btn btn toolbar-btn";
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.Command = GridViewToolbarCommand.Custom;
+            i.Text = "تبدیل به سفارشکار";
+            i.Name = "gridToolbarChangeToWorkOrderButton";
+            i.ItemStyle.CssClass = "app__form-grid-mini-btn btn-info toolbar-btn";
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.Command = GridViewToolbarCommand.Custom;
+            i.Text = "حذف تا پایان سال";
+            i.Name = "gridToolbarDeleteUntilYearEndButton";
+            i.ItemStyle.CssClass = "app__form-grid-mini-btn btn-danger toolbar-btn";
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.Command = GridViewToolbarCommand.Custom;
+            i.Text = "واکشی اطلاعات آیتم های پیشگیرانه";
+            i.Name = "gridToolbarFetchPreventiveItemButton";
+            i.ItemStyle.CssClass = "app__form-grid-mini-btn btn-danger toolbar-btn";
+        });
+
+        settings.ClientSideEvents.ToolbarItemClick =
+            "motorsazanClient.preventiveMaintenancesScheduling.handleToolbarButtonClick";
+    });
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowDeleteButton = false;
+    settings.CommandColumn.ShowEditButton = false;
+    settings.CommandColumn.ShowNewButton = false;
+    settings.CommandColumn.ShowNewButtonInHeader = false;
+    settings.CommandColumn.Caption = "عملیات";
+    settings.CommandColumn.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;
+    settings.CommandColumn.VisibleIndex = 0;
+    settings.ClientSideEvents.CustomButtonClick = "motorsazanClient.preventiveMaintenancesScheduling.handleGridCustomBtnClick";
+
+    var addPeopleButton = new GridViewCommandColumnCustomButton() { ID = "shoedetailBTN", Text = "مشاهده موجودی" };
+    addPeopleButton.Styles.Style.CssClass = "app__form-grid-mini-btn app__form-grid-mini-btn--info";
+    settings.CommandColumn.CustomButtons.Add(addPeopleButton);
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 500;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] { "50", "100", "200", "500" };
+    settings.SettingsPager.Position = PagerPosition.TopAndBottom;
+
+}).Bind(Model).GetHtml()

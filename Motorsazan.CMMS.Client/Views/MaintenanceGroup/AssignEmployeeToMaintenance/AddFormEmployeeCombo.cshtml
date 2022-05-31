@@ -1,0 +1,29 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.MaintenanceGroup.OutputGetAllEmployeeList[]
+
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormEmployeeCombo";
+        settings.CallbackRouteValues = new { Controller = "MaintenanceGroup", Action = "AddFormEmployeeCombo" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نفر را انتخاب نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "EmployeeId";
+        settings.Properties.ValueType = typeof(long);
+        settings.Properties.TextFormatString = "{0} {1} {2}";
+        settings.Properties.Columns.Add("EId", "کد پرسنلی").Width = 40;
+        settings.Properties.Columns.Add("FName", "نام");
+        settings.Properties.Columns.Add("LName", "نام خانوادگی");
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.maintenanceGroup.handleAddFormEmployeeComboSelectedIndexChanged";
+    }).BindList(Model).GetHtml()
+
+

@@ -1,0 +1,122 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetInspectionByInspectionId
+<style>
+    .detail-btn {
+        padding: 8px 4px;
+    }
+</style>
+@{
+    var workOrderId = Model.WorkOrderId;
+    var inspectionDetailCount = Model.InspectionDetailCount;
+    var isMainButtonActive = true;
+    var isChangeToWorkOrderValid = false;
+    if ( workOrderId == 0)
+    {
+        isMainButtonActive = true;
+    }
+    else
+    {
+        isMainButtonActive = false;
+    }
+    if (inspectionDetailCount != 0 && isMainButtonActive)
+    {
+        isChangeToWorkOrderValid = true;
+    }
+    else
+    {
+        isChangeToWorkOrderValid = false;
+    }
+
+}
+<div class="row">
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "EditBtn";
+       settings.Text = "ویرایش";
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.Width = Unit.Percentage(90);
+       settings.Enabled = isMainButtonActive;
+
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.inspection.editInspection";
+   }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "EbtalBtn";
+       settings.Text = "ابطال";
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.Width = Unit.Percentage(90);
+       settings.Enabled = isMainButtonActive;
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.inspection.ebtalInspection";
+   }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "addinspectionDetailBtn";
+       settings.Text = "ثبت جزئیات ";
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.Width = Unit.Percentage(90);
+       settings.Enabled = isMainButtonActive;
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.inspection.addInspectionDetail";
+   }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "changeToWorkOrderBtn";
+       settings.Text = "تبدیل به سفارشکار ";
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.Width = Unit.Percentage(90);
+       settings.Enabled = isChangeToWorkOrderValid;
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.inspection.changeInspectionToWorkOrder";
+   }).GetHtml()
+    </div>
+</div>
+<div class="row" style="padding-top: 5px">
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "showActionBtn";
+            settings.Text = "مشاهده عملیات";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(90);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.inspection.showActionHistoryModal";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "showUsedToolsBtn";
+            settings.Text = "مشاهده مواد مصرفی";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(90);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.inspection.showUsedToolsModal";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "showRefrenceBtn";
+            settings.Text = "تاریخچه ارجاعات ";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(90);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.inspection.showHistoryModal";
+        }).GetHtml()
+    </div>
+</div>

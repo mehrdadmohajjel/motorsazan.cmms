@@ -1,0 +1,51 @@
+﻿.filter-form {
+    max-width: 1300px !important;
+}
+table.registrar-info {
+    margin: -15px 0;
+    width: 100%;
+    text-align: right;
+
+    th {
+        padding: 0 10px;
+    }
+
+    td {
+        width: 80%;
+        padding-right: 20px;
+    }
+
+    tr:nth-child(2n) {
+        background-color: #b9b9b9;
+    }
+}
+
+table.registrar-info, table.registrar-info th, table.registrar-info td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.red-colored {
+    color: red;
+}
+
+.consuming-materials {
+    &__grid {
+        &__status-bar {
+            position: relative;
+            top: -240px;
+
+            &__status-bar-button {
+                margin-right: 10px;
+            }
+        }
+
+        &__search-panel {
+            margin-top: 5%;
+        }
+    }
+}
+
+.class_hidden {
+    display: none;
+}

@@ -1,0 +1,158 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetPurchaseByRequestNumberAndRequestYear[]
+
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "stockWaitingModalSourceGrid";
+    settings.CallbackRouteValues = new { Controller = "NetExpert", Action = "StockWaitingModalGrid" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.netExpert.handleWaitingStockGridBeginCallback";
+    settings.ClientSideEvents.SelectionChanged =
+    "motorsazanClient.netExpert.handleGridSelectionChanged";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.EnableRowsCache = true;
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowSelectCheckbox = true;
+    settings.CommandColumn.ShowClearFilterButton = true;
+    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.AllPages;
+
+    settings.KeyFieldName = "RackCode";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StockName";
+        column.Caption = "نام قطعه";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RackCode";
+        column.Caption = "آدرس در انبار";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "TechNO";
+        column.Caption = "شماره فنی";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StockCode";
+        column.Visible = true;
+        column.EditCellStyle.CssClass = "class_hidden";
+        column.EditFormCaptionStyle.CssClass = "class_hidden";
+        column.HeaderStyle.CssClass = "class_hidden";
+        column.CellStyle.CssClass = "class_hidden";
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RequestCount";
+        column.Visible = true;
+        column.EditCellStyle.CssClass = "class_hidden";
+        column.EditFormCaptionStyle.CssClass = "class_hidden";
+        column.HeaderStyle.CssClass = "class_hidden";
+        column.CellStyle.CssClass = "class_hidden";
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RemainingCount";
+        column.Visible = true;
+        column.EditCellStyle.CssClass = "class_hidden";
+        column.EditFormCaptionStyle.CssClass = "class_hidden";
+        column.HeaderStyle.CssClass = "class_hidden";
+        column.CellStyle.CssClass = "class_hidden";
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DeliverLocation";
+        column.Visible = true;
+        column.EditCellStyle.CssClass = "class_hidden";
+        column.EditFormCaptionStyle.CssClass = "class_hidden";
+        column.HeaderStyle.CssClass = "class_hidden";
+        column.CellStyle.CssClass = "class_hidden";
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RequestCode";
+        column.Visible = true;
+        column.EditCellStyle.CssClass = "class_hidden";
+        column.EditFormCaptionStyle.CssClass = "class_hidden";
+        column.HeaderStyle.CssClass = "class_hidden";
+        column.CellStyle.CssClass = "class_hidden";
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RequestYear";
+        column.Visible = true;
+        column.EditCellStyle.CssClass = "class_hidden";
+        column.EditFormCaptionStyle.CssClass = "class_hidden";
+        column.HeaderStyle.CssClass = "class_hidden";
+        column.CellStyle.CssClass = "class_hidden";
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StockClass";
+        column.Visible = true;
+        column.EditCellStyle.CssClass = "class_hidden";
+        column.EditFormCaptionStyle.CssClass = "class_hidden";
+        column.HeaderStyle.CssClass = "class_hidden";
+        column.CellStyle.CssClass = "class_hidden";
+
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "FinalSerialNO";
+        column.Visible = true;
+        column.EditCellStyle.CssClass = "class_hidden";
+        column.EditFormCaptionStyle.CssClass = "class_hidden";
+        column.HeaderStyle.CssClass = "class_hidden";
+        column.CellStyle.CssClass = "class_hidden";
+
+    });
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsSearchPanel.Visible = false;
+    settings.SettingsSearchPanel.EditorNullTextDisplayMode = NullTextDisplayMode.Unfocused;
+    settings.SettingsSearchPanel.AllowTextInputTimer = false;
+    settings.SettingsText.SearchPanelEditorNullText = "عبارت مورد نظر جهت جستجو در لیست را وارد کنید";
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()

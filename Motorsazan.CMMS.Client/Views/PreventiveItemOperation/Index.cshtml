@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "ثبت کدهای عملیاتی پیشگیرانه";
+}
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/PreventiveItemOperation/Css/Index.min.css" rel="Stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/PreventiveItemOperation/JS/Index.js"></script>
+}
+
+<section class="app__section">
+    <div class="app__section__header">
+        @ViewBag.Title
+        @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+    </div>
+    <div class="app__section__body">
+        <div>
+            @{ Html.RenderPartial("~/Views/PreventiveItemOperation/AddPreventiveItemOperation/AddFormPreventiveItemOperationForm.cshtml"); }
+        </div>
+
+        <form id="preventiveItemOperationGridParent" class="app__grid-wrapper">
+            @{ Html.RenderAction("PreventiveItemOperationGrid", "PreventiveItemOperation"); }
+        </form>
+    </div>
+</section>

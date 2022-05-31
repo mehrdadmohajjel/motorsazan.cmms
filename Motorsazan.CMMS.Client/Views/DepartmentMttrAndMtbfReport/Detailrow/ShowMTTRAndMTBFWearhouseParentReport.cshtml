@@ -1,0 +1,7 @@
+﻿
+@model Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTTRAndMTBFWearhouseReportByMachineId
+
+<form>
+    @{ Html.RenderAction("ShowMttrAndMtbfWearhouseReport", "DepartmentMttrAndMtbfReport",
+           new { MachineId = Model.MachineId, StartDate = ViewData["StartDate"], EndDate = ViewData["EndDate"], DatePeriodType = ViewData["DatePeriodType"] }); }
+</form>

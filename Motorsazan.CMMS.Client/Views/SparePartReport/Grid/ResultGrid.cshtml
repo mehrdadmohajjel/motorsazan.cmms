@@ -1,0 +1,102 @@
+﻿
+@model IEnumerable<Motorsazan.CMMS.Shared.Models.Output.SparePartReport.OutputGetMachineSparePartReportByMachineId>
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new { Controller = "SparePartReport", Action = "GetMachineSparePartReportByMachineId" };
+
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.sparePartReport.handleResultGridBeginCallback";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "MachineSparePartId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 1;
+        column.FieldName = "StockName";
+        column.Caption = "نام قطعه";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 2;
+        column.FieldName = "TechNO";
+        column.Caption = "شماره فنی";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 3;
+        column.FieldName = "RackCode";
+        column.Caption = "آدرس در انبار";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 4;
+        column.FieldName = "InternalSupply";
+        column.Caption = "نوع تامین";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 5;
+        column.FieldName = "TechnicalCharacteristicsOfCatalog";
+        column.Caption = "مشخصه فنی کاتالوگ";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 6;
+        column.FieldName = "StockCount";
+        column.Caption = "تعداد مصرف شده";
+    });
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.Toolbars.Add(t =>
+    {
+        t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل";
+    });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.Visible = false;
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 100;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+

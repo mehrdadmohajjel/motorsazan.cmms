@@ -1,0 +1,28 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetMainMachineListBySubDepartmentId[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormMachineIdCombo";
+        settings.CallbackRouteValues = new {Controller = "MainMachineOilServiceReport", Action = "FilterFormMachineIdCombo"};
+
+        settings.Properties.ClientSideEvents.BeginCallback =
+            "motorsazanClient.mainMachineOilServiceReport.handleFilterFormMachineIdComboBeginCallback";
+
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نام ماشین را وارد کنید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "MachineId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.TextField = "MachineName";
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.mainMachineOilServiceReport.handleFilterFormMachineIdComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

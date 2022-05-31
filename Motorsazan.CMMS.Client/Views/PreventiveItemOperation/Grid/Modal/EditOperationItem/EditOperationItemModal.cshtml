@@ -1,0 +1,199 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.PreventiveItemOperation.OutputGetPreventiveOperationItemByOperationItemId
+@{
+    var visibleWeekly = Model.MiterMeasuringTypeId == 2;
+}
+<div class="row col-xs-12 col-md-12 col-lg-12">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    گروه تعمیراتی
+
+                </label>
+                <div id="editFormMaintenanceGroupTextBoxParent">
+                    @Html.DevExpress().TextBox(settings =>
+                    {
+                        settings.Name = "editFormMaintenanceGroupTextBox";
+                        settings.Width = Unit.Percentage(100);
+
+                        settings.Text = Model.MaintenanceGroupName;
+                        settings.ReadOnly = true;
+                    }).GetHtml()
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    کد پیشگیرانه
+                </label>
+                <div id="editFormOperationItemCodeTextBoxParent">
+                    @Html.DevExpress().TextBox(settings =>
+                    {
+                        settings.Name = "editFormOperationItemCodeTextBox";
+                        settings.Width = Unit.Percentage(100);
+                        settings.Text = Model.OperationItemCode;
+                        settings.ReadOnly = true;
+                    }).GetHtml()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (visibleWeekly)
+    {
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        هفته مبنا
+                    </label>
+                    <div id="editFormOperationItemSourceWeekSpinEditParent">
+                        @Html.DevExpress().SpinEdit(settings =>
+                        {
+                            settings.Name = "editFormOperationItemSourceWeekSpinEdit";
+                            settings.Width = Unit.Percentage(100);
+                            settings.Properties.MinValue = 0;
+                            settings.Properties.MaxValue = 9999999999999999999;
+                            settings.Properties.ShowOutOfRangeWarning = false;
+                            settings.Number = Model.SourceWeek;
+                            settings.Properties.ClientSideEvents.ValueChanged =
+                                "motorsazanClient.preventiveItemOperation.handleEditFormOperationItemSourceWeekSpinEditValueChanged";
+                        }).GetHtml()
+                    </div>
+                    <div class="app__form-error app__hide" id="editFormOperationItemSourceWeekSpinEditError">
+                        هفته مبنا وارد نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        بازه تکرار
+                    </label>
+                    <div id="editFormOperationItemDonePeriodSpinEditParent">
+                        @Html.DevExpress().SpinEdit(settings =>
+                        {
+                            settings.Name = "editFormOperationItemDonePeriodSpinEdit";
+                            settings.Width = Unit.Percentage(100);
+                            settings.Number = Model.PeriodInWeek;
+                            settings.Properties.MinValue = 0;
+                            settings.Properties.MaxValue = 9999999999999999999;
+                            settings.Properties.ShowOutOfRangeWarning = false;
+                            settings.Properties.ClientSideEvents.ValueChanged =
+                                "motorsazanClient.preventiveItemOperation.handleEditFormOperationItemDonePeriodSpinEditValueChanged";
+                        }).GetHtml()
+                    </div>
+                    <div class="app__form-error app__hide" id="editFormOperationItemDonePeriodSpinEditError">
+                        بازه تکرار وارد نشده است
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        دوره به ساعت
+                    </label>
+                    <div id="editFormOperationItemSourceWeekSpinEditParent">
+                        @Html.DevExpress().SpinEdit(settings =>
+                        {
+                            settings.Name = "editFormOperationItemSourceWeekSpinEdit";
+                            settings.Width = Unit.Percentage(100);
+                            settings.Number = Model.DoneDuration;
+                            settings.Properties.MinValue = 0;
+                            settings.Properties.MaxValue = 9999999999999999999;
+                            settings.Properties.ShowOutOfRangeWarning = false;
+                            settings.Properties.ClientSideEvents.ValueChanged =
+                                "motorsazanClient.preventiveItemOperation.handleEditFormOperationItemSourceWeekSpinEditValueChanged";
+                        }).GetHtml()
+                    </div>
+                    <div class="app__form-error app__hide" id="editFormOperationItemSourceWeekSpinEditError">
+                        دوره به ساعت وارد نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        مدت اجرا به دقیقه
+                    </label>
+                    <div id="editFormOperationItemDonePeriodSpinEditParent">
+                        @Html.DevExpress().SpinEdit(settings =>
+                        {
+                            settings.Name = "editFormOperationItemDonePeriodSpinEdit";
+                            settings.Width = Unit.Percentage(100);
+                            settings.Number = Model.DonePeriod;
+                            settings.Properties.MinValue = 0;
+                            settings.Properties.MaxValue = 9999999999999999999;
+                            settings.Properties.ShowOutOfRangeWarning = false;
+                            settings.Properties.ClientSideEvents.ValueChanged =
+                                "motorsazanClient.preventiveItemOperation.handleEditFormOperationItemDonePeriodSpinEditValueChanged";
+                        }).GetHtml()
+                    </div>
+                    <div class="app__form-error app__hide" id="editFormOperationItemDonePeriodSpinEditError">
+                        مدت اجرا وارد نشده است
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-xs-12 col-md-9 col-lg-8">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    عنوان آیتم پیشگیرانه
+                </label>
+                <div id="editFormOperationItemNameTextBoxParent">
+                    @Html.DevExpress().TextBox(settings =>
+                    {
+                        settings.Name = "editFormOperationItemNameTextBox";
+                        settings.Width = Unit.Percentage(100);
+                        settings.Text = Model.OperationItemName;
+                        settings.Properties.ClientSideEvents.ValueChanged =
+                            "motorsazanClient.preventiveItemOperation.handleEditFormOperationItemNameTextBoxValueChanged";
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide"
+                     id="editFormOperationItemNameTextBoxError">
+                    عنوان آیتم پیشگیرانه وارد نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3 pull-left">
+            <div class="col-xs-12 col-md-12  filter-form__action-wrapper">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "editFormBtn";
+                    settings.Text = "ویرایش";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "filter-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.preventiveItemOperation.handleEditFormBtnClick";
+                }).GetHtml()
+            </div>
+        </div>
+        <div id="editFormIsWeeklyParent" class="app__hide">
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "editFormIsWeekly";
+                settings.Width = Unit.Percentage(100);
+                settings.Text = Model.MiterMeasuringTypeId.ToString();
+
+                settings.ReadOnly = true;
+            }).GetHtml()
+
+        </div>
+    </div>
+</div>

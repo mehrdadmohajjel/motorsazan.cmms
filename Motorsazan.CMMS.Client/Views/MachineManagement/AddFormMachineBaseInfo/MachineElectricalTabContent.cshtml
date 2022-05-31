@@ -1,0 +1,147 @@
+﻿@{
+    var machineId = ViewBag.MachineId;
+}
+<div class="agendum__infos">
+    <div class="row">
+        <div class="col-xs-6 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    مشخصه
+                </label>
+               @{ Html.RenderAction("addFormCharacteristicCombo", "MachineManagement"); }
+                <div class="app__form-error app__hide" id="addFormCharacteristicComboError">
+                    مشخصه انتخاب نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    سازنده
+                </label>
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "addFormProducerTextBox";
+                    settings.Properties.NullText = "سازنده را وارد نمایید";
+                    settings.Properties.ClientSideEvents.ValueChanged =
+                        "motorsazanClient.machineManagement.handleAddFormProducerTextBoxValueChanged";
+
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="addFormProducerTextBoxError">
+                    سازنده وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    قدرت(KW)
+                </label>
+                @Html.DevExpress().SpinEdit(settings =>
+                {
+                    settings.Name = "addFormPowerTextBox";
+                    settings.Properties.NullText = "قدرت را وارد نمایید";
+                    settings.Properties.ClientSideEvents.ValueChanged =
+                        "motorsazanClient.machineManagement.handleAddFormPowerTextBoxBoxValueChanged";
+
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="addFormPowerTextBoxError">
+                    قدرت وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    دور(RPM)
+                </label>
+                @{ Html.RenderAction("AddFormRpmlistCombo", "MachineManagement"); }
+
+                <div class="app__form-error app__hide" id="addFormRpmComboError">
+                    دور وارد نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    ولتاژ
+                </label>
+                @{ Html.RenderAction("AddFormVoltageListCombo", "MachineManagement"); }
+                
+                <div class="app__form-error app__hide" id="addFormVoltageComboError">
+                    ولتاژ انتخاب نشده است
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    جریان
+                </label>
+                @Html.DevExpress().SpinEdit(settings =>
+                {
+                    settings.Name = "addFormcurrentTextBox";
+                    settings.Properties.NullText = "جریان را وارد نمایید";
+                    settings.Properties.ClientSideEvents.ValueChanged =
+                        "motorsazanClient.machineManagement.handleAddCurrentValueChanged";
+
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="addFormcurrentTextBoxError">
+                    جریان وارد نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    نوع جریان
+                </label>
+                @Html.DevExpress().ComboBox(settings =>
+                {
+                    settings.Name = "addFormCurrentTypeCombo";
+                    settings.Width = Unit.Percentage(100);
+                    settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+                    settings.Properties.NullText = "نوع جریان را وارد نمایید";
+                    settings.SelectedIndex = -1;
+                    settings.Properties.CallbackPageSize = 100;
+                    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.None;
+                    settings.SelectedIndex = -1;
+                    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    settings.Properties.Items.Add("AC");
+                    settings.Properties.Items.Add("DC");
+                    settings.Properties.ClientSideEvents.SelectedIndexChanged =
+                        "motorsazanClient.machineManagement.handleAddCurrentTypeValueChanged";
+
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="addFormCurrentTypeComboError">
+                    نوع جریان انتخاب نشده است
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div style="padding-top: 37px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "registerBtn";
+                    settings.Text = "ثبت ";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Width = Unit.Pixel(160);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.machineManagement.registerElectricalInfo";
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="app__grid-wrapper" id ="elctircalGridParent" >
+    @{ Html.RenderAction("MachineElectricalTabContentGrid", "MachineManagement", new { machineId = machineId }); }
+</div>

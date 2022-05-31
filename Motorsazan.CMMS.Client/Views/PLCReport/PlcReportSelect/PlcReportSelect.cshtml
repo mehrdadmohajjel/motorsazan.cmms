@@ -1,0 +1,133 @@
+﻿<div class="filter-form" id="filterFormButtonSelectDesign">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "accessHourToMachine";
+                    settings.Text = "ساعت دسترسی به دستگاه";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "filter-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.pLCReport.handleAccessHourToMachineBtn";
+                }).GetHtml()
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "toolsChangeRate";
+                    settings.Text = "نرخ تعویض ابزار";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "filter-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.pLCReport.handleToolsChangeRateBtn";
+                }).GetHtml()
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "palletChangeCount";
+                    settings.Text = "تعداد تعویض پالت";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "filter-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.pLCReport.handlePalletChangeCountBtn";
+                }).GetHtml()
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "comparisonOfToolsChangesAndPallet";
+                    settings.Text = "مقایسه تغییرات ابزار و پالت";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "filter-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.pLCReport.handleComparisonOfToolsChangesAndPalletBtn";
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "oilHeatChanges";
+                    settings.Text = "تغییرات حرارت روغن";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "filter-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.pLCReport.handleOilHeatChangesBtn";
+                }).GetHtml()
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "oilPressureChanges";
+                    settings.Text = "تغییرات فشار روغن";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "filter-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.pLCReport.handleOilPressureChangesBtn";
+                }).GetHtml()
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "consumerFlowChanges";
+                    settings.Text = "تغیرات جریان مصرفی";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "filter-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.pLCReport.handleConsumerFlowChangesBtn";
+                }).GetHtml()
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "spindlePerformance";
+                    settings.Text = "عملکرد اسپیندل";
+                    settings.UseSubmitBehavior = false;
+                    settings.EnableClientSideAPI = true;
+                    settings.Styles.CssPostfix = "filter-form__btn";
+                    settings.Width = Unit.Percentage(100);
+                    settings.ClientSideEvents.Click =
+                        "motorsazanClient.pLCReport.handleSpindlePerformanceBtn";
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+</div>

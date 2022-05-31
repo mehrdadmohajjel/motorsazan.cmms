@@ -1,0 +1,6 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Input.DepartmentMttrAndMtbfReport.InputGetMTTRAndMTBFMachineWorkOrderListByMachineId
+
+<form>
+    @{ Html.RenderAction("ShowMttrAndMtbfMachineWorkOrderListPartial", "DepartmentMttrAndMtbfReport",
+            new { MachineId = Model.MachineId, StartDate = ViewData["StartDate"], EndDate = ViewData["EndDate"], DatePeriodType = ViewData["DatePeriodType"] }); }
+</form>

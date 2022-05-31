@@ -1,0 +1,12 @@
+﻿@{
+    var machineId = ViewBag.MachineId;
+}
+
+<div class="agendum__infos">
+    @{ Html.RenderPartial("~/Views/MachineManagement/AddOilAndLubrication/AddInfo.cshtml"); }
+
+</div>
+
+<div class="app__grid-wrapper" id="oilGridParent" >
+    @{ Html.RenderAction("MachineOilTabContentGrid", "MachineManagement", new { MachineId = machineId });}
+</div>

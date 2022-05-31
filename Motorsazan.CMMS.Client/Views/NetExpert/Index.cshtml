@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "کارشناس نت";
+}
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/NetExpert/Css/Index.min.css" rel="Stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Client/Src/JS/Dependencies/SignalR/jquery.signalR-2.4.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/DX.ashx?jsfile=~/Views/NetExpert/JS/Index.js"></script>
+}
+
+<section class="app__section">
+    <div class="app__section__header">
+        @ViewBag.Title
+        @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+    </div>
+    <div class="app__section__body">
+        @{ Html.RenderPartial("~/Views/NetExpert/FilterForm/FilterForm.cshtml"); }
+    </div>
+    <form id="mainGridParent" class="app__grid-wrapper">
+        @{ Html.RenderPartial("~/Views/NetExpert/MainGrid/MainGrid.cshtml");}
+    </form>
+    <div class="app__section">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="12" style="text-align: center">راهنمای رنگ ها</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="text-align: center">
+                    <td class="col-md-1 col-sm-1" style="background-color: whitesmoke;color:black">جدید</td>
+                    <td class="col-md-1 col-sm-1" style="background-color: whitesmoke;color:black ">ارجاع شده</td>
+                    <td class="col-md-1 col-sm-1" style="background-color: LightSkyBlue; color: black">ارجاع به گروه جدید</td>
+                    <td class="col-md-1 col-sm-1" style="background-color: LemonChiffon; color: black">اتمام کارنت</td>
+                    <td class="col-md-1 col-sm-1" style="background-color: Gainsboro">اتمام نهایی</td>
+                    <td class="col-md-1 col-sm-1" style="background-color:gray ">تائید اتمام</td>
+                    <td class="col-md-1 col-sm-1" style="background-color:red ">عدم تائید اتمام</td>
+                    <td class="col-md-1 col-sm-1" style="background-color:rosybrown ">ابطال</td>
+                    <td class="col-md-1 col-sm-1" style="background-color:tomato ">تائید نشده</td>
+                    <td class="col-md-1 col-sm-1" style="background-color:orange ">منتظر تائید</td>
+                    <td class="col-md-1 col-sm-1" style="background-color: LightCyan">منتظر قطعه</td>
+                    <td class="col-md-1 col-sm-1"></td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+        </tbody>
+    </table>
+    </div>
+
+</section>
+@Html.Hidden("eIdHidden", ViewData["EId"])

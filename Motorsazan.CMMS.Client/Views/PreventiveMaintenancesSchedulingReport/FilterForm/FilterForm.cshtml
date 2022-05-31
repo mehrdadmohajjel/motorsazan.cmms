@@ -1,0 +1,130 @@
+﻿<div class="filter-form filter-form--big">
+    <div class="row">
+        <div class="col-xs-12 col-md-4" id="filterFormMainDepartmentComboGrandParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    امور
+                </label>
+                <div id="filterFormMainDepartmentComboParent">
+                    @{ Html.RenderAction("FilterFormMainDepartmentCombo", "PreventiveMaintenancesSchedulingReport");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormMainDepartmentComboError">
+                    امور انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4" id="filterFormSubDepartmentComboGrandParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    خط
+                </label>
+                <div id="filterFormSubDepartmentComboParent">
+                    @{ Html.RenderAction("FilterFormSubDepartmentCombo", "PreventiveMaintenancesSchedulingReport");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormSubDepartmentComboError">
+                    خط انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-xs-12 col-md-4">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    گروه تعمیراتی
+                </label>
+                <div id="filterFormMaintenanceGroupComboParent">
+                    @{ Html.RenderAction("FilterFormMaintenanceGroupCombo", "PreventiveMaintenancesSchedulingReport");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormMaintenanceComboError">
+                    گروه تعمیراتی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4" id="filterFormDateComboParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    بازه زمانی
+                </label>
+                <div>
+                    @{ Html.RenderPartial("~/Views/PreventiveMaintenancesSchedulingReport/FilterForm/FilterFormDateCombo.cshtml");}
+                </div>
+                <div class="app__form-error app__hide" id="filterFormDateComboError">
+                    بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3 app__hide" id="filterFormPeriodStartDatePickerParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    از تاریخ
+                </label>
+                <div>
+                    <input type="text" class="app__form-datepicker"
+                           id="filterFormPeriodStartDatePicker"
+                           placeholder="از تاریخ"
+                           data-mddatetimepicker="true"
+                           data-englishnumber="true"
+                           data-targetdateselector="#filterFormPeriodStartDatePicker" />
+                </div>
+                <div class="app__form-error app__hide" id="filterFormPeriodStartDatePickerError">
+                    شروع بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3 app__hide" id="filterFormPeriodEndDatePickerParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    تا تاریخ
+                </label>
+                <div>
+                    <input type="text" class="app__form-datepicker"
+                           id="filterFormPeriodEndDatePicker"
+                           placeholder="تا تاریخ"
+                           data-mddatetimepicker="true"
+                           data-englishnumber="true"
+                           data-targetdateselector="#filterFormPeriodEndDatePicker" />
+                </div>
+                <div class="app__form-error app__hide" id="filterFormPeriodEndDatePickerError">
+                    پایان بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-2 app__hide" id="filterFormWeekNumberSpinEditParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    شماره هفته
+                </label>
+                <div>
+                    @Html.DevExpress().SpinEdit(settings =>
+                    {
+                        settings.Name = "filterFormWeekNumberSpinEdit";
+                        settings.Properties.NullText = "شماره هفته را وارد کنید";
+                        settings.Properties.MaxValue = 100000000;
+                        settings.Properties.MinValue = 0;
+                        settings.Properties.ShowOutOfRangeWarning = false;
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide" id="filterFormWeekNumberSpinEditError">
+                    شماره هفته انتخاب نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-5 col-md-2 pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormSearchBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+               "motorsazanClient.preventiveMaintenancesSchedulingReport.handleFilterFormGetPreventiveMaintenanceSchedulingListByConditionClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

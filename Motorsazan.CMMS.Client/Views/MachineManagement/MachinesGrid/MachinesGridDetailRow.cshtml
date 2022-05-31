@@ -1,0 +1,101 @@
+﻿<div class="app--center">
+    <div class="row">
+        <div class="col-md-3">
+
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "showMachineAndSubMachineBtn";
+                settings.Text = "مشاهده دستگاه و زیر دستگاه";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.handleShowMachineAndSubMachineBtnClick";
+            }).GetHtml()
+        </div>
+        <div class="col-md-3">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "showAddSubMachineTreeBtn";
+                settings.Text = "ثبت زیر دستگاه";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.handleAddSubMachineBtnClick";
+            }).GetHtml()
+
+        </div>
+        <div class="col-md-3">
+
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "ticketManagementGridDetailRowAddPerformanceBtn";
+                settings.Text = "ضمائم و پرونده ها";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.handleAddMachineDocumentBtnClick";
+            }).GetHtml()
+        </div>
+        <div class="col-md-3">
+
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "machineManagementAddToLineBtn";
+                settings.Text = "انتساب به فرد";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.handleAddMachineToLineBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "addMachineSpareBtn";
+                settings.Text = "افزودن قطعات یدکی";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.handleAddMachineSparePartBtnClick";
+            }).GetHtml()
+        </div>
+        <div class="col-md-3">
+
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "addMachinBaseInfoBtn";
+                settings.Text = "ثبت اطلاعات شناسنامه ای دستگاه";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.handleAddMachineBaseInfoBtnClick";
+            }).GetHtml()
+        </div>
+        <div class="col-md-3">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "printMachinBaseInfoBtn";
+                settings.Text = "پرینت اطلاعات شناسنامه ای دستگاه";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.handlePrintMachineInfoBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+
+</div>

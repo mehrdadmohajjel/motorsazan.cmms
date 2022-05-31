@@ -1,0 +1,133 @@
+﻿@{
+    var isActive = ViewBag.IsActive;
+}
+
+<div class="app--center">
+    <div class="row">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "MoveOperationItemToSubMachineBtn";
+            settings.Text = "انتقال به دستگاه دیگر";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Pixel(180);
+
+            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SpreadsheetMovepivottableSvgWhite16x16;
+            settings.ImagePosition = ImagePosition.Left;
+
+            settings.Enabled = isActive;
+
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.operationItem.handleMoveOperationItemToOtherMachineModalBtnClick";
+        }).GetHtml()
+
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "copyOneOperationItemToOtherMachineBtn";
+            settings.Text = "کپی به دستگاه دیگر";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Pixel(180);
+
+            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.DiagramiconsCopySvgWhite16x16;
+            settings.ImagePosition = ImagePosition.Left;
+
+            settings.Enabled = isActive;
+
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.operationItem.handleCopyOneOperationItemToOtherMachineModalBtnClick";
+        }).GetHtml()
+
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "addPreventiveOperationItemBtn";
+            settings.Text = "تخصیص آیتم پیشگیرانه";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Pixel(180);
+
+            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.OutlookinspiredAddfileSvgWhite16x16;
+            settings.ImagePosition = ImagePosition.Left;
+
+            settings.Enabled = isActive;
+
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.operationItem.handleAddPreventiveOperationItemBtnClick";
+        }).GetHtml()
+
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "editOperationItemBtn";
+            settings.Text = "ویرایش کد";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Pixel(180);
+
+            settings.Enabled = isActive;
+
+            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.XafActionEditSvgWhite16x16;
+            settings.ImagePosition = ImagePosition.Left;
+
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.operationItem.handleEditOperationItemBtnClick";
+        }).GetHtml()
+
+    </div>
+    <div class="row" style="padding-top: 15px;">
+
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "addSparePartToOperationBTN";
+            settings.Text = "تخصیص قطعات یدکی دستگاه به آیتم";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Pixel(180);
+
+            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16;
+            settings.ImagePosition = ImagePosition.Left;
+
+            settings.Enabled = isActive;
+
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.operationItem.handleAddSparePartToOperationBtnModalBtnClick";
+        }).GetHtml()
+
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "deActiveOperationItemBtn";
+            settings.Text = "غیرفعال کردن";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Pixel(180);
+
+            settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsCancel16x16;
+            settings.ImagePosition = ImagePosition.Left;
+
+            settings.Enabled = isActive;
+            settings.ClientVisible = isActive;
+
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.operationItem.handleDeActiveOperationItemBtnClick";
+        }).GetHtml()
+
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "activeOperationItemBtn";
+            settings.Text = "فعال کردن";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Pixel(180);
+
+            settings.Styles.Style.BackColor = System.Drawing.Color.Green;
+            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.IconbuilderActionsCheckcircledSvgWhite16x16;
+            settings.ImagePosition = ImagePosition.Left;
+
+            settings.Enabled = !isActive;
+            settings.ClientVisible = !isActive;
+
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.operationItem.handleActiveOperationItemBtnClick";
+        }).GetHtml()
+    </div>
+    </div>

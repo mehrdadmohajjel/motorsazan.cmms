@@ -1,0 +1,87 @@
+﻿    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب امور ثبت کننده
+                </label>
+                <div id="addFormEmployeeDepartmentComboParent">
+                    @{
+                        Html.RenderAction("GetEmployeeDepartmentList", "NoneProductiveWorkOrder");
+
+                    }
+                </div>
+                <div class="app__form-error app__hide" id="addFormEmployeeDepartmentComboError">
+                    امور ثبت کننده انتخاب نشده است
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب گروه تعمیراتی
+                </label>
+                <div id="addFormMaintenanceGroupComboParent">
+                    @{
+                        Html.RenderAction("GetMaintenanceGroupList", "NoneProductiveWorkOrder");
+
+                    }
+                </div>
+                <div class="app__form-error app__hide" id="addFormMaintenanceGroupComboError">
+                    گروه تعمیراتی انتخاب نشده است
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب نوع توقف
+                </label>
+                <div id="addFormStopTypeListComboParent">
+                    @{
+                        Html.RenderAction("GetStopTypeList", "NoneProductiveWorkOrder");
+
+                    }
+                </div>
+                <div class="app__form-error app__hide" id="addFormStopTypeListComboError">
+                    نوع توقف انتخاب نشده است
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    شرح خرابی
+                </label>
+                <div id="addFormFaultDescriptionParent">
+                    @Html.DevExpress().Memo(settings =>
+                    {
+                        settings.Name = "addFormFaultDescription";
+                        settings.Properties.NullText = "شرح خرابی";
+                        settings.Properties.ClientSideEvents.ValueChanged =
+                            "motorsazanClient.noneProductiveWorkOrder.handleAddFormFaultDescriptionValueChanged";
+                    }).GetHtml()
+
+                </div>
+                <div class="app__form-error app__hide" id="addFormFaultDescriptionError">
+                    شرح خرابی وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-12 filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "addPeopleSaveBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "add-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.noneProductiveWorkOrder.addNoneProductiveWorkOrder";
+            }).GetHtml()
+        </div>
+        
+    </div>

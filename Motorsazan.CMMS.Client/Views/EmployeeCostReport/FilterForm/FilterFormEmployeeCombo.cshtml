@@ -1,0 +1,24 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.EmployeePerformanceReport.OutputGetAllMaintenanceGroupMemberList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormEmployeeCombo";
+        settings.CallbackRouteValues = new {Controller = "EmployeeCostReport", Action = "FilterFormEmployeeIdCombo"};
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نام پرسنل وارد نشده است";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "EmployeeId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.TextField = "Name";
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.employeeCostReport.handleFilterFormEmployeeComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

@@ -1,0 +1,42 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetWorkOrderRegistrantInfoByWorkOrderId
+
+<div class="row">
+    <table class="registrar-info">
+        <tr>
+            <th>تاریخ صدور: </th>
+            <td>
+                @Model.ShamsiCreationDateTime
+            </td>
+        </tr>
+        <tr>
+            <th>شماره سفارشکار: </th>
+            <td>
+                @Model.WorkOrderSerial
+            </td>
+        </tr>
+        <tr>
+            <th>نام ماشین: </th>
+            <td>
+                @Model.MachineName
+            </td>
+        </tr>
+        <tr>
+            <th>محل دستگاه: </th>
+            <td>
+                @Model.DepartmentName
+            </td>
+        </tr>
+        <tr>
+            <th>درخواست کننده: </th>
+            <td>
+                @Model.RegistrantName
+            </td>
+        </tr>
+        <tr>
+            <th>توضیحات: </th>
+            <td>
+                @Model.ShamsiCreationDateTime
+            </td>
+        </tr>
+    </table>
+</div>

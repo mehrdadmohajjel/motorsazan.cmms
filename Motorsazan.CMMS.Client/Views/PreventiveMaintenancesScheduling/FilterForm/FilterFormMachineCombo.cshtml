@@ -1,0 +1,31 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.PreventiveMaintenancesScheduling.OutputGetMainMachineListByMainDepartmentIdAndSubDepartmentId[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormMachineCombo";
+        settings.CallbackRouteValues = new { Controller = "PreventiveMaintenancesScheduling", Action = "FilterFormMachineCombo" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "دستگاه را انتخاب نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 50;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.Properties.DropDownWidth = Unit.Percentage(100);
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "MachineId";
+        settings.Properties.ValueType = typeof(long);
+        settings.Properties.Columns.Add("MachineName", "عنوان").Width = Unit.Percentage(75);
+        settings.Properties.Columns.Add("OldMachineCode", "کد دستگاه");
+
+        settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+
+        settings.Properties.ClientSideEvents.BeginCallback =
+            "motorsazanClient.preventiveMaintenancesScheduling.handleFilterFormMachineComboBeginCallback";
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.preventiveMaintenancesScheduling.handleFilterFormMachineComboSelectedIndexChange";
+
+    }).BindList(Model).GetHtml()
+

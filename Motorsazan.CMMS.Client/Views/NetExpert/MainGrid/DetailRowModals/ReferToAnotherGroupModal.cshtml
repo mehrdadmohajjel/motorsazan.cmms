@@ -1,0 +1,71 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                شماره سفارش کار:
+            </label>
+            <label id="referToAnotherGroupModalWorkOrderSerialLabel">
+               
+            </label>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                نوع سفارش کار:
+            </label>
+            <label id="referToAnotherGroupModalWorkOrderTypeTitleLabel">
+
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                گروه تعمیراتی:
+            </label>
+            @{ Html.RenderAction("ReferToAnotherGroupModalGroupCombo", "NetExpert"); }
+            <div class="app__form-error app__hide" id="referToAnotherGroupModalGroupComboError">
+                گروه تعمیراتی وارد نشده است
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                توضیحات
+            </label>
+            @Html.DevExpress().Memo(settings =>
+            {
+                settings.Name = "referToAnotherGroupModalDescriptionMemo";
+                settings.Properties.NullText = "توضیحات را وارد نمایید";
+                settings.Properties.ClientSideEvents.KeyUp =
+                    "motorsazanClient.netExpert.handleReferToAnotherGroupModalDescriptionMemoKeyUp";
+            }).GetHtml()
+            <div class="app__form-error app__hide" id="referToAnotherGroupModalDescriptionMemoError">
+                توضیحات وارد نشده است
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-5 col-md-2 pull-left filter-form__action-wrapper">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "referToAnotherGroupModalSaveBtn";
+            settings.Text = "ارجاع";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+            settings.Styles.CssPostfix = "add-form__btn";
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.netExpert.handleReferToAnotherGroupModalSaveBtnClick";
+        }).GetHtml()
+    </div>
+</div>

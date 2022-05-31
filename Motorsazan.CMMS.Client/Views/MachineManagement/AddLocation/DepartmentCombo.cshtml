@@ -1,0 +1,34 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetAllMainDepartment[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormDepartmentListCombo";
+        settings.CallbackRouteValues = new { Controller = "MachineManagement", Action = "FilterDepartmentCombo" };
+
+        settings.Properties.ClientSideEvents.BeginCallback =
+            "motorsazanClient.machineManagement.handleAddFormDepartmentListComboBeginCallback";
+
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "انتخاب خط";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "DepartmentId";
+        settings.Properties.ValueType = typeof(int);
+        settings.Properties.TextFormatString = "{0}";
+
+        settings.Properties.Columns.Add("Title", "خط", Unit.Percentage(70));
+        settings.Properties.Columns.Add("UnitCode", "کد واحد", Unit.Percentage(30));
+
+        settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.machineManagement.handleAddFormDepartmentListComboSelectedIndexChanged";
+    }).BindList(Model).GetHtml()
+
+

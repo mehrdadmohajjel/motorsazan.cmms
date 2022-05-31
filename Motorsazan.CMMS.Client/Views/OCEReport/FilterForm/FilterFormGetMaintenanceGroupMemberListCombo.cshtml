@@ -1,0 +1,33 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetMaintenanceGroupMemberListByMaintenanceGroupId[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormGetMaintenanceGroupMemberListCombo";
+        settings.CallbackRouteValues = new {Controller = "OCEReport", Action = "FilterFormGetMaintenanceGroupMemberList"};
+
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "شخص مورد نظر را انتخاب کنید";
+
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "MaintenanceGroupMemberId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.Columns.Add("EId", "کد پرسنلی").Width = Unit.Percentage(40);
+        settings.Properties.Columns.Add("Name", "پرسنل").Width = Unit.Percentage(60);
+
+        settings.Properties.AllowEllipsisInText = true;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+        settings.Properties.PopupHorizontalAlign = PopupHorizontalAlign.RightSides;
+        settings.Properties.ClearButton.DisplayMode = ClearButtonDisplayMode.OnHover;
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.oCEReport.handleFilterFormGetMaintenanceGroupMemberListComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

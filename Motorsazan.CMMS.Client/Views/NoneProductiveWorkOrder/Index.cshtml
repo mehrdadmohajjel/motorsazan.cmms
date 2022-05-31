@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "مدیریت سفارش کار غیر تولیدی";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/NoneProductiveWorkOrder/Css/Index.min.css" rel="Stylesheet" />
+}
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Client/Src/JS/Dependencies/SignalR/jquery.signalR-2.4.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/DX.ashx?jsfile=~/Views/NoneProductiveWorkOrder/JS/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        <section class="app__section">
+            <div class="app__section__header">
+                ثبت  سفارش کار جدید
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/NoneProductiveWorkOrder/AddForm/AddForm.cshtml"); }
+            </div>
+        </section>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <section class="app__section">
+            <div class="app__section__header">
+                لیست
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/NoneProductiveWorkOrder/FilterForm/FilterForm.cshtml"); }
+
+                <form class="app__grid-wrapper" id="NonProductiveWorkOrderSourceGirdParent">
+                    @{Html.RenderAction("NoneProductiveWorkOrderGird", "NoneProductiveWorkOrder");}
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

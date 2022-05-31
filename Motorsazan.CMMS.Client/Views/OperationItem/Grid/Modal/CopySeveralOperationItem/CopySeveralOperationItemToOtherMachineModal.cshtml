@@ -1,0 +1,66 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-6">
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب امور
+                    </label>
+                    <div id="copySeveralOperationItemDepartmentListModalParent">
+                        @{ Html.RenderAction("CopySeveralOperationItemToOtherMachineModalDepartmentList", "OperationItem"); }
+                    </div>
+                    <div class="app__form-error app__hide" id="copySeveralOperationItemDepartmentListModalError">
+                        امور انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب خط
+                    </label>
+                    <div id="copySeveralOperationItemSubDepartmentListModalParent">
+                        @{ Html.RenderPartial("~/Views/OperationItem/Grid/Modal/CopySeveralOperationItem/CopySeveralOperationItemSubDepartmentList.cshtml"); }
+                    </div>
+                    <div class="app__form-error app__hide" id="copySeveralOperationItemSubDepartmentListModalError">
+                        خط انتخاب نشده است
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب دستگاه
+                </label>
+                <div id="copySeveralOperationItemSubMachineTreeListModalParent">
+                </div>
+                <div class="app__form-error app__hide"
+                     id="copySeveralOperationItemSubMachineTreeListModalError">
+                    دستگاه انتخاب نشده است
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-12 col-md-12">
+        <div class="col-xs-12 col-md-12  filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "copySeveralOperationItemSubmitBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.operationItem.copySeveralOperationItemToOtherMachineBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

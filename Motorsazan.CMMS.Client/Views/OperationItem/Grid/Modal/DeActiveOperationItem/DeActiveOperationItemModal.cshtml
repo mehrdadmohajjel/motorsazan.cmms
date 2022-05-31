@@ -1,0 +1,40 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                علت غیرفعال کردن
+            </label>
+            <div id="deActiveOperationItemReasonTextBoxParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "deActiveOperationItemReasonTextBox";
+                    settings.Width = Unit.Percentage(100);
+
+                    settings.Properties.ClientSideEvents.ValueChanged =
+                        "motorsazanClient.operationItem.handleDeActiveOperationItemReasonTextBoxValueChanged";
+                }).GetHtml()
+            </div>
+            <div class="app__form-error app__hide"
+                 id="deActiveOperationItemReasonTextBoxError">
+                علت غیرفعال کردن وارد نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-2 pull-left">
+        <div class="col-xs-12 col-md-12  filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "deActiveOperationItemModalBtn";
+                settings.Text = "تایید";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.operationItem.handleDeActiveOperationItemModalBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+
+</div>

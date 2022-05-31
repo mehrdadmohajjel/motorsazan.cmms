@@ -1,0 +1,74 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-6">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                گروه تعمیراتی
+            </label>
+            <div id="editFormMaintenanceGroupTextBoxParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "editFormMaintenanceGroupTextBox";
+                    settings.Width = Unit.Percentage(100);
+
+                    settings.ReadOnly = true;
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6 col-lg-6">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                کد آیتم
+            </label>
+            <div id="editFormOperationItemCodeTextBoxParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "editFormOperationItemCodeTextBox";
+                    settings.Width = Unit.Percentage(100);
+
+                    settings.ReadOnly = true;
+                }).GetHtml()
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-9 col-lg-8">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                عنوان آیتم چک لیست
+            </label>
+            <div id="editFormOperationItemNameTextBoxParent">
+                @Html.DevExpress().TextBox(settings =>
+                {
+                    settings.Name = "editFormOperationItemNameTextBox";
+                    settings.Width = Unit.Percentage(100);
+
+                    settings.Properties.ClientSideEvents.ValueChanged =
+                        "motorsazanClient.machineCheckList.handleEditFormOperationItemNameTextBoxValueChanged";
+                }).GetHtml()
+            </div>
+            <div class="app__form-error app__hide"
+                 id="editFormOperationItemNameTextBoxError">
+                عنوان آیتم چک لیست وارد نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-2 pull-left">
+        <div class="col-xs-12 col-md-12  filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "editFormBtn";
+                settings.Text = "ویرایش";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineCheckList.handleEditFormBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+
+</div>

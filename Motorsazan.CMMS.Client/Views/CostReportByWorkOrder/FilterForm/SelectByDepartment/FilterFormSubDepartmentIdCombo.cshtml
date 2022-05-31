@@ -1,0 +1,24 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.CostReportByWorkOrder.OutputGetSubDepartmentList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormSubDepartmentIdCombo";
+        settings.CallbackRouteValues = new {Controller = "CostReportByWorkOrder", Action = "FilterFormSubDepartmentIdCombo"};
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نام خط را وارد کنید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "SubDepartmentId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.TextField = "ShowName";
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.costReportByWorkOrder.handleFilterFormSubDepartmentIdComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

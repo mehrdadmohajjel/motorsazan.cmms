@@ -1,0 +1,17 @@
+﻿<div class="filter-form">
+    <div class="row">
+        <div class="col-xs-5 col-md-3" id="helpFormDesign">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "helpFormBtn";
+                settings.Text = "کلید راهنما";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.oEEReport.showHelpModal";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

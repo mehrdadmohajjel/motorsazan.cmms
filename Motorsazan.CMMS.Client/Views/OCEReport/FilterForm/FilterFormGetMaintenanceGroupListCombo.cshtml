@@ -1,0 +1,27 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetMaintenanceGroupList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormGetMaintenanceGroupListCombo";
+        settings.CallbackRouteValues = new {Controller = "OCEReport", Action = "filterFormGetMaintenanceGroupList"};
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "گروه تعمیراتی را وارد کنید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "MaintenanceGroupId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.TextField = "MaintenanceGroupName";
+        settings.Properties.ClearButton.DisplayMode = ClearButtonDisplayMode.OnHover;
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.oCEReport.handleFilterFormGetMaintenanceGroupListComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

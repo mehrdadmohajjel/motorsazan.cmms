@@ -1,0 +1,81 @@
+﻿@using System.Drawing
+@model Motorsazan.CMMS.Shared.Models.Output.PLCReport.OutputGetPlcMachineToolsChangerChartReportByMachineId[]
+
+@Html.DevExpress().Chart(settings =>
+{
+    settings.CallbackRouteValues = new {Controller = "PLCReport", Action = "ToolsChangeRatePLCReportChart"};
+    settings.Name = "toolsChangeRatePLCReportChart";
+
+    settings.RenderFormat = RenderFormat.Svg;
+    settings.BorderOptions.Visibility = DefaultBoolean.False;
+    settings.CrosshairEnabled = DefaultBoolean.True;
+
+    // Color type
+    settings.PaletteName = "Office";
+
+    settings.Width = 900;
+    settings.Height = 360;
+
+    settings.Series.Add(s =>
+    {
+        s.SetDataMembers("PersianCreationDate", "ToolChangerCount");
+        s.LabelsVisibility = DefaultBoolean.True;
+        s.Views().LineSeriesView(l => l.MarkerVisibility = DefaultBoolean.True);
+        s.LegendTextPattern = "نرخ تعویض ابزار";
+    });
+
+    settings.XYDiagram(d =>
+    {
+        d.AxisY.Interlaced = true;
+        d.AxisY.Title.Text = "تعداد";
+        d.AxisY.Title.Visibility = DefaultBoolean.True;
+        d.AxisX.NumericScaleOptions.MeasureUnit = NumericMeasureUnit.Ones;
+        d.AxisX.NumericScaleOptions.ScaleMode = ScaleMode.Continuous;
+        d.AxisX.NumericScaleOptions.GridOffset = 1;
+    });
+
+
+    settings.CrosshairEnabled = DefaultBoolean.True;
+    settings.Legend.ItemVisibilityMode = LegendItemVisibilityMode.Default;
+    settings.Legends.Default(l =>
+    {
+        l.Direction = LegendDirection.LeftToRight;
+        l.AlignmentHorizontal = LegendAlignmentHorizontal.RightOutside;
+        l.AlignmentVertical = LegendAlignmentVertical.Top;
+        l.Border.Visibility = DefaultBoolean.True;
+
+        l.Padding.Left = 10;
+        l.Padding.Right = 10;
+
+        l.Margins.Left = 10;
+        l.Margins.Right = 10;
+        l.MarkerOffset = 5;
+        l.Visibility = DefaultBoolean.True;
+        l.MaxHorizontalPercentage = 100;
+        l.Title.Visible = false;
+    });
+
+    settings.Titles.Add(new ChartTitle
+    {
+        EnableAntialiasing = DefaultBoolean.True,
+        Font = new Font("Tahoma", 14, FontStyle.Bold),
+        Indent = 20,
+        Text = "گزارش تعویض ابزار"
+    });
+
+    settings.Titles.Add(new ChartTitle
+    {
+        EnableAntialiasing = DefaultBoolean.True,
+        Font = new Font("Tahoma", 10, FontStyle.Bold),
+        Indent = 10,
+        Text = "نام دستگاه: " + ViewData["MachineName"] + " - کد دستگاه: " + ViewData["OldMachineCode"]
+    });
+
+    settings.Titles.Add(new ChartTitle
+    {
+        EnableAntialiasing = DefaultBoolean.True,
+        Font = new Font("Tahoma", 10, FontStyle.Bold),
+        Indent = 30,
+        Text = "تاریخ شروع: " + ViewData["StartDate"] + "   تاریخ پایان: " + ViewData["EndDate"]
+    });
+}).Bind(Model).GetHtml()

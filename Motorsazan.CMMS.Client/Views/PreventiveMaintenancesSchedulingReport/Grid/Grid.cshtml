@@ -1,0 +1,172 @@
+﻿@using Motorsazan.CMMS.Client.Controllers
+@using DevExpress.Data
+@using DevExpress.Export
+@using Motorsazan.CMMS.Client.Controllers
+@model Motorsazan.CMMS.Shared.Models.Output.PreventiveMaintenancesSchedulingReport.OutputGetPreventiveMaintenanceSchedulingReportByCondition[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new { Controller = "PreventiveMaintenancesSchedulingReport", Action = "Grid" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.preventiveMaintenancesSchedulingReport.handleGridBeginCallback";
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "PMSchedulingInfoId";
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "مشخصات";
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 1;
+            column.FieldName = "SourceTimeOrWeek";
+            column.Caption = "مبنا";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 2;
+            column.FieldName = "DestinationTimeOrWeek";
+            column.Caption = "زمان واقعی";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        });
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 2;
+            column.FieldName = "MiterMeasuringTypeShowName";
+            column.Caption = "زمان مبنا";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        });
+
+    });
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "مشخصات";
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 1;
+            column.FieldName = "MaintenanceGroupName";
+            column.Caption = "نام گروه تعمیراتی";
+            column.EditorProperties().ComboBox(cb =>
+            {
+                cb.DataSource = PreventiveMaintenancesSchedulingReportController.GetWorkOrderMaintenanceGroupList();
+                cb.TextField = "MaintenanceGroupName";
+                cb.ValueField = "MaintenanceGroupName";
+                cb.ValueType = typeof(string);
+                cb.DropDownStyle = DropDownStyle.DropDown;
+            });
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 2;
+            column.FieldName = "MachineName";
+            column.Caption = "دستگاه";
+            column.Width = Unit.Percentage(20);
+        });
+
+
+    });
+
+
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "مشخصات آیتم";
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 6;
+            column.FieldName = "OperationItemName";
+            column.Caption = "عنوان";
+            column.Width = Unit.Percentage(25);
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 7;
+            column.FieldName = "OperationItemCode";
+            column.Caption = "کد";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 8;
+            column.Caption = "تاریخ پیشنهادی";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        });
+    });
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "ویژگی";
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 9;
+            column.FieldName = "DoneCount";
+            column.Caption = "تعداد اجرا";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.VisibleIndex = 10;
+            column.FieldName = "DurationFromCreationDate";
+            column.Caption = "زمان آغاز";
+            column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        });
+    });
+
+
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = ExportType.WYSIWYG;
+    settings.Toolbars.Add(t => { t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل"; });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] { "50", "100", "200", "500" };
+}).Bind(Model).GetHtml()

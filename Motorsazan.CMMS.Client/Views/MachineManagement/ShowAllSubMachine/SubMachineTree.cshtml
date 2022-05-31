@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetHierarchicalMachineList>
+
+@Html.DevExpress().TreeList(
+    settings =>
+    {
+        settings.Name = "machineTree";
+        settings.CallbackRouteValues = new { Controller = "MachineManagement", Action = "SubMachineTree" };
+
+        settings.ClientSideEvents.BeginCallback =
+            "motorsazanClient.machineManagement.handleMachineManagementTreeBeginCallback";
+
+        settings.Width = Unit.Percentage(100);
+
+        settings.Height = Unit.Percentage(100);
+
+        settings.KeyFieldName = "MachineId";
+        settings.ParentFieldName = "MachineParentId";
+
+        settings.SettingsPager.Visible = true;
+
+        settings.SettingsBehavior.AllowFocusedNode = true;
+
+        settings.Theme = "Aqua";
+        settings.Styles.Header.CssClass = "tree-header-style";
+
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+        settings.Settings.ScrollableHeight = 500;
+
+        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+
+        settings.SettingsBehavior.FocusNodeOnLoad = false;
+
+        settings.Columns.Add(m =>
+        {
+            m.FieldName = "MachineName";
+            m.Caption = "نام دستگاه";
+            m.Width = Unit.Percentage(80);
+
+            m.ColumnType = MVCxTreeListColumnType.TextBox;
+            var textProperties = m.PropertiesEdit as TextEditProperties;
+
+            textProperties.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        });
+
+        settings.Columns.Add(m =>
+        {
+            m.FieldName = "OldMachineCode";
+            m.Caption = "کد دستگاه";
+            m.Width = Unit.Percentage(20);
+        });
+
+
+        settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+        settings.PreRender = (sender, e) =>
+        {
+            MVCxTreeList treeList = (MVCxTreeList)sender;
+            treeList.ExpandAll();
+        };
+    }).Bind(Model).GetHtml()

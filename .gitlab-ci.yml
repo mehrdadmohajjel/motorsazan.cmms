@@ -1,0 +1,231 @@
+# Stages of jobs
+stages:
+  - restore
+  - build
+  - review
+  - deploy
+
+# Custome variables for using them inside jobs
+# Note: Variables defined in variables scop can't be used in another variable
+variables:
+
+  # Path of MsBuild and Nuget 
+  MSBUILD_PATH : "C:\\CI CD\\BuildTools\\MSBuild\\Current\\Bin"
+  NUGET_PATH : "C:\\CI CD\\NuGet"
+
+  # Path of publish profile which is used in publishing projects, 
+  # publish profiles specify the settings uses publishing  
+  PUBLISH_PROFILES_PATH : "C:\\CI CD\\PublishProfiles"
+
+  # Path of Hosting Space in erp-server
+  REVIEW_SPACE_PATH : "C:\\ReviewSpace"
+
+  # Name of Api project which is in pattern of 'Motorsazan.{ProjectName}.Api'
+  API_NAME : $CI_PROJECT_NAME.Api
+
+  # Path of Api review project which is in Review Server
+  # Note: This path is used in IIS sites as physical path so it must be with '\\' ('\\' is escaped '\') not '/' 
+  API_REVIEW_PATH : "$REVIEW_SPACE_PATH\\$CI_PROJECT_NAME.Api"
+  
+  # Port of Api project, If this changes, hard coded URLs of environments in API Review and API Deploy jobs, also must change 
+  API_PORT : 2040
+
+  # Name of Client project which is in pattern of 'Motorsazan.{ProjectName}.Client'
+  CLIENT_NAME : $CI_PROJECT_NAME.Client
+  
+  # Path of Client review project which is in Review Server
+  # Note: This path is used in IIS sites as physical path so it must be with '\\' ('\\' is escaped '\') not '/' 
+  CLIENT_REVIEW_PATH : "$REVIEW_SPACE_PATH\\$CI_PROJECT_NAME.Client"
+  
+  # Port of Client project, If this changes, hard coded URLs of environments in Client Review and Client Deploy jobs, also must change 
+  CLIENT_PORT : 2039
+
+  # Paths of Api and Client projects in repository 
+  API_PROJECT_PATH_IN_REPOSITORY : "$CI_PROJECT_NAME.Api\\$CI_PROJECT_NAME.Api.csproj"
+  CLIENT_PROJECT_PATH_IN_REPOSITORY : "$CI_PROJECT_NAME.Client\\$CI_PROJECT_NAME.Client.csproj"
+
+  # Path of Hosting Space in erp-server
+  HOSTING_SPACE_PATH : "//erp-server/HostingSpace"
+
+  # Path of Api and Client release projects
+  API_DEPLOY_PATH : "$HOSTING_SPACE_PATH/$CI_PROJECT_NAME.Api"
+  CLIENT_DEPLOY_PATH : "$HOSTING_SPACE_PATH/$CI_PROJECT_NAME.Client"
+
+
+# Caches 'packages' directory to save time in resotring nuget packages
+cache:
+  paths:
+  - "packages"
+
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ========================================================================== Restore Stage Starts ==========================================================================
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Restores Nuget packages for projects (solutions)
+Nuget Restore:
+  stage: restore 
+  script:
+    - '& "$NUGET_PATH\nuget.exe" restore -MSBuildPath "$MSBUILD_PATH"'
+  allow_failure: false
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ========================================================================== Restore Stage  Ends  ==========================================================================
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ========================================================================== Build Stage Starts ==========================================================================
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Builds Api project which is located in repository
+# In order to run, this job needs 'Nuget Restore' job to succeed
+API Build:
+  stage: build
+  dependencies:
+  - "Nuget Restore"
+  script:
+    - '& "$MSBUILD_PATH\MSBuild.exe" $API_PROJECT_PATH_IN_REPOSITORY /p:Configuration=Release /clp:ErrorsOnly'
+  allow_failure: false
+
+# Builds Client project which is located in repository
+# In order to run, this job needs 'Nuget Restore' job to succeed
+Client Build:
+  stage: build
+  needs: ["Nuget Restore"]
+  script:
+    - '& "$MSBUILD_PATH\MSBuild.exe" $CLIENT_PROJECT_PATH_IN_REPOSITORY /p:Configuration=Release /clp:ErrorsOnly'
+  allow_failure: false
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ========================================================================== Build Stage  Ends  ==========================================================================
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ========================================================================== Review Stage Starts ==========================================================================
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Publishs Api project which is located in repository
+# Creates new directory in Review Server and copies published project in it
+# Creates new site in IIS on Review Server and start it, also removes the old site if it exists
+# For copying files robocopy is used instead of normal copy in case of just copying new or changed files
+# Saves 'Motorsazan.{ProjectName}.Api\\**\\app.publish\\' directory as artifact, 
+# in order to use it in Api Deploy to avoid building project again
+#
+# Note: If process of starting the sites in IIS fails in probably
+#       because there is another site with same bindings (port, name , etc)
+API Review:
+  stage: review
+  dependencies:
+  - "Nuget Restore"
+  - "API Build"
+  before_script:
+    - Get-WebSite -Name $API_NAME | Remove-WebSite -Confirm:$false -Verbose
+  script:
+    - mkdir $API_REVIEW_PATH -Force
+    - '& "$MSBUILD_PATH\MSBuild.exe" $API_PROJECT_PATH_IN_REPOSITORY /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile="$PUBLISH_PROFILES_PATH\FolderProfile.pubxml"  /clp:ErrorsOnly'
+    - robocopy ((get-childitem $API_NAME -recurse -directory).fullname | Select-String -Pattern (".*app\.publish") -AllMatches)[0].Matches.Value $API_REVIEW_PATH /E /XO /PURGE /NFL /NDL /XD (Get-Content .\robocopy-ignored-directories.txt); if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+    - New-WebSite -Name $API_NAME -Port $API_PORT -PhysicalPath $API_REVIEW_PATH -f
+    - Start-WebSite -Name $API_NAME
+  artifacts:
+    paths:
+      - "$API_NAME\\**\\app.publish\\"
+    expire_in: 3 days
+  environment:
+    name: "Reviews/Api"
+    url: http://Review-Server:2040
+  except: 
+    - merge_requests
+  allow_failure: false
+
+
+# Removes comment lines from ApiList.cs file
+# Changes Api's port in ApiList.cs file
+# Publishs Client project which is located in repository
+# Creates new directory in Review Server and copies published project in it
+# For copying files robocopy is used instead of normal copy in case of just copying new or changed files   
+# Creates new site in IIS on Review Server and start it, also removes the old site if it exists
+# Saves 'Motorsazan.{ProjectName}.Client\\**\\app.publish\\' directory as artifact, 
+# in order to use it in Client Deploy to avoid building project again
+#
+# Note: If process of starting the sites in IIS fails in probably
+#       because there is another site with same bindings (port, name , etc)
+Client Review:
+  stage: review
+  dependencies:
+  - "Nuget Restore"
+  - "Client Build"
+  before_script:
+    - (Get-Content */*/ApiList.cs) -replace '^\s*\/\/.*', '' | Set-Content */*/ApiList.cs #Removes comment lines
+    - (Get-Content */*/ApiList.cs) -replace '".*"', ('"http://localhost:' + $API_PORT + '"') | Set-Content */*/ApiList.cs
+    - mkdir $CLIENT_REVIEW_PATH -f
+    - Get-WebSite -Name $CLIENT_NAME | Remove-WebSite -Confirm:$false -Verbose
+  script:
+    - '& "$MSBUILD_PATH\MSBuild.exe" $CLIENT_PROJECT_PATH_IN_REPOSITORY /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile="$PUBLISH_PROFILES_PATH\FolderProfile.pubxml"  /clp:ErrorsOnly' 
+    - robocopy ((get-childitem $CLIENT_NAME -recurse -directory).fullname | Select-String -Pattern (".*app\.publish") -AllMatches)[0].Matches.Value $CLIENT_REVIEW_PATH /E /XO /PURGE /NFL /NDL /XD (Get-Content .\robocopy-ignored-directories.txt); if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+    - New-WebSite -Name $CLIENT_NAME -Port $CLIENT_PORT -PhysicalPath $CLIENT_REVIEW_PATH -f
+    - Start-WebSite -Name $CLIENT_NAME
+  artifacts:
+    paths:
+      - "$CLIENT_NAME\\**\\app.publish\\"
+    expire_in: 3 days
+  environment:
+    name: "Reviews/Client"
+    url: http://Review-Server:2039
+  except: 
+    - merge_requests
+  allow_failure: false
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ========================================================================== Review Stage Ends ==========================================================================
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ========================================================================== Deploy Stage Starts ==========================================================================
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Creates new directory in Erp Server and copies published project (Api Review artifacts) in it
+# For copying files robocopy is used instead of normal copy in case of just copying new or changed files
+# In order to run, this job needs 'Nuget Restore', 'Api Build' and 'Api Review' jobs to succeed
+API Deploy:
+  stage: deploy
+  dependencies:
+  - "Nuget Restore"
+  - "API Build"
+  - "API Review"
+  before_script:
+    - mkdir $API_DEPLOY_PATH -Force
+  script:
+    - robocopy ((get-childitem $API_NAME -recurse -directory).fullname | Select-String -Pattern (".*app\.publish") -AllMatches)[0].Matches.Value $API_DEPLOY_PATH /E /XO /PURGE /NFL /NDL /XD (Get-Content .\robocopy-ignored-directories.txt); if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+  environment:
+    name: "Releases/Api"
+    url: http://erp-server:2040
+  only:
+    - master
+
+# Creates new directory in Erp Server and copies published project (Client Review artifacts) in it
+# For copying files robocopy is used instead of normal copy in case of just copying new or changed files
+# In order to run, this job needs 'Nuget Restore', 'Client Build' and 'Client Review' jobs to succeed
+Client Deploy:
+  stage: deploy
+  dependencies:
+  - "Nuget Restore"
+  - "Client Build"
+  - "Client Review"
+  before_script:
+    - mkdir $CLIENT_DEPLOY_PATH -Force
+  script:
+    - robocopy ((get-childitem $CLIENT_NAME -recurse -directory).fullname | Select-String -Pattern (".*app\.publish") -AllMatches)[0].Matches.Value $CLIENT_DEPLOY_PATH /E /XO /PURGE /NFL /NDL /XD (Get-Content .\robocopy-ignored-directories.txt); if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+  environment:
+    name: "Releases/Client"
+    url: http://erp-server:2039
+  only:
+    - master
+    
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ========================================================================== Deploy Stage Ends ==========================================================================
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

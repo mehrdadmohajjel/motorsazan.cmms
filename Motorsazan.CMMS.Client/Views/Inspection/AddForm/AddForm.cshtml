@@ -1,0 +1,216 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب نوع سفارشکار بازرسی
+            </label>
+            <div id="addFormWorkOrderListParent">
+                @{
+                    Html.RenderAction("GetInspectionTypeList", "Inspection");
+                }
+            </div>
+            <div class="app__form-error app__hide" id="addFormWorKOrderListError">
+                نوع سفارشکار بازرسی انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب نوع سفارشکار
+            </label>
+            <div id="addWorkOrderTypeParent">
+                @{
+                    Html.RenderAction("GetWorkOrderType", "Inspection");
+
+                }
+            </div>
+            <div class="app__form-error app__hide" id="addWorkOrderTypeError">
+                نوع سفارشکار انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12 col-lg-12 app__hide" id="NonProductiveTopDepartmentDiv">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب امور
+            </label>
+            <div id="AddFormGetDepartmentListParent">
+                @{
+                    Html.RenderAction("AddFormGetAllMainDepartmentPartial", "Inspection");
+
+                }
+            </div>
+            <div class="app__form-error app__hide" id="AddFormGetDepartmentListError">
+                امور  انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12 col-lg-12 app__hide" id="NonProductiveSubDepartmentDiv">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب خط
+            </label>
+            <div id="addFormGetSubDepartmentListParent">
+                @{
+                    Html.RenderAction("AddFormGetSubDepartmentListByMainDepartmentIdPartial", "Inspection");
+
+                }
+            </div>
+            <div class="app__form-error app__hide" id="AddFormGetSubDepartmentListoError">
+                خط  انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-xs-12 col-md-12 col-lg-12 app__hide" id="ProductiveTopDepartmentDiv">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب امور
+            </label>
+            <div id="AddFormGetProdcutviceDepartmentListParent">
+                @{
+                    Html.RenderAction("AddFormGetProdcutviceAllMainDepartmentPartial", "Inspection");
+
+                }
+            </div>
+            <div class="app__form-error app__hide" id="AddFormGetProdcutviceDepartmentListError">
+                امور  انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12 col-lg-12 app__hide" id="ProductiveSubDepartmentDiv">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب خط
+            </label>
+            <div id="AddFormGetProdcutviceSubDepartmentListParent">
+                @{
+                    Html.RenderAction("AddFormGetProdcutviceSubDepartmentListByMainDepartmentIdPartial", "Inspection");
+
+                }
+            </div>
+            <div class="app__form-error app__hide" id="AddFormGetProdcutviceSubDepartmentListoError">
+                خط  انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12 app__hide" id="ProductiveMachiveDiv">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب دستگاه
+            </label>
+            <div id="addFormMachineComboParent">
+                @{
+                    Html.RenderAction("AddFormGetDepartmentMachineList", "Inspection");
+
+                }
+            </div>
+            <div class="app__form-error app__hide" id="addFormMachineComboError">
+                دستگاه انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                تاریخ پیشنهادی
+            </label>
+            <input type="text" class="app__form-datepicker"
+                   id="addFormPreferDate"
+                   placeholder="تاریخ را انتخاب نمایید"
+                   data-mddatetimepicker="true"
+                   data-englishnumber="true"
+                   data-targetdateselector="#addFormPreferDate" />
+            <div class="app__form-error app__hide"
+                 id="addFormPreferDateError">
+                تاریخ  انتخاب نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                زمان مورد نیاز(دقیقه)
+            </label>
+            <div id="addFormNeedTimeParent">
+                @Html.DevExpress().SpinEdit(settings =>
+                {
+                    settings.Name = "addFormNeedTime";
+                    settings.Properties.NullText = "زمان مورد نیاز";
+                    settings.Properties.MinValue = 0;
+                    settings.Properties.MaxValue = 9999999999999999999;
+                    settings.Properties.ShowOutOfRangeWarning = false;
+                    settings.Properties.ClientSideEvents.NumberChanged = "motorsazanClient.inspection.handleFilterFormNeedTimeSelectedIndexChange";
+
+                }).GetHtml()
+
+            </div>
+            <div class="app__form-error app__hide" id="addFormNeedTimeError">
+                زمان مورد نیاز وارد نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب گروه تعمیراتی
+            </label>
+            <div id="addFormMaintenanceGroupComboParent">
+                @{
+                    Html.RenderAction("GetMaintenanceGroupList", "Inspection");
+
+                }
+            </div>
+            <div class="app__form-error app__hide" id="addFormMaintenanceGroupComboError">
+                گروه تعمیراتی انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                شرح خرابی
+            </label>
+            <div id="addFormFaultDescriptionParent">
+                @Html.DevExpress().Memo(settings =>
+                {
+                    settings.Name = "addFormFaultDescription";
+                    settings.Properties.NullText = "شرح خرابی";
+                    settings.Properties.ClientSideEvents.TextChanged = "motorsazanClient.inspection.handleaddFormFaultDescriptionChange";
+
+                }).GetHtml()
+
+            </div>
+            <div class="app__form-error app__hide" id="addFormFaultDescriptionError">
+                شرح خرابی وارد نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12 filter-form__action-wrapper">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "addInspectionBtn";
+            settings.Text = "ثبت";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Styles.CssPostfix = "add-form__btn";
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.inspection.addInspection";
+        }).GetHtml()
+    </div>
+
+</div>

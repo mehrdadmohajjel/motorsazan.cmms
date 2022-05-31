@@ -1,0 +1,169 @@
+﻿@using Motorsazan.CMMS.Client.Controllers
+@using DevExpress.Data
+@using DevExpress.Export
+@using Motorsazan.CMMS.Client.Controllers
+@model Motorsazan.CMMS.Shared.Models.Output.ScrapedWorkOrderReport.OutputGetScrapedWorkOrderReportByCondition[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new {Controller = "ScrapedWorkOrderReport", Action = "Grid"};
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.scrapedWorkOrderReport.handleGridBeginCallback";
+    settings.ClientSideEvents.DetailRowExpanding =
+        "motorsazanClient.scrapedWorkOrderReport.setWorkOrderGridFocusedRowOnExpanding";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "WorkOrderId";
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "سفارشکار";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderStatusTypeShowName";
+        column.Caption = "وضعیت";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = ScrapedWorkOrderReportController.GetWorkOrderStatusTypeList();
+            cb.TextField = "TypeName";
+            cb.ValueField = "TypeName";
+            cb.ValueType = typeof(string);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OldMachineCode";
+        column.Caption = "کد دستگاه";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OperationCode";
+        column.Caption = "اپریشن";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MaintenanceGroupName";
+        column.Caption = "گروه تعمیراتی";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = SafetyAndHealthReportController.GetMaintenanceGroupList();
+            cb.TextField = "MaintenanceGroupName";
+            cb.ValueField = "MaintenanceGroupName";
+            cb.ValueType = typeof(string);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "IsScrapAccepted";
+        column.Caption = "وضعیت اسکرپ";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.Items.Add("تایید شده");
+            cb.Items.Add("تایید نشده");
+
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ExpertDescription";
+        column.Caption = "نظر کارشناس";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ScrapLicenseNumber";
+        column.Caption = "شماره مجوز";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ScrapSolution";
+        column.Caption = "راهکار پیشنهادی";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SetDetailRowTemplateContent(row =>
+    {
+        var WorkOrderId = Convert.ToInt64(DataBinder.Eval(row.DataItem, "workOrderId"));
+        Html.RenderAction("DetailRow", "ScrapedWorkOrderReport", new { wokrdOrderId = WorkOrderId });
+    });
+
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = ExportType.WYSIWYG;
+    settings.Toolbars.Add(t => { t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل"; });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] {"50", "100", "200", "500"};
+}).Bind(Model).GetHtml()

@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "گزارش کارکرد گروه های تعمیراتی";
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/MaintenanceGroupPerformanceReport/Js/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <section class="app__section">
+            <div class="app__section__header">
+                گزارش کارکرد گروه های تعمیراتی
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/MaintenanceGroupPerformanceReport/FilterForm/FilterForm.cshtml"); }
+                <form id="gridParent" class="app__grid-wrapper">
+                    @{ Html.RenderPartial("~/Views/MaintenanceGroupPerformanceReport/Grid/Grid.cshtml"); }
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

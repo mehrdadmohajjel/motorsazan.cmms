@@ -1,0 +1,22 @@
+﻿@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addStockSupplyTypeCombo";
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نوع تامین قطعه انتخاب نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.Items.Add("خارجی", false);
+        settings.Properties.Items.Add("داخلی", true);
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.machineManagement.handleAddStockSupplyTypeComboSelectedIndexChanged";
+
+    }).GetHtml()
+
+

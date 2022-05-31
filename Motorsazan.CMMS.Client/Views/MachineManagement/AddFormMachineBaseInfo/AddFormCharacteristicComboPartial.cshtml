@@ -1,0 +1,27 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetCharacteristicList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormCharacteristicCombo";
+        settings.CallbackRouteValues = new { Controller = "MachineManagement", Action = "AddFormCharacteristicCombo" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "مشخصه را وارد کنید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.Properties.ClientSideEvents.ValueChanged =
+            "motorsazanClient.machineManagement.handleAddFormCharacteristicComboChanged";
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "CharacteristicTitle";
+        settings.Properties.ValueType = typeof(string);
+
+        settings.Properties.TextFormatString = "{0}";
+
+        settings.Properties.Columns.Add("CharacteristicTitle", "مشخصه");
+    }).BindList(Model).GetHtml()

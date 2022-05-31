@@ -1,0 +1,82 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.PreventiveMaintenancesScheduling.OutputGetOperationItemListByPMSchedulingInfoId[]
+<div class="row">
+    <div class="col-xs-12 col-md-5">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                تاریخ پیشنهادی
+            </label>
+            <div>
+                <input type="text" class="app__form-datepicker"
+                       id="changeToWorkOrderModalSuggestedDateDatePicker"
+                       placeholder="تاریخ پیشنهادی"
+                       data-mddatetimepicker="true"
+                       data-englishnumber="true"
+                       data-targetdateselector="#changeToWorkOrderModalSuggestedDateDatePicker" />
+            </div>
+            <div class="app__form-error app__hide" id="changeToWorkOrderModalSuggestedDateDatePickerError">
+                تاریخ پیشنهادی انتخاب نشده است
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                برای تبدیل آیتم های انتخابی به سفارشکار می بایست ابتدا در فیلد «نفر ساعت» هر آیتم مقدار پیش بینی شده را وارد نموده و بر روی آیکون دیسکت کلیک نمایید.
+
+            </label>
+            <label class="app__form-label">
+                تاریخ اجرای سفارشکار می بایست پیش از کلیک آیکون دیسکت انتخاب گردد.
+            </label>
+            <label class="app__form-label">
+                در صورت عدم درج نفر ساعت حتی در یک آیتم و یا درج مقدار نامعتبر، عملیات تولید سفارشکار ناموفق خواهد بود.
+            </label>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-xs-12 col-md-12" id="changeToWorkOrderModalGridParent">
+         @{Html.RenderAction("ChangeToWorkOrderModalGrid", "PreventiveMaintenancesScheduling", new { model = ViewData["PMSchedulingInfoIDList"] });}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="app__form-item app__form-item--action">
+
+            @Html.DevExpress().Button(settings =>
+       {
+           settings.Name = "changeToWorkOrderModalCancelBtn";
+           settings.Text = "انصراف";
+           settings.UseSubmitBehavior = false;
+           settings.EnableClientSideAPI = true;
+           settings.RenderMode = ButtonRenderMode.Danger;
+           settings.Styles.CssPostfix = "filter-form__btn";
+           settings.ClientSideEvents.Click =
+              "motorsazanClient.preventiveMaintenancesScheduling.closePopUp";
+
+       }).GetHtml()
+
+            @Html.DevExpress().Button(settings =>
+       {
+           settings.Name = "changeToWorkOrderModalSaveBtn";
+           settings.Text = "ثبت";
+           settings.UseSubmitBehavior = false;
+           settings.EnableClientSideAPI = true;
+           settings.ClientEnabled = false;
+           settings.Styles.CssPostfix = "filter-form__btn";
+           settings.ClientSideEvents.Click =
+               "motorsazanClient.preventiveMaintenancesScheduling.handleChangeToWorkOrderModalSaveBtnClick";
+
+       }).GetHtml()
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.PLCReport.OutputGetMachinePLCFileList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormMachineCombo";
+        settings.CallbackRouteValues = new {Controller = "PLCReport", Action = "FilterFormMachineCombo"};
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نام ماشین";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "MachineId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.Columns.Add("MachineName", "نام دستگاه").Width = Unit.Pixel(250);
+        settings.Properties.Columns.Add("OldMachineCode", "کد دستگاه").Width = Unit.Pixel(80);
+
+        settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+        settings.Properties.PopupHorizontalAlign = PopupHorizontalAlign.RightSides;
+        settings.Properties.ClearButton.DisplayMode = ClearButtonDisplayMode.OnHover;
+
+        settings.Properties.TextFormatString = "{0} - {1}";
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.pLCReport.handleFilterFormMachineComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

@@ -1,0 +1,112 @@
+﻿
+@model IEnumerable<Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetMachineSparePartListByMachineId>
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "machineSparePartDataGrid";
+    settings.CallbackRouteValues = new { Controller = "MachineManagement", Action = "GetMachineSparePartList" };
+
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.machineManagement.handleMachineSparePartDataGridBeginCallback";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "MachineSparePartId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 1;
+        column.FieldName = "StockName";
+        column.Caption = "نام قطعه";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 2;
+        column.FieldName = "StockCode";
+        column.Caption = "کد قطعه";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 3;
+        column.FieldName = "RackCode";
+        column.Caption = "آدرس در انبار";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 4;
+        column.FieldName = "InternalSupply";
+        column.Caption = "نوع تامین";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 5;
+        column.FieldName = "TechnicalCharacteristicsOfCatalog";
+        column.Caption = "مشخصه فنی کاتالوگ";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 6;
+        column.FieldName = "CurrentCount";
+        column.Caption = "موجودی فعلی";
+    });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowDeleteButton = false;
+    settings.CommandColumn.ShowEditButton = false;
+    settings.CommandColumn.ShowNewButton = false;
+    settings.CommandColumn.ShowNewButtonInHeader = false;
+    settings.CommandColumn.Caption = "عملیات";
+    settings.CommandColumn.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;
+    settings.CommandColumn.VisibleIndex = 1000;
+    settings.ClientSideEvents.CustomButtonClick = "motorsazanClient.machineManagement.handleSparePartGridCustomBtnClick";
+
+    var uploadCustomButton = new GridViewCommandColumnCustomButton() { ID = "uploadMemberBtn", Text = "آپلود فایل" };
+    uploadCustomButton.Styles.Style.CssClass = "app__form-grid-mini-btn";
+    settings.CommandColumn.CustomButtons.Add(uploadCustomButton);
+
+    var removeCustomButton = new GridViewCommandColumnCustomButton() { ID = "removeMemberBtn", Text = "حذف" };
+    removeCustomButton.Styles.Style.CssClass = "app__form-grid-mini-btn app__form-grid-mini-btn--danger";
+    settings.CommandColumn.CustomButtons.Add(removeCustomButton);
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+

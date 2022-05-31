@@ -1,0 +1,208 @@
+﻿@using DevExpress.Data
+@using DevExpress.Export
+@using Motorsazan.CMMS.Client.Controllers
+@model Motorsazan.CMMS.Shared.Models.Output.CostReportByDepartment.OutputGetDepartmentCostReportByCondition[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new {Controller = "CostReportByDepartment", Action = "Grid"};
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.costReportByDepartment.handleGridBeginCallback";
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.SettingsBehavior.AutoExpandAllGroups = false;
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "ActionOrDelayListId";
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.UnboundType = UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "سفارشکار";
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.Width = Unit.Percentage(10);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DepartmentName";
+        column.Caption = "امور/خط";
+        column.Width = Unit.Percentage(10);
+        column.GroupIndex = 0;
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MachineName";
+        column.Caption = "نام دستگاه";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OldMachineCode";
+        column.Caption = "کد دستگاه";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "FaultCode";
+        column.Caption = "کد خطا";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "FaultReason";
+        column.Caption = "علت ریشه ای خطا";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderCreationDate";
+        column.Caption = "تاریخ ایجاد سفارشکار";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MaintenanceGroupName";
+        column.Caption = "گروه تعمیراتی";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = CostReportByDepartmentController.GetAllMaintenanceGroupList();
+            cb.TextField = "MaintenanceGroupName";
+            cb.ValueField = "MaintenanceGroupName";
+            cb.ValueType = typeof(string);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ExpertName";
+        column.Caption = "کارشناس";
+        column.Width = Unit.Percentage(10);
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "EId";
+        column.Caption = "کد پرسنلی";
+        column.Width = Unit.Percentage(10);
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Salary";
+        column.Caption = "دستمزد";
+        column.Width = Unit.Percentage(10);
+        column.PropertiesEdit.DisplayFormatString = "N0";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MaterialCost";
+        column.Caption = "هزینه مواد";
+        column.Width = Unit.Percentage(10);
+        column.PropertiesEdit.DisplayFormatString = "N0";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "TotalCost";
+        column.Caption = "هزینه کل";
+        column.Width = Unit.Percentage(10);
+        column.PropertiesEdit.DisplayFormatString = "N0";
+    });
+
+    // --- TotalSummary
+    settings.TotalSummary.Add(SummaryItemType.Sum, "Salary")
+        .DisplayFormat = "مجموع: {0:G29} ریال";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "MaterialCost")
+        .DisplayFormat = "مجموع: {0:G29} ریال";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "TotalCost")
+        .DisplayFormat = "مجموع کل هزینه ها: {0:G29} ریال";
+
+    settings.Settings.ShowFooter = true;
+
+    // --- GroupSummary
+    settings.GroupSummary.Add(SummaryItemType.Sum, "Salary")
+        .DisplayFormat = " -- (مجموع دستمزد: {0:G29} ریال";
+
+    settings.GroupSummary.Add(SummaryItemType.Sum, "MaterialCost")
+        .DisplayFormat = " - مجموع هزینه مواد: {0:G29} ریال";
+
+    settings.GroupSummary.Add(SummaryItemType.Sum, "TotalCost")
+        .DisplayFormat = " - مجموع کل هزینه های امور/خط: {0:G29} ریال)";
+
+    settings.Settings.ShowGroupPanel = true;
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = ExportType.WYSIWYG;
+    settings.Toolbars.Add(t => { t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل"; });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] {"50", "100", "200", "500"};
+}).Bind(Model).GetHtml()

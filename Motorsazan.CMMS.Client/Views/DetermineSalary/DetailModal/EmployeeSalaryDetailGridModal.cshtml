@@ -1,0 +1,88 @@
+﻿@using DevExpress.Data
+@model Motorsazan.CMMS.Shared.Models.Output.DetermineSalary.OutputGetMaintenanceGroupMemberSalaryDetailListBySalaryId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "detailGrid";
+    settings.CallbackRouteValues = new {Controller = "DetermineSalary", Action = "DetailDetermineSalaryModal"};
+
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.determineSalary.handleDetailGridBeginCallback";
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "SalaryId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 2;
+        column.FieldName = "RegisterUserName";
+        column.Width = Unit.Pixel(8);
+        column.Caption = "کاربر ثبت کننده";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 3;
+        column.FieldName = "Salary";
+        column.Caption = "حقوق و دستمزد ساعتی";
+        column.Width = Unit.Pixel(12);
+
+        column.PropertiesEdit.DisplayFormatString = "0;0-";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 4;
+        column.FieldName = "ShamsiStartDate";
+        column.Caption = "تاریخ اعمال";
+        column.Width = Unit.Pixel(5);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.VisibleIndex = 5;
+        column.FieldName = "ShamsiCreationDate";
+        column.Caption = "تاریخ ثبت";
+        column.Width = Unit.Pixel(12);
+    });
+
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 50;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] {"50", "100", "200", "500"};
+}).Bind(Model).GetHtml()

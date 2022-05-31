@@ -1,0 +1,22 @@
+﻿@using Motorsazan.CMMS.Shared.Enums
+@Html.DevExpress().ComboBox(
+settings =>
+{
+    settings.Name = "filterFormMttrMtbfTimeTypeCombo";
+    settings.Width = Unit.Percentage(100);
+    settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+    settings.Properties.NullText = "نوع زمان در دسترس بودن";
+    settings.SelectedIndex = -1;
+    settings.Properties.CallbackPageSize = 100;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.IncrementalFilteringDelay = 200;
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+    settings.Properties.DropDownHeight = Unit.Pixel(80);
+
+    settings.Properties.Items.Add("بر مبنای زمان استاندارد", MttrMtbfTimeType.BasedOnStandardTime.GetHashCode());
+    settings.Properties.Items.Add("بر مبنای زمان برنامه ریزی تولید", MttrMtbfTimeType.BasedOnProductionPlanning.GetHashCode());
+
+    settings.Properties.ClientSideEvents.SelectedIndexChanged =
+        "motorsazanClient.departmentMttrAndMtbfReport.handleFilterFormMttrMtbfTimeTypeComboSelectedIndexChange";
+}).GetHtml()

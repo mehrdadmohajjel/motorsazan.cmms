@@ -1,0 +1,448 @@
+﻿@using System.Drawing.Printing
+@using DevExpress.Data
+@using DevExpress.Export
+@using DevExpress.XtraPrinting
+@model Motorsazan.CMMS.Shared.Models.Output.DepartmentMttrAndMtbfReport.OutputGetDepartmentMttrAndMtbfReportByCondition[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new { Controller = "DepartmentMttrAndMtbfReport", Action = "Grid" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.departmentMttrAndMtbfReport.handleGridBeginCallback";
+    settings.ClientSideEvents.DetailRowExpanding =
+        "motorsazanClient.departmentMttrAndMtbfReport.setGridFocusedRowOnExpanding";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.SettingsBehavior.AutoExpandAllGroups = false;
+
+    settings.EnableRowsCache = true;
+    settings.KeyFieldName = "MachineId";
+    settings.Settings.ShowGroupPanel = true;
+    settings.SettingsText.GroupPanel = "برای دسته بندی نتایج، ستون مورد نظر خود رابه این قسمت کشیده و رها نمایید";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.UnboundType = UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "مشخصات دستگاه";
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "MachineName";
+            column.Caption = "نام دستگاه";
+            column.Width = Unit.Percentage(15);
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "OldMachineCode";
+            column.Caption = "کد دستگاه";
+            column.CellStyle.Wrap = DefaultBoolean.True;
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "OperationCode";
+            column.Caption = "اپریشن";
+        });
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "AccessTimeInHour";
+            column.Caption = "ساعات در دسترس(ساعت)";
+            column.HeaderStyle.Wrap = DefaultBoolean.True;
+            column.CellStyle.Wrap = DefaultBoolean.True;
+        });
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "DepartmentName";
+            column.Caption = "خط";
+            column.GroupIndex = 1;
+            column.CellStyle.Wrap = DefaultBoolean.True;
+        });
+    });
+
+    settings.Columns.AddBand(repairIndexBand =>
+    {
+        repairIndexBand.Caption = "شاخص های تعمیرات";
+
+        repairIndexBand.Columns.AddBand(repairTimeBand =>
+        {
+            repairTimeBand.Caption = "مدت زمان تعمیر(دقیقه)";
+            repairIndexBand.CellStyle.Wrap = DefaultBoolean.True;
+            repairIndexBand.HeaderStyle.Wrap = DefaultBoolean.True;
+            repairTimeBand.Columns.Add(column =>
+            {
+                column.FieldName = "PureRepairingTimeInMinute";
+                column.Caption = "خالص";
+
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+
+            });
+            repairTimeBand.Columns.Add(column =>
+            {
+                column.FieldName = "ImPureRepairingTimeInMinute";
+                column.Caption = "ناخالص";
+
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+        });
+
+        repairIndexBand.Columns.AddBand(MTTRBand =>
+        {
+            MTTRBand.Caption = "MTTR";
+            MTTRBand.Columns.Add(column =>
+            {
+                column.FieldName = "PureMTTR";
+                column.Caption = "خالص";
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+
+            MTTRBand.Columns.Add(column =>
+            {
+                column.FieldName = "ImPureMTTR";
+                column.Caption = "ناخالص";
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+        });
+
+
+        repairIndexBand.Columns.AddBand(MTBFBand =>
+        {
+            MTBFBand.Caption = "MTBF";
+            MTBFBand.Columns.Add(column =>
+            {
+                column.FieldName = "PureMTBF";
+                column.Caption = "خالص";
+
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+
+            MTBFBand.Columns.Add(column =>
+            {
+                column.FieldName = "ImPureMTBF";
+                column.Caption = "ناخالص";
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+        });
+        repairIndexBand.Columns.AddBand(MTBFBand =>
+        {
+            MTBFBand.Caption = "EA";
+            MTBFBand.Columns.Add(column =>
+            {
+                column.FieldName = "PureEA";
+                column.Caption = "خالص";
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+            MTBFBand.Columns.Add(column =>
+            {
+                column.FieldName = "ImPureEA";
+                column.Caption = "ناخالص";
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+        });
+
+        repairIndexBand.Columns.AddBand(EABand =>
+        {
+            EABand.Caption = "قابلیت اطمینان";
+            EABand.Columns.Add(column =>
+            {
+                column.FieldName = "PureReliability";
+                column.Caption = "خالص";
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+            EABand.Columns.Add(column =>
+            {
+                column.FieldName = "ImPureReliability";
+                column.Caption = "ناخالص";
+                column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+            });
+        });
+
+    });
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "شاخص های تولید";
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "Availability";
+            column.Caption = "Availability";
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "Performance";
+            column.Caption = "Performance";
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "Quality";
+            column.Caption = "Quality";
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "OEE";
+            column.Caption = "OEE";
+            column.PropertiesEdit.DisplayFormatString = "0.00;0.00-";
+        });
+
+    });
+    settings.Columns.AddBand(band =>
+    {
+        band.Caption = "تعداد سفارشکار";
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "FinishedWorkOrderCount";
+            column.Caption = "کامل";
+            column.PropertiesEdit.DisplayFormatString = "0;0-";
+        });
+
+        band.Columns.Add(column =>
+        {
+            column.FieldName = "NotFinishedWorkOrderCount";
+            column.Caption = "ناتمام";
+            column.PropertiesEdit.DisplayFormatString = "0;0-";
+        });
+
+    });
+
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+
+    settings.SetDetailRowTemplateContent(row =>
+    {
+
+        Html.RenderAction("DetailRow", "DepartmentMttrAndMtbfReport");
+    });
+
+    // --- TotalSummary
+    settings.TotalSummary.Add(SummaryItemType.Sum, "ImPureRepairingTimeInMinute")
+        .DisplayFormat = "مجموع: {0} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "PureRepairingTimeInMinute")
+        .DisplayFormat = "مجموع: {0} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "FinishedWorkOrderCount")
+        .DisplayFormat = "مجموع: {0:N0}";
+
+    settings.TotalSummary.Add(SummaryItemType.Sum, "NotFinishedWorkOrderCount")
+        .DisplayFormat = "مجموع: {0:N0} ";
+
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "AccessTimeInHour")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "PureMTBF")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "ImPureMTBF")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "PureMTTR")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "ImPureMTTR")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "PureEA")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "ImPureEA")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "PureReliability")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "ImPureReliability")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "Availability")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "Performance")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "Quality")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+    settings.TotalSummary.Add(SummaryItemType.Average, "OEE")
+        .DisplayFormat = "میانگین: {0:N2} ";
+
+
+    // --- GroupSummary
+    settings.GroupSummary.Add(SummaryItemType.Sum, "PureRepairingTimeInMinute").ShowInGroupFooterColumn = "PureRepairingTimeInMinute";
+    settings.GroupSummary.Add(SummaryItemType.Sum, "ImPureRepairingTimeInMinute").ShowInGroupFooterColumn = "ImPureRepairingTimeInMinute";
+    settings.GroupSummary.Add(SummaryItemType.Sum, "FinishedWorkOrderCount").ShowInGroupFooterColumn = "FinishedWorkOrderCount";
+    settings.GroupSummary.Add(SummaryItemType.Sum, "NotFinishedWorkOrderCount").ShowInGroupFooterColumn = "NotFinishedWorkOrderCount";
+
+    settings.GroupSummary.Add(SummaryItemType.Average, "AccessTimeInHour").ShowInGroupFooterColumn = "AccessTimeInHour";
+    settings.GroupSummary.Add(SummaryItemType.Average, "PureMTTR").ShowInGroupFooterColumn = "PureMTTR";
+    settings.GroupSummary.Add(SummaryItemType.Average, "ImPureMTTR").ShowInGroupFooterColumn = "ImPureMTTR";
+    settings.GroupSummary.Add(SummaryItemType.Average, "PureMTBF").ShowInGroupFooterColumn = "PureMTBF";
+    settings.GroupSummary.Add(SummaryItemType.Average, "ImPureMTBF").ShowInGroupFooterColumn = "ImPureMTBF";
+    settings.GroupSummary.Add(SummaryItemType.Average, "PureEA").ShowInGroupFooterColumn = "PureEA";
+    settings.GroupSummary.Add(SummaryItemType.Average, "ImPureEA").ShowInGroupFooterColumn = "ImPureEA";
+    settings.GroupSummary.Add(SummaryItemType.Average, "PureReliability").ShowInGroupFooterColumn = "PureReliability";
+    settings.GroupSummary.Add(SummaryItemType.Average, "ImPureReliability").ShowInGroupFooterColumn = "ImPureReliability";
+    settings.GroupSummary.Add(SummaryItemType.Average, "Availability").ShowInGroupFooterColumn = "Availability";
+    settings.GroupSummary.Add(SummaryItemType.Average, "Performance").ShowInGroupFooterColumn = "Performance";
+    settings.GroupSummary.Add(SummaryItemType.Average, "Quality").ShowInGroupFooterColumn = "Quality";
+    settings.GroupSummary.Add(SummaryItemType.Average, "OEE").ShowInGroupFooterColumn = "OEE";
+
+
+
+    settings.SummaryDisplayText = (sender, e) =>
+    {
+        if (e.IsGroupSummary)
+        {
+            if (e.Item.FieldName == "PureRepairingTimeInMinute")
+            {
+                e.Text = "مجموع: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "ImPureRepairingTimeInMinute")
+            {
+                e.Text = "مجموع: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "FinishedWorkOrderCount")
+            {
+                e.Text = "مجموع: " + Convert.ToDecimal(e.Value).ToString("N0");
+            }
+
+            if (e.Item.FieldName == "NotFinishedWorkOrderCount")
+            {
+                e.Text = "مجموع: " + Convert.ToDecimal(e.Value).ToString("N0");
+            }
+
+
+            if (e.Item.FieldName == "Availability")
+            {
+                e.Text = "میانگین: " +  Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "Performance")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "Quality")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "OEE")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "PureReliability")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "ImPureReliability")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "PureMTTR")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "ImPureMTTR")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "PureMTBF")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "ImPureMTBF")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "AccessTimeInHour")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "PureEA")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+
+            if (e.Item.FieldName == "ImPureEA")
+            {
+                e.Text = "میانگین: " + Convert.ToDecimal(e.Value).ToString("N2");
+            }
+        }
+    };
+    settings.Settings.ShowFooter = true;
+    settings.Settings.ShowGroupFooter = GridViewGroupFooterMode.VisibleAlways;
+
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+
+
+    settings.SettingsExport.ExcelExportMode = ExportType.WYSIWYG;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+
+    settings.Toolbars.Add(t =>
+    {
+        t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل";
+    });
+
+    settings.PreRender = (sender, e) =>
+    {
+
+        ((MVCxGridView)sender).ExpandAll();
+    };
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 100;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] { "50", "100", "200", "500" };
+}).Bind(Model).GetHtml()

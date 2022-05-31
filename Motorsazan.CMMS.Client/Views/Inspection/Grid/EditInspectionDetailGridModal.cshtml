@@ -1,0 +1,56 @@
+﻿<div class="filter-form">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 ">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    شرح عملیات
+                </label>
+                <div>
+                    @Html.DevExpress().Memo(settings =>
+                    {
+                        settings.Name = "editInceptionDetailDescription";
+                        settings.Properties.NullText = "شرح عملیات";
+                    }).GetHtml()
+
+
+                </div>
+                <div class="app__form-error app__hide" id="editInceptionDetailDescriptionError">
+                    شرح عملیات وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 ">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    پیش بینی مدت زمان انجام عملیات(دقیقه)
+                </label>
+                <div id="editSubMachineNameParent">
+                    @Html.DevExpress().SpinEdit(settings =>
+               {
+                   settings.Name = "editInceptionDetailNeedTime";
+                   settings.Properties.MinValue = 1;
+                   settings.Properties.MaxValue = 9999;
+                   settings.Properties.NumberType = SpinEditNumberType.Integer;
+               }).GetHtml()
+
+                </div>
+                <div class="app__form-error app__hide" id="editInceptionDetailNeedTimeError">
+                    مدت زمان وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-12 filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "editInceptionDetailBtn";
+                settings.Text = "ویرایش";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "add-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.inspection.editInceptionDetail";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

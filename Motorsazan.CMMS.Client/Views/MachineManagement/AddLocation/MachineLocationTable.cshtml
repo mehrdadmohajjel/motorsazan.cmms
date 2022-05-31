@@ -1,0 +1,55 @@
+﻿
+@model Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetMachineLocationByMachineId[]
+@{
+    var machineId = (long)ViewData["MachineId"];
+}
+<table class="table table-hover table-bordered" id="machinesLocationTable">
+    <thead>
+        <tr id="trHeaderDesign">
+            <th scope="col">نام دستگاه</th>
+            <th scope="col">کد دستگاه</th>
+            <th scope="col">خط</th>
+            <th scope="col">نام مسئول</th>
+            <th scope="col">عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Length > 0)
+        {
+            foreach (var item in Model)
+            {
+
+                @Html.Hidden("MachineLocationId", value: item.MachineLocationId);
+                <tr>
+                    <td>@item.MachineName</td>
+                    <td>@item.OldMachineCode</td>
+                    <td>@item.DepartmentName</td>
+                    <td>@item.EmployeeName</td>
+                    <td id="machineLocationRemoveDesign">
+                        @Html.DevExpress().Button(settings =>
+                        {
+                            settings.Name = "machineLocationRemoveBtn";
+                            settings.Text = "حذف";
+                            settings.UseSubmitBehavior = false;
+                            settings.EnableClientSideAPI = true;
+                            settings.Styles.CssPostfix = "filter-form__btn";
+                            settings.Width = Unit.Percentage(100);
+                            settings.ClientSideEvents.Click =
+                                "motorsazanClient.machineManagement.handleMachineLocationRemoveButtonClick";
+                        }).GetHtml()
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

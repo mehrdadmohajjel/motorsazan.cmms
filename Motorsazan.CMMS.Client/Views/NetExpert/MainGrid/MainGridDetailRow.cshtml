@@ -1,0 +1,355 @@
+﻿@using Motorsazan.CMMS.Shared.Enums
+@{ var workOrderStatusType = (WorkOrderStatusType)ViewData["WorkOrderStatusType"];
+    var workOrderType = (WorkOrderType)ViewData["WorkOrderType"];
+
+    var hasAnyActionOrDelay = (bool)ViewData["HasAnyActionOrDelay"];
+    var IsAllHavalehNOConfirmed = (bool)ViewData["IsAllHavalehNOConfirmed"];
+
+    var isReferred = workOrderStatusType == WorkOrderStatusType.Referred;
+    var isReferredToAnotherGroup = workOrderStatusType == WorkOrderStatusType.ReferredToAnotherGroup;
+    var isFinishAccepted = workOrderStatusType == WorkOrderStatusType.FinishAccepted;
+    var isFinished = workOrderStatusType == WorkOrderStatusType.Finished;
+    var isNew = workOrderStatusType == WorkOrderStatusType.New;
+    var isStockWaiting = workOrderStatusType == WorkOrderStatusType.StockWaiting;
+
+    var isPredictiveNoneProductive = workOrderType == WorkOrderType.PredictiveNoneProductive;
+    var isInspectionNoneProductive = workOrderType == WorkOrderType.InspectionNoneProductive;
+    var isImprovementSystemNoneProductive = workOrderType == WorkOrderType.ImprovementSystemNoneProductive;
+    var isAccidentalNoneProductive = workOrderType == WorkOrderType.AccidentalNoneProductive;
+    var isAccidentalProductive = workOrderType == WorkOrderType.AccidentalProductive;
+
+    var isFinishBtnEnabled = isReferred || isReferredToAnotherGroup || isNew;
+    var isCancelBtnEnabled = isReferred || isReferredToAnotherGroup || isNew;
+
+    var isAddOperationsBtnEnabled =
+        (isReferred || isReferredToAnotherGroup || isFinished || isNew || isStockWaiting) &&
+        (isPredictiveNoneProductive || isInspectionNoneProductive || isAccidentalNoneProductive || isAccidentalProductive);
+
+    var isFinalFinishedBtnEnabled = isFinished && hasAnyActionOrDelay;
+    var isStockWaitingBtnEnabled = isReferred || isReferredToAnotherGroup || isNew;
+    var isEndStockWaitingBtnEnabled = isStockWaiting;
+
+    var isAddPreventiveDetailsBtnEnabled = isPredictiveNoneProductive;
+    var isAddInspectionDetailsBtnEnabled = (isFinished || isStockWaiting) && (isInspectionNoneProductive || isImprovementSystemNoneProductive);
+
+    var isReferToAnotherGroupBtnEnabled = isReferred || isReferredToAnotherGroup || isNew;
+    var isReferToAnotherPersonBtnEnabled = isReferred || isReferredToAnotherGroup;
+
+    var isPrintPreventiveAccidentalDetailsBtnEnabled =
+        (isReferred || isReferredToAnotherGroup || isNew || isStockWaiting) &&
+        (isAccidentalNoneProductive || isAccidentalProductive);
+
+    var isPrintPreventiveDetailsBtnEnabled = (isReferred || isReferredToAnotherGroup || isNew || isStockWaiting) && isPredictiveNoneProductive;
+
+    var firstRowSizeClass = "col-md-3";
+    if (isPrintPreventiveDetailsBtnEnabled)
+    {
+        firstRowSizeClass = "col-md-2";
+    }
+
+    var secondRowSizeClass = "col-md-3";
+    if (!isStockWaitingBtnEnabled && !isEndStockWaitingBtnEnabled)
+    {
+        secondRowSizeClass = "col-md-6";
+    }
+    else if (isStockWaitingBtnEnabled && isEndStockWaitingBtnEnabled)
+    {
+        secondRowSizeClass = "col-md-4";
+    }
+
+    var hasMachine = (bool)ViewData["HasMachine"]; }
+
+<div class="app--center">
+    <div class="row">
+        <div class="col-xs-12 @firstRowSizeClass">
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowAddOperationsBtn";
+                     settings.Text = "ثبت عملیات انجام شده";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Enabled = isAddOperationsBtnEnabled;
+                     settings.Styles.Style.BackColor = System.Drawing.Color.Green;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowAddOperationsBtnClick";
+                 }).GetHtml()
+        </div>
+        <div class="col-xs-12 @firstRowSizeClass">
+
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowAddPreventiveDetailsBtn";
+                     settings.Text = "ثبت جزئیات پیشگیرانه";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Enabled = isAddPreventiveDetailsBtnEnabled;
+                     settings.Styles.Style.BackColor = System.Drawing.Color.Green;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowAddPreventiveDetailsBtnClick";
+                 }).GetHtml()
+        </div>
+        <div class="col-xs-12 @firstRowSizeClass">
+
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowAddInspectionDetailsBtn";
+                     settings.Text = "ثبت جزئیات بازرسی";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Enabled = isAddInspectionDetailsBtnEnabled;
+                     settings.Styles.Style.BackColor = System.Drawing.Color.Green;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowAddInspectionDetailsBtnClick";
+                 }).GetHtml()
+        </div>
+        <div class="col-xs-12 @firstRowSizeClass">
+
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowPrintPreventiveAccidentalDetailsBtn";
+                     settings.Text = "پرینت فرم مراجعه اتفاقی";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Enabled = isPrintPreventiveAccidentalDetailsBtnEnabled;
+                     settings.Styles.Style.BackColor = System.Drawing.Color.Green;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowAccidentalPreventiveDetailsBtnClick";
+                 }).GetHtml()
+        </div>
+        <div class="col-xs-12 @firstRowSizeClass">
+
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowPrintPreventiveDetailsBtn";
+                     settings.Text = "پرینت فرم مراجعه پیشگیرانه";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.ClientVisible = isPrintPreventiveDetailsBtnEnabled;
+                     settings.Styles.Style.BackColor = System.Drawing.Color.Green;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowPrintPreventiveDetailsBtnClick";
+                 }).GetHtml()
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12 @secondRowSizeClass">
+
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowReferToAnotherPersonBtn";
+                     settings.Text = "ارجاع به فرد دیگر";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Enabled = isReferToAnotherPersonBtnEnabled;
+                     settings.Styles.Style.BackColor = System.Drawing.Color.DarkOrange;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowReferToAnotherPersonBtnClick";
+                 }).GetHtml()
+        </div>
+        <div class="col-xs-12 @secondRowSizeClass">
+
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowReferToAnotherGroupBtn";
+                     settings.Text = "ارجاع به گروه دیگر";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Enabled = isReferToAnotherGroupBtnEnabled;
+                     settings.Styles.Style.BackColor = System.Drawing.Color.DarkOrange;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowReferToAnotherGroupBtnClick";
+                 }).GetHtml()
+        </div>
+
+        <div class="col-xs-12 @secondRowSizeClass" id="mainGridDetailRowStockWaiting">
+
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridDetailRowStockWaitingBtn";
+                settings.Text = "منتظر قطعه";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Enabled = isStockWaitingBtnEnabled;
+                settings.ClientVisible = isStockWaitingBtnEnabled;
+                settings.Styles.Style.BackColor = System.Drawing.Color.DarkOrange;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.netExpert.handleMainGridDetailRowStockWaitingBtnClick";
+            }).GetHtml()
+        </div>
+        <div class="col-xs-12 @secondRowSizeClass" id="mainGridDetailRowEndStockWaiting">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridDetailRowEndStockWaitingBtn";
+                settings.Text = "اتمام منتظر قطعه";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Enabled = isEndStockWaitingBtnEnabled;
+                settings.ClientVisible = isEndStockWaitingBtnEnabled;
+                settings.Styles.Style.BackColor = System.Drawing.Color.DarkOrange;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.netExpert.handleMainGridDetailRowEndStockWaitingBtnClick";
+            }).GetHtml()
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowCancelBtn";
+                     settings.Text = "ابطال";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Enabled = isCancelBtnEnabled;
+                     settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowCancelBtnClick";
+                 }).GetHtml()
+        </div>
+
+        @if (isAccidentalProductive && hasMachine)
+        {
+            <div class="col-xs-12 col-md-4">
+
+                @Html.DevExpress().Button(settings =>
+                     {
+                         settings.Name = "mainGridDetailRowTempFinishBtn";
+                         settings.Text = "اتمام کارنت";
+                         settings.UseSubmitBehavior = false;
+                         settings.EnableClientSideAPI = true;
+                         settings.Enabled = isFinishBtnEnabled;
+                         settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+                         settings.Width = Unit.Percentage(100);
+                         settings.ClientSideEvents.Click =
+                             "motorsazanClient.netExpert.handleMainGridDetailRowTempFinishBtnClick";
+                     }).GetHtml()
+            </div> }
+        else
+        {
+            <div class="col-xs-12 col-md-4">
+
+                @Html.DevExpress().Button(settings =>
+                     {
+                         settings.Name = "mainGridDetailRowImmediateTempFinishBtn";
+                         settings.Text = "اتمام کارنت";
+                         settings.UseSubmitBehavior = false;
+                         settings.EnableClientSideAPI = true;
+                         settings.Enabled = isFinishBtnEnabled;
+                         settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+                         settings.Width = Unit.Percentage(100);
+                         settings.ClientSideEvents.Click =
+                             "motorsazanClient.netExpert.handleMainGridDetailRowImmediateTempFinishBtnClick";
+                     }).GetHtml()
+            </div>}
+
+        <div class="col-xs-12 col-md-4">
+
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowFinalFinishBtn";
+                     settings.Text = "اتمام نهایی";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Enabled = isFinalFinishedBtnEnabled;
+                     settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowFinalFinishBtnClick";
+                 }).GetHtml()
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12 col-md-2">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridDetailRowRegistrarInfoBtn";
+                settings.Text = "مشاهده مشخصات ثبت کننده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                   "motorsazanClient.netExpert.handleMainGridDetailRowRegistrarInfoBtnClick";
+            }).GetHtml()
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridDetailRowPerformedOperationsBtn";
+                settings.Text = "مشاهده عملیات انجام شده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                   "motorsazanClient.netExpert.handleMainGridDetailRowPerformedOperationsBtnClick";
+            }).GetHtml()
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowConsumingMaterialsBtn";
+                     settings.Text = "مشاهده مواد مصرفی";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowConsumingMaterialsBtnClick";
+                 }).GetHtml()
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridDetailRowReferralsHistoryBtn";
+                settings.Text = "مشاهده تاریخچه ارجاعات";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.netExpert.handleMainGridDetailRowReferralsHistoryBtnClick";
+            }).GetHtml()
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "mainGridWorkOrderStatusHistoryBtn";
+                settings.Text = "تاریخچه وضعیت های سفارشکار";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.netExpert.handleMainGridWorkOrderStatusHistoryBtnClick";
+            }).GetHtml()
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+            @Html.DevExpress().Button(settings =>
+                 {
+                     settings.Name = "mainGridDetailRowShowStockBtn";
+                     settings.Text = "مشاهده قطعه";
+                     settings.UseSubmitBehavior = false;
+                     settings.EnableClientSideAPI = true;
+                     settings.Width = Unit.Percentage(100);
+                     settings.ClientSideEvents.Click =
+                         "motorsazanClient.netExpert.handleMainGridDetailRowShowStockBtnClick";
+                 }).GetHtml()
+        </div>
+    </div>
+</div>

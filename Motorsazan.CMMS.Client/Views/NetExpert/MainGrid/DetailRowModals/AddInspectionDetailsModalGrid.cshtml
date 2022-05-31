@@ -1,0 +1,112 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetActionOrDelayListByWorkOrderId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "addInspectionModalGrid";
+    settings.CallbackRouteValues = new { Controller = "NetExpert", Action = "AddInspectionDetailsModalGrid" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.netExpert.handleInspectionGridBeginCallback";
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "ActionOrDelayListId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ActionTypeName";
+        column.Caption = "نوع عملیت";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "EmployeeName";
+        column.Caption = "کارشناس";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DurationInMinute";
+        column.Caption = "زمان";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ShamsiStartDate";
+        column.Caption = "تاریخ شروع";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StartTime";
+        column.Caption = "زمان شروع";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ShamsiEndDate";
+        column.Caption = "تاریخ انجام";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "EndTime";
+        column.Caption = "زمان پایان";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Description";
+        column.Caption = "شرح عملیات";
+    });
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsSearchPanel.Visible = false;
+    settings.SettingsSearchPanel.EditorNullTextDisplayMode = NullTextDisplayMode.Unfocused;
+    settings.SettingsSearchPanel.AllowTextInputTimer = false;
+    settings.SettingsText.SearchPanelEditorNullText = "عبارت مورد نظر جهت جستجو در لیست را وارد کنید";
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowDeleteButton = false;
+    settings.CommandColumn.ShowEditButton = false;
+    settings.CommandColumn.ShowNewButton = false;
+    settings.CommandColumn.ShowNewButtonInHeader = false;
+    settings.CommandColumn.Caption = "عملیات";
+    settings.CommandColumn.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;
+    settings.CommandColumn.VisibleIndex = 1000;
+    settings.ClientSideEvents.CustomButtonClick = "motorsazanClient.netExpert.handleInspectionGridCustomBtnClick";
+
+    var removeCustomButton = new GridViewCommandColumnCustomButton() { ID = "inspectionItemGridRemoveCustomBtn", Text = "حذف" };
+    removeCustomButton.Styles.Style.CssClass = "app__form-grid-mini-btn app__form-grid-mini-btn--danger";
+    settings.CommandColumn.CustomButtons.Add(removeCustomButton);
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()

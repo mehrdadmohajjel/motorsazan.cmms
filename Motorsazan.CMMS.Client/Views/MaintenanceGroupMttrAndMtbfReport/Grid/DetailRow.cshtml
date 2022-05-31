@@ -1,0 +1,115 @@
+﻿<div class="row">
+    <div class="col-xs-6 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "CostReportBTN";
+            settings.Text = "گزارش هزینه کرد";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.maintenanceGroupMttrAndMtbfReport.showCostReportPopUp";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-6 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "statisticReportBTN";
+            settings.Text = "گزارش عملکرد";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.maintenanceGroupMttrAndMtbfReport.statisticReportPopup";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-6 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "stockReportBTN";
+            settings.Text = "گزارش قطعات انبار";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.maintenanceGroupMttrAndMtbfReport.stockReportPopUp";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-6 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "mttrChartBTN";
+            settings.Text = "نمودار مقایسه ایMTTR";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.maintenanceGroupMttrAndMtbfReport.mttrChartPopup";
+        }).GetHtml()
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "mtbfChartReportBTN";
+            settings.Text = "نمودار مقایسه ای MTBF";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.maintenanceGroupMttrAndMtbfReport.mtbfChartReportPopUp";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-6 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "oeeChartBTN";
+            settings.Text = "نمودار مقایسه ای OEE";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.maintenanceGroupMttrAndMtbfReport.oeeChartReportPopup";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-6 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "workOrderReportBTN";
+            settings.Text = "لیست سفارشکارهای دستگاه";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.maintenanceGroupMttrAndMtbfReport.workOrderReportPopUp";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "oeeReportBTN";
+            settings.Text = "چاپ گزارش OEE";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.maintenanceGroupMttrAndMtbfReport.oeeReportPopup";
+        }).GetHtml()
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "faultReportBTN";
+            settings.Text = "مشاهده خطاهای رخ داده ";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.maintenanceGroupMttrAndMtbfReport.faultReportPopUp";
+        }).GetHtml()
+    </div>
+
+</div>

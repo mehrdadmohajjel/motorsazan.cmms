@@ -1,0 +1,92 @@
+﻿@using System.Drawing
+@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetWorkOrderByWorkOrderId
+@{
+    var isPreventive =(bool) ViewData["isPreventive"];
+
+}
+<style>
+    .detail-btn {
+        padding: 8px 4px;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12 col-md-2 detail-btn">
+
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "EmPrintBtn";
+       settings.Text = "پرینت فرم مراجعه";
+       settings.Width = Unit.Percentage(100);
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.schedulerWorkOrderPrintReport.showAccidentalPrintModal";
+       settings.ClientEnabled = !isPreventive;
+   }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-2 detail-btn">
+
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "PmPrintBtn";
+       settings.Text = "پرینت فرم پیشگیرانه";
+       settings.Width = Unit.Percentage(100);
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.ClientSideEvents.Click =
+           "motorsazanClient.schedulerWorkOrderPrintReport.showPreventivePrintModal";
+       settings.ClientEnabled = isPreventive;
+   }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-2 detail-btn">
+
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "DetailRowRegistrarInfoBtn";
+            settings.Text = "مشاهده مشخصات ثبت کننده";
+            settings.Width = Unit.Percentage(100);
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.schedulerWorkOrderPrintReport.showRegisterInfoModal";
+        }).GetHtml()
+    </div>
+
+    <div class="col-xs-12 col-md-2 detail-btn">
+
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "DetailRowShowActionHistoryBtn";
+            settings.Text = "مشاهده عملیات انجام شده";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.schedulerWorkOrderPrintReport.showActionHistoryModal";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-2 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "DetailRowUsedToolsBtn";
+            settings.Text = "مشاهده مواد مصرف شده";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.schedulerWorkOrderPrintReport.showUsedToolsModal";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-2 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "DetailRowRefrenceHistoryBtn";
+            settings.Text = "تاریخچه ارجاعات";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.schedulerWorkOrderPrintReport.showHistoryModal";
+        }).GetHtml()
+    </div>
+</div>

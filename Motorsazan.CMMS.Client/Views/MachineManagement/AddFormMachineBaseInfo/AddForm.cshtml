@@ -1,0 +1,40 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetMachineInfoByMachineId
+@if(Model != null)
+{
+<div class="agendum__infos">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <span class="agendum__infos__title">نام ماشین :</span>
+            @Model.MachineName
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <span class="agendum__infos__title">کد دستگاه: </span>
+            @Model.OldMachineCode
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <span class="agendum__infos__title">محل استقرار :</span>
+            @Model.MachineLocationTitle
+        </div>
+    </div>
+</div>
+}
+<div class="tab-header">
+    <button class="tab-header__btn tab-header__btn--active"
+            id="machineProducerTabBtn">
+        ثبت اطلاعات سازنده دستگاه
+    </button>
+
+    <button class="tab-header__btn "
+            id="electricalTabBtn">
+        مشخصات الکتریکی
+    </button>
+    <button class="tab-header__btn"
+            id="oilTabBtn">
+        مشخصات روغن ها و روانکارها
+    </button>
+
+</div>
+<div class="tab-content-wrapper" id="baseinfoTabsContentWrapper" style="padding-top: 15px;">
+
+    @{ Html.RenderAction("MachineProducerTabContent", "MachineManagement", new {MachineId = Model.MachineId});}
+</div>

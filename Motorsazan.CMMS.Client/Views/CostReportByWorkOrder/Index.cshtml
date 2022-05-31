@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "گزارش هزینه به تفکیک سفارشکار";
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/CostReportByWorkOrder/Js/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <section class="app__section">
+
+            <div class="app__section__header">
+                لیست
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+
+            <div class="app__section__body">
+
+                @{ Html.RenderPartial("~/Views/CostReportByWorkOrder/FilterForm/SearchTypeSelection.cshtml"); }
+                <div id="selectByDepartment">
+                    @{ Html.RenderPartial("~/Views/CostReportByWorkOrder/FilterForm/SelectByDepartment/SelectByDepartment.cshtml"); }
+                </div>
+
+                <div id="selectByWorkOrder">
+                    @{ Html.RenderPartial("~/Views/CostReportByWorkOrder/FilterForm/SelectByWorkOrder/SelectByWorkOrder.cshtml"); }
+                </div>
+
+                <form id="gridParent" class="app__grid-wrapper">
+                    @{ Html.RenderPartial("~/Views/CostReportByWorkOrder/Grid/Grid.cshtml"); }
+                </form>
+
+            </div>
+
+        </section>
+    </div>
+</div>

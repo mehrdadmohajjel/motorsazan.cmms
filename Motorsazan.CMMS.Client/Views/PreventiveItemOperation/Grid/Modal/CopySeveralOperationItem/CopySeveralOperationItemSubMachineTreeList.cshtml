@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Motorsazan.CMMS.Shared.Models.Output.MachineCheckList.OutputGetHierarchicalMachineListByDepartmentId>
+
+
+@Html.DevExpress().TreeList(
+    settings =>
+    {
+        settings.Name = "copySeveralOperationItemSubMachineTreeListModal";
+        settings.CallbackRouteValues = new { Controller = "PreventiveItemOperation", Action = "CopySeveralOperationItemToOtherMachineModalTreeList" };
+        settings.Width = Unit.Percentage(100);
+
+        settings.KeyFieldName = "MachineId";
+        settings.ParentFieldName = "MachineParentId";
+
+        settings.ClientSideEvents.BeginCallback = "motorsazanClient.preventiveItemOperation.handleCopySeveralOperationItemSubMachineTreeListModalBeginCallback";
+        settings.SettingsPager.Visible = true;
+        settings.SettingsBehavior.AllowFocusedNode = true;
+
+        settings.ClientSideEvents.FocusedNodeChanged = "motorsazanClient.preventiveItemOperation.getCopySeveralOperationItemSubMachineTreeListModalSelectedNode";
+
+        settings.Theme = "Aqua";
+        settings.Styles.Header.CssClass = "tree-header-style";
+
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+
+        settings.SettingsBehavior.FocusNodeOnLoad = false;
+
+        settings.Columns.Add(m =>
+        {
+            m.FieldName = "MachineName";
+            m.Caption = "نام دستگاه";
+            m.Width = Unit.Percentage(50);
+
+            m.CellStyle.Wrap = DefaultBoolean.True;
+
+            m.ColumnType = MVCxTreeListColumnType.TextBox;
+            var textProperties = m.PropertiesEdit as TextEditProperties;
+            textProperties.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        });
+        settings.Columns.Add(m =>
+        {
+            m.FieldName = "OldMachineCode";
+            m.Caption = "کد دستگاه";
+            m.Width = Unit.Percentage(30);
+
+            m.ColumnType = MVCxTreeListColumnType.TextBox;
+            var textProperties = m.PropertiesEdit as TextEditProperties;
+            textProperties.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        });
+
+        settings.Columns.Add(m =>
+        {
+            m.FieldName = "OperationCode";
+            m.Caption = "OP";
+            m.Width = Unit.Percentage(20);
+
+            m.ColumnType = MVCxTreeListColumnType.TextBox;
+            var textProperties = m.PropertiesEdit as TextEditProperties;
+            textProperties.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        });
+
+        settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+        settings.PreRender = (sender, e) =>
+        {
+            MVCxTreeList treeList = (MVCxTreeList)sender;
+            treeList.ExpandAll();
+        };
+
+        
+    }).Bind(Model).GetHtml()

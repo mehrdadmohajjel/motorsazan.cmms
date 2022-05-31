@@ -1,0 +1,23 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetWorkOrderStatusTypeList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormStatusTypeCombo";
+        settings.CallbackRouteValues = new {Controller = "DailyRepairsReports", Action = "GetProductiveWorkOrderAllStatusList"};
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "وضعیت را انتخاب نمایید";
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+        settings.SelectedIndex = -1;
+
+        settings.Properties.ValueField = "WorkOrderStatusTypeId";
+        settings.Properties.TextField = "TypeName";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.dailyRepairsReports.handleFilterFormStatusTypeComboSelectedIndexChanged";
+    }).BindList(Model).GetHtml()

@@ -1,0 +1,10 @@
+﻿@model Motorsazan.ITTicketing.Shared.Models.Input.TicketManagement.InputGetITTicketUsedMaterialListByTicketID
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        @{ Html.RenderPartial("~/Views/TicketManagement/TicketsGrid/ConsumingMaterialsAddForm.cshtml"); }
+        <form id="consumingMaterialsGridParent" class="app__grid-wrapper">
+            @{ Html.RenderAction("ConsumingMaterialsGrid", "TicketManagement", Model);}
+        </form>
+    </div>
+</div>

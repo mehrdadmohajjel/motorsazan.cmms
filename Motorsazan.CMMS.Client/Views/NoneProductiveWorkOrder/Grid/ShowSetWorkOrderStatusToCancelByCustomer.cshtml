@@ -1,0 +1,34 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                دلیل ابطال
+            </label>
+            <div id="cancelDescriptionParent">
+                @Html.DevExpress().Memo(settings =>
+                {
+                    settings.Name = "cancelDescription";
+                    settings.Properties.NullText = "دلیل ابطال";
+                }).GetHtml()
+
+            </div>
+            <div class="app__form-error app__hide" id="cancelDescriptionError">
+                دلیل ابطال وارد نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12 filter-form__action-wrapper">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "setCancelBtn";
+            settings.Text = "ثبت";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Styles.CssPostfix = "add-form__btn";
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.noneProductiveWorkOrder.setWorkOrderStatusToCancelByCustomer";
+        }).GetHtml()
+    </div>
+</div>

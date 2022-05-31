@@ -1,0 +1,35 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetMainMachineListBySubDepartmentId[]
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormMachineListCombo";
+        settings.CallbackRouteValues = new {Controller = "SparePartReport", Action = "FilterFormGetMachineList" };
+
+        settings.Properties.ClientSideEvents.BeginCallback =
+            "motorsazanClient.sparePartReport.handleFilterFormMachineListComboBeginCallback";
+
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نام ماشین را وارد کنید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 200;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+
+        settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "MachineId";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.Columns.Add("MachineName", "نام دستگاه").Width = Unit.Pixel(250);
+        settings.Properties.Columns.Add("OldMachineCode", "کد دستگاه").Width = Unit.Pixel(80);
+
+        settings.Properties.TextFormatString = "{0}-{1}";
+
+        settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+        settings.Properties.PopupHorizontalAlign = PopupHorizontalAlign.RightSides;
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.sparePartReport.handleFilterFormMachineListComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

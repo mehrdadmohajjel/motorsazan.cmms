@@ -1,0 +1,31 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetDelayTypeListByActivity[]
+
+@Html.DevExpress().ComboBox(
+settings =>
+{
+    settings.Name = "addOperationsModalDelayReasonCombo";
+    settings.CallbackRouteValues = new { Controller = "NetExpert", Action = "AddOperationsModalDelayReasonCombo" };
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Properties.NullText = "دلیل تاخیر را انتخاب کنید";
+
+    settings.SelectedIndex = -1;
+
+    settings.Properties.CallbackPageSize = 100;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.IncrementalFilteringDelay = 200;
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+    settings.Properties.ValueField = "DelayTypeId";
+    settings.Properties.ValueType = typeof(long);
+    
+    settings.Properties.TextFormatString = @"{0} - {1}";
+
+    settings.Properties.Columns.Add("DelayCode", "کد تاخیر").Width = Unit.Percentage(20);
+    settings.Properties.Columns.Add("DelayDescription", "تاخیر").Width = Unit.Percentage(80);
+
+    settings.Properties.ClientSideEvents.SelectedIndexChanged =
+        "motorsazanClient.netExpert.handleAddOperationsModalDelayReasonComboSelectedIndexChange";
+
+}).BindList(Model).GetHtml()

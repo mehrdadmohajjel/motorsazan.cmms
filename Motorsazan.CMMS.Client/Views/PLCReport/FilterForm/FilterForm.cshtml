@@ -1,0 +1,111 @@
+﻿<div class="filter-form ">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 filter-form__action-wrapper">
+            <label class="app__form-label" style="color:red">
+                *توجه* در صورت زدن این دکمه حداقل باید 10 دقبقه صبر کنید تا واکشی داده ها انجام شود و نتایج بروزرسانی شوند
+            </label>
+        </div>
+        <div class="col-xs-12 col-md-3 filter-form__action-wrapper center-block" id="fetchDataBtnParent">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "fetchDataBtn";
+                settings.Text = "واکشی آخرین دیتای PLC";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.pLCReport.handleRunPlcJobButtonClick";
+            }).GetHtml()
+
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="filter-form ">
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="app__form-item">
+                <label class="app__form-label" style="font-size:14px">
+                    ابتدا "دستگاه" و "تاریخ" را وارد نمایید.
+                    سپس متناسب با نیاز، دکمه ی مورد نظر را انتخاب کنید.
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-12 col-md-4" id="FilterFormMachineComboDesign">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب ماشین
+                </label>
+                <div id="filterFormMachineComboParent">
+                    @{ Html.RenderAction("FilterFormMachineCombo", "PLCReport"); }
+                </div>
+                <div class="app__form-error app__hide" id="filterFormMachineComboError">
+                    ماشین انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 col-md-4" id="filterFormDateTypeComboParentDesign">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    بازه زمانی
+                </label>
+                <div id="filterFormDateTypeComboParent">
+                    @{ Html.RenderPartial("~/Views/PLCReport/FilterForm/FilterFormDateTypeCombo.cshtml"); }
+                </div>
+                <div class="app__form-error app__hide"
+                     id="filterFormDateTypeComboError">
+                    بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4 app__hide" id="filterFormSpecialDateColumn">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            از تاریخ
+                        </label>
+                        <input type="text" class="app__form-datepicker"
+                               id="filterFormStartDate"
+                               placeholder="تاریخ را انتخاب نمایید"
+                               data-mddatetimepicker="true"
+                               data-englishnumber="true"
+                               data-targetdateselector="#filterFormStartDate" />
+                        <div class="app__form-error app__hide"
+                             id="filterFormStartDateError">
+                            تاریخ شروع انتخاب نشده است
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            تا تاریخ
+                        </label>
+                        <input type="text" class="app__form-datepicker"
+                               id="filterFormEndDate"
+                               placeholder="تاریخ را انتخاب نمایید"
+                               data-mddatetimepicker="true"
+                               data-englishnumber="true"
+                               data-targetdateselector="#filterFormEndDate" />
+                        <div class="app__form-error app__hide"
+                             id="filterFormEndDateError">
+                            تاریخ پایان انتخاب نشده است
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

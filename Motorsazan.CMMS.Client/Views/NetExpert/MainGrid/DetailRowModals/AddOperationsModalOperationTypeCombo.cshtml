@@ -1,0 +1,25 @@
+﻿@using Motorsazan.CMMS.Shared.Enums
+@Html.DevExpress().ComboBox(
+settings =>
+{
+    settings.Name = "addOperationsModalOperationTypeCombo";
+    settings.CallbackRouteValues = new { Controller = "NetExpert", Action = "AddOperationsModalOperationTypeCombo" };
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Properties.NullText = "نوع فعالیت را انتخاب کنید";
+
+    settings.SelectedIndex = -1;
+
+    settings.Properties.CallbackPageSize = 100;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.IncrementalFilteringDelay = 200;
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+    settings.Properties.Items.Add("فعالیت", OperationType.Activity);
+    settings.Properties.Items.Add("تاخیر", OperationType.Delay);
+
+    settings.Properties.ClientSideEvents.SelectedIndexChanged =
+        "motorsazanClient.netExpert.handleAddOperationsModalOperationTypeComboSelectedIndexChange";
+
+}).BindList(Model).GetHtml()

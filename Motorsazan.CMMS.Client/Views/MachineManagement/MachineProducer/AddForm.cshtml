@@ -1,0 +1,81 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetMachineBuiltInfo
+@{
+    bool isEnable = Model != null;
+}
+
+<div class="row">
+
+    <div class="col-xs-12 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                تاریخ ورود به کشور
+            </label>
+            <input type="text" class="app__form-datepicker"
+                   id="addFormImportDate"
+                   placeholder="تاریخ را انتخاب نمایید"
+                   value=@Model.ImportDate
+                   data-mddatetimepicker="true"
+                   data-englishnumber="true"
+                   data-targetdateselector="#addFormImportDate" />
+            <div class="app__form-error app__hide"
+                 id="addFormImportDateError">
+                تاریخ  انتخاب نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                کشور سازنده
+            </label>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "addFormProducerCountryNameTextBox";
+                settings.Properties.NullText = "نام کشور تولید کننده را وارد نمایید";
+                settings.Text = Model.CountryName;
+                settings.Properties.ClientSideEvents.ValueChanged =
+                    "motorsazanClient.machineManagement.handleAddFormProducerCountryNameTextBoxChanged";
+
+            }).GetHtml()
+            <div class="app__form-error app__hide" id="addFormProducerCountryNameTextBoxError">
+                نام کشور تولید کننده وارد نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                سال ساخت
+            </label>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "addFormMachineBuiltYearTextBox";
+                settings.Properties.NullText = "سال ساخت را وارد نمایید";
+                settings.Text = Model.BuiltYear;
+                settings.Properties.ClientSideEvents.ValueChanged =
+                    "motorsazanClient.machineManagement.handleAddFormMachineBuiltYearTextBoxChanged";
+
+
+            }).GetHtml()
+            <div class="app__form-error app__hide" id="addFormMachineBuiltYearTextBoxError">
+                سال ساخت وارد نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-md-3">
+        <div style="padding-top: 37px;">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "registerMachineBuiltInfoBtn";
+                settings.Text = "ثبت ";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.ClientEnabled = isEnable;
+                settings.Width = Unit.Pixel(160);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.registerMachineBuiltInfo";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

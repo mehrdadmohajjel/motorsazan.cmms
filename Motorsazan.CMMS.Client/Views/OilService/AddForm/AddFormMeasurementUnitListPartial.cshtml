@@ -1,0 +1,26 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.OilService.OutputGetMeasurementUnitList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormMeasurementUnitListCombo";
+        settings.CallbackRouteValues = new {Controller = "OilService", Action = "AddFormMeasurementUnitList"};
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = " انتخاب نمایید";
+        settings.SelectedIndex = 0;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.Properties.DropDownWidth = Unit.Pixel(400);
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+        settings.SelectedIndex = -1;
+
+        settings.Properties.ValueField = "MeasurementUnitId";
+        settings.Properties.ValueType = typeof(int);
+
+        settings.Properties.TextField = "MeasurementUnitShowName";
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.oilService.handleAddFormMeasurementUnitListComboIndexChange";
+    }).BindList(Model).GetHtml()

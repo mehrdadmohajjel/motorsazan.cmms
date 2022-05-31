@@ -1,0 +1,75 @@
+﻿@{
+    var machineId = (long)ViewData["MachineTopParentId"];
+}
+
+<div class="filter-form">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-6" id="addFormDepartmentListComboDesign">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب امور
+                </label>
+                <div id="addFormDepartmentListComboParent">
+                    @{ Html.RenderAction(actionName: "FilterDepartmentCombo", controllerName: "MachineManagement"); }
+                </div>
+                <div class="app__form-error app__hide" id="addFormDepartmentListComboError">
+                    امور انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6" id="addFormSubDepartmentListComboDesign">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب خط
+                </label>
+                <div id="addFormSubDepartmentListComboParent">
+                    @{ Html.RenderAction(actionName: "FilterSubDepartmentCombo", controllerName: "MachineManagement"); }
+                </div>
+                <div class="app__form-error app__hide" id="addFormSubDepartmentListComboError">
+                    خط انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 col-md-6" id="addFormEmployeeComboDesign">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب فرد
+                </label>
+                <div id="addFormEmployeeComboParent">
+                    @{ Html.RenderPartial("~/Views/MachineManagement/AddLocation/AddEmployeeCombo.cshtml"); }
+                </div>
+                <div class="app__form-error app__hide" id="addFormEmployeeComboError">
+                    فرد انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3 filter-form__action-wrapper pull-left">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "addMachineToLineBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.machineManagement.handleAddFormMachineToLocationSaveBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <form class="app__grid-wrapper" id="machinesLocationTableParent">
+            @{
+                Html.RenderAction("MachineLocationTable", "MachineManagement", new { MachineId = machineId });
+            }
+        </form>
+    </div>
+</div>

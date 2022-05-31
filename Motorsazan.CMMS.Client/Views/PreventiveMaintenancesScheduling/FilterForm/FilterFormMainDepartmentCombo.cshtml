@@ -1,0 +1,25 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetAllMainDepartment[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormMainDepartmentCombo";
+        settings.CallbackRouteValues = new { Controller = "PreventiveMaintenancesScheduling", Action = "FilterFormMainDepartmentCombo" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "امور را وارد نمایید";
+        settings.SelectedIndex = 0;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "DepartmentId";
+        settings.Properties.ValueType = typeof(int);
+
+        settings.Properties.Columns.Add("Title", "نام امور");
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.preventiveMaintenancesScheduling.handleFilterFormMainDepartmentComboSelectedIndexChange";
+
+    }).BindList(Model).GetHtml()

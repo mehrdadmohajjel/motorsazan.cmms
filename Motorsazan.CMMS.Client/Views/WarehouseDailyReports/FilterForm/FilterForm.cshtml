@@ -1,0 +1,66 @@
+﻿<div class="filter-form">
+    <div class="row ">
+
+        <div class="col-xs-12 col-md-4" id="filterFormReportsTypeComboParent">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    نوع فیلتر گزارش
+                </label>
+                @{ Html.RenderPartial("~/Views/WarehouseDailyReports/FilterForm/FilterFormReportsTypeCombo.cshtml"); }
+                <div class="app__form-error app__hide"
+                     id="filterFormReportsTypeComboError">
+                    نوع فیلتر انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item  app__hide" id="filterFormPeriodStartDatePickerParent">
+                <label class="app__form-label">
+                    از تاریخ
+                </label>
+                <input type="text" class="app__form-datepicker"
+                       id="filterFormPeriodStartDatePicker"
+                       placeholder="از تاریخ"
+                       data-mddatetimepicker="true"
+                       data-englishnumber="true"
+                       data-targetdateselector="#filterFormPeriodStartDatePicker"/>
+                <div class="app__form-error app__hide" id="filterFormPeriodStartDatePickerError">
+                    شروع بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="app__form-item  app__hide" id="filterFormPeriodEndDatePickerParent">
+                <label class="app__form-label">
+                    تا تاریخ
+                </label>
+                <input type="text" class="app__form-datepicker"
+                       id="filterFormPeriodEndDatePicker"
+                       placeholder="تا تاریخ"
+                       data-mddatetimepicker="true"
+                       data-englishnumber="true"
+                       data-targetdateselector="#filterFormPeriodEndDatePicker"/>
+                <div class="app__form-error app__hide" id="filterFormPeriodEndDatePickerError">
+                    پایان بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-5 col-md-2 pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormSearchBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.warehousedailyreports.handleFilterFormSearchBtnClick";
+            }).GetHtml()
+        </div>
+
+    </div>
+</div>

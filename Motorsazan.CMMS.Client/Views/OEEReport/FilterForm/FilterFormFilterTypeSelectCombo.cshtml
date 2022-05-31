@@ -1,0 +1,22 @@
+﻿@using Motorsazan.CMMS.Shared.Enums
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormFilterTypeSelectCombo";
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نوع فیلتر را وارد کنید";
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.Items.Add("انتخاب با دستگاه", OEEReportFilterType.SelectWithMachine);
+        settings.Properties.Items.Add("انتخاب با دپارتمان", OEEReportFilterType.SelectWithDepartment);
+        settings.Properties.Items.Add("انتخاب کلی", OEEReportFilterType.SpecialPeriodDate);
+
+        settings.SelectedIndex = 0;
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.oEEReport.handleFilterFormFilterTypeSelectComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

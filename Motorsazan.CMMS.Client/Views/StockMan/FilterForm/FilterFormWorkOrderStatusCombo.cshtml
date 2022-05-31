@@ -1,0 +1,31 @@
+﻿@using Motorsazan.CMMS.Shared.Enums
+
+@Html.DevExpress().ComboBox(settings =>
+    {
+        settings.Name = "filterFormWorkOrderStatusCombo";
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "وضیعت سفارش کار";
+        settings.SelectedIndex = 0;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.Properties.DropDownWidth = Unit.Pixel(400);
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+
+        settings.Properties.ValueField = "Id";
+        settings.Properties.ValueType = typeof(int);
+        settings.Properties.TextField = "Text";
+
+        settings.Properties.Items.Add("همه سفارشکارها",WorkOrderStatus.AllWorkOrders);
+        settings.Properties.Items.Add("سفارشکارهای جدید",WorkOrderStatus.NewWorkOrders);
+        settings.Properties.Items.Add("سفارشکارهای دارای حواله جدید",WorkOrderStatus.WorkOrderWithNewReceipt);
+        settings.Properties.Items.Add("سفارشکارهای دارای کالای بدون حواله",WorkOrderStatus.WithoutReceiptWorkOrders);
+        settings.Properties.Items.Add("سفارشکارهای تکمیل شده",WorkOrderStatus.CompletedWorkOrders);
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.stockMan.handleFilterFormWorkOrderStatusComboChange";
+
+    }).GetHtml()
+

@@ -1,0 +1,11 @@
+﻿
+@model dynamic
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        @{ Html.RenderPartial("~/Views/NetExpert/MainGrid/DetailRowModals/StockWaitingModalFilterForm.cshtml"); }
+        <form id="stockWaitingModalGridParent" class="app__grid-wrapper">
+            @{ Html.RenderAction("StockWaitingModalGrid", "NetExpert"); }
+        </form>
+    </div>
+</div>

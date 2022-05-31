@@ -1,0 +1,22 @@
+﻿
+#helpFormDesign {
+    display: block;
+    margin-left: 75%;
+    margin-right: 25%;
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 8px;
+
+    #helpFormBtn {
+        background-color: red;
+        color: white;
+        border-radius: 25px;
+    }
+}
+
+#helpFormDesign {
+    #helpFormBtn:hover {
+        background-color: rgba(255, 0, 0, 0.70);
+        color: white;
+    }
+}

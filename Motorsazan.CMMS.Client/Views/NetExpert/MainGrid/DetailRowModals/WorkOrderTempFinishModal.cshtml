@@ -1,0 +1,56 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                گروه تعمیراتی:
+            </label>
+            @{ Html.RenderAction("WorkOrderTempFinishModalMaintenanceGroupCombo", "NetExpert"); }
+            <div class="app__form-error app__hide" id="workOrderTempFinishModalMaintenanceGroupComboError">
+                گروه تعمیراتی انتخاب نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب کد خطا:
+            </label>
+            <div id="workOrderTempFinishModalOperationItemComboParent">
+                @{ Html.RenderPartial("~/Views/NetExpert/MainGrid/DetailRowModals/WorkOrderTempFinishModalOperationItemCombo.cshtml"); }
+            </div>
+            <div class="app__form-error app__hide" id="workOrderTempFinishModalOperationItemComboError">
+                انتخاب کد خطا انتخاب نشده است
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="app__form-item">
+    <label class="app__form-label">
+        شرح علت ریشه ای ‌
+    </label>
+    @Html.DevExpress().Memo(settings =>
+    {
+        settings.Name = "workOrderTempFinishModalDescriptionMemo";
+        settings.Properties.NullText = " شرح علت ریشه ای را وارد نمایید";
+        settings.Properties.ClientSideEvents.KeyUp =
+            "motorsazanClient.netExpert.handleWorkOrderTempFinishModalDescriptionMemoKeyUp";
+    }).GetHtml()
+    <div class="app__form-error app__hide" id="workOrderTempFinishModalDescriptionMemoError">
+        شرح علت ریشه ای وارد نشده است
+    </div>
+</div>
+
+<div class="app__form-item pull-left app__form-item--action">
+    @Html.DevExpress().Button(settings =>
+    {
+        settings.Name = "workOrderCancelModalCancelBtn";
+        settings.Text = "اتمام کارنت";
+        settings.UseSubmitBehavior = false;
+        settings.EnableClientSideAPI = true;
+        settings.Styles.CssPostfix = "filter-form__btn";
+        settings.Styles.Style.BackColor = System.Drawing.Color.Red;
+        settings.ClientSideEvents.Click =
+            "motorsazanClient.netExpert.handleWorkOrderTempFinishModalTempFinishBtnClick";
+    }).GetHtml()
+</div>

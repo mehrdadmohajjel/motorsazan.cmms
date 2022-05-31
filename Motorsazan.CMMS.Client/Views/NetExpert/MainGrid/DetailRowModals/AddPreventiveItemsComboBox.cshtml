@@ -1,0 +1,40 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetPreventiveOperationItemListByWorkOrderId[]
+
+@Html.DevExpress().DropDownEdit(settings =>
+{
+    settings.Name = "itemCheckComboBox";
+    settings.SetDropDownWindowTemplateContent(c =>
+    {
+        @Html.DevExpress().ListBox(listBoxSettings =>
+        {
+            listBoxSettings.Name = "addPreventiveItemsComboBox";
+            listBoxSettings.CallbackRouteValues = new { Controller = "NetExpert", Action = "AddPreventiveItemsComboBox" };
+            listBoxSettings.ControlStyle.Border.BorderWidth = 0;
+            listBoxSettings.ControlStyle.BorderBottom.BorderWidth = 1;
+            listBoxSettings.Height = Unit.Pixel(200);
+            listBoxSettings.Width = Unit.Percentage(100);
+
+            listBoxSettings.Properties.EnableSelectAll = true;
+            listBoxSettings.Properties.SelectAllText = "انتخاب همه موارد";
+            listBoxSettings.Properties.FilteringSettings.ShowSearchUI = true;
+            listBoxSettings.Properties.SelectionMode = ListEditSelectionMode.CheckColumn;
+
+            listBoxSettings.Properties.FilteringSettings.EditorNullText = "جستوجوی پرسنل";
+
+            listBoxSettings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+            listBoxSettings.Properties.ValueField = "PMSchedulingInfoId";
+            listBoxSettings.Properties.TextField = "OperationItemName";
+            listBoxSettings.Properties.ValueType = typeof(long);
+
+            listBoxSettings.Properties.Columns.Add("OperationItemName", "عنوان آیتم").Width = Unit.Percentage(80);
+            listBoxSettings.Properties.Columns.Add("PersonHour", "زمان پیشنهادی").Width = Unit.Percentage(20);
+            
+
+            listBoxSettings.Properties.ClientSideEvents.SelectedIndexChanged =
+                "motorsazanClient.netExpert.handleAddOperationsModalOperationItemCheckComboBoxSelectedIndexChange";
+
+        }).BindList(Model).GetHtml();
+    });
+    settings.Properties.AnimationType = AnimationType.None;
+}).GetHtml()

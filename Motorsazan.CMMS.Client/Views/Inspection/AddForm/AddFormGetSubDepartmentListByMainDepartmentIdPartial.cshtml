@@ -1,0 +1,30 @@
+﻿
+@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetSubDepartmentListByMainDepartmentId[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormGetSubDepartmentListCombo";
+        settings.CallbackRouteValues = new { Controller = "Inspection", Action = "AddFormGetSubDepartmentListByMainDepartmentIdPartial" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نوع توقف را انتخاب نمایید";
+        settings.SelectedIndex = 0;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.Properties.DropDownWidth = Unit.Percentage(100);
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+        settings.SelectedIndex = -1;
+
+        settings.Properties.ValueField = "DepartmentID";
+        settings.Properties.TextField = "Title";
+        settings.Properties.Columns.Add("Title", "عنوان");
+
+        settings.Properties.ValueType = typeof(int);
+        settings.Properties.ClientSideEvents.BeginCallback = "motorsazanClient.inspection.handleFilterFormSubDepartmentComboBeginCallback";
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "motorsazanClient.inspection.handleFilterFormGetSubDepartmentListComboSelectedIndexChange";
+
+    }).BindList(Model).GetHtml()
+
+

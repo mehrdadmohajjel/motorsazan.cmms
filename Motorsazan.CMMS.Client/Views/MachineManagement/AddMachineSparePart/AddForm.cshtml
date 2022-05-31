@@ -1,0 +1,150 @@
+﻿<section class="app__section">
+    <div id="addFormSparePartFormDesign" class="app__section__body">
+
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <div class="app__form-item">
+                    <div id="addSparePartSubMachineTreeDesign">
+                        <label class="app__form-label">
+                            انتخاب دستگاه
+                        </label>
+                        <div id="addSparePartSubMachineTreeParent">
+                            @{
+                                var machineId = (long) ViewData["MachineTopParentId"];
+                                Html.RenderAction("AddSparePartSubMachineTreeList", "MachineManagement", new {MachineTopParentId = machineId});
+                            }
+                        </div>
+                        <div class="app__form-error app__hide" id="addSparePartSubMachineTreeError">
+                            نام دستگاه وارد نشده است
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-lg-6 pull-left">
+
+                <div class="col-xs-12 col-md-12">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            انتخاب انبار
+                        </label>
+                        <div id="addFormStoreListForSparePartComboParent">
+                            @Html.Action("AddFormGetStoreListForSparePart", "MachineManagement")
+                        </div>
+                        <div class="app__form-error app__hide" id="addFormStoreListForSparePartComboError">
+                            انبار انتخاب نشده است
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-12">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            انتخاب قطعه
+                        </label>
+                        <div id="addFormStockComboParent">
+                            @{ Html.RenderAction("SundryModalStockComboByRackCode", "MachineManagement"); }
+                        </div>
+                        <div class="app__form-error app__hide" id="addFormStockComboError">
+                            قطعه انتخاب نشده است
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="app__form-item">
+                            <label class="app__form-label">
+                                درجه اهمیت
+                            </label>
+                            <div id="addStocksImportanceComboParent">
+                                @{ Html.RenderPartial("~/Views/MachineManagement/AddMachineSparePart/AddStocksImportance.cshtml"); }
+                            </div>
+                            <div class="app__form-error app__hide" id="addStocksImportanceComboError">
+                                درجه اهمیت قطعه انتخاب نشده است
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6">
+                        <div class="app__form-item">
+                            <label class="app__form-label">
+                                نوع تامین
+                            </label>
+                            <div id="addStockSupplyTypeComboParent">
+                                @{ Html.RenderPartial("~/Views/MachineManagement/AddMachineSparePart/AddStockSupplyType.cshtml"); }
+                            </div>
+                            <div class="app__form-error app__hide" id="addStockSupplyTypeComboError">
+                                نوع تامین قطعه انتخاب نشده است
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="app__form-item">
+                            <label class="app__form-label">
+                                تاریخ
+                            </label>
+                            <input type="text" class="app__form-datepicker"
+                                   id="addStocksDate"
+                                   placeholder="تاریخ را انتخاب نمایید"
+                                   data-mddatetimepicker="true"
+                                   data-englishnumber="true"
+                                   data-targetdateselector="#addStocksDate"/>
+                            <div class="app__form-error app__hide" id="addStocksDateError">
+                                تاریخ انتخاب نشده است
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6">
+                        <div class="app__form-item">
+                            <label class="app__form-label">
+                                مشخصات فنی قطعه در کاتالوگ
+                            </label>
+                            @Html.DevExpress().TextBox(settings =>
+                            {
+                                settings.Name = "addStockTechnicalCharacteristicsCatalog";
+                                settings.Properties.NullText = "مشخصات فنی قطعه";
+                                settings.Properties.ClientSideEvents.ValueChanged =
+                                    "motorsazanClient.machineManagement.handleAddStockTechnicalCharacteristicsCatalogValueChanged";
+                            }).GetHtml()
+                            <div class="app__form-error app__hide"
+                                 id="addStockTechnicalCharacteristicsCatalogError">
+                                مشخصات فنی قطعه انتخاب نشده است
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-3 pull-left">
+                        <div class="app__form-item app__form-item--action">
+                            @Html.DevExpress().Button(settings =>
+                            {
+                                settings.Name = "addDocumentSaveBtn";
+                                settings.Text = "ثبت";
+                                settings.UseSubmitBehavior = false;
+                                settings.EnableClientSideAPI = true;
+                                settings.Styles.CssPostfix = "add-form__btn";
+                                settings.Width = Unit.Percentage(100);
+                                settings.ClientSideEvents.Click =
+                                    "motorsazanClient.machineManagement.handleAddSubMachineSparePartSaveBtnClick";
+                            }).GetHtml()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="app__section__body">
+        <form class="app__grid-wrapper" id="machineSparePartDataGridParent">
+            @{ Html.RenderPartial("~/Views/MachineManagement/AddMachineSparePart/MachineSparePartGrid.cshtml"); }
+        </form>
+    </div>
+
+</section>

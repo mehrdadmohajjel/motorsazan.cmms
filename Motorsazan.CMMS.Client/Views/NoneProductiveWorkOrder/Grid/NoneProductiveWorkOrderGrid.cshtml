@@ -1,0 +1,113 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NoneProductiveWorkOrder.OutputGetNoneProductiveWorkOrderByCondition[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "NoneProductiveWorkOrderSourceGird";
+    settings.CallbackRouteValues = new { Controller = "NoneProductiveWorkOrder", Action = "NoneProductiveWorkOrderGird" };
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.noneProductiveWorkOrder.handleNoneProductiveWorkOrderGridCallbackUrl";
+    settings.ClientSideEvents.DetailRowExpanding =
+        "motorsazanClient.noneProductiveWorkOrder.setNoneProductiveWorkOrderGridFocusedRowOnExpanding";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "WorkOrderId";
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ShamsiCreationDateTime";
+        column.Caption = "تاریخ ثبت";
+        column.Width = Unit.Percentage(10);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "شماره دستورکار";
+        column.Width = Unit.Percentage(10);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StatusName";
+        column.Caption = "وضعیت";
+        column.Width = Unit.Percentage(10);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StopTypeTitle";
+        column.Caption = "نوع توقف";
+        column.Width = Unit.Percentage(15);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MaintenanceGroupName";
+        column.Caption = "گروه تعمیراتی";
+        column.Width = Unit.Percentage(15);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderTypeTitle";
+        column.Caption = "نوع دستورکار";
+        column.Width = Unit.Percentage(10);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Description";
+        column.HeaderStyle.Wrap = DefaultBoolean.True;
+        column.CellStyle.Wrap = DefaultBoolean.True;
+        column.Caption = "توضیحات";
+        column.Width = Unit.Percentage(25);
+    });
+
+
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SetDetailRowTemplateContent(row =>
+    {
+        var WorkOrderId = Convert.ToInt64(DataBinder.Eval(row.DataItem, "WorkOrderId"));
+        Html.RenderAction("DetailRow","NoneProductiveWorkOrder", new { workOrderId = WorkOrderId });
+    });
+
+
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.Toolbars.Add(t =>
+    {
+        t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل";
+    });
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 25;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()

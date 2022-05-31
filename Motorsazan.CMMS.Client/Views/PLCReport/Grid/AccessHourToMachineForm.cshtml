@@ -1,0 +1,9 @@
+﻿<div class="row">
+    <label>
+        گزارش اطلاعات دسترسی به دستگاه @ViewData["MachineName"].ToString()
+    </label>
+</div>
+
+<form>
+    @{ Html.RenderAction("AccessHourToMachineGrid", "PLCReport"); }
+</form>

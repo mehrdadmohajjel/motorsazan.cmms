@@ -1,0 +1,28 @@
+﻿
+@model Motorsazan.CMMS.Shared.Models.Output.Machine.OutputGetControlSystemTypeList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormMachineControlCombo";
+        settings.CallbackRouteValues = new { Controller = "Machine", Action = "AddFormMachineControlCombo" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نوع کنترل را انتخاب نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "MachineControlId";
+        settings.Properties.TextField = "MachineControlName";
+        settings.Properties.ValueType = typeof(long);
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.machine.handleAddFormMachineControlComboSelectedIndexChanged";
+
+    }).BindList(Model).GetHtml()
+
+
+

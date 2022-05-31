@@ -1,0 +1,28 @@
+﻿@Html.DevExpress().RoundPanel(
+    rpSettings =>
+    {
+        rpSettings.Name = "ratingPanel";
+        rpSettings.Width = Unit.Parse("100%");
+        rpSettings.ShowHeader = false;
+        rpSettings.ControlStyle.HorizontalAlign = HorizontalAlign.Center;
+        rpSettings.SetContent(() =>
+        {
+
+            Html.DevExpress().RatingControl(
+            settings =>
+            {
+                settings.Name = "myRating";
+                settings.ClientSideEvents.Init = "motorsazanClient.noneProductiveWorkOrder.myRating_Init";
+                settings.ClientSideEvents.ItemClick = "motorsazanClient.noneProductiveWorkOrder.myRating_ItemClick";
+                settings.ClientSideEvents.ItemMouseOver = "motorsazanClient.noneProductiveWorkOrder.myRating_ItemMouseOver";
+                settings.ClientSideEvents.ItemMouseOut = "motorsazanClient.noneProductiveWorkOrder.myRating_ItemMouseOut";
+            }
+            )
+            .Bind(0)
+            .Render();
+            ViewContext.Writer.Write(
+                               "<label id=\"lbMyVote\"></label>"
+            );
+        });
+    }
+    ).GetHtml()

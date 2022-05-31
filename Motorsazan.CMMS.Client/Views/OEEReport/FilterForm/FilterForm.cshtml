@@ -1,0 +1,166 @@
+﻿<div class="filter-form">
+    <div class="row ">
+
+        <div class="col-xs-12 col-md-3" id="filterFormFilterTypeSelectComboParentDesign">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب نوع فیلتر
+                </label>
+                <div id="filterFormFilterTypeSelectComboParent">
+                    @{ Html.RenderPartial("~/Views/OEEReport/FilterForm/FilterFormFilterTypeSelectCombo.cshtml"); }
+                </div>
+                <div class="app__form-error app__hide"
+                     id="filterFormFilterTypeSelectComboError">
+                    نوع فیلتر انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div id="filterFormWithMachine">
+            <div class="col-xs-12 col-md-3" id="filterFormGetDepartmentListHasMachineComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب امور
+                    </label>
+                    <div id="filterFormGetDepartmentListHasMachineComboParent">
+                        @{ Html.RenderAction("FilterFormGetDepartmentListHasMachine", "OEEReport"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormGetDepartmentListHasMachineComboError">
+                        امور انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-3" id="filterFormGetSubDepartmentListHasMachineComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب خط
+                    </label>
+                    <div id="filterFormGetSubDepartmentListHasMachineComboParent">
+                        @{ Html.RenderPartial("~/Views/OEEReport/FilterForm/FilterFormGetSubDepartmentListHasMachineCombo.cshtml"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormGetSubDepartmentListHasMachineComboError">
+                        خط انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-3" id="filterFormMachineListComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب دستگاه
+                    </label>
+                    <div id="filterFormMachineListComboParent">
+                        @{ Html.RenderPartial("~/Views/OEEReport/FilterForm/FilterFormGetMachineListCombo.cshtml"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormMachineListComboError">
+                        دستگاه انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="filterFormWithDepartment" class="app__hide">
+            <div class="col-xs-12 col-md-4" id="filterFormGetAllMainDepartmentListComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب امور
+                    </label>
+                    <div id="filterFormGetAllMainDepartmentListComboParent">
+                        @{ Html.RenderAction("FilterFormGetAllMainDepartmentList", "OEEReport"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormGetAllMainDepartmentListComboError">
+                        امور انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4" id="filterFormGetSubDepartmentListByMainDepartmentComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب خط
+                    </label>
+                    <div id="filterFormGetSubDepartmentListByMainDepartmentComboParent">
+                        @{ Html.RenderPartial("~/Views/OEEReport/FilterForm/FilterFormGetSubDepartmentListByMainDepartmentCombo.cshtml"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormGetSubDepartmentListByMainDepartmentComboError">
+                        خط انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4" id="filterFormDateTypeComboParentDesign">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    بازه زمانی
+                </label>
+                <div id="filterFormDateTypeComboParent">
+                    @{ Html.RenderPartial("~/Views/OEEReport/FilterForm/FilterFormDateTypeCombo.cshtml"); }
+                </div>
+                <div class="app__form-error app__hide"
+                     id="filterFormDateTypeComboError">
+                    بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4 app__hide" id="filterFormSpecialDateColumn">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            از تاریخ
+                        </label>
+                        <input type="text" class="app__form-datepicker"
+                               id="filterFormStartDate"
+                               placeholder="تاریخ را انتخاب نمایید"
+                               data-mddatetimepicker="true"
+                               data-englishnumber="true"
+                               data-targetdateselector="#filterFormStartDate"/>
+                        <div class="app__form-error app__hide"
+                             id="filterFormStartDateError">
+                            تاریخ شروع انتخاب نشده است
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            تا تاریخ
+                        </label>
+                        <input type="text" class="app__form-datepicker"
+                               id="filterFormEndDate"
+                               placeholder="تاریخ را انتخاب نمایید"
+                               data-mddatetimepicker="true"
+                               data-englishnumber="true"
+                               data-targetdateselector="#filterFormEndDate"/>
+                        <div class="app__form-error app__hide"
+                             id="filterFormEndDateError">
+                            تاریخ پایان انتخاب نشده است
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-5 col-md-2 pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormSearchBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.oEEReport.handleFilterFormSearchBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

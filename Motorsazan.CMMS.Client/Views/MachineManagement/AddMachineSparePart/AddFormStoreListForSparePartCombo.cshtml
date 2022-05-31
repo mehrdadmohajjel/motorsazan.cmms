@@ -1,0 +1,26 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetStoreListForSparePart[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormStoreListForSparePartCombo";
+        settings.CallbackRouteValues = new { Controller = "MachineManagement", Action = "AddFormGetStoreListForSparePart" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "انتخاب انبار";
+        settings.SelectedIndex = 0;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.None;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+        settings.Properties.ValueField = "RackCode";
+        settings.Properties.ValueType = typeof(int);
+
+        settings.Properties.TextFormatString = "{0} {1}";
+
+        settings.Properties.Columns.Add("StoreName", "نام انبار");
+        settings.Properties.Columns.Add("StoreCode", "کد انبار");
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.machineManagement.handleAddFormStoreListForSparePartComboSelectedIndexChanged";
+    }).BindList(Model).GetHtml()

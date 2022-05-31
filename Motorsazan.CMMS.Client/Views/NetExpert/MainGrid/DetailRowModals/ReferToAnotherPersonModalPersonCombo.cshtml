@@ -1,0 +1,28 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetMaintenanceGroupMemberListByMaintenanceGroupId[]
+
+@Html.DevExpress().ComboBox(
+settings =>
+{
+    settings.Name = "referToAnotherPersonModalPersonCombo";
+    settings.CallbackRouteValues = new { Controller = "NetExpert", Action = "ReferToAnotherPersonModalPersonCombo" };
+    settings.Width = Unit.Percentage(100);
+    settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+    settings.Properties.NullText = "فرد را انتخاب کنید";
+
+    settings.SelectedIndex = -1;
+
+    settings.Properties.CallbackPageSize = 100;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.IncrementalFilteringDelay = 200;
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+    settings.Properties.ValueField = "EmployeeId";
+    settings.Properties.ValueType = typeof(long);
+
+    settings.Properties.Columns.Add("EId", "کد پرسنلی");
+    settings.Properties.Columns.Add("Name", "نام پرسنل");
+
+    settings.Properties.ClientSideEvents.SelectedIndexChanged =
+        "motorsazanClient.netExpert.handleReferToAnotherPersonModalPersonComboSelectedIndexChange";
+
+}).BindList(Model).GetHtml()

@@ -1,0 +1,98 @@
+﻿[
+  {
+    "outputFile": "Client/Dist/Css/PanelLayout.css",
+    "inputFile": "Client/Src/Scss/Views/Shared/PanelLayout.scss"
+  },
+  {
+    "outputFile": "Views/Home/Css/Index.css",
+    "inputFile": "Views/Home/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/StockMan/Css/Index.css",
+    "inputFile": "Views/StockMan/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/WarehouseDailyReports/Css/Index.css",
+    "inputFile": "Views/WarehouseDailyReports/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/DailyRepairsReports/Css/Index.css",
+    "inputFile": "Views/DailyRepairsReports/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/OEEReport/Css/Index.css",
+    "inputFile": "Views/OEEReport/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/PLCReport/Css/Index.css",
+    "inputFile": "Views/PLCReport/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/MachineManagement/Css/Index.css",
+    "inputFile": "Views/MachineManagement/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/OilService/Css/Index.css",
+    "inputFile": "Views/OilService/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/MachineCheckList/Css/Index.css",
+    "inputFile": "Views/MachineCheckList/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/OperationItem/Css/Index.css",
+    "inputFile": "Views/OperationItem/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/PreventiveItemOperation/Css/Index.css",
+    "inputFile": "Views/PreventiveItemOperation/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/MachineStopStatusReport/Css/Index.css",
+    "inputFile": "Views/MachineStopStatusReport/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/SafetyAndHealthReport/css/Index.css",
+    "inputFile": "Views/SafetyAndHealthReport/css/Index.scss"
+  },
+  {
+    "outputFile": "Views/NetExpert/Css/Index.css",
+    "inputFile": "Views/NetExpert/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/DetermineSalary/Css/Index.css",
+    "inputFile": "Views/DetermineSalary/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/ProductiveWorkOrder/Css/Index.css",
+    "inputFile": "Views/ProductiveWorkOrder/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/MttrAndMtbfReportByDepartmentId/Css/Index.css",
+    "inputFile": "Views/MttrAndMtbfReportByDepartmentId/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/MachineMttrMtbfReport/Css/Index.css",
+    "inputFile": "Views/MachineMttrMtbfReport/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/DepartmentMttrAndMtbfReport/Css/Index.css",
+    "inputFile": "Views/DepartmentMttrAndMtbfReport/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/PreventiveMaintenancesScheduling/Css/Index.css",
+    "inputFile": "Views/PreventiveMaintenancesScheduling/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/NoneProductiveWorkOrder/Css/Index.css",
+    "inputFile": "Views/NoneProductiveWorkOrder/Css/Index.scss"
+  },
+  {
+    "outputFile": "Views/MaintenanceGroupMttrAndMtbfReport/Css/Index.css",
+    "inputFile": "Views/MaintenanceGroupMttrAndMtbfReport/Css/Index.scss"
+  },
+  {
+    "outputFile": "Client/Src/Scss/Views/Shared/Components/Tab.css",
+    "inputFile": "Client/Src/Scss/Views/Shared/Components/Tab.scss"
+  }
+]

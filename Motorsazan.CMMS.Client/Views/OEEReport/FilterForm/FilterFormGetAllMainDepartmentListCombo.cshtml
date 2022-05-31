@@ -1,0 +1,30 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetAllMainDepartment[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormGetAllMainDepartmentListCombo";
+        settings.CallbackRouteValues = new {Controller = "OEEReport", Action = "FilterFormGetAllMainDepartmentList"};
+
+        settings.Properties.ClientSideEvents.BeginCallback =
+            "motorsazanClient.oEEReport.handleFilterFormGetAllMainDepartmentListComboBeginCallback";
+
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نام امور را وارد کنید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+
+        settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "DepartmentId";
+        settings.Properties.ValueType = typeof(int);
+
+        settings.Properties.TextField = "Title";
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.oEEReport.handleFilterFormGetAllMainDepartmentListComboSelectedIndexChange";
+    }).BindList(Model).GetHtml()

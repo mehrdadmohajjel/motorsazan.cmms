@@ -1,0 +1,48 @@
+﻿.app__form-item label:not(.app__form-label) {
+  padding-right: 5%; }
+
+table.registrar-info {
+  margin: -15px 0;
+  width: 100%;
+  text-align: right; }
+  table.registrar-info th {
+    padding: 0 10px; }
+  table.registrar-info td {
+    width: 80%;
+    padding-right: 20px; }
+  table.registrar-info tr:nth-child(2n) {
+    background-color: #b9b9b9; }
+
+table.registrar-info, table.registrar-info th, table.registrar-info td {
+  border: 1px solid black;
+  border-collapse: collapse; }
+
+.red-colored {
+  color: red; }
+
+.consuming-materials__grid__status-bar {
+  position: relative;
+  top: -240px; }
+  .consuming-materials__grid__status-bar__status-bar-button {
+    margin-right: 10px; }
+
+.consuming-materials__grid__search-panel {
+  margin-top: 5%; }
+
+.class_hidden {
+  display: none; }
+
+.chart-wrapper {
+  margin: 0 auto;
+  text-align: center;
+  width: 800px; }
+
+.detail-btn {
+  padding: 8px 4px; }
+
+#reportChart {
+  margin: auto;
+  margin-top: 10%; }
+
+#mtbfReportChart {
+  direction: rtl; }

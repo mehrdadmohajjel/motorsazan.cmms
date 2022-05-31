@@ -1,0 +1,59 @@
+﻿@using System.Drawing
+@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetWorkOrderByWorkOrderId
+<style>
+    .detail-btn {
+        padding: 8px 4px;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12 col-md-3 detail-btn">
+
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "DetailRowRegistrarInfoBtn";
+       settings.Text = "مشاهده مشخصات ثبت کننده";
+       settings.Width = Unit.Percentage(100);
+       settings.UseSubmitBehavior = false;
+       settings.EnableClientSideAPI = true;
+       settings.ClientSideEvents.Click =
+       "motorsazanClient.safetyAndHealthReport.showRegisterInfoModal";
+   }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "DetailRowShowActionHistoryBtn";
+            settings.Text = "مشاهده عملیات انجام شده";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.safetyAndHealthReport.showActionHistoryModal";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "DetailRowUsedToolsBtn";
+            settings.Text = "مشاهده مواد مصرف شده";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.safetyAndHealthReport.showUsedToolsModal";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "DetailRowRefrenceHistoryBtn";
+            settings.Text = "تاریخچه ارجاعات";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.safetyAndHealthReport.showHistoryModal";
+        }).GetHtml()
+    </div>
+</div>

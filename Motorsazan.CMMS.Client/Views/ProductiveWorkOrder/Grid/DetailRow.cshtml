@@ -1,0 +1,126 @@
+﻿@using System.Drawing
+@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetWorkOrderByWorkOrderId
+@using Motorsazan.CMMS.Shared.Enums
+@{
+    var workOrderStatusType = (WorkOrderStatusType)Model.WorkOrderStatusTypeId;
+
+    var rate = (int?) Model.RepairingRate;
+    var isNew = workOrderStatusType == WorkOrderStatusType.New;
+    var isReferred = workOrderStatusType == WorkOrderStatusType.Referred;
+    var isFinished = workOrderStatusType == WorkOrderStatusType.Finished;
+    var isFinalFinished = workOrderStatusType == WorkOrderStatusType.FinalFinished;
+    var isCanceled = workOrderStatusType == WorkOrderStatusType.Canceled;
+    var isFinishAccepted = workOrderStatusType == WorkOrderStatusType.FinishAccepted;
+    var isFinishRejected = workOrderStatusType == WorkOrderStatusType.FinishRejected;
+
+    var isFinishBtnEnabled = (isReferred || isNew) && !isCanceled && !isFinalFinished;
+    var isCancelBtnEnabled = (isReferred || isNew) && !isCanceled && !isFinalFinished;
+    var isRateAvailable = rate != 0 ? false : true;
+
+    var isProveEndBtnEnabled = isFinalFinished;
+    var isRateBtnEnabled = isFinalFinished || isFinishAccepted || isFinishRejected || isRateAvailable;
+
+
+}
+<style>
+    .detail-btn {
+        padding: 8px 4px;
+    }
+</style>
+<div class="row">
+
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "EbtalBTN";
+            settings.Text = "ابطال";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Styles.Style.BackColor = Color.Red;
+            settings.Enabled = isCancelBtnEnabled;
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.productiveWorkOrder.showRemoveConfirmation";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "ProveEndBTN";
+            settings.Text = "تائید اتمام";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Styles.Style.BackColor = Color.Red;
+            settings.Enabled = isProveEndBtnEnabled;
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.productiveWorkOrder.showProveEndPopup";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "DenyEndBTN";
+            settings.Text = "عدم تائید اتمام";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Styles.Style.BackColor = Color.Red;
+            settings.Width = Unit.Percentage(100);
+            settings.Enabled = isProveEndBtnEnabled;
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.productiveWorkOrder.setWorkOrderStatusToNotConfirmFinishByCustomerPopUp";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-3 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "RatingBTN";
+            settings.Text = "امتیاز دهی";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Styles.Style.BackColor = Color.Red;
+            settings.Enabled = isRateBtnEnabled;
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.productiveWorkOrder.showRateBtnPopup";
+        }).GetHtml()
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-4 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "heijunkaGridDetailRowConvertToAgendumBtn";
+            settings.Text = "مشاهده عملیات انجام شده";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.productiveWorkOrder.showActionHistoryModal";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-4 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "heijunkaGridDetailRowConvertToMiscellaneousAgendumBtn";
+            settings.Text = "مشاهده مواد مصرف شده";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.productiveWorkOrder.showUsedToolsModal";
+        }).GetHtml()
+    </div>
+    <div class="col-xs-12 col-md-4 detail-btn">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "heijunkaGridDetailRowCreateSubsidiaryBtn";
+            settings.Text = "تاریخچه ارجاعات";
+            settings.UseSubmitBehavior = false;
+            settings.EnableClientSideAPI = true;
+            settings.Width = Unit.Percentage(100);
+            settings.ClientSideEvents.Click =
+                "motorsazanClient.productiveWorkOrder.showHistoryModal";
+        }).GetHtml()
+    </div>
+</div>

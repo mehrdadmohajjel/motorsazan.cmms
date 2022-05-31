@@ -1,0 +1,30 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetMaintenanceGroupList[]
+
+@Html.DevExpress().ComboBox(
+settings =>
+{
+    settings.Name = "workOrderTempFinishModalMaintenanceGroupCombo";
+    settings.CallbackRouteValues = new { Controller = "NetExpert", Action = "WorkOrderTempFinishModalMaintenanceGroupCombo" };
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Properties.NullText = "گروه تعمیراتی را انتخاب کنید";
+
+    settings.SelectedIndex = -1;
+
+    settings.Properties.CallbackPageSize = 100;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.IncrementalFilteringDelay = 200;
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+    settings.Properties.ValueField = "MaintenanceGroupId";
+    settings.Properties.ValueType = typeof(long);
+    
+    settings.Properties.TextFormatString = @"{0}";
+
+    settings.Properties.Columns.Add("MaintenanceGroupName", "گروه تعمیراتی");
+
+    settings.Properties.ClientSideEvents.SelectedIndexChanged =
+        "motorsazanClient.netExpert.handleWorkOrderTempFinishModalMaintenanceGroupComboSelectedIndexChange";
+
+}).BindList(Model).GetHtml()

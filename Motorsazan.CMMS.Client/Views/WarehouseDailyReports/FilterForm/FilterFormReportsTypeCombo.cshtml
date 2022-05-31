@@ -1,0 +1,27 @@
+﻿@using Motorsazan.CMMS.Shared.Enums
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "filterFormReportsTypeCombo";
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نوع گزارش";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "Id";
+        settings.Properties.ValueType = typeof(int);
+        settings.Properties.TextField = "Text";
+
+        settings.Properties.Items.Add("بازه زمانی", ReportFilterType.SpecialPeriodDate);
+        settings.Properties.Items.Add("سفارشکارهای بدون شماره حواله", ReportFilterType.WorkOrderWithoutNewReceipt);
+
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.warehousedailyreports.handleFilterFormReportsTypeComboChange";
+
+    }).GetHtml()

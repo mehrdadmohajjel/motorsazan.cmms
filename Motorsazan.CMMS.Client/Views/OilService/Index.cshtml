@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "فرم ثبت روغنکاری";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/OilService/Css/Index.min.css" rel="Stylesheet"/>
+}
+
+@section scripts
+{
+    <script src="~/DX.ashx?jsfile=~/Views/OilService/JS/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <section class="app__section">
+            <div class="app__section__header">
+                ثبت سرویس روغنکاری
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/OilService/AddForm/AddForm.cshtml"); }
+            </div>
+        </section>
+    </div>
+
+    <div class="col-xs-12 col-md-8">
+        <section class="app__section">
+            <div class="app__section__header">
+                لیست
+                @{ Html.RenderPartial("~/Views/Shared/Partials/_AppSectionSettings.cshtml"); }
+            </div>
+            <div class="app__section__body">
+                @{ Html.RenderPartial("~/Views/OilService/FilterForm/FilterForm.cshtml"); }
+                <form class="app__grid-wrapper" id="oilServiceGirdParent">
+                    @{ Html.RenderAction("OilServiceGird"); }
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

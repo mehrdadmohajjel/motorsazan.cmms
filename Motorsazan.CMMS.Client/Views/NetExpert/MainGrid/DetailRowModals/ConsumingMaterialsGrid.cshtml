@@ -1,0 +1,163 @@
+﻿@using System.Drawing
+@using DevExpress.Data
+@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetWorKOrderConsumableListByWorkOrderId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "consumingMaterialsGrid";
+    settings.CallbackRouteValues = new { Controller = "NetExpert", Action = "ConsumingMaterialsGrid" };
+    settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "NetExpert", Action = "UpdateConsumingMaterials" };
+
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.netExpert.handleConsumingMaterialsGridBeginCallback";
+
+    settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+    settings.SettingsEditing.BatchEditSettings.KeepChangesOnCallbacks = DefaultBoolean.True;
+    settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Cell;
+    settings.SettingsText.ConfirmOnLosingBatchChanges = "تغییرات ذخیره نشده است. آیا از عدم ذخیره مطمئن هستید؟";
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = false;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+
+    settings.Styles.Header.Wrap = DefaultBoolean.True;
+    settings.Styles.Cell.Wrap = DefaultBoolean.True;
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "HavaleWorkOrderReferralId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(6);
+        column.UnboundType = UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.EditFormSettings.Visible = DefaultBoolean.False;
+
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+            {
+                e.Value = e.ListSourceRowIndex + 1;
+            }
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = " سفارشکار";
+        column.ReadOnly = true;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StockName";
+        column.Caption = "نام قطعه";
+        column.ReadOnly = true;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RackCode";
+        column.Caption = "آدرس در انبار";
+        column.ReadOnly = true;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Quantity";
+        column.Caption = "تعداد";
+        column.ReadOnly = true;
+    });
+
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "HavaleNO";
+        column.BatchEditModifiedCellStyle.BackColor = ColorTranslator.FromHtml("#22de28");
+        column.BatchEditModifiedCellStyle.ForeColor = Color.White;
+        column.ColumnType = MVCxGridViewColumnType.TextBox;
+        column.Caption = "شماره حواله";
+        column.ReadOnly = false;
+        column.PropertiesEdit.DisplayFormatString = "0;0-";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WearhouseConfirmationStatus";
+        column.Caption = "وضعیت کالا در انبار";
+    });
+    settings.Columns.Add(column =>
+    {
+        column.Caption = "WorkOrderId";
+        column.FieldName = "WorkOrderId";
+        column.Visible = true;
+        column.EditCellStyle.CssClass = "class_hidden";
+        column.EditFormCaptionStyle.CssClass = "class_hidden";
+        column.HeaderStyle.CssClass = "class_hidden";
+        column.CellStyle.CssClass = "class_hidden";
+
+    });
+
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.Command = GridViewToolbarCommand.Custom;
+            i.Text = "ثبت تغییرات";
+            i.Name = "gridToolbarChangeSaveButton";
+            i.ItemStyle.CssClass = "app__form-grid-mini-btn btn-info";
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.Command = GridViewToolbarCommand.Custom;
+            i.Text = "لغو تغییرات";
+            i.Name = "gridToolbarChangeCancelButton";
+            i.ItemStyle.CssClass = "app__form-grid-mini-btn btn-danger";
+        });
+
+        settings.ClientSideEvents.ToolbarItemClick =
+            "motorsazanClient.netExpert.handleToolbarButtonClick";
+    });
+
+
+
+    settings.Styles.StatusBar.CssClass = "consuming-materials__grid__status-bar";
+
+    settings.Settings.ShowStatusBar = GridViewStatusBarMode.Hidden;
+
+
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.Styles.SearchPanel.CssClass = "consuming-materials__grid__search-panel";
+
+    settings.SettingsSearchPanel.Visible = false;
+    settings.SettingsSearchPanel.EditorNullTextDisplayMode = NullTextDisplayMode.Unfocused;
+    settings.SettingsSearchPanel.AllowTextInputTimer = false;
+    settings.SettingsText.SearchPanelEditorNullText = "عبارت مورد نظر جهت جستجو در لیست را وارد کنید";
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 50;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()
+

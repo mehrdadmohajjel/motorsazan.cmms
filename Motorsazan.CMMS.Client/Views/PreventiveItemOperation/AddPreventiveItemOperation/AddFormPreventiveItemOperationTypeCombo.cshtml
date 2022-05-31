@@ -1,0 +1,26 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.PreventiveItemOperation.OutputGetMiterMeasuringTypeListForPreventiveOperationItem[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addFormPreventiveItemOperationTypeCombo";
+        settings.CallbackRouteValues = new { Controller = "PreventiveItemOperation", Action = "AddFormPreventiveItemOperationTypeList" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "نوع آیتم پیشگیرانه را انتخاب نمایید";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+        settings.Properties.ValueField = "MiterMeasuringTypeId";
+        settings.Properties.ValueType = typeof(long);
+        settings.Properties.Columns.Add("MiterMeasuringTypeShowName", "عنوان");
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.preventiveItemOperation.handleAddFormPreventiveItemOperationTypeComboSelectedIndexChange";
+
+    }).BindList(Model).GetHtml()
+
+
+

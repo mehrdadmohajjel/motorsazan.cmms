@@ -1,0 +1,13 @@
+﻿#grid_DXTitle {
+  top: 60px;
+  position: relative; }
+
+.toolbar-button {
+  margin: 5px; }
+
+.class_hidden {
+  display: none; }
+
+.toolbar-btn {
+  border: 1px solid #808080 !important;
+  margin-inline: 2px !important; }

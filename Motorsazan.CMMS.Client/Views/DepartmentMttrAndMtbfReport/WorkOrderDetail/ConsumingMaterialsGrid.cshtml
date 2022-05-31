@@ -1,0 +1,123 @@
+﻿@using System.Drawing
+@using DevExpress.Data
+@model Motorsazan.CMMS.Shared.Models.Output.ProductiveWorkOrder.OutputGetWorKOrderConsumableListByWorkOrderId[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "consumingMaterialsGrid";
+    settings.CallbackRouteValues = new { Controller = "DepartmentMttrAndMtbfReport", Action = "ConsumingMaterialsGrid" };
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.departmentMttrAndMtbfReport.handleConsumingMaterialsGridBeginCallback";
+
+    settings.Settings.ShowFilterRow = false;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+
+    settings.Styles.Header.Wrap = DefaultBoolean.True;
+    settings.Styles.Cell.Wrap = DefaultBoolean.True;
+
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "HavaleWorkOrderReferralId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(6);
+        column.UnboundType = UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.EditFormSettings.Visible = DefaultBoolean.False;
+
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+            {
+                e.Value = e.ListSourceRowIndex + 1;
+            }
+        };
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StockName";
+        column.Caption = "شماره سفارشکار";
+        column.ReadOnly = true;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Quantity";
+        column.Caption = "نام کالا";
+        column.ReadOnly = true;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ShamsiDate";
+        column.Caption = "آدرس در انبار";
+        column.ReadOnly = true;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "تعداد";
+        column.ReadOnly = true;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RackCode";
+        
+        column.BatchEditModifiedCellStyle.BackColor = ColorTranslator.FromHtml("#22de28");
+        column.BatchEditModifiedCellStyle.ForeColor = Color.White;
+        column.ColumnType = MVCxGridViewColumnType.TextBox;
+        column.Caption = "شاره حواله";
+
+        column.PropertiesEdit.DisplayFormatString = "0;0-";
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "HavaleNO";
+        column.Caption = "کد پرسنلی";
+        column.ReadOnly = true;
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WearhouseConfirmationStatus";
+        column.Caption = "کد پرسنلی";
+        column.ReadOnly = true;
+    });
+
+
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.Styles.SearchPanel.CssClass = "consuming-materials__grid__search-panel";
+
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsSearchPanel.EditorNullTextDisplayMode = NullTextDisplayMode.Unfocused;
+    settings.SettingsSearchPanel.AllowTextInputTimer = false;
+    settings.SettingsText.SearchPanelEditorNullText = "عبارت مورد نظر جهت جستجو در لیست را وارد کنید";
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 50;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] { "50", "100", "200", "500" };
+
+}).Bind(Model).GetHtml()

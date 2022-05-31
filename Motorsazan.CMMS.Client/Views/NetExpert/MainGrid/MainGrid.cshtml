@@ -1,0 +1,330 @@
+﻿@using System.Drawing
+@using DevExpress.Data
+@using DevExpress.Export
+@using Motorsazan.CMMS.Client.Controllers
+@using Motorsazan.CMMS.Shared.Enums
+@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetNetExpertWorkOrderListByCondition[]
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "mainGrid";
+    settings.CallbackRouteValues = new {Controller = "NetExpert", Action = "MainGrid"};
+    settings.ClientSideEvents.BeginCallback =
+        "motorsazanClient.netExpert.handleMainGridBeginCallback";
+    settings.ClientSideEvents.EndCallback =
+        "motorsazanClient.netExpert.handleMainGridEndCallback";
+
+    settings.ClientSideEvents.DetailRowExpanding =
+        "motorsazanClient.netExpert.setMainGridFocusedRowOnExpanding";
+
+    settings.ClientSideEvents.RowClick = "function(s, e){ s.ExpandDetailRow(e.visibleIndex); }";
+
+    settings.Styles.FocusedRow.ForeColor = Color.Red;
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+    settings.EnableRowsCache = true;
+
+    settings.KeyFieldName = "WorkOrderId";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "RowIndex";
+        column.Caption = "ردیف";
+        column.Width = Unit.Pixel(60);
+        column.UnboundType = UnboundColumnType.Integer;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        settings.CustomUnboundColumnData = (s, e) =>
+        {
+            if (e.Column.FieldName == "RowIndex")
+                e.Value = e.ListSourceRowIndex + 1;
+        };
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderTypeTitle";
+        column.Caption = "نوع سفارشکار";
+        column.Width = Unit.Percentage(5);
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.Items.Add("تولیدی");
+            cb.Items.Add("غیر تولیدی");
+
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderStatusTypeName";
+        column.Caption = "وضعیت";
+        column.Width = Unit.Percentage(10);
+        column.GroupIndex = 0;
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = NetExpertController.GetWorkOrderStatusTypeList();
+            cb.TextField = "TypeName";
+            cb.ValueField = "TypeName";
+            cb.ValueType = typeof(string);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StopTypeTitle";
+        column.Caption = "نوع توقف";
+        column.Width = Unit.Percentage(10);
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = NetExpertController.GetAllStopTypeList();
+            cb.TextField = "StopTypeTitle";
+            cb.ValueField = "StopTypeTitle";
+            cb.ValueType = typeof(string);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderSerial";
+        column.Caption = "شماره سفارشکار";
+        column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        column.Width = Unit.Percentage(5);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderHavalehNOStatus";
+        column.Caption = "حواله تایید نشده";
+        column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        column.Width = Unit.Percentage(5);
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.Items.Add("دارد");
+            cb.Items.Add("ندارد");
+
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "CreationPersianDate";
+        column.Caption = "تاریخ ثبت";
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.Width = Unit.Percentage(5);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "CreationTime";
+        column.Caption = "زمان ثبت";
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.Width = Unit.Percentage(5);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MachineName";
+        column.Caption = "نام دستگاه";
+        column.Width = Unit.Percentage(15);
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OldMachineCode";
+        column.Caption = "کد دستگاه";
+        column.Width = Unit.Percentage(5);
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "OperationCode";
+        column.Caption = "اپریشن";
+        column.Width = Unit.Percentage(5);
+        column.Settings.AllowAutoFilter = DefaultBoolean.True;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DepartmentName";
+        column.Caption = "محل خرابی";
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.Width = Unit.Percentage(15);
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Description";
+        column.Caption = "توضیحات";
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.Width = Unit.Percentage(30);
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderStatusTypeId";
+        column.Visible = false;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "WorkOrderTypeId";
+        column.Visible = false;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "MachineId";
+        column.Visible = false;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "DepartmentId";
+        column.Visible = false;
+    });
+
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Center;
+    settings.Styles.Cell.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = ExportType.WYSIWYG;
+    settings.Toolbars.Add(t => { t.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "خروجی اکسل"; });
+
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SetDetailRowTemplateContent(row =>
+    {
+        var workOrderStatusTypeId = (WorkOrderStatusType) Convert.ToInt64(DataBinder.Eval(row.DataItem, "WorkOrderStatusTypeId"));
+        var workOrderTypeId = (WorkOrderType) Convert.ToInt64(DataBinder.Eval(row.DataItem, "WorkOrderTypeId"));
+        var workOrderId = Convert.ToInt64(DataBinder.Eval(row.DataItem, "WorkOrderId"));
+        var machineId = (long?) DataBinder.Eval(row.DataItem, "MachineId");
+
+        Html.RenderAction("MainGridDetailRow", "NetExpert", new {workOrderId, workOrderStatusType = workOrderStatusTypeId, workOrderType = workOrderTypeId, machineId});
+    });
+
+    settings.HtmlRowPrepared = (s, e) =>
+    {
+        if (e.RowType != GridViewRowType.Data)
+            return;
+
+        var statusTypeId = Convert.ToInt32(e.GetValue("WorkOrderStatusTypeId"));
+        if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.Canceled))
+        {
+            e.Row.BackColor = Color.RosyBrown;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.ConfirmWaiting))
+        {
+            e.Row.BackColor = Color.Orange;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.FinalFinished))
+        {
+            e.Row.BackColor = Color.Gainsboro;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.FinishAccepted))
+        {
+            e.Row.BackColor = Color.Gray;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.FinishRejected))
+        {
+            e.Row.BackColor = Color.Red;
+        }
+
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.Finished))
+        {
+            e.Row.BackColor = Color.LemonChiffon;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.New))
+        {
+            e.Row.BackColor = Color.WhiteSmoke;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.Referred))
+        {
+            e.Row.BackColor = Color.WhiteSmoke;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.ReferredToAnotherGroup))
+        {
+            e.Row.BackColor = Color.LightSkyBlue;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.StockWaiting))
+        {
+            e.Row.BackColor = Color.LightCyan;
+        }
+
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.Unconfirmed))
+        {
+            e.Row.BackColor = Color.Tomato;
+        }
+    };
+
+    settings.HtmlRowPrepared = (s, e) =>
+    {
+        if (e.RowType != GridViewRowType.Data)
+            return;
+
+        var statusTypeId = Convert.ToInt32(e.GetValue("WorkOrderStatusTypeId"));
+        if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.Canceled))
+        {
+            e.Row.BackColor = Color.RosyBrown;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.ConfirmWaiting))
+        {
+            e.Row.BackColor = Color.Orange;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.FinalFinished))
+        {
+            e.Row.BackColor = Color.Gainsboro;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.FinishAccepted))
+        {
+            e.Row.BackColor = Color.Gray;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.FinishRejected))
+        {
+            e.Row.BackColor = Color.Red;
+        }
+
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.Finished))
+        {
+            e.Row.BackColor = Color.LemonChiffon;
+            e.Row.ForeColor = Color.Black;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.New))
+        {
+            e.Row.BackColor = Color.WhiteSmoke;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.Referred))
+        {
+            e.Row.BackColor = Color.WhiteSmoke;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.ReferredToAnotherGroup))
+        {
+            e.Row.BackColor = Color.LightSkyBlue;
+        }
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.StockWaiting))
+        {
+            e.Row.BackColor = Color.LightCyan;
+        }
+
+        else if (statusTypeId == Convert.ToInt32(WorkOrderStatusType.Unconfirmed))
+        {
+            e.Row.BackColor = Color.Tomato;
+        }
+    };
+
+    settings.SettingsBehavior.AutoExpandAllGroups = true;
+    settings.Styles.DetailRow.ForeColor = Color.Black;
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsSearchPanel.EditorNullTextDisplayMode = NullTextDisplayMode.Unfocused;
+    settings.SettingsSearchPanel.AllowTextInputTimer = false;
+    settings.SettingsText.SearchPanelEditorNullText = "عبارت مورد نظر جهت جستجو در لیست را وارد کنید";
+
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+    settings.SettingsPager.Summary.Text = "صفحه‌ {0} از {1} - تعداد کل : {2}";
+    settings.SettingsPager.Summary.Position = PagerButtonPosition.Right;
+    settings.SettingsPager.AlwaysShowPager = false;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+    settings.SettingsText.EmptyDataRow = "موردی یافت نشد";
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize = 200;
+    settings.SettingsPager.PageSizeItemSettings.Caption = "تعداد سطر :";
+    settings.SettingsPager.PageSizeItemSettings.Items = new[] {"50", "100", "200", "500"};
+}).Bind(Model).GetHtml()

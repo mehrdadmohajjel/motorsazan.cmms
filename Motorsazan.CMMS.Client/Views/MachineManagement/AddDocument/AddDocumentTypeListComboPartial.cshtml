@@ -1,0 +1,23 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.MachineManagement.OutputGetFileTypeList[]
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "addDocumentTypeListCombo";
+        settings.CallbackRouteValues = new { Controller = "MachineManagement", Action = "AddDocumentTypeListComboPartial" };
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
+        settings.Properties.NullText = "انتخاب دسته بندی";
+        settings.SelectedIndex = -1;
+        settings.Properties.CallbackPageSize = 100;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.IncrementalFilteringDelay = 200;
+        settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+        settings.Properties.ValueField = "FileTypeId";
+        settings.Properties.ValueType = typeof(long);
+        settings.Properties.TextFormatString = "{0}";
+        settings.Properties.Columns.Add("FileTypeShowName", "نوع فایل ضمیمه");
+
+        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+            "motorsazanClient.machineManagement.handleAddDocumentTypeListComboSelectedIndexChanged";
+    }).BindList(Model).GetHtml()

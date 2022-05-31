@@ -1,0 +1,49 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-5">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                تاریخ پیشنهادی
+            </label>
+            <div id="changeSuggestedDatePickerParent">
+                <input type="text" class="app__form-datepicker"
+                       id="changeSuggestedDatePicker"
+                       placeholder="تاریخ پیشنهادی"
+                       data-mddatetimepicker="true"
+                       data-englishnumber="true"
+                       data-targetdateselector="#changeSuggestedDatePicker"/>
+            </div>
+            <div class="app__form-error app__hide" id="changeSuggestedDatePickerError">
+                تاریخ پیشنهادی انتخاب نشده است
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                برای ثبت حقوق و دستمزد جدید می بایست ابتدا در ستون مربوط به «حقوق و دستمزد» هر ردیف مقدار پیش بینی شده را با دو بار کلیک بر روی خانه مورد نظر، وارد نمایید.
+
+            </label>
+            <label class="app__form-label">
+                تاریخ اجرای فرآیند می بایست پیش از کلیک بر روی آیکون ذخیره انتخاب گردد.
+            </label>
+            <label class="app__form-label">
+                در نهایت دکمه "ثبت تغییرات" را انتخاب نمایید. در غیر اینصورت برای لغو تغییرات بر روی دکمه "لغو تغییرات" کلیک کنید.
+            </label>
+        </div>
+    </div>
+</div>
+
+<br/>
+
+<div class="row">
+    <div>
+        <form id="resultGridParent" class="app__grid-wrapper">
+            @{ Html.RenderAction("FillResultGrid", "DetermineSalary"); }
+        </form>
+    </div>
+</div>

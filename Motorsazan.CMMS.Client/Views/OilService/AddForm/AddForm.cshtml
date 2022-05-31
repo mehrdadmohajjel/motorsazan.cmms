@@ -1,0 +1,243 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                تاریخ پیشنهادی
+            </label>
+            <input type="text" class="app__form-datepicker"
+                   id="addFormPreferDate"
+                   placeholder="تاریخ را انتخاب نمایید"
+                   data-mddatetimepicker="true"
+                   data-englishnumber="true"
+                   data-targetdateselector="#addFormPreferDate" />
+            <div class="app__form-error app__hide"
+                 id="addFormPreferDateError">
+                تاریخ انتخاب نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب مواد
+            </label>
+            <div id="addFormOilListParent">
+                @{
+                    Html.RenderAction("AddFormOilList", "OilService");
+                }
+            </div>
+            <div class="app__form-error app__hide" id="addFormOilListError">
+                مواد انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12 app__hide" id="addFormOilListDetailParent">
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    انتخاب واحد اندازه گیری
+                </label>
+                <div id="addFormMeasurementUnitListParent">
+                    @{
+                        Html.RenderAction("AddFormMeasurementUnitList", "OilService");
+                    }
+                </div>
+                <div class="app__form-error app__hide" id="addFormMeasurementUnitListError">
+                    واحد اندازه گیری انتخاب نشده است
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    مقدار
+                </label>
+                <div id="addFormMeasurementValueParent">
+                    @Html.DevExpress().SpinEdit(settings =>
+                    {
+                        settings.Name = "addFormMeasurementValueTextBox";
+                        settings.Properties.NullText = "مقدار بر حسب واحد اندازه گیری";
+                        settings.Properties.MinValue = 0;
+                        settings.Properties.MaxValue = 9999999999999999999;
+                        settings.Properties.ShowOutOfRangeWarning = false;
+                        settings.Properties.ClientSideEvents.ValueChanged =
+                            "motorsazanClient.oilService.handleAddFormMeasurementValueTextBoxValueChanged";
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide" id="addFormMeasurementValueError">
+                    مقدار انتخاب نشده است
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12" id="addFormGetDepartmentListDesign">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب امور
+            </label>
+            <div id="addFormGetDepartmentListParent">
+                @{ Html.RenderAction("AddFormGetDepartmentList", "OilService"); }
+            </div>
+            <div class="app__form-error app__hide" id="addFormGetDepartmentListError">
+                امور انتخاب نشده است
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12 col-lg-12" id="addFormGetSubDepartmentListDesign">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب خط
+            </label>
+            <div id="addFormGetSubDepartmentListParent">
+                @{ Html.RenderPartial("~/Views/OilService/AddForm/AddFormGetSubDepartmentListPartial.cshtml"); }
+            </div>
+            <div class="app__form-error app__hide" id="addFormGetSubDepartmentListError">
+                خط انتخاب نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12" id="addFormMachineListDesign">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب دستگاه
+            </label>
+            <div id="addFormMachineListParent">
+                @{ Html.RenderPartial("~/Views/OilService/AddForm/AddFormMachineListPartial.cshtml"); }
+            </div>
+            <div class="app__form-error app__hide" id="addFormMachineListError">
+                دستگاه انتخاب نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12" id="addOilPlaceListComboDesign">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                محل افزودن روغن
+            </label>
+            <div id="addOilPlaceListComboParent">
+                @{
+                    Html.RenderAction("AddFormGetOilPlaceList", "OilService");
+                }
+            </div>
+            <div class="app__form-error app__hide" id="addOilPlaceListComboError">
+                محل روغنکاری انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12" id="addOperationsModalEmployeeCheckComboBoxDesign">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                انتخاب پرسنل
+            </label>
+            <div id="addOperationsModalEmployeeCheckComboBoxParent">
+                @{
+                    Html.RenderAction("AddOperationsModalEmployeeCheckComboBox", "OilService");
+                }
+            </div>
+            <div class="app__hide" id="addOperationsModalEmployeeCheckComboBoxInfo">
+            </div>
+            <div class="app__form-error app__hide" id="addOperationsModalEmployeeCheckComboBoxError">
+                پرسنلی انتخاب نشده است
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12 col-lg-12 app__hide" id="addFormEmployeeCheckDetailParent">
+        <div class="col-xs-12 col-md-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    زمان مورد نیاز (دقیقه):
+                </label>
+                <div id="addFormNeedTimeSpinParent">
+                    @Html.DevExpress().SpinEdit(settings =>
+                    {
+                        settings.Name = "addFormNeedTimeSpin";
+                        settings.Properties.NullText = "زمان مورد نیاز";
+                        settings.Properties.MinValue = 0;
+                        settings.Properties.MaxValue = 9999999999999999999;
+                        settings.Properties.ShowOutOfRangeWarning = false;
+                        settings.Properties.ClientSideEvents.NumberChanged =
+                            "motorsazanClient.oilService.handleAddFormNeedTimeSpinNumberChanged";
+                    }).GetHtml()
+
+                </div>
+                <div class="app__form-error app__hide" id="addFormNeedTimeSpinError">
+                    زمان مورد نیاز وارد نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    قیمت
+                </label>
+                <div id="addFormPriceParent">
+                    @Html.DevExpress().TextBox(settings =>
+                    {
+                        settings.Name = "addFormPriceTextBox";
+                        settings.Properties.NullText = "";
+                        settings.ReadOnly = true;
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide" id="addFormPriceError">
+                    مواد و مقدار مواد انتخاب نشده است
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="app__form-item">
+            <label class="app__form-label">
+                آیا مصرف روغن عادی است؟
+            </label>
+
+            <div id="addFormIsOilConsumptionNormalParent">
+                @Html.DevExpress().RadioButtonList(
+                    settings =>
+                    {
+                        settings.Name = "addFormIsOilConsumptionNormal";
+
+                        settings.Properties.Items.Add("بلی", true);
+                        settings.Properties.Items.Add("خیر", false);
+                        settings.Properties.RepeatDirection = RepeatDirection.Horizontal;
+                        settings.Properties.ClientSideEvents.SelectedIndexChanged =
+                            "motorsazanClient.oilService.handleAddFormIsOilConsumptionNormalSelectedIndexChanged";
+                    }).GetHtml()
+
+            </div>
+            <div id="addFormIsOilConsumptionNormalError"
+                 class="app__form-error app__hide">
+                گزینه انتخاب نشده است
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-3 pull-left">
+        <div class="app__form-item app__form-item--action">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "addOilServiceBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "add-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.oilService.addOilService";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

@@ -1,0 +1,157 @@
+﻿
+@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetWorkOrderByWorkOrderId
+
+<div class="filter-form">
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    آیتم عملیاتی:
+                </label>
+                @{ Html.RenderAction("AddInspectionItemsComboBox", "NetExpert"); }
+                <div class="app__form-error app__hide" id="addInspectionItemsComboBoxError">
+                    آیتم عملیاتی وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    پرسنل:
+                </label>
+                @{ Html.RenderAction("AddInspectionEmployeeComboBox", "NetExpert", new { maintenanceGroupId = Model.ReceiverMaintenanceGroupId }); }
+                <div class="app__form-error app__hide" id="addInspectionModalEmployeeCheckComboBoxBoxError">
+                    پرسنل وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="app__form-item  " id="addFormInspectionPeriodStartDatePickerParent">
+                <label class="app__form-label">
+                    تاریخ شروع
+                </label>
+                <div>
+                    <input type="text" class="app__form-datepicker"
+                           id="addFormInspectionPeriodStartDatePicker"
+                           placeholder="از تاریخ"
+                           data-mddatetimepicker="true"
+                           data-englishnumber="true"
+                           data-targetdateselector="#addFormInspectionPeriodStartDatePicker" />
+                </div>
+                <div class="app__form-error app__hide" id="addFormInspectionPeriodStartDatePickerError">
+                    شروع بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="app__form-item ">
+                <label class="app__form-label">
+                    زمان شروع :
+                </label>
+                <div>
+                    @Html.DevExpress().TextBox(settings =>
+                    {
+                        settings.Name = "addFormInspectionStartPeriodInMinuteSpinEdit";
+                        settings.Properties.MaskSettings.Mask = "00:00";
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide" id="addFormInspectionStartPeriodInMinuteSpinEditError">
+                    زمان اجرا وارد نشده است وارد نشده است
+                </div>
+                <div class="app__form-error app__hide" id="addFormInspectionStartPeriodInMinuteSpinEditRangeError">
+                    زمان اجرا وارد نشده است نمی تواند کمتر از 1 باشد
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="app__form-item ">
+                <label class="app__form-label">
+                    تاریخ اتمام:
+                </label>
+                <div>
+                    <input type="text" class="app__form-datepicker"
+                           id="addFormInspectionPeriodEndDatePicker"
+                           placeholder="تاریخ اتمام"
+                           data-mddatetimepicker="true"
+                           data-englishnumber="true"
+                           data-targetdateselector="#addFormInspectionPeriodEndDatePicker" />
+                </div>
+                <div class="app__form-error app__hide" id="addPreventiveModalEndDatePickerError">
+                    تاریخ انتخاب نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="app__form-item ">
+                <label class="app__form-label">
+                    زمان پایان:
+                </label>
+                <div>
+                    @Html.DevExpress().TextBox(settings =>
+                    {
+                        settings.Name = "addInspectionDetailsModalRunEndTimeSpinEdit";
+                        settings.Properties.MaskSettings.Mask = "00:00";
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide" id="addInspectionDetailsModalRunEndTimeSpinEditError">
+                    زمان اجرا وارد نشده است وارد نشده است
+                </div>
+                <div class="app__form-error app__hide" id="addInspectionDetailsModalRunEndTimeSpinEditRangeError">
+                    زمان اجرا وارد نشده است نمی تواند کمتر از 1 باشد
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <div class="app__form-item ">
+                <label class="app__form-label">
+                    زمان اجرا:
+                </label>
+                <div>
+                    @Html.DevExpress().SpinEdit(settings =>
+                    {
+                        settings.Name = "inspectionDurationInMinute";
+                        settings.Properties.NullText = "مدت به انجام عملیات را وارد کنید";
+                        settings.Properties.MaxValue = 10000000;
+                        settings.Properties.MinValue = 1;
+                        settings.Properties.ShowOutOfRangeWarning = false;
+                    }).GetHtml()
+                </div>
+                <div class="app__form-error app__hide" id="durationInMinuteError">
+                    زمان اجرا وارد نشده است وارد نشده است
+                </div>
+                <div class="app__form-error app__hide" id="durationInMinuteRangeError">
+                    زمان اجرا وارد نشده است نمی تواند کمتر از 1 باشد
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    توضیحات
+                </label>
+                @Html.DevExpress().Memo(settings =>
+                {
+                    settings.Name = "inspectionModalDescriptionMemo";
+                    settings.Properties.NullText = "توضیحات را وارد نمایید";
+                }).GetHtml()
+                <div class="app__form-error app__hide" id="InspectionModalDescriptionMemoError">
+                    توضیحات وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-5 col-md-4 pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "AddInspectionDetailsModalSaveBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "add-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.netExpert.handleAddInspectionDetailsModalSaveBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

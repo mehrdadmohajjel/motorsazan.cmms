@@ -1,0 +1,73 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.Inspection.OutputGetInspectionDetailsByInspectionId[]
+@{
+    var data = ViewBag.Message;
+    var InspectionId = ViewBag.InspectionId;
+}
+<div class="filter-form">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 ">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    شرح عملیات
+                </label>
+                <div>
+                    @Html.DevExpress().Memo(settings =>
+               {
+                   settings.Name = "addInceptionDetailDescription";
+                   settings.Properties.NullText = "شرح عملیات";
+                   settings.Properties.ClientSideEvents.TextChanged =
+                       "motorsazanClient.inspection.handleAddInceptionDetailDescriptionTextChanged";
+               }).GetHtml()
+
+
+                </div>
+                <div class="app__form-error app__hide" id="addInceptionDetailDescriptionError">
+                    شرح عملیات وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 ">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    پیش بینی مدت زمان انجام عملیات(دقیقه)
+                </label>
+                <div id="addSubMachineNameParent">
+                    @Html.DevExpress().SpinEdit(settings =>
+               {
+                   settings.Name = "addInceptionDetailNeedTime";
+                   settings.Properties.MinValue = 1;
+                   settings.Properties.MaxValue = 9999;
+                   settings.Properties.NumberType = SpinEditNumberType.Integer;
+                   settings.Properties.ClientSideEvents.NumberChanged =
+                       "motorsazanClient.inspection.handleAddInceptionDetailNeedTimeNumberChanged";
+               }).GetHtml()
+
+                </div>
+                <div class="app__form-error app__hide" id="addInceptionDetailNeedTimeError">
+                    مدت زمان وارد نشده است
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-12 filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "addInceptionDetailBtn";
+                settings.Text = "ثبت";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "add-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.inspection.addInceptionDetail";
+            }).GetHtml()
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="app__grid-wrapper" id="inspectionDetailSourceGirdParent" data-agendumid="InspectionId">
+            @{ Html.RenderAction("InspectionDetailGrid", "Inspection"); }
+        </div>
+    </div>
+</div>

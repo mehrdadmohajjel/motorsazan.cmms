@@ -1,0 +1,56 @@
+﻿@import "../../../Utilities/Index";
+
+.tab-header {
+    border-bottom: 2px solid $color-border;
+    font-size: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-right: 16px;
+    position: relative;
+    text-align: right;
+    white-space: nowrap;
+
+    &:after {
+        background: $color-primary;
+        bottom: -2px;
+        content: "";
+        display: block;
+        height: 3px;
+        position: absolute;
+        right: 0;
+        width: 100%;
+    }
+
+    @include bem-e("btn") {
+        border: 1px solid $color-border;
+        border-bottom: none;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 12px;
+        outline: none !important;
+        padding: 8px 20px;
+        position: relative;
+        vertical-align: middle;
+
+        &:hover {
+            background: #0055ab;
+        }
+
+        @include bem-m("active") {
+            background: $color-primary;
+            border-color: #0055ab;
+            color: $color-white;
+        }
+
+        &:disabled {
+            background: $color-border;
+            color: #787878;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.tab-content-wrapper {
+    background: $color-white;
+    min-height: 200px;
+}

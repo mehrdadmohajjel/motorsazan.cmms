@@ -1,0 +1,38 @@
+﻿@model Motorsazan.CMMS.Shared.Models.Output.NetExpert.OutputGetOperationItemListByMaintenanceGroupIdAndMachineId[]
+
+@Html.DevExpress().ComboBox(
+settings =>
+{
+    settings.Name = "workOrderTempFinishModalOperationItemCombo";
+    settings.CallbackRouteValues = new { Controller = "NetExpert", Action = "WorkOrderTempFinishModalOperationItemCombo" };
+
+    settings.Properties.ClientSideEvents.BeginCallback =
+        "motorsazanClient.netExpert.handleWorkOrderTempFinishModalOperationItemComboBeginCallback";
+
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.Properties.NullText = "کد خطا را انتخاب کنید";
+
+    settings.SelectedIndex = -1;
+
+    settings.Properties.CallbackPageSize = 100;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.IncrementalFilteringDelay = 200;
+    settings.SettingsLoadingPanel.Text = "در حال دریافت اطلاعات";
+
+    settings.Properties.ValueField = "OperationItemId";
+    settings.Properties.ValueType = typeof(long);
+
+    settings.Properties.TextFormatString = @"{0} - {1}";
+
+    settings.Properties.Columns.Add("OperationItemCode", "کد خطا", Unit.Percentage(30));
+    settings.Properties.Columns.Add("OperationItemName", "نام خطا", Unit.Percentage(50));
+    settings.Properties.Columns.Add("OperationCode", "OP");
+
+    settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+
+    settings.Properties.ClientSideEvents.SelectedIndexChanged =
+        "motorsazanClient.netExpert.handleWorkOrderTempFinishModalOperationItemComboSelectedIndexChange";
+
+}).BindList(Model).GetHtml()

@@ -1,0 +1,133 @@
+﻿<section class="app__section">
+    <div id="addFormSparePartFormDocumentDesign" class="app__section__body">
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        مشخصات الکتریکی
+                    </label>
+                    <div id="addMachineSparePartDocumentElectricalSpecificationTextBoxParent">
+                        @Html.DevExpress().TextBox(settings =>
+                        {
+                            settings.Name = "addMachineSparePartDocumentElectricalSpecificationTextBox";
+                            settings.Width = Unit.Percentage(100);
+                            settings.Properties.ClientSideEvents.ValueChanged =
+                                "motorsazanClient.machineManagement.handleAddMachineSparePartDocumentElectricalSpecificationTextBoxValueChanged";
+                        }).GetHtml()
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="addMachineSparePartDocumentElectricalSpecificationTextBoxError">
+                        مشخصات الکتریکی وارد نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        مشخصات مکانیکی
+                    </label>
+                    <div id="addMachineSparePartDocumentMechanicalSpecificationTextBoxParent">
+                        @Html.DevExpress().TextBox(settings =>
+                        {
+                            settings.Name = "addMachineSparePartDocumentMechanicalSpecificationTextBox";
+                            settings.Width = Unit.Percentage(100);
+                            settings.Properties.ClientSideEvents.ValueChanged =
+                                "motorsazanClient.machineManagement.handleAddMachineSparePartDocumentMechanicalSpecificationTextBoxValueChanged";
+                        }).GetHtml()
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="addMachineSparePartDocumentMechanicalSpecificationTextBoxError">
+                        مشخصات مکانیکی وارد نشده است
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12 col-md-6" id="machineSparePartAttachmentUploaderDesign">
+                <div class="app__form-item" id="machineSparePartAttachmentUploaderParent">
+                    <label class="app__form-label">
+                        فایل ضمیمه
+                    </label>
+                    <div id="machineSparePartAttachmentUploader"></div>
+                    <div class="app__form-error app__hide" id="machineSparePartAttachmentUploaderError">
+                        فایل ضمیمه انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-lg-6 pull-left">
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            شرکت سازنده
+                        </label>
+                        <div id="addMachineSparePartDocumentMadeInCompanyTextBoxParent">
+                            @Html.DevExpress().TextBox(settings =>
+                            {
+                                settings.Name = "addMachineSparePartDocumentMadeInCompanyTextBox";
+                                settings.Width = Unit.Percentage(100);
+                                settings.Properties.ClientSideEvents.ValueChanged =
+                                    "motorsazanClient.machineManagement.handleAddMachineSparePartDocumentMadeInCompanyTextBoxValueChanged";
+                            }).GetHtml()
+                        </div>
+                        <div class="app__form-error app__hide"
+                             id="addMachineSparePartDocumentMadeInCompanyTextBoxError">
+                            شرکت سازنده وارد نشده است
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            توضیحات
+                        </label>
+                        <div id="addMachineSparePartDocumentDescriptionParent">
+                            @Html.DevExpress().Memo(settings =>
+                            {
+                                settings.Name = "addMachineSparePartDocumentDescription";
+                                settings.Properties.NullText = "توضیحات";
+                                settings.Properties.ClientSideEvents.ValueChanged =
+                                    "motorsazanClient.machineManagement.handleAddMachineSparePartDocumentDescriptionValueChanged";
+                            }).GetHtml()
+
+                        </div>
+                        <div class="app__form-error app__hide" id="addMachineSparePartDocumentDescriptionError">
+                            توضیحات وارد نشده است
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-4 col-lg-3 filter-form__action-wrapper pull-left">
+                        <div class="app__form-item app__form-item--action">
+                            @Html.DevExpress().Button(settings =>
+                            {
+                                settings.Name = "addMachineSparePartDocumentSaveBtn";
+                                settings.Text = "ثبت";
+                                settings.UseSubmitBehavior = false;
+                                settings.EnableClientSideAPI = true;
+                                settings.Styles.CssPostfix = "add-form__btn";
+                                settings.Width = Unit.Percentage(100);
+                                settings.ClientSideEvents.Click =
+                                    "motorsazanClient.machineManagement.handleAddMachineSparePartDocumentSaveBtnClick";
+                            }).GetHtml()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="app__section__body">
+        <form class="app__grid-wrapper" id="machineSparePartDocumentGridParent">
+            @{ Html.RenderAction("GetMachineSparePartDocumentList", "MachineManagement", new { model = ViewData["MachineSparePartId"] }); }
+        </form>
+    </div>
+</section>

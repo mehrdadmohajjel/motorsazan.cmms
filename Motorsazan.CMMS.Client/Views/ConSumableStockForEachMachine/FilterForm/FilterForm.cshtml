@@ -1,0 +1,122 @@
+﻿<div class="filter-form">
+    <div class="row ">
+
+        
+
+        <div id="filterFormWithMachine">
+            <div class="col-xs-12 " >
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب امور
+                    </label>
+                    <div id="filterFormGetDepartmentListHasMachineComboParent">
+                        @{ Html.RenderAction("FilterFormGetDepartmentListHasMachine", "ConsumableStockForEachMachine"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormGetDepartmentListHasMachineComboError">
+                        امور انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 " id="filterFormGetSubDepartmentListHasMachineComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب خط
+                    </label>
+                    <div id="filterFormGetSubDepartmentListHasMachineComboParent">
+                        @{ Html.RenderPartial("~/Views/ConsumableStockForEachMachine/FilterForm/FilterFormGetSubDepartmentListHasMachineCombo.cshtml"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormGetSubDepartmentListHasMachineComboError">
+                        خط انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 " id="filterFormMachineListComboParentDesign">
+                <div class="app__form-item">
+                    <label class="app__form-label">
+                        انتخاب دستگاه
+                    </label>
+                    <div id="filterFormMachineListComboParent">
+                        @{ Html.RenderPartial("~/Views/ConsumableStockForEachMachine/FilterForm/FilterFormGetMachineListCombo.cshtml"); }
+                    </div>
+                    <div class="app__form-error app__hide"
+                         id="filterFormMachineListComboError">
+                        دستگاه انتخاب نشده است
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+
+        <div class="col-xs-12" id="filterFormDateTypeComboParentDesign">
+            <div class="app__form-item">
+                <label class="app__form-label">
+                    بازه زمانی
+                </label>
+                <div id="filterFormDateTypeComboParent">
+                    @{ Html.RenderPartial("~/Views/ConsumableStockForEachMachine/FilterForm/FilterFormDateTypeCombo.cshtml"); }
+                </div>
+                <div class="app__form-error app__hide"
+                     id="filterFormDateTypeComboError">
+                    بازه زمانی انتخاب نشده است
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-12 app__hide" id="filterFormSpecialDateColumn">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            از تاریخ
+                        </label>
+                        <input type="text" class="app__form-datepicker"
+                               id="filterFormStartDate"
+                               placeholder="تاریخ را انتخاب نمایید"
+                               data-mddatetimepicker="true"
+                               data-englishnumber="true"
+                               data-targetdateselector="#filterFormStartDate"/>
+                        <div class="app__form-error app__hide"
+                             id="filterFormStartDateError">
+                            تاریخ شروع انتخاب نشده است
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="app__form-item">
+                        <label class="app__form-label">
+                            تا تاریخ
+                        </label>
+                        <input type="text" class="app__form-datepicker"
+                               id="filterFormEndDate"
+                               placeholder="تاریخ را انتخاب نمایید"
+                               data-mddatetimepicker="true"
+                               data-englishnumber="true"
+                               data-targetdateselector="#filterFormEndDate"/>
+                        <div class="app__form-error app__hide"
+                             id="filterFormEndDateError">
+                            تاریخ پایان انتخاب نشده است
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 pull-left filter-form__action-wrapper">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "filterFormSearchBtn";
+                settings.Text = "مشاهده";
+                settings.UseSubmitBehavior = false;
+                settings.EnableClientSideAPI = true;
+                settings.Styles.CssPostfix = "filter-form__btn";
+                settings.Width = Unit.Percentage(100);
+                settings.ClientSideEvents.Click =
+                    "motorsazanClient.consumableStockForEachMachine.handleFilterFormSearchBtnClick";
+            }).GetHtml()
+        </div>
+    </div>
+</div>

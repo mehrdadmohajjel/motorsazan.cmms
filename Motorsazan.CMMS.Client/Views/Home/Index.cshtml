@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "صفحه اصلی - میانبر";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head
+{
+    <link href="~/DX.ashx?cssfile=~/Views/Home/Css/Index.min.css" rel="Stylesheet" />
+}
+
+<div class="home">
+    <div class="row">
+        <div class="col-xs-6 col-md-7">
+            <a href="@Url.Action("Index", "ProductiveWorkOrder")" class="home__link home__link--big home__link--success">
+                <img src="/Client/Images/icon__project--white.svg" class="home__link__icon" alt="ثبت سفارش کار تولیدی"/>
+                ثبت سفارش کار تولیدی
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-5">
+            <a href="@Url.Action("Index", "NoneProductiveWorkOrder")" class="home__link home__link--big home__link--info">
+                <img src="/Client/Images/icon__repair--white.svg" class="home__link__icon" alt="ثبت سفارش کار غیر تولیدی"/>
+                ثبت سفارش کار غیر تولیدی
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-4">
+            <a href="@Url.Action("Index", "NetExpert")" class="home__link home__link--big home__link--info">
+                <img src="/Client/Images/Home/expert.svg" class="home__link__icon" alt="کارشناس نت"/>
+                کارشناس نت
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <a href="@Url.Action("Index", "StockMan")" class="home__link home__link--big home__link--warning">
+                <img src="/Client/Images/Home/warehouse.svg" class="home__link__icon" alt="انباردار نت"/>
+                انباردار نت
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <a href="@Url.Action("Index", "Inspection")" class="home__link home__link--big home__link--danger">
+                <img src="/Client/Images/icon__list--white.svg" class="home__link__icon" alt="فرم بازرسی ،بهبود و ارتقا"/>
+                فرم بازرسی ،بهبود و ارتقا
+            </a>
+        </div>
+
+
+    </div>
+</div>
